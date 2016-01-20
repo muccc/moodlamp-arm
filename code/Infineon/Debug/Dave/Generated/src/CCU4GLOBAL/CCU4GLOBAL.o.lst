@@ -1,0 +1,332 @@
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"CCU4GLOBAL.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.CCU4GLOBAL_Init,"ax",%progbits
+  18              		.align	1
+  19              		.global	CCU4GLOBAL_Init
+  20              		.code	16
+  21              		.thumb_func
+  23              	CCU4GLOBAL_Init:
+  24              	.LFB38:
+  25              		.file 1 "../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c"
+   1:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** /*CODE_BLOCK_BEGIN[CCU4GLOBAL.c]*/
+   2:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 
+   3:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 
+   4:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** /*******************************************************************************
+   5:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****  Copyright (c) 2013, Infineon Technologies AG                                 **
+   6:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****  All rights reserved.                                                         **
+   7:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****                                                                               **
+   8:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****  Redistribution and use in source and binary forms, with or without           **
+   9:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****  modification,are permitted provided that the following conditions are met:   **
+  10:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****                                                                               **
+  11:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****  *Redistributions of source code must retain the above copyright notice,      **
+  12:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****  this list of conditions and the following disclaimer.                        **
+  13:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****  *Redistributions in binary form must reproduce the above copyright notice,   **
+  14:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****  this list of conditions and the following disclaimer in the documentation    **
+  15:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****  and/or other materials provided with the distribution.                       **
+  16:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****  *Neither the name of the copyright holders nor the names of its contributors **
+  17:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****  may be used to endorse or promote products derived from this software without**
+  18:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****  specific prior written permission.                                           **
+  19:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****                                                                               **
+  20:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"  **
+  21:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE    **
+  22:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE   **
+  23:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****  ARE  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE   **
+  24:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****  LIABLE  FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR         **
+  25:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****  CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF         **
+  26:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****  SUBSTITUTE GOODS OR  SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS    **
+  27:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN      **
+  28:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****  CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)       **
+  29:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE   **
+  30:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****  POSSIBILITY OF SUCH DAMAGE.                                                  **
+  31:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****                                                                               **
+  32:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****  To improve the quality of the software, users are encouraged to share        **
+  33:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****  modifications, enhancements or bug fixes with Infineon Technologies AG       **
+  34:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****  dave@infineon.com).                                                          **
+  35:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****                                                                               **
+  36:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** ********************************************************************************
+  37:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** **                                                                            **
+  38:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** **                                                                            **
+  39:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** ** PLATFORM : Infineon XMC4000/XMC1000 Series                                 **
+  40:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** **                                                                            **
+  41:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** ** COMPILER : Compiler Independent                                            **
+  42:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** **                                                                            **
+  43:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** ** AUTHOR   : App Developer                                                   **
+  44:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** **                                                                            **
+  45:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** ** MAY BE CHANGED BY USER [yes/no]: Yes                                       **
+  46:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** **                                                                            **
+  47:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** ** MODIFICATION DATE : Nov  25, 2013                                          **
+  48:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** **                                                                            **
+  49:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** *******************************************************************************/
+  50:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** /*******************************************************************************
+  51:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** **                      Author(s) Identity                                    **
+  52:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** ********************************************************************************
+  53:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** **                                                                            **
+  54:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** ** Initials     Name                                                          **
+  55:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** ** ---------------------------------------------------------------------------**
+  56:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** ** SNR          App Developer                                                 **
+  57:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** **                                                                            **
+  58:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** *******************************************************************************/
+  59:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 
+  60:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** /**
+  61:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****  * @file  CCU4GLOBAL.c
+  62:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****  *
+  63:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****  * @brief This file contains implementations of all Public and Private functions
+  64:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****  *        of CCU4GLOBAL App.
+  65:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****  */
+  66:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** /* Revision History
+  67:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****  * 22 March     2012   v1.0.0    Initial version
+  68:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****  * 17 September 2012   v1.0.4    code to disable clock gating for XMC44 devices
+  69:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****  * 25 January   2013   v1.0.10   code to disable clock gating for XMC1  devices
+  70:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****  * 25 November  2013   v1.0.12   Followed coding guidelines
+  71:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****  */
+  72:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** /*******************************************************************************
+  73:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** **                      Include Files                                         **
+  74:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** *******************************************************************************/
+  75:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 
+  76:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** #include "../../inc/CCU4GLOBAL/CCU4GLOBAL.h"
+  77:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 
+  78:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** static void CCU4Global_lInit(const CCU4Global_HandleType * Handle);
+  79:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 
+  80:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** /*******************************************************************************
+  81:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** **                 Public Function declarations                              **
+  82:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** *******************************************************************************/
+  83:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** /**
+  84:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****  * @cond INTERNAL_DOCS
+  85:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****  */
+  86:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 
+  87:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** void CCU4GLOBAL_Init(void)
+  88:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** {
+  26              		.loc 1 88 0
+  27              		.cfi_startproc
+  28              	.LVL0:
+  29 0000 70B5     		push	{r4, r5, r6, lr}
+  30              	.LCFI0:
+  31              		.cfi_def_cfa_offset 16
+  32              		.cfi_offset 4, -16
+  33              		.cfi_offset 5, -12
+  34              		.cfi_offset 6, -8
+  35              		.cfi_offset 14, -4
+  89:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****   static uint32_t CCU4InitCalled = (uint32_t)0U;
+  90:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****   uint32_t Count = 0U;
+  91:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****   
+  92:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****   if(CCU4InitCalled == (uint32_t)0U)
+  36              		.loc 1 92 0
+  37 0002 154C     		ldr	r4, .L7
+  38 0004 2368     		ldr	r3, [r4]
+  39 0006 002B     		cmp	r3, #0
+  40 0008 25D1     		bne	.L1
+  93:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****   {
+  94:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****     /*
+  95:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****      * Each instance of the App brings the module out of reset and enable 
+  96:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****      * the prescalar clock
+  97:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****      */
+  98:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****     /* Initialise the clock */
+  99:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 	#if (UC_FAMILY == XMC4)     
+ 100:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 		CLK001_Init();     
+ 101:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 	#endif		
+ 102:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 	
+ 103:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 	#if (UC_FAMILY == XMC1)    
+ 104:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 		CLK002_Init();
+  41              		.loc 1 104 0
+  42 000a FFF7FEFF 		bl	CLK002_Init
+  43              	.LVL1:
+ 105:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 	#endif
+ 106:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****     
+ 107:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****     for (Count = 0U; Count<(uint32_t)CCU4GLOBAL_NUM_INSTANCES; Count++)
+ 108:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****     {
+ 109:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****   	  CCU4Global_lInit(CCU4Global_HandleArray[Count]);
+  44              		.loc 1 109 0
+  45 000e 1348     		ldr	r0, .L7+4
+  46 0010 0268     		ldr	r2, [r0]
+  47              	.LVL2:
+  48              	.LBB4:
+  49              	.LBB5:
+ 110:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****     }
+ 111:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 
+ 112:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****     CCU4InitCalled = (uint32_t)1;
+ 113:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****   }
+ 114:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** }
+ 115:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 
+ 116:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** static void CCU4Global_lInit(const CCU4Global_HandleType * Handle)
+ 117:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** {
+ 118:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****     if( Handle->KernelNumber <= 2 )
+  50              		.loc 1 118 0
+  51 0012 5168     		ldr	r1, [r2, #4]
+  52 0014 0229     		cmp	r1, #2
+  53 0016 16D8     		bhi	.L3
+ 119:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 	{
+ 120:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 		/* Disables the gating for CCU4 kernel */      
+ 121:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 		/*This is applicable for XMC4400,XMC4200 and XMC1xxx Devices*/
+ 122:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 		#if (UC_FAMILY == XMC1 )
+ 123:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 			if (!((uint32_t)SCU_CLK->CGATCLR0 & Handle->ClockGating))
+  54              		.loc 1 123 0
+  55 0018 114B     		ldr	r3, .L7+8
+  56 001a 9068     		ldr	r0, [r2, #8]
+  57 001c 1D69     		ldr	r5, [r3, #16]
+  58 001e 0542     		tst	r5, r0
+  59 0020 11D1     		bne	.L3
+ 124:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 			{ 
+ 125:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 				SCU_GENERAL->PASSWD = 0x000000C0UL;
+  60              		.loc 1 125 0
+  61 0022 1049     		ldr	r1, .L7+12
+  62 0024 C026     		mov	r6, #192
+  63 0026 4E62     		str	r6, [r1, #36]
+ 126:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 				WR_REG(SCU_CLK->CLKCR, SCU_CLK_CLKCR_CNTADJ_Msk, 
+  64              		.loc 1 126 0
+  65 0028 1D68     		ldr	r5, [r3]
+  66 002a 0F4E     		ldr	r6, .L7+16
+  67 002c 3543     		orr	r5, r6
+  68 002e 1D60     		str	r5, [r3]
+ 127:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 					   SCU_CLK_CLKCR_CNTADJ_Pos,CCU4GLOBAL_DELAYCNT);
+ 128:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 				
+ 129:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 				SET_BIT(SCU_CLK->CGATCLR0, Handle->ClockGating);
+  69              		.loc 1 129 0
+  70 0030 0126     		mov	r6, #1
+  71 0032 1D69     		ldr	r5, [r3, #16]
+  72 0034 8640     		lsl	r6, r6, r0
+  73 0036 301C     		mov	r0, r6
+  74 0038 2843     		orr	r0, r5
+  75 003a 1861     		str	r0, [r3, #16]
+  76              	.L4:
+ 130:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 				while ((uint32_t)SCU_CLK->CLKCR & 
+  77              		.loc 1 130 0
+  78 003c 1D68     		ldr	r5, [r3]
+  79 003e 6D00     		lsl	r5, r5, #1
+  80 0040 FCD4     		bmi	.L4
+ 131:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 					   (uint32_t)SCU_CLK_CLKCR_VDDC2LOW_Msk)
+ 132:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 				{
+ 133:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 					;
+ 134:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 				}
+ 135:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 				SCU_GENERAL->PASSWD = 0x000000C3UL;
+  81              		.loc 1 135 0
+  82 0042 C323     		mov	r3, #195
+  83 0044 4B62     		str	r3, [r1, #36]
+  84              	.L3:
+ 136:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 			}
+ 137:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 		#endif
+ 138:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 		#if ((__TARGET_DEVICE__ == XMC42) || (__TARGET_DEVICE__ == XMC44))
+ 139:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****             	SET_BIT(SCU_CLK->CGATCLR0, Handle->ClockGating);
+ 140:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 		#endif
+ 141:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 	}
+ 142:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 	#if (__TARGET_DEVICE__ == XMC44)		    
+ 143:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 	else
+ 144:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 	{   
+ 145:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 			SET_BIT(SCU_CLK->CGATCLR1, Handle->ClockGating);
+ 146:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 	}
+ 147:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 	#endif
+ 148:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 	
+ 149:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 	#if (UC_FAMILY == XMC4)
+ 150:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 		/* Deassert the peripheral */
+ 151:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 		/*This is applicable for XMC4500, XMC4400 and XMC4200 Devices*/
+ 152:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 		RESET001_DeassertReset(Handle->PeripheralReset);
+ 153:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 	#endif    
+ 154:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 
+ 155:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** 		
+ 156:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****     /* Sets Run bit of the Prescalar */
+ 157:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****     SET_BIT(Handle->CC4yKernRegsPtr->GIDLC,CCU4_GIDLC_SPRB_Pos);
+  85              		.loc 1 157 0
+  86 0046 1668     		ldr	r6, [r2]
+  87 0048 8022     		mov	r2, #128
+  88              	.LVL3:
+  89 004a F168     		ldr	r1, [r6, #12]
+  90 004c 5000     		lsl	r0, r2, #1
+  91 004e 0843     		orr	r0, r1
+  92              	.LBE5:
+  93              	.LBE4:
+ 112:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****     CCU4InitCalled = (uint32_t)1;
+  94              		.loc 1 112 0
+  95 0050 0125     		mov	r5, #1
+  96              	.LBB7:
+  97              	.LBB6:
+  98              		.loc 1 157 0
+  99 0052 F060     		str	r0, [r6, #12]
+ 100              	.LVL4:
+ 101              	.LBE6:
+ 102              	.LBE7:
+ 112:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c ****     CCU4InitCalled = (uint32_t)1;
+ 103              		.loc 1 112 0
+ 104 0054 2560     		str	r5, [r4]
+ 105              	.LVL5:
+ 106              	.L1:
+ 114:../Dave/Generated/src/CCU4GLOBAL/CCU4GLOBAL.c **** }
+ 107              		.loc 1 114 0
+ 108              		@ sp needed for prologue
+ 109 0056 70BD     		pop	{r4, r5, r6, pc}
+ 110              	.L8:
+ 111              		.align	2
+ 112              	.L7:
+ 113 0058 00000000 		.word	.LANCHOR0
+ 114 005c 00000000 		.word	CCU4Global_HandleArray
+ 115 0060 00030140 		.word	1073808128
+ 116 0064 00000140 		.word	1073807360
+ 117 0068 0000F03F 		.word	1072693248
+ 118              		.cfi_endproc
+ 119              	.LFE38:
+ 121              		.bss
+ 122              		.align	2
+ 123              		.set	.LANCHOR0,. + 0
+ 126              	CCU4InitCalled.5862:
+ 127 0000 00000000 		.space	4
+ 128              		.text
+ 129              	.Letext0:
+ 130              		.file 2 "C:\\DAVE-3.1.10\\eclipse\\/../CMSIS/Infineon/XMC1200_series/Include/XMC1200.h"
+ 131              		.file 3 "c:\\dave-3.1.10\\arm-gcc\\bin\\../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/i
+ 132              		.file 4 "../Dave/Generated/src/CCU4GLOBAL/../../inc/CCU4GLOBAL/CCU4GLOBAL.h"
+ 133              		.file 5 "../Dave/Generated/src/CCU4GLOBAL/../../inc/CCU4GLOBAL/CCU4Global_Extern.h"
+ 134              		.file 6 "../Dave/Generated/src/CCU4GLOBAL/../../inc/CCU4GLOBAL/../../inc/CLK002/CLK002.h"
+DEFINED SYMBOLS
+                            *ABS*:00000000 CCU4GLOBAL.c
+C:\Users\tomasoat\AppData\Local\Temp\ccjS25fo.s:18     .text.CCU4GLOBAL_Init:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\ccjS25fo.s:23     .text.CCU4GLOBAL_Init:00000000 CCU4GLOBAL_Init
+C:\Users\tomasoat\AppData\Local\Temp\ccjS25fo.s:113    .text.CCU4GLOBAL_Init:00000058 $d
+C:\Users\tomasoat\AppData\Local\Temp\ccjS25fo.s:122    .bss:00000000 $d
+C:\Users\tomasoat\AppData\Local\Temp\ccjS25fo.s:126    .bss:00000000 CCU4InitCalled.5862
+                     .debug_frame:00000010 $d
+                           .group:00000000 wm4.1.e09b9dd5224853206c418479f14d6963
+                           .group:00000000 wm4.uc_id.h.35.62dcba5f6261c1436e3866a751c1a98b
+                           .group:00000000 wm4.XMC1200.h.45.4c899b4822ac22c0f00d6fd7f173cc96
+                           .group:00000000 wm4.core_cm0.h.47.022e66414e77714da7c4b30b3ad99fe8
+                           .group:00000000 wm4.newlib.h.8.a9901dc52d1357e3e94003403d43f8b5
+                           .group:00000000 wm4.features.h.22.b72b3baab2bb2eab3661375590100b6b
+                           .group:00000000 wm4.config.h.193.5fb8ef056cdff92dec3dee9552839d8c
+                           .group:00000000 wm4._ansi.h.23.7aefdac4826acebbfc9f3822a0aeb14c
+                           .group:00000000 wm4.stdint.h.20.54ad762faa59e3c05491630641c8d8bf
+                           .group:00000000 wm4.core_cmInstr.h.39.b7b6650bdd2316848d940915272d75b8
+                           .group:00000000 wm4.core_cm0.h.135.ca70469f87e143609670bb393bfa6518
+                           .group:00000000 wm4.XMC1000_RomFunctionTable.h.31.6d9a94465618f31b040dc9cea9a47ad7
+                           .group:00000000 wm4.XMC1200.h.122.96b58b1204def4c9f76341a4e21abaf6
+                           .group:00000000 wm4.stddef.h.40.50cf36416e06376af8a9dca28536f2e4
+                           .group:00000000 wm4.types.h.60.e75c47576398c648cdcf9000ace5e3d8
+                           .group:00000000 wm4.MULTIPLEXER.h.46.383e3edbb9cbf6e538f7c1532ef623c1
+                           .group:00000000 wm4.BCCUDIM01_Conf.h.46.1e3ffd6581cbd401bcc28a6ce60f19f0
+                           .group:00000000 wm4.BCCUCH01_Conf.h.48.2ce679450068d1645a9e0c3a7937e697
+                           .group:00000000 wm4.PWMSP003_Conf.h.49.a3ea83c25b3af429e78acb0f2dc45bd4
+                           .group:00000000 wm4.PWMSP003.h.103.903071678b9af5683776405c5b299fbb
+                           .group:00000000 wm4.IO002_Conf.h.51.9fc2eb43e77e0a2c02912a3744f3ec9d
+                           .group:00000000 wm4.IO001.h.49.4efcabb368feaef60c65bd7504b48505
+                           .group:00000000 wm4.NVIC002_Conf.h.62.64042456dc7f2eb96fc713abacb4c5d4
+                           .group:00000000 wm4.DMX512RD01_Conf.h.49.036b57ce74a404ea8f8ade310b364436
+                           .group:00000000 wm4.IO004.h.53.442ea5eb47ad9eedc675253aa35f3107
+                           .group:00000000 wm4.Usic.h.40.f6a4fed014760114cf5039d398d6dd2c
+                           .group:00000000 wm4.I2C003_Conf.h.50.5fb7c255d386301836868ba2fd78b91f
+                           .group:00000000 wm4.FLASH003.h.76.20bf3d34b222314a45adfdfb414ab1b6
+                           .group:00000000 wm4.FLASH003_Conf.h.72.6d366060eda228c6c8843c467361c30c
+                           .group:00000000 wm4.CCU4Global_Conf.h.63.a52fac0daa39b5f58343578312b4eb54
+
+UNDEFINED SYMBOLS
+CLK002_Init
+CCU4Global_HandleArray

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.ifx.davex.uimodel:UIDataModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.ifx.davex.uimodel="com.ifx.davex.uimodel">
+  <controls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Page46" displayName="Configurations" className="IfxGroupBox" controlId="1360637700188">
+    <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+    <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group44" displayName="Configurations" className="IfxGroupBox" controlId="1360637788255">
+      <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/anacmp01/0/anacmp01_cmpenEnable" displayName="Enable Analog Comparator" className="EnumerationType" paramName="app/anacmp01/0/anacmp01_cmpenEnable:Enable Analog Comparator" controlId="1360637791718">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/anacmp01/0/anacmp01_cmpfltoffDisable" displayName="Disable Comparator Filter" className="EnumerationType" paramName="app/anacmp01/0/anacmp01_cmpfltoffDisable:Disable Comparator Filter" controlId="1360637828839">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/anacmp01/0/anacmp01_cmpinvoutInvert" displayName="Invert Comparator Output" className="EnumerationType" paramName="app/anacmp01/0/anacmp01_cmpinvoutInvert:Invert Comparator Output" controlId="1360637878103">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/anacmp01/0/anacmp01_Hysadj" displayName="Hysteresis Voltage Control" className="EnumerationType" paramName="app/anacmp01/0/anacmp01_Hysadj:Hysteresis Adjust" controlId="1360637902075">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout" numColumns="2"/>
+    </subControls>
+    <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+  </controls>
+</com.ifx.davex.uimodel:UIDataModel>

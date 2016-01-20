@@ -1,0 +1,63 @@
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"BCCUDIM01_Conf.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.global	BCCUDIM01_HandleArr
+  18              		.global	BCCUDIM01_Handle0
+  19              		.section	.rodata
+  20              		.align	2
+  23              	BCCUDIM01_Handle0:
+  24 0000 00000350 		.word	1342373888
+  25 0004 94010350 		.word	1342374292
+  26 0008 02       		.byte	2
+  27 0009 01       		.byte	1
+  28 000a 0000     		.space	2
+  29 000c 00000000 		.word	0
+  30 0010 00       		.byte	0
+  31 0011 00       		.byte	0
+  32 0012 0000     		.space	2
+  33 0014 FF0F0000 		.word	4095
+  34              		.data
+  35              		.align	2
+  38              	BCCUDIM01_HandleArr:
+  39 0000 00000000 		.word	BCCUDIM01_Handle0
+  40              		.text
+  41              	.Letext0:
+  42              		.file 1 "C:\\DAVE-3.1.10\\eclipse\\/../CMSIS/Infineon/XMC1200_series/Include/XMC1200.h"
+  43              		.file 2 "c:\\dave-3.1.10\\arm-gcc\\bin\\../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/i
+  44              		.file 3 "../Dave/Generated/src/BCCUDIM01/../../inc/BCCUDIM01/BCCUDIM01.h"
+  45              		.file 4 "../Dave/Generated/src/BCCUDIM01/BCCUDIM01_Conf.c"
+DEFINED SYMBOLS
+                            *ABS*:00000000 BCCUDIM01_Conf.c
+C:\Users\tomasoat\AppData\Local\Temp\cc4fa8ea.s:38     .data:00000000 BCCUDIM01_HandleArr
+C:\Users\tomasoat\AppData\Local\Temp\cc4fa8ea.s:23     .rodata:00000000 BCCUDIM01_Handle0
+C:\Users\tomasoat\AppData\Local\Temp\cc4fa8ea.s:20     .rodata:00000000 $d
+C:\Users\tomasoat\AppData\Local\Temp\cc4fa8ea.s:35     .data:00000000 $d
+                           .group:00000000 wm4.1.e09b9dd5224853206c418479f14d6963
+                           .group:00000000 wm4.uc_id.h.35.62dcba5f6261c1436e3866a751c1a98b
+                           .group:00000000 wm4.XMC1200.h.45.4c899b4822ac22c0f00d6fd7f173cc96
+                           .group:00000000 wm4.core_cm0.h.47.022e66414e77714da7c4b30b3ad99fe8
+                           .group:00000000 wm4.newlib.h.8.a9901dc52d1357e3e94003403d43f8b5
+                           .group:00000000 wm4.features.h.22.b72b3baab2bb2eab3661375590100b6b
+                           .group:00000000 wm4.config.h.193.5fb8ef056cdff92dec3dee9552839d8c
+                           .group:00000000 wm4._ansi.h.23.7aefdac4826acebbfc9f3822a0aeb14c
+                           .group:00000000 wm4.stdint.h.20.54ad762faa59e3c05491630641c8d8bf
+                           .group:00000000 wm4.core_cmInstr.h.39.b7b6650bdd2316848d940915272d75b8
+                           .group:00000000 wm4.core_cm0.h.135.ca70469f87e143609670bb393bfa6518
+                           .group:00000000 wm4.XMC1000_RomFunctionTable.h.31.6d9a94465618f31b040dc9cea9a47ad7
+                           .group:00000000 wm4.XMC1200.h.122.96b58b1204def4c9f76341a4e21abaf6
+                           .group:00000000 wm4.BCCUDIM01_Conf.h.46.1e3ffd6581cbd401bcc28a6ce60f19f0
+
+NO UNDEFINED SYMBOLS

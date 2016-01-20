@@ -1,0 +1,117 @@
+<%@ jet package="CodeGenerator" class="flash003_confh_template"
+imports="java.util.* com.ifx.davex.appjetinteract.App2JetInterface" %>
+<% App2JetInterface app = (App2JetInterface) argument; %>
+/*CODE_BLOCK_BEGIN[FLASH003_Conf.h]*/
+
+/*******************************************************************************
+ Copyright (c) 2014, Infineon Technologies AG                                 **
+ All rights reserved.                                                         **
+                                                                              **
+ Redistribution and use in source and binary forms, with or without           **
+ modification,are permitted provided that the following conditions are met:   **
+                                                                              **
+ *Redistributions of source code must retain the above copyright notice,      **
+ this list of conditions and the following disclaimer.                        **
+ *Redistributions in binary form must reproduce the above copyright notice,   **
+ this list of conditions and the following disclaimer in the documentation    **
+ and/or other materials provided with the distribution.                       **
+ *Neither the name of the copyright holders nor the names of its contributors **
+ may be used to endorse or promote products derived from this software without** 
+ specific prior written permission.                                           **
+                                                                              **
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"  **
+ AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE    **
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE   **
+ ARE  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE   **
+ LIABLE  FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR         **
+ CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF         **
+ SUBSTITUTE GOODS OR  SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS    **
+ INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN      **
+ CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)       **
+ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE   **
+ POSSIBILITY OF SUCH DAMAGE.                                                  **
+                                                                              **
+ To improve the quality of the software, users are encouraged to share        **
+ modifications, enhancements or bug fixes with Infineon Technologies AG       **
+ dave@infineon.com).                                                          **
+                                                                              **
+********************************************************************************
+**                                                                            **
+**                                                                            **
+** PLATFORM : Infineon XMC1000 Series                                         **
+**                                                                            **
+** COMPILER : Compiler Independent                                            **
+**                                                                            **
+** AUTHOR   : App Developer                                                   **
+**                                                                            **
+** MAY BE CHANGED BY USER [Yes/No]: Yes                                       **
+**                                                                            **
+** MODIFICATION DATE : Jan 27, 2014                                           **
+**                                                                            **
+*******************************************************************************/
+/* Revision History
+ *****************************************************************************
+ * Date           Version     Remarks
+ * 28 June 2013   1.0.0      Initial Version
+ * 28 Aug  2013   1.0.4		 Event Macros and User Event Definitions are 
+ *                           generated based on UI configuration
+ * 30 Sep  2013   1.0.6		 Added C++ support
+ * 27 Jan  2014   1.0.8      Naming convention of the macros changed.
+ */
+/**
+ * @file   FLASH003_Conf.h
+ *
+ * @brief  Configuration file generated based on UI settings 
+ *         of FLASH003 App
+ *
+ */
+#ifndef FLASH003_CONF_H_
+#define FLASH003_CONF_H_
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include <DAVE3.h>
+
+<% String AppBaseuri = "app/flash003/";%>
+<% String MappedUri = null; %>
+<% String appInst  = null; %>
+<% String flash003_Handler  = null; %>
+<% String flash003_Handler2  = null; %>
+<% int ECC_INTERRUPT = app.getIntegerValue(AppBaseuri + "0/flash003_erwdoublebiteccevent/0"); %>
+<% int SEQ_INTERRUPT = app.getIntegerValue(AppBaseuri + "0/flash003_erwCompletionofSequence/0"); %>
+<% flash003_Handler = app.getStringValue(AppBaseuri + "0/flash003_irwCallbackFunc"); %>
+<% flash003_Handler2 = app.getStringValue(AppBaseuri + "0/flash003_irwCallbackFunc2"); %>
+<% ArrayList<String> appsList = (ArrayList<String>)(app.getApps("app/flash003/"));
+for (String appIns : appsList ) {
+appInst = appIns.substring(appIns.lastIndexOf("/")+1); %>
+/*Status of Double bit ECC interrupt*/
+#define FLASH003_ECC_INTERRUPT <%= ECC_INTERRUPT%>U
+/*Status of End of Sequence interrupt*/
+#define FLASH003_SEQ_INTERRUPT <%= SEQ_INTERRUPT%>U
+/*Event1 handler name*/
+#define FLASH003_SEQ_EVENT <%if((flash003_Handler != null) && (flash003_Handler != "")){%><%= flash003_Handler%><%}else{%> NULL <%}%>
+/*Event2 handler name*/
+#define FLASH003_ECC_EVENT <%if((flash003_Handler2 != null) && (flash003_Handler2 != "")){%><%= flash003_Handler2%><%}else{%> NULL <%}%>
+<% if (SEQ_INTERRUPT == 1){%>
+<% if((flash003_Handler != null) && (flash003_Handler != "")) { %>
+/*User defined Event Handler function for Seq Error */  
+extern void <%=flash003_Handler%>(uint32_t CbArgs);
+<% }} %>
+<% if (ECC_INTERRUPT == 1){%>
+<% if((flash003_Handler2 != null) && (flash003_Handler2 != "")) { %>
+/*User defined Event Handler function for ECC Error */  
+extern void <%=flash003_Handler2%>(uint32_t CbArgs);
+<% }} %>
+
+extern const FLASH003_HandleType FLASH003_Handle<%=appInst%>;
+extern FLASH003_DynamicHandleType FLASH003_DynamicHandle<%=appInst%>;
+<%} %>
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* FLASH001_CONF_H_ */  
+/*CODE_BLOCK_END*/

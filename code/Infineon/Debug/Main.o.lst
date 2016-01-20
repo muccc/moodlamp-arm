@@ -1,0 +1,1091 @@
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"Main.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.startup.main,"ax",%progbits
+  18              		.align	1
+  19              		.global	main
+  20              		.code	16
+  21              		.thumb_func
+  23              	main:
+  24              	.LFB38:
+  25              		.file 1 "../Main.c"
+   1:../Main.c     **** /*******************************************************************************
+   2:../Main.c     ****  Copyright (c) 2013, Infineon Technologies AG                                 **
+   3:../Main.c     ****  All rights reserved.                                                         **
+   4:../Main.c     ****                                                                               **
+   5:../Main.c     ****  Redistribution and use in source and binary forms, with or without           **
+   6:../Main.c     ****  modification,are permitted provided that the following conditions are met:   **
+   7:../Main.c     ****                                                                               **
+   8:../Main.c     ****  *Redistributions of source code must retain the above copyright notice,      **
+   9:../Main.c     ****  this list of conditions and the following disclaimer.                        **
+  10:../Main.c     ****  *Redistributions in binary form must reproduce the above copyright notice,   **
+  11:../Main.c     ****  this list of conditions and the following disclaimer in the documentation    **
+  12:../Main.c     ****  and/or other materials provided with the distribution.                       **
+  13:../Main.c     ****  *Neither the name of the copyright holders nor the names of its contributors **
+  14:../Main.c     ****  may be used to endorse or promote products derived from this software without**
+  15:../Main.c     ****  specific prior written permission.                                           **
+  16:../Main.c     ****                                                                               **
+  17:../Main.c     ****  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"  **
+  18:../Main.c     ****  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE    **
+  19:../Main.c     ****  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE   **
+  20:../Main.c     ****  ARE  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE   **
+  21:../Main.c     ****  LIABLE  FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR         **
+  22:../Main.c     ****  CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF         **
+  23:../Main.c     ****  SUBSTITUTE GOODS OR  SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS    **
+  24:../Main.c     ****  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN      **
+  25:../Main.c     ****  CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)       **
+  26:../Main.c     ****  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE   **
+  27:../Main.c     ****  POSSIBILITY OF SUCH DAMAGE.                                                  **
+  28:../Main.c     ****                                                                               **
+  29:../Main.c     ****  To improve the quality of the software, users are encouraged to share        **
+  30:../Main.c     ****  modifications, enhancements or bug fixes with Infineon Technologies AG       **
+  31:../Main.c     ****  dave@infineon.com).                                                          **
+  32:../Main.c     ****                                                                               **
+  33:../Main.c     **** ********************************************************************************
+  34:../Main.c     **** **                                                                            **
+  35:../Main.c     **** **                                                                            **
+  36:../Main.c     **** ** PLATFORM : Infineon XMC1200 Series                                         **
+  37:../Main.c     **** **                                                                            **
+  38:../Main.c     **** ** AUTHOR : Michelle Chia				                                      **
+  39:../Main.c     **** **                                                                            **
+  40:../Main.c     **** ** version 0 (3-channel DCDC LED driver with DMX512)			              **
+  41:../Main.c     **** ** version 1 (RGB LED Shield, Arduino)							              **
+  42:../Main.c     **** ** version 2 (minor updates)    	 								          **
+  43:../Main.c     **** ** version 3 (modified maximum peak-current reference)        	      		  **
+  44:../Main.c     **** ** version 4 (added ReadMe and comments)                                      **
+  45:../Main.c     **** ** version 5 (DMX512 control is disabled in virgin shields)                   **
+  46:../Main.c     **** ** MODIFICATION DATE : 12 Aug 2014	                                          **
+  47:../Main.c     **** **                                                                            **
+  48:../Main.c     **** *******************************************************************************/
+  49:../Main.c     **** 
+  50:../Main.c     **** 
+  51:../Main.c     **** 
+  52:../Main.c     **** #include <DAVE3.h>			//Declarations from DAVE3 Code Generation (includes SFR declaration)
+  53:../Main.c     **** #include "i2c_comm.h"
+  54:../Main.c     **** 
+  55:../Main.c     **** #define GET_MASK_FOR_1CHANNEL(N1) (1UL<<N1)
+  56:../Main.c     **** #define INTENSITY_RED             (0x11U) //0
+  57:../Main.c     **** #define INTENSITY_GREEN           (0x12U) //1
+  58:../Main.c     **** #define INTENSITY_BLUE			  (0x13U) //2
+  59:../Main.c     **** #define INTENSITY_RGB             (0x14U)
+  60:../Main.c     **** #define CURRENT_RED               (0x21U) //3
+  61:../Main.c     **** #define CURRENT_GREEN             (0x22U) //4
+  62:../Main.c     **** #define CURRENT_BLUE              (0x23U) //5
+  63:../Main.c     **** #define CURRENT_RGB               (0x24U)
+  64:../Main.c     **** #define DMX0FF					  (0x30U) //6
+  65:../Main.c     **** #define DMXON             		  (0x31U)
+  66:../Main.c     **** #define DMXSLOT					  (0x32U) //7
+  67:../Main.c     **** #define DMX8BIT                   (0x33U) //8 9 10 11
+  68:../Main.c     **** #define DMX16BIT                  (0x34U)
+  69:../Main.c     **** #define OFFTIME_RED               (0x41U) //12
+  70:../Main.c     **** #define OFFTIME_GREEN             (0x42U) //13
+  71:../Main.c     **** #define OFFTIME_BLUE		   	  (0x43U) //14
+  72:../Main.c     **** #define WALKTIME                  (0x50U) //15
+  73:../Main.c     **** #define DIMMINGLEVEL              (0x60U) //16
+  74:../Main.c     **** #define FADERATE                  (0x61U) //17
+  75:../Main.c     **** #define CHANGEADDRESS             (0x70U) //18
+  76:../Main.c     **** 
+  77:../Main.c     **** #define READ_CONFIG               (0x80U)
+  78:../Main.c     **** #define READ_INTENSITY_RED        (0x81U)
+  79:../Main.c     **** #define READ_INTENSITY_GREEN      (0x82U)
+  80:../Main.c     **** #define READ_INTENSITY_BLUE		  (0x83U)
+  81:../Main.c     **** #define READ_CURRENT_RED          (0x84U)
+  82:../Main.c     **** #define READ_CURRENT_GREEN        (0x85U)
+  83:../Main.c     **** #define READ_CURRENT_BLUE         (0x86U)
+  84:../Main.c     **** #define READ_OFFTIME_RED          (0x87U)
+  85:../Main.c     **** #define READ_OFFTIME_GREEN        (0x88U)
+  86:../Main.c     **** #define READ_OFFTIME_BLUE		  (0x89U)
+  87:../Main.c     **** #define READ_WALKTIME             (0x8AU)
+  88:../Main.c     **** #define READ_DIMMINGLEVEL         (0x8BU)
+  89:../Main.c     **** #define READ_FADERATE             (0x8CU)
+  90:../Main.c     **** #define READ_DMX             	  (0x8DU)
+  91:../Main.c     **** #define READ_DMXSLOT			  (0x8EU)
+  92:../Main.c     **** #define READ_DMXBIT               (0x8FU)
+  93:../Main.c     **** #define READ_DMXREDH              (0x94U)
+  94:../Main.c     **** #define READ_DMXREDL              (0x95U)
+  95:../Main.c     **** #define READ_DMXGREENH            (0x96U)
+  96:../Main.c     **** #define READ_DMXGREENL            (0x97U)
+  97:../Main.c     **** #define READ_DMXBLUEH             (0x98U)
+  98:../Main.c     **** #define READ_DMXBLUEL             (0x99U)
+  99:../Main.c     **** 
+ 100:../Main.c     **** 
+ 101:../Main.c     **** #define DIRECTACCESS_READ         (0x90U)
+ 102:../Main.c     **** #define DIRECTACCESS_MOVE   	  (0x91U)
+ 103:../Main.c     **** #define DIRECTACCESS_AND          (0x92U)
+ 104:../Main.c     **** #define DIRECTACCESS_OR           (0x93U)
+ 105:../Main.c     **** 
+ 106:../Main.c     **** #define SAVEPARAMETERS            (0xA0U)
+ 107:../Main.c     **** 
+ 108:../Main.c     **** COLORLAMP01_ColorHandleType Lamphandle;
+ 109:../Main.c     **** 
+ 110:../Main.c     **** // Variables for I2C Command + Data
+ 111:../Main.c     **** uint8_t Command = 0x00;
+ 112:../Main.c     **** uint8_t DataUpper = 0x00;
+ 113:../Main.c     **** uint8_t DataLower = 0x00;
+ 114:../Main.c     **** uint16_t DataTotal = 0x00;
+ 115:../Main.c     **** 
+ 116:../Main.c     **** // Variables for DMX Control
+ 117:../Main.c     **** uint16_t startingSlot = 0x01;
+ 118:../Main.c     **** uint16_t dmx_RedL = 0x00;
+ 119:../Main.c     **** uint16_t dmx_RedH = 0x00;
+ 120:../Main.c     **** uint16_t dmx_GreenL = 0x00;
+ 121:../Main.c     **** uint16_t dmx_GreenH = 0x00;
+ 122:../Main.c     **** uint16_t dmx_BlueL = 0x00;
+ 123:../Main.c     **** uint16_t dmx_BlueH = 0x00;
+ 124:../Main.c     **** 
+ 125:../Main.c     **** uint32_t registerAddress = 0x00000000;
+ 126:../Main.c     **** uint32_t DataDirect = 0x00000000; // Store data for direct access
+ 127:../Main.c     **** uint32_t changeAddress = 0x00000000; // New address to be changed to
+ 128:../Main.c     **** uint32_t dimLevel = 0x00000000; // Dimming level
+ 129:../Main.c     **** uint32_t temp = 0x00000000;
+ 130:../Main.c     **** 
+ 131:../Main.c     **** uint32_t flashAddress=0x10008F00; // Starting Memory Space for Flash
+ 132:../Main.c     **** uint32_t *testflashadd = 0;
+ 133:../Main.c     **** uint32_t testflash = 0;
+ 134:../Main.c     **** 
+ 135:../Main.c     **** uint32_t flashBuffer[23];
+ 136:../Main.c     **** 
+ 137:../Main.c     **** int DMXControl = 1;
+ 138:../Main.c     **** int DMX_8 = 1;
+ 139:../Main.c     **** int DMX_16 = 0;
+ 140:../Main.c     **** int byteCount = 0;
+ 141:../Main.c     **** int writeToFlash = 0;
+ 142:../Main.c     **** int configStatus = 1;
+ 143:../Main.c     **** 
+ 144:../Main.c     **** 
+ 145:../Main.c     **** int main(void)
+ 146:../Main.c     **** {
+  26              		.loc 1 146 0
+  27              		.cfi_startproc
+  28 0000 73B5     		push	{r0, r1, r4, r5, r6, lr}
+  29              	.LCFI0:
+  30              		.cfi_def_cfa_offset 24
+  31              		.cfi_offset 0, -24
+  32              		.cfi_offset 1, -20
+  33              		.cfi_offset 4, -16
+  34              		.cfi_offset 5, -12
+  35              		.cfi_offset 6, -8
+  36              		.cfi_offset 14, -4
+ 147:../Main.c     **** 
+ 148:../Main.c     **** 	// status_t status;		// Declaration of return variable for DAVE3 APIs (toggle comment if required)
+ 149:../Main.c     **** 
+ 150:../Main.c     **** 	DAVE_Init();			// Initialization of DAVE Apps
+  37              		.loc 1 150 0
+  38 0002 FFF7FEFF 		bl	DAVE_Init
+  39              	.LVL0:
+ 151:../Main.c     **** 
+ 152:../Main.c     **** 	// Stored data format: counter, Red, Green, Blue, Red, Green, Blue, DMXOFFON, DMXSTARING, DMXBIT, 
+ 153:../Main.c     **** 	FLASH003_ClearStatus();
+  40              		.loc 1 153 0
+  41 0006 FFF7FEFF 		bl	FLASH003_ClearStatus
+  42              	.LVL1:
+ 154:../Main.c     **** 	//FLASH003_ErasePage((unsigned long )0x10004F00);
+ 155:../Main.c     **** 	FLASH003_ReadBytes(0x10004F80, flashBuffer, 92); // new address = 16 * number of blocks
+  43              		.loc 1 155 0
+  44 000a 824C     		ldr	r4, .L72
+  45 000c 8248     		ldr	r0, .L72+4
+  46 000e 211C     		mov	r1, r4
+  47 0010 5C22     		mov	r2, #92
+  48 0012 FFF7FEFF 		bl	FLASH003_ReadBytes
+  49              	.LVL2:
+ 156:../Main.c     **** 
+ 157:../Main.c     **** 	if (flashBuffer[0] == 0xFFFFFFFF) // Last saved parameters in first half of page
+  50              		.loc 1 157 0
+  51 0016 2368     		ldr	r3, [r4]
+  52 0018 0133     		add	r3, r3, #1
+  53 001a 04D1     		bne	.L2
+ 158:../Main.c     **** 		FLASH003_ReadBytes(0x10004F00, flashBuffer, 92); // new address = 16 * number of blocks
+  54              		.loc 1 158 0
+  55 001c 7F48     		ldr	r0, .L72+8
+  56 001e 211C     		mov	r1, r4
+  57 0020 5C22     		mov	r2, #92
+  58 0022 FFF7FEFF 		bl	FLASH003_ReadBytes
+  59              	.LVL3:
+  60              	.L2:
+ 159:../Main.c     **** 
+ 160:../Main.c     **** 	if (flashBuffer[1] == 0xFFFFFFFF || flashBuffer[2] == 0xFFFFFFFF || flashBuffer[3] == 0xFFFFFFFF |
+  61              		.loc 1 160 0
+  62 0026 6068     		ldr	r0, [r4, #4]
+  63 0028 7D4A     		ldr	r2, .L72+12
+  64 002a 431C     		add	r3, r0, #1
+  65 002c 3ED0     		beq	.L3
+  66              		.loc 1 160 0 is_stmt 0 discriminator 1
+  67 002e A168     		ldr	r1, [r4, #8]
+  68 0030 4B1C     		add	r3, r1, #1
+  69 0032 3BD0     		beq	.L3
+  70 0034 E568     		ldr	r5, [r4, #12]
+  71 0036 6B1C     		add	r3, r5, #1
+  72 0038 38D0     		beq	.L3
+  73 003a 2669     		ldr	r6, [r4, #16]
+  74 003c 731C     		add	r3, r6, #1
+  75 003e 35D0     		beq	.L3
+ 161:../Main.c     **** 			flashBuffer[4] == 0xFFFFFFFF || flashBuffer[5] == 0xFFFFFFFF || flashBuffer[6] == 0xFFFFFFFF ||
+  76              		.loc 1 161 0 is_stmt 1
+  77 0040 6369     		ldr	r3, [r4, #20]
+  78 0042 0133     		add	r3, r3, #1
+  79 0044 32D0     		beq	.L3
+  80              		.loc 1 161 0 is_stmt 0 discriminator 1
+  81 0046 A069     		ldr	r0, [r4, #24]
+  82 0048 431C     		add	r3, r0, #1
+  83 004a 2FD0     		beq	.L3
+  84 004c E169     		ldr	r1, [r4, #28]
+  85 004e 4B1C     		add	r3, r1, #1
+  86 0050 2CD0     		beq	.L3
+ 162:../Main.c     **** 			flashBuffer[7] == 0xFFFFFFFF || flashBuffer[8] == 0xFFFFFFFF || flashBuffer[9] == 0xFFFFFFFF ||
+  87              		.loc 1 162 0 is_stmt 1
+  88 0052 256A     		ldr	r5, [r4, #32]
+  89 0054 6B1C     		add	r3, r5, #1
+  90 0056 29D0     		beq	.L3
+  91              		.loc 1 162 0 is_stmt 0 discriminator 1
+  92 0058 666A     		ldr	r6, [r4, #36]
+  93 005a 731C     		add	r3, r6, #1
+  94 005c 26D0     		beq	.L3
+  95 005e A36A     		ldr	r3, [r4, #40]
+  96 0060 0133     		add	r3, r3, #1
+  97 0062 23D0     		beq	.L3
+ 163:../Main.c     **** 			flashBuffer[10] == 0xFFFFFFFF || flashBuffer[11] == 0xFFFFFFFF || flashBuffer[12] == 0xFFFFFFFF 
+  98              		.loc 1 163 0 is_stmt 1
+  99 0064 E06A     		ldr	r0, [r4, #44]
+ 100 0066 431C     		add	r3, r0, #1
+ 101 0068 20D0     		beq	.L3
+ 102              		.loc 1 163 0 is_stmt 0 discriminator 1
+ 103 006a 216B     		ldr	r1, [r4, #48]
+ 104 006c 4B1C     		add	r3, r1, #1
+ 105 006e 1DD0     		beq	.L3
+ 106 0070 656B     		ldr	r5, [r4, #52]
+ 107 0072 6B1C     		add	r3, r5, #1
+ 108 0074 1AD0     		beq	.L3
+ 164:../Main.c     **** 			flashBuffer[13] == 0xFFFFFFFF || flashBuffer[14] == 0xFFFFFFFF || flashBuffer[15] == 0xFFFFFFFF 
+ 109              		.loc 1 164 0 is_stmt 1
+ 110 0076 A66B     		ldr	r6, [r4, #56]
+ 111 0078 731C     		add	r3, r6, #1
+ 112 007a 17D0     		beq	.L3
+ 113              		.loc 1 164 0 is_stmt 0 discriminator 1
+ 114 007c E36B     		ldr	r3, [r4, #60]
+ 115 007e 0133     		add	r3, r3, #1
+ 116 0080 14D0     		beq	.L3
+ 117 0082 206C     		ldr	r0, [r4, #64]
+ 118 0084 431C     		add	r3, r0, #1
+ 119 0086 11D0     		beq	.L3
+ 165:../Main.c     **** 			flashBuffer[16] == 0xFFFFFFFF || flashBuffer[17] == 0xFFFFFFFF || flashBuffer[18] == 0xFFFFFFFF 
+ 120              		.loc 1 165 0 is_stmt 1
+ 121 0088 616C     		ldr	r1, [r4, #68]
+ 122 008a 4B1C     		add	r3, r1, #1
+ 123 008c 0ED0     		beq	.L3
+ 124              		.loc 1 165 0 is_stmt 0 discriminator 1
+ 125 008e A56C     		ldr	r5, [r4, #72]
+ 126 0090 6B1C     		add	r3, r5, #1
+ 127 0092 0BD0     		beq	.L3
+ 128 0094 E66C     		ldr	r6, [r4, #76]
+ 129 0096 731C     		add	r3, r6, #1
+ 130 0098 08D0     		beq	.L3
+ 166:../Main.c     **** 			flashBuffer[19] == 0xFFFFFFFF || flashBuffer[20] == 0xFFFFFFFF || flashBuffer[21] == 0xFFFFFFFF 
+ 131              		.loc 1 166 0 is_stmt 1
+ 132 009a 236D     		ldr	r3, [r4, #80]
+ 133 009c 0133     		add	r3, r3, #1
+ 134 009e 05D0     		beq	.L3
+ 135              		.loc 1 166 0 is_stmt 0 discriminator 1
+ 136 00a0 606D     		ldr	r0, [r4, #84]
+ 137 00a2 431C     		add	r3, r0, #1
+ 138 00a4 02D0     		beq	.L3
+ 139 00a6 A16D     		ldr	r1, [r4, #88]
+ 140 00a8 4B1C     		add	r3, r1, #1
+ 141 00aa 21D1     		bne	.L4
+ 142              	.L3:
+ 167:../Main.c     **** 	{
+ 168:../Main.c     **** 		configStatus = 0;	// virgin device, nothing has been saved in Flash yet
+ 143              		.loc 1 168 0 is_stmt 1
+ 144 00ac 0025     		mov	r5, #0
+ 169:../Main.c     **** 		flashBuffer[0] = 1;
+ 170:../Main.c     **** 		flashBuffer[1] = 0; // Default Red Intensity
+ 171:../Main.c     **** 		flashBuffer[2] = 0; // Default Green Intensity
+ 172:../Main.c     **** 		flashBuffer[3] = 0; // Default Blue Intensity
+ 173:../Main.c     **** 		flashBuffer[4] = 0x15; // Default Red Current
+ 174:../Main.c     **** 		flashBuffer[5] = 0x15; // Default Green Current
+ 175:../Main.c     **** 		flashBuffer[6] = 0x15; // Default Blue Current
+ 176:../Main.c     **** 		flashBuffer[7] = 0; // Default DMX off
+ 177:../Main.c     **** 		flashBuffer[8] = 1; // DMX Starting Slot - 1
+ 178:../Main.c     **** 		flashBuffer[9] = 8; // DMX 8 Bit
+ 179:../Main.c     **** 		flashBuffer[10] = 0; // Default dmx_RedH = 0 offset
+ 180:../Main.c     **** 		flashBuffer[11] = 0; // Default DMX_RedL
+ 181:../Main.c     **** 		flashBuffer[12] = 1; // Default DMX_GreenH = 1 offset
+ 182:../Main.c     **** 		flashBuffer[13] = 0; // Default dmx_GreenL
+ 183:../Main.c     **** 		flashBuffer[14] = 2;  // Default DMX_BlueH = 2 offset
+ 145              		.loc 1 183 0
+ 146 00ae 0221     		mov	r1, #2
+ 169:../Main.c     **** 		flashBuffer[0] = 1;
+ 147              		.loc 1 169 0
+ 148 00b0 0126     		mov	r6, #1
+ 173:../Main.c     **** 		flashBuffer[4] = 0x15; // Default Red Current
+ 149              		.loc 1 173 0
+ 150 00b2 1523     		mov	r3, #21
+ 178:../Main.c     **** 		flashBuffer[9] = 8; // DMX 8 Bit
+ 151              		.loc 1 178 0
+ 152 00b4 0820     		mov	r0, #8
+ 168:../Main.c     **** 		configStatus = 0;	// virgin device, nothing has been saved in Flash yet
+ 153              		.loc 1 168 0
+ 154 00b6 1560     		str	r5, [r2]
+ 170:../Main.c     **** 		flashBuffer[1] = 0; // Default Red Intensity
+ 155              		.loc 1 170 0
+ 156 00b8 6560     		str	r5, [r4, #4]
+ 171:../Main.c     **** 		flashBuffer[2] = 0; // Default Green Intensity
+ 157              		.loc 1 171 0
+ 158 00ba A560     		str	r5, [r4, #8]
+ 172:../Main.c     **** 		flashBuffer[3] = 0; // Default Blue Intensity
+ 159              		.loc 1 172 0
+ 160 00bc E560     		str	r5, [r4, #12]
+ 176:../Main.c     **** 		flashBuffer[7] = 0; // Default DMX off
+ 161              		.loc 1 176 0
+ 162 00be E561     		str	r5, [r4, #28]
+ 179:../Main.c     **** 		flashBuffer[10] = 0; // Default dmx_RedH = 0 offset
+ 163              		.loc 1 179 0
+ 164 00c0 A562     		str	r5, [r4, #40]
+ 180:../Main.c     **** 		flashBuffer[11] = 0; // Default DMX_RedL
+ 165              		.loc 1 180 0
+ 166 00c2 E562     		str	r5, [r4, #44]
+ 182:../Main.c     **** 		flashBuffer[13] = 0; // Default dmx_GreenL
+ 167              		.loc 1 182 0
+ 168 00c4 6563     		str	r5, [r4, #52]
+ 169              		.loc 1 183 0
+ 170 00c6 A163     		str	r1, [r4, #56]
+ 184:../Main.c     **** 		flashBuffer[15] = 0; // Default DMX_BlueL
+ 171              		.loc 1 184 0
+ 172 00c8 E563     		str	r5, [r4, #60]
+ 185:../Main.c     **** 		flashBuffer[16] = 0x38; // Red Off Time
+ 186:../Main.c     **** 		flashBuffer[17] = 0x39; // Green Off Time
+ 187:../Main.c     **** 		flashBuffer[18] = 0x38; // Blue Off Time
+ 188:../Main.c     **** 		flashBuffer[19] = 0x10; // Walktime
+ 189:../Main.c     **** 		flashBuffer[20] = 0xFFF; // Dimming Level
+ 173              		.loc 1 189 0
+ 174 00ca 5649     		ldr	r1, .L72+16
+ 190:../Main.c     **** 		flashBuffer[21] = 0x00; // Fade Rate
+ 175              		.loc 1 190 0
+ 176 00cc 6565     		str	r5, [r4, #84]
+ 191:../Main.c     **** 		flashBuffer[22] = 0xF25E; // Address
+ 177              		.loc 1 191 0
+ 178 00ce 564D     		ldr	r5, .L72+20
+ 169:../Main.c     **** 		flashBuffer[0] = 1;
+ 179              		.loc 1 169 0
+ 180 00d0 2660     		str	r6, [r4]
+ 173:../Main.c     **** 		flashBuffer[4] = 0x15; // Default Red Current
+ 181              		.loc 1 173 0
+ 182 00d2 2361     		str	r3, [r4, #16]
+ 174:../Main.c     **** 		flashBuffer[5] = 0x15; // Default Green Current
+ 183              		.loc 1 174 0
+ 184 00d4 6361     		str	r3, [r4, #20]
+ 175:../Main.c     **** 		flashBuffer[6] = 0x15; // Default Blue Current
+ 185              		.loc 1 175 0
+ 186 00d6 A361     		str	r3, [r4, #24]
+ 177:../Main.c     **** 		flashBuffer[8] = 1; // DMX Starting Slot - 1
+ 187              		.loc 1 177 0
+ 188 00d8 2662     		str	r6, [r4, #32]
+ 178:../Main.c     **** 		flashBuffer[9] = 8; // DMX 8 Bit
+ 189              		.loc 1 178 0
+ 190 00da 6062     		str	r0, [r4, #36]
+ 181:../Main.c     **** 		flashBuffer[12] = 1; // Default DMX_GreenH = 1 offset
+ 191              		.loc 1 181 0
+ 192 00dc 2663     		str	r6, [r4, #48]
+ 186:../Main.c     **** 		flashBuffer[17] = 0x39; // Green Off Time
+ 193              		.loc 1 186 0
+ 194 00de 3923     		mov	r3, #57
+ 185:../Main.c     **** 		flashBuffer[16] = 0x38; // Red Off Time
+ 195              		.loc 1 185 0
+ 196 00e0 3826     		mov	r6, #56
+ 188:../Main.c     **** 		flashBuffer[19] = 0x10; // Walktime
+ 197              		.loc 1 188 0
+ 198 00e2 1020     		mov	r0, #16
+ 185:../Main.c     **** 		flashBuffer[16] = 0x38; // Red Off Time
+ 199              		.loc 1 185 0
+ 200 00e4 2664     		str	r6, [r4, #64]
+ 186:../Main.c     **** 		flashBuffer[17] = 0x39; // Green Off Time
+ 201              		.loc 1 186 0
+ 202 00e6 6364     		str	r3, [r4, #68]
+ 187:../Main.c     **** 		flashBuffer[18] = 0x38; // Blue Off Time
+ 203              		.loc 1 187 0
+ 204 00e8 A664     		str	r6, [r4, #72]
+ 188:../Main.c     **** 		flashBuffer[19] = 0x10; // Walktime
+ 205              		.loc 1 188 0
+ 206 00ea E064     		str	r0, [r4, #76]
+ 189:../Main.c     **** 		flashBuffer[20] = 0xFFF; // Dimming Level
+ 207              		.loc 1 189 0
+ 208 00ec 2165     		str	r1, [r4, #80]
+ 209              		.loc 1 191 0
+ 210 00ee A565     		str	r5, [r4, #88]
+ 211              	.L4:
+ 192:../Main.c     **** 	}
+ 193:../Main.c     **** 
+ 194:../Main.c     **** 
+ 195:../Main.c     **** 	DMXControl = flashBuffer[7];
+ 212              		.loc 1 195 0
+ 213 00f0 E669     		ldr	r6, [r4, #28]
+ 196:../Main.c     **** 	startingSlot = flashBuffer[8];
+ 214              		.loc 1 196 0
+ 215 00f2 238C     		ldrh	r3, [r4, #32]
+ 197:../Main.c     **** 	if (flashBuffer[9] == 0x8) // 8 bit DMX
+ 216              		.loc 1 197 0
+ 217 00f4 606A     		ldr	r0, [r4, #36]
+ 195:../Main.c     **** 	DMXControl = flashBuffer[7];
+ 218              		.loc 1 195 0
+ 219 00f6 5660     		str	r6, [r2, #4]
+ 196:../Main.c     **** 	startingSlot = flashBuffer[8];
+ 220              		.loc 1 196 0
+ 221 00f8 1381     		strh	r3, [r2, #8]
+ 222              		.loc 1 197 0
+ 223 00fa 0828     		cmp	r0, #8
+ 224 00fc 0BD1     		bne	.L5
+ 198:../Main.c     **** 	{
+ 199:../Main.c     **** 		DMX_8 = 1;
+ 225              		.loc 1 199 0
+ 226 00fe 0125     		mov	r5, #1
+ 200:../Main.c     **** 		DMX_16 = 0;
+ 227              		.loc 1 200 0
+ 228 0100 4A4B     		ldr	r3, .L72+24
+ 199:../Main.c     **** 		DMX_8 = 1;
+ 229              		.loc 1 199 0
+ 230 0102 D560     		str	r5, [r2, #12]
+ 201:../Main.c     **** 		dmx_RedH = flashBuffer[10]; // dmx slot for red colour intensity
+ 231              		.loc 1 201 0
+ 232 0104 218D     		ldrh	r1, [r4, #40]
+ 202:../Main.c     **** 		dmx_GreenH = flashBuffer[12]; // dmx slot for green colour intensity
+ 233              		.loc 1 202 0
+ 234 0106 228E     		ldrh	r2, [r4, #48]
+ 203:../Main.c     **** 		dmx_BlueH = flashBuffer[14]; // dmx slot for blue colour intensity
+ 235              		.loc 1 203 0
+ 236 0108 268F     		ldrh	r6, [r4, #56]
+ 200:../Main.c     **** 		DMX_16 = 0;
+ 237              		.loc 1 200 0
+ 238 010a 0020     		mov	r0, #0
+ 239 010c 1860     		str	r0, [r3]
+ 201:../Main.c     **** 		dmx_RedH = flashBuffer[10]; // dmx slot for red colour intensity
+ 240              		.loc 1 201 0
+ 241 010e 9980     		strh	r1, [r3, #4]
+ 202:../Main.c     **** 		dmx_GreenH = flashBuffer[12]; // dmx slot for green colour intensity
+ 242              		.loc 1 202 0
+ 243 0110 DA80     		strh	r2, [r3, #6]
+ 244              		.loc 1 203 0
+ 245 0112 1E81     		strh	r6, [r3, #8]
+ 246 0114 12E0     		b	.L6
+ 247              	.L5:
+ 204:../Main.c     **** 	}
+ 205:../Main.c     **** 
+ 206:../Main.c     **** 	else if (flashBuffer[9] == 0x16) // 16 bit DMX
+ 248              		.loc 1 206 0
+ 249 0116 1628     		cmp	r0, #22
+ 250 0118 10D1     		bne	.L6
+ 207:../Main.c     **** 	{
+ 208:../Main.c     **** 		DMX_8 = 0;
+ 209:../Main.c     **** 		DMX_16 = 1;
+ 251              		.loc 1 209 0
+ 252 011a 444D     		ldr	r5, .L72+24
+ 208:../Main.c     **** 		DMX_8 = 0;
+ 253              		.loc 1 208 0
+ 254 011c 0021     		mov	r1, #0
+ 210:../Main.c     **** 		dmx_RedH = flashBuffer[10]; // dmx slot for higher bits of red colour intensity
+ 255              		.loc 1 210 0
+ 256 011e 268D     		ldrh	r6, [r4, #40]
+ 208:../Main.c     **** 		DMX_8 = 0;
+ 257              		.loc 1 208 0
+ 258 0120 D160     		str	r1, [r2, #12]
+ 209:../Main.c     **** 		DMX_16 = 1;
+ 259              		.loc 1 209 0
+ 260 0122 0122     		mov	r2, #1
+ 261 0124 2A60     		str	r2, [r5]
+ 262              		.loc 1 210 0
+ 263 0126 AE80     		strh	r6, [r5, #4]
+ 211:../Main.c     **** 		dmx_GreenH = flashBuffer[12]; // dmx slot for lower 8 bits of red colour intensity
+ 264              		.loc 1 211 0
+ 265 0128 238E     		ldrh	r3, [r4, #48]
+ 212:../Main.c     **** 		dmx_BlueH = flashBuffer[14]; // dmx slot for higher bits of green colour intensity
+ 266              		.loc 1 212 0
+ 267 012a 208F     		ldrh	r0, [r4, #56]
+ 213:../Main.c     **** 		dmx_RedL = flashBuffer[11]; // dmx slot for lower 8 bits of green colour intensity
+ 268              		.loc 1 213 0
+ 269 012c A18D     		ldrh	r1, [r4, #44]
+ 214:../Main.c     **** 		dmx_GreenL = flashBuffer[13]; // dmx slot for higher 8 bits of blue colour intensity
+ 270              		.loc 1 214 0
+ 271 012e A28E     		ldrh	r2, [r4, #52]
+ 215:../Main.c     **** 		dmx_BlueL = flashBuffer[15]; // dmx slot for lower 8 bits of blue colour intensity
+ 272              		.loc 1 215 0
+ 273 0130 A68F     		ldrh	r6, [r4, #60]
+ 211:../Main.c     **** 		dmx_GreenH = flashBuffer[12]; // dmx slot for lower 8 bits of red colour intensity
+ 274              		.loc 1 211 0
+ 275 0132 EB80     		strh	r3, [r5, #6]
+ 212:../Main.c     **** 		dmx_BlueH = flashBuffer[14]; // dmx slot for higher bits of green colour intensity
+ 276              		.loc 1 212 0
+ 277 0134 2881     		strh	r0, [r5, #8]
+ 213:../Main.c     **** 		dmx_RedL = flashBuffer[11]; // dmx slot for lower 8 bits of green colour intensity
+ 278              		.loc 1 213 0
+ 279 0136 6981     		strh	r1, [r5, #10]
+ 214:../Main.c     **** 		dmx_GreenL = flashBuffer[13]; // dmx slot for higher 8 bits of blue colour intensity
+ 280              		.loc 1 214 0
+ 281 0138 AA81     		strh	r2, [r5, #12]
+ 282              		.loc 1 215 0
+ 283 013a EE81     		strh	r6, [r5, #14]
+ 284              	.L6:
+ 216:../Main.c     **** 	}
+ 217:../Main.c     **** 
+ 218:../Main.c     **** 
+ 219:../Main.c     **** 	// Configure Off Times (compare values)
+ 220:../Main.c     **** 	PWMSP003_UpdateCompare(&PWMSP003_Handle0, flashBuffer[16], FALSE); // pwm of red channel
+ 285              		.loc 1 220 0
+ 286 013c 216C     		ldr	r1, [r4, #64]
+ 287 013e 0022     		mov	r2, #0
+ 288 0140 3B48     		ldr	r0, .L72+28
+ 289 0142 FFF7FEFF 		bl	PWMSP003_UpdateCompare
+ 290              	.LVL4:
+ 221:../Main.c     **** 	PWMSP003_UpdateCompare(&PWMSP003_Handle1, flashBuffer[17], FALSE); // pwm of green channel
+ 291              		.loc 1 221 0
+ 292 0146 616C     		ldr	r1, [r4, #68]
+ 293 0148 0022     		mov	r2, #0
+ 294 014a 3A48     		ldr	r0, .L72+32
+ 295 014c FFF7FEFF 		bl	PWMSP003_UpdateCompare
+ 296              	.LVL5:
+ 222:../Main.c     **** 	PWMSP003_UpdateCompare(&PWMSP003_Handle2, flashBuffer[18], FALSE); // pwm of blue channel
+ 297              		.loc 1 222 0
+ 298 0150 0022     		mov	r2, #0
+ 299 0152 A16C     		ldr	r1, [r4, #72]
+ 300 0154 3848     		ldr	r0, .L72+36
+ 301 0156 FFF7FEFF 		bl	PWMSP003_UpdateCompare
+ 302              	.LVL6:
+ 223:../Main.c     **** 
+ 224:../Main.c     **** 	// Configure Current Intensities
+ 225:../Main.c     **** 	BCCUCH01_SetIntensity(&BCCUCH01_Handle3, flashBuffer[4]); // BCCU for red channel colour intensity
+ 303              		.loc 1 225 0
+ 304 015a 384D     		ldr	r5, .L72+40
+ 305 015c 2169     		ldr	r1, [r4, #16]
+ 306 015e 281C     		mov	r0, r5
+ 307 0160 FFF7FEFF 		bl	BCCUCH01_SetIntensity
+ 308              	.LVL7:
+ 226:../Main.c     **** 	BCCUCH01_StartLinearWalk(&BCCUCH01_Handle3, GET_MASK_FOR_1CHANNEL(BCCUCH01_Handle3.ChNum));
+ 309              		.loc 1 226 0
+ 310 0164 0126     		mov	r6, #1
+ 311 0166 AB68     		ldr	r3, [r5, #8]
+ 312 0168 311C     		mov	r1, r6
+ 313 016a 9940     		lsl	r1, r1, r3
+ 314 016c 281C     		mov	r0, r5
+ 315 016e FFF7FEFF 		bl	BCCUCH01_StartLinearWalk
+ 316              	.LVL8:
+ 227:../Main.c     **** 	BCCUCH01_SetIntensity(&BCCUCH01_Handle4, flashBuffer[5]); // BCCU for green channel colour intensi
+ 317              		.loc 1 227 0
+ 318 0172 334D     		ldr	r5, .L72+44
+ 319 0174 6169     		ldr	r1, [r4, #20]
+ 320 0176 281C     		mov	r0, r5
+ 321 0178 FFF7FEFF 		bl	BCCUCH01_SetIntensity
+ 322              	.LVL9:
+ 228:../Main.c     **** 	BCCUCH01_StartLinearWalk(&BCCUCH01_Handle4, GET_MASK_FOR_1CHANNEL(BCCUCH01_Handle4.ChNum));
+ 323              		.loc 1 228 0
+ 324 017c A868     		ldr	r0, [r5, #8]
+ 325 017e 311C     		mov	r1, r6
+ 326 0180 8140     		lsl	r1, r1, r0
+ 327 0182 281C     		mov	r0, r5
+ 328 0184 FFF7FEFF 		bl	BCCUCH01_StartLinearWalk
+ 329              	.LVL10:
+ 229:../Main.c     **** 	BCCUCH01_SetIntensity(&BCCUCH01_Handle5, flashBuffer[6]); // BCCU for blue channel colour intensit
+ 330              		.loc 1 229 0
+ 331 0188 2E4D     		ldr	r5, .L72+48
+ 332 018a A169     		ldr	r1, [r4, #24]
+ 333 018c 281C     		mov	r0, r5
+ 334 018e FFF7FEFF 		bl	BCCUCH01_SetIntensity
+ 335              	.LVL11:
+ 230:../Main.c     **** 	BCCUCH01_StartLinearWalk(&BCCUCH01_Handle5, GET_MASK_FOR_1CHANNEL(BCCUCH01_Handle5.ChNum));
+ 336              		.loc 1 230 0
+ 337 0192 AA68     		ldr	r2, [r5, #8]
+ 338 0194 311C     		mov	r1, r6
+ 339 0196 9140     		lsl	r1, r1, r2
+ 340 0198 281C     		mov	r0, r5
+ 341 019a FFF7FEFF 		bl	BCCUCH01_StartLinearWalk
+ 342              	.LVL12:
+ 231:../Main.c     **** 
+ 232:../Main.c     **** 	// Set Fade Rate + Dimming Level
+ 233:../Main.c     **** 	BCCUDIM01_AbortDimming(&BCCUDIM01_Handle0, GET_CHANNEL_DIM_MASK(BCCUDIM01_Handle0.DE_Num));
+ 343              		.loc 1 233 0
+ 344 019e 2A4D     		ldr	r5, .L72+52
+ 345 01a0 2E7A     		ldrb	r6, [r5, #8]
+ 346 01a2 301C     		mov	r0, r6
+ 347 01a4 FFF7FEFF 		bl	GET_CHANNEL_DIM_MASK
+ 348              	.LVL13:
+ 349 01a8 011C     		mov	r1, r0
+ 350 01aa 281C     		mov	r0, r5
+ 351 01ac FFF7FEFF 		bl	BCCUDIM01_AbortDimming
+ 352              	.LVL14:
+ 234:../Main.c     **** 	BCCUDIM01_SetDimDiv(&BCCUDIM01_Handle0, flashBuffer[21]); // dimming engine 2
+ 353              		.loc 1 234 0
+ 354 01b0 616D     		ldr	r1, [r4, #84]
+ 355 01b2 281C     		mov	r0, r5
+ 356 01b4 FFF7FEFF 		bl	BCCUDIM01_SetDimDiv
+ 357              	.LVL15:
+ 235:../Main.c     **** 	BCCUDIM01_AbortDimming(&BCCUDIM01_Handle0, GET_CHANNEL_DIM_MASK(BCCUDIM01_Handle0.DE_Num));
+ 358              		.loc 1 235 0
+ 359 01b8 301C     		mov	r0, r6
+ 360 01ba FFF7FEFF 		bl	GET_CHANNEL_DIM_MASK
+ 361              	.LVL16:
+ 362 01be 011C     		mov	r1, r0
+ 363 01c0 281C     		mov	r0, r5
+ 364 01c2 FFF7FEFF 		bl	BCCUDIM01_AbortDimming
+ 365              	.LVL17:
+ 236:../Main.c     **** 	BCCUDIM01_SetDimLvl(&BCCUDIM01_Handle0, flashBuffer[20]);
+ 366              		.loc 1 236 0
+ 367 01c6 216D     		ldr	r1, [r4, #80]
+ 368 01c8 281C     		mov	r0, r5
+ 369 01ca FFF7FEFF 		bl	BCCUDIM01_SetDimLvl
+ 370              	.LVL18:
+ 237:../Main.c     **** 	BCCUDIM01_StartDimming(&BCCUDIM01_Handle0, GET_CHANNEL_DIM_MASK(BCCUDIM01_Handle0.DE_Num));
+ 371              		.loc 1 237 0
+ 372 01ce 301C     		mov	r0, r6
+ 373 01d0 FFF7FEFF 		bl	GET_CHANNEL_DIM_MASK
+ 374              	.LVL19:
+ 375 01d4 011C     		mov	r1, r0
+ 376 01d6 281C     		mov	r0, r5
+ 377 01d8 FFF7FEFF 		bl	BCCUDIM01_StartDimming
+ 378              	.LVL20:
+ 238:../Main.c     **** 
+ 239:../Main.c     **** 	//Configure Color Intensities + Walktime + Faderate + Dimming Level
+ 240:../Main.c     **** 	Lamphandle.LinearWalkPrescaler = flashBuffer[19];
+ 379              		.loc 1 240 0
+ 380 01dc 1B49     		ldr	r1, .L72+56
+ 241:../Main.c     **** 	Lamphandle.Intensity_Red = flashBuffer[1];
+ 381              		.loc 1 241 0
+ 382 01de 6068     		ldr	r0, [r4, #4]
+ 240:../Main.c     **** 	Lamphandle.LinearWalkPrescaler = flashBuffer[19];
+ 383              		.loc 1 240 0
+ 384 01e0 E36C     		ldr	r3, [r4, #76]
+ 242:../Main.c     **** 	Lamphandle.Intensity_Green = flashBuffer[2];
+ 385              		.loc 1 242 0
+ 386 01e2 A268     		ldr	r2, [r4, #8]
+ 243:../Main.c     **** 	Lamphandle.Intensity_Blue = flashBuffer[3];
+ 387              		.loc 1 243 0
+ 388 01e4 E568     		ldr	r5, [r4, #12]
+ 241:../Main.c     **** 	Lamphandle.Intensity_Red = flashBuffer[1];
+ 389              		.loc 1 241 0
+ 390 01e6 0860     		str	r0, [r1]
+ 244:../Main.c     **** 	COLORLAMP01_SetColor(&COLORLAMP01_ConfigHandle0, &Lamphandle);
+ 391              		.loc 1 244 0
+ 392 01e8 1948     		ldr	r0, .L72+60
+ 240:../Main.c     **** 	Lamphandle.LinearWalkPrescaler = flashBuffer[19];
+ 393              		.loc 1 240 0
+ 394 01ea 8B61     		str	r3, [r1, #24]
+ 242:../Main.c     **** 	Lamphandle.Intensity_Green = flashBuffer[2];
+ 395              		.loc 1 242 0
+ 396 01ec 4A60     		str	r2, [r1, #4]
+ 243:../Main.c     **** 	Lamphandle.Intensity_Blue = flashBuffer[3];
+ 397              		.loc 1 243 0
+ 398 01ee 8D60     		str	r5, [r1, #8]
+ 399              		.loc 1 244 0
+ 400 01f0 FFF7FEFF 		bl	COLORLAMP01_SetColor
+ 401              	.LVL21:
+ 245:../Main.c     **** 
+ 246:../Main.c     **** 
+ 247:../Main.c     **** 	I2C003_ClearFlag(&I2C003_Handle0, I2C003_FLAG_NACK_RECEIVED);
+ 402              		.loc 1 247 0
+ 403 01f4 174E     		ldr	r6, .L72+64
+ 404 01f6 0621     		mov	r1, #6
+ 405 01f8 301C     		mov	r0, r6
+ 406 01fa FFF7FEFF 		bl	I2C003_ClearFlag
+ 407              	.LVL22:
+ 248:../Main.c     **** 
+ 249:../Main.c     **** 	// Configure Address 0x15E (10 bit addressing). Address stored in lower 16 bits of register.
+ 250:../Main.c     **** 	I2C003_Handle0.I2CRegs->PCR_IICMode &= 0xFFFF0000;
+ 408              		.loc 1 250 0
+ 409 01fe 3368     		ldr	r3, [r6]
+ 410 0200 D96B     		ldr	r1, [r3, #60]
+ 411 0202 080C     		lsr	r0, r1, #16
+ 412 0204 0204     		lsl	r2, r0, #16
+ 413 0206 DA63     		str	r2, [r3, #60]
+ 251:../Main.c     **** 	I2C003_Handle0.I2CRegs->PCR_IICMode |= flashBuffer[22];
+ 414              		.loc 1 251 0
+ 415 0208 DD6B     		ldr	r5, [r3, #60]
+ 416 020a A46D     		ldr	r4, [r4, #88]
+ 417 020c 2C43     		orr	r4, r5
+ 418 020e DC63     		str	r4, [r3, #60]
+ 419              	.L7:
+ 420 0210 FEE7     		b	.L7
+ 421              	.L73:
+ 422 0212 C046     		.align	2
+ 423              	.L72:
+ 424 0214 00000000 		.word	flashBuffer
+ 425 0218 804F0010 		.word	268455808
+ 426 021c 004F0010 		.word	268455680
+ 427 0220 00000000 		.word	.LANCHOR0
+ 428 0224 FF0F0000 		.word	4095
+ 429 0228 5EF20000 		.word	62046
+ 430 022c 00000000 		.word	.LANCHOR1
+ 431 0230 00000000 		.word	PWMSP003_Handle0
+ 432 0234 00000000 		.word	PWMSP003_Handle1
+ 433 0238 00000000 		.word	PWMSP003_Handle2
+ 434 023c 00000000 		.word	BCCUCH01_Handle3
+ 435 0240 00000000 		.word	BCCUCH01_Handle4
+ 436 0244 00000000 		.word	BCCUCH01_Handle5
+ 437 0248 00000000 		.word	BCCUDIM01_Handle0
+ 438 024c 00000000 		.word	Lamphandle
+ 439 0250 00000000 		.word	COLORLAMP01_ConfigHandle0
+ 440 0254 00000000 		.word	I2C003_Handle0
+ 441              		.cfi_endproc
+ 442              	.LFE38:
+ 444              		.section	.text.DMX512RD01_CallBack,"ax",%progbits
+ 445              		.align	1
+ 446              		.global	DMX512RD01_CallBack
+ 447              		.code	16
+ 448              		.thumb_func
+ 450              	DMX512RD01_CallBack:
+ 451              	.LFB39:
+ 252:../Main.c     **** 
+ 253:../Main.c     **** 	while(1)
+ 254:../Main.c     **** 	{
+ 255:../Main.c     **** 
+ 256:../Main.c     **** 	}
+ 257:../Main.c     **** 	return 0;
+ 258:../Main.c     **** }
+ 259:../Main.c     **** 
+ 260:../Main.c     **** void DMX512RD01_CallBack(void)
+ 261:../Main.c     **** {
+ 452              		.loc 1 261 0
+ 453              		.cfi_startproc
+ 454 0000 10B5     		push	{r4, lr}
+ 455              	.LCFI1:
+ 456              		.cfi_def_cfa_offset 8
+ 457              		.cfi_offset 4, -8
+ 458              		.cfi_offset 14, -4
+ 262:../Main.c     **** 	DMX512RD01_ConfigStartSlotNo(1);
+ 459              		.loc 1 262 0
+ 460 0002 0120     		mov	r0, #1
+ 461 0004 FFF7FEFF 		bl	DMX512RD01_ConfigStartSlotNo
+ 462              	.LVL23:
+ 263:../Main.c     **** 
+ 264:../Main.c     **** 	if (DMXControl == 1 && DMX_8 == 1)
+ 463              		.loc 1 264 0
+ 464 0008 1F4B     		ldr	r3, .L78
+ 465 000a 5A68     		ldr	r2, [r3, #4]
+ 466 000c 012A     		cmp	r2, #1
+ 467 000e 3AD1     		bne	.L74
+ 468              		.loc 1 264 0 is_stmt 0 discriminator 1
+ 469 0010 D868     		ldr	r0, [r3, #12]
+ 470 0012 1E4B     		ldr	r3, .L78+4
+ 471 0014 0128     		cmp	r0, #1
+ 472 0016 10D1     		bne	.L76
+ 265:../Main.c     **** 	{
+ 266:../Main.c     **** 		Lamphandle.Intensity_Red = DMX512RD01_buffer[dmx_RedH]<<4;				// 8-bit information in Slot 1
+ 473              		.loc 1 266 0 is_stmt 1
+ 474 0018 9888     		ldrh	r0, [r3, #4]
+ 475 001a 1D4A     		ldr	r2, .L78+8
+ 476 001c 8400     		lsl	r4, r0, #2
+ 477 001e A058     		ldr	r0, [r4, r2]
+ 478 0020 1C49     		ldr	r1, .L78+12
+ 479 0022 0401     		lsl	r4, r0, #4
+ 267:../Main.c     **** 		Lamphandle.Intensity_Green = DMX512RD01_buffer[dmx_GreenH]<<4;			// 8-bit information in Slot 2
+ 480              		.loc 1 267 0
+ 481 0024 D888     		ldrh	r0, [r3, #6]
+ 266:../Main.c     **** 		Lamphandle.Intensity_Red = DMX512RD01_buffer[dmx_RedH]<<4;				// 8-bit information in Slot 1
+ 482              		.loc 1 266 0
+ 483 0026 0C60     		str	r4, [r1]
+ 484              		.loc 1 267 0
+ 485 0028 8400     		lsl	r4, r0, #2
+ 486 002a A058     		ldr	r0, [r4, r2]
+ 268:../Main.c     **** 		Lamphandle.Intensity_Blue = DMX512RD01_buffer[dmx_BlueH]<<4;			// 8-bit information in Slot 3
+ 487              		.loc 1 268 0
+ 488 002c 1B89     		ldrh	r3, [r3, #8]
+ 267:../Main.c     **** 		Lamphandle.Intensity_Green = DMX512RD01_buffer[dmx_GreenH]<<4;			// 8-bit information in Slot 2
+ 489              		.loc 1 267 0
+ 490 002e 0401     		lsl	r4, r0, #4
+ 491              		.loc 1 268 0
+ 492 0030 9800     		lsl	r0, r3, #2
+ 493 0032 8258     		ldr	r2, [r0, r2]
+ 267:../Main.c     **** 		Lamphandle.Intensity_Green = DMX512RD01_buffer[dmx_GreenH]<<4;			// 8-bit information in Slot 2
+ 494              		.loc 1 267 0
+ 495 0034 4C60     		str	r4, [r1, #4]
+ 496              		.loc 1 268 0
+ 497 0036 1401     		lsl	r4, r2, #4
+ 498 0038 21E0     		b	.L77
+ 499              	.L76:
+ 269:../Main.c     **** 		COLORLAMP01_SetColor(&COLORLAMP01_ConfigHandle0, &Lamphandle);	// set LED channel intensities
+ 270:../Main.c     **** 	}
+ 271:../Main.c     **** 
+ 272:../Main.c     **** 	else if (DMXControl == 1 && DMX_16 == 1)
+ 500              		.loc 1 272 0 discriminator 1
+ 501 003a 1968     		ldr	r1, [r3]
+ 502 003c 0129     		cmp	r1, #1
+ 503 003e 22D1     		bne	.L74
+ 273:../Main.c     **** 	{
+ 274:../Main.c     **** 		Lamphandle.Intensity_Red = (DMX512RD01_buffer[dmx_RedH]<<4) + (DMX512RD01_buffer[dmx_RedL]>>4);		
+ 504              		.loc 1 274 0
+ 505 0040 5C89     		ldrh	r4, [r3, #10]
+ 506 0042 134A     		ldr	r2, .L78+8
+ 507 0044 A000     		lsl	r0, r4, #2
+ 508 0046 8458     		ldr	r4, [r0, r2]
+ 509 0048 9888     		ldrh	r0, [r3, #4]
+ 510 004a 2409     		lsr	r4, r4, #4
+ 511 004c 8000     		lsl	r0, r0, #2
+ 512 004e 8058     		ldr	r0, [r0, r2]
+ 513 0050 1049     		ldr	r1, .L78+12
+ 514 0052 0001     		lsl	r0, r0, #4
+ 515 0054 2418     		add	r4, r4, r0
+ 275:../Main.c     **** 		Lamphandle.Intensity_Green = (DMX512RD01_buffer[dmx_GreenH]<<4) + (DMX512RD01_buffer[dmx_GreenL]>
+ 516              		.loc 1 275 0
+ 517 0056 9889     		ldrh	r0, [r3, #12]
+ 274:../Main.c     **** 		Lamphandle.Intensity_Red = (DMX512RD01_buffer[dmx_RedH]<<4) + (DMX512RD01_buffer[dmx_RedL]>>4);		
+ 518              		.loc 1 274 0
+ 519 0058 0C60     		str	r4, [r1]
+ 520              		.loc 1 275 0
+ 521 005a 8400     		lsl	r4, r0, #2
+ 522 005c A058     		ldr	r0, [r4, r2]
+ 523 005e 0409     		lsr	r4, r0, #4
+ 524 0060 D888     		ldrh	r0, [r3, #6]
+ 525 0062 8000     		lsl	r0, r0, #2
+ 526 0064 8058     		ldr	r0, [r0, r2]
+ 527 0066 0001     		lsl	r0, r0, #4
+ 528 0068 2418     		add	r4, r4, r0
+ 276:../Main.c     **** 		Lamphandle.Intensity_Blue = (DMX512RD01_buffer[dmx_BlueH]<<4) + (DMX512RD01_buffer[dmx_BlueL]>>4)
+ 529              		.loc 1 276 0
+ 530 006a D889     		ldrh	r0, [r3, #14]
+ 275:../Main.c     **** 		Lamphandle.Intensity_Green = (DMX512RD01_buffer[dmx_GreenH]<<4) + (DMX512RD01_buffer[dmx_GreenL]>
+ 531              		.loc 1 275 0
+ 532 006c 4C60     		str	r4, [r1, #4]
+ 533              		.loc 1 276 0
+ 534 006e 8400     		lsl	r4, r0, #2
+ 535 0070 A058     		ldr	r0, [r4, r2]
+ 536 0072 1B89     		ldrh	r3, [r3, #8]
+ 537 0074 0409     		lsr	r4, r0, #4
+ 538 0076 9800     		lsl	r0, r3, #2
+ 539 0078 8258     		ldr	r2, [r0, r2]
+ 540 007a 1301     		lsl	r3, r2, #4
+ 541 007c E418     		add	r4, r4, r3
+ 542              	.L77:
+ 277:../Main.c     **** 
+ 278:../Main.c     **** 		COLORLAMP01_SetColor(&COLORLAMP01_ConfigHandle0, &Lamphandle);	// set LED channel intensities
+ 543              		.loc 1 278 0
+ 544 007e 0648     		ldr	r0, .L78+16
+ 276:../Main.c     **** 		Lamphandle.Intensity_Blue = (DMX512RD01_buffer[dmx_BlueH]<<4) + (DMX512RD01_buffer[dmx_BlueL]>>4)
+ 545              		.loc 1 276 0
+ 546 0080 8C60     		str	r4, [r1, #8]
+ 547              		.loc 1 278 0
+ 548 0082 FFF7FEFF 		bl	COLORLAMP01_SetColor
+ 549              	.LVL24:
+ 550              	.L74:
+ 279:../Main.c     **** 	}
+ 280:../Main.c     **** 
+ 281:../Main.c     **** 
+ 282:../Main.c     **** 	else
+ 283:../Main.c     **** 	{}
+ 284:../Main.c     **** }
+ 551              		.loc 1 284 0
+ 552              		@ sp needed for prologue
+ 553 0086 10BD     		pop	{r4, pc}
+ 554              	.L79:
+ 555              		.align	2
+ 556              	.L78:
+ 557 0088 00000000 		.word	.LANCHOR0
+ 558 008c 00000000 		.word	.LANCHOR1
+ 559 0090 00000000 		.word	DMX512RD01_buffer
+ 560 0094 00000000 		.word	Lamphandle
+ 561 0098 00000000 		.word	COLORLAMP01_ConfigHandle0
+ 562              		.cfi_endproc
+ 563              	.LFE39:
+ 565              		.global	configStatus
+ 566              		.global	writeToFlash
+ 567              		.global	byteCount
+ 568              		.global	DMX_16
+ 569              		.global	DMX_8
+ 570              		.global	DMXControl
+ 571              		.comm	flashBuffer,92,4
+ 572              		.global	testflash
+ 573              		.global	testflashadd
+ 574              		.global	flashAddress
+ 575              		.global	temp
+ 576              		.global	dimLevel
+ 577              		.global	changeAddress
+ 578              		.global	DataDirect
+ 579              		.global	registerAddress
+ 580              		.global	dmx_BlueH
+ 581              		.global	dmx_BlueL
+ 582              		.global	dmx_GreenH
+ 583              		.global	dmx_GreenL
+ 584              		.global	dmx_RedH
+ 585              		.global	dmx_RedL
+ 586              		.global	startingSlot
+ 587              		.global	DataTotal
+ 588              		.global	DataLower
+ 589              		.global	DataUpper
+ 590              		.global	Command
+ 591              		.comm	Lamphandle,28,4
+ 592              		.data
+ 593              		.align	2
+ 594              		.set	.LANCHOR0,. + 0
+ 597              	configStatus:
+ 598 0000 01000000 		.word	1
+ 601              	DMXControl:
+ 602 0004 01000000 		.word	1
+ 605              	startingSlot:
+ 606 0008 0100     		.short	1
+ 607 000a 0000     		.space	2
+ 610              	DMX_8:
+ 611 000c 01000000 		.word	1
+ 614              	flashAddress:
+ 615 0010 008F0010 		.word	268472064
+ 616              		.bss
+ 617              		.align	2
+ 618              		.set	.LANCHOR1,. + 0
+ 621              	DMX_16:
+ 622 0000 00000000 		.space	4
+ 625              	dmx_RedH:
+ 626 0004 0000     		.space	2
+ 629              	dmx_GreenH:
+ 630 0006 0000     		.space	2
+ 633              	dmx_BlueH:
+ 634 0008 0000     		.space	2
+ 637              	dmx_RedL:
+ 638 000a 0000     		.space	2
+ 641              	dmx_GreenL:
+ 642 000c 0000     		.space	2
+ 645              	dmx_BlueL:
+ 646 000e 0000     		.space	2
+ 649              	writeToFlash:
+ 650 0010 00000000 		.space	4
+ 653              	byteCount:
+ 654 0014 00000000 		.space	4
+ 657              	testflash:
+ 658 0018 00000000 		.space	4
+ 661              	testflashadd:
+ 662 001c 00000000 		.space	4
+ 665              	temp:
+ 666 0020 00000000 		.space	4
+ 669              	dimLevel:
+ 670 0024 00000000 		.space	4
+ 673              	changeAddress:
+ 674 0028 00000000 		.space	4
+ 677              	DataDirect:
+ 678 002c 00000000 		.space	4
+ 681              	registerAddress:
+ 682 0030 00000000 		.space	4
+ 685              	DataTotal:
+ 686 0034 0000     		.space	2
+ 689              	DataLower:
+ 690 0036 00       		.space	1
+ 693              	DataUpper:
+ 694 0037 00       		.space	1
+ 697              	Command:
+ 698 0038 00       		.space	1
+ 699 0039 000000   		.text
+ 700              	.Letext0:
+ 701              		.file 2 "c:\\dave-3.1.10\\arm-gcc\\bin\\../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/i
+ 702              		.file 3 "C:\\DAVE-3.1.10\\eclipse\\/../CMSIS/Infineon/XMC1200_series/Include/XMC1200.h"
+ 703              		.file 4 "C:\\Users\\tomasoat\\Userdata\\AEPrograms\\DAVE3_workspace_32_DAVE3110\\RGB_LED_Shield_v5
+ 704              		.file 5 "C:\\Users\\tomasoat\\Userdata\\AEPrograms\\DAVE3_workspace_32_DAVE3110\\RGB_LED_Shield_v5
+ 705              		.file 6 "C:\\Users\\tomasoat\\Userdata\\AEPrograms\\DAVE3_workspace_32_DAVE3110\\RGB_LED_Shield_v5
+ 706              		.file 7 "C:\\Users\\tomasoat\\Userdata\\AEPrograms\\DAVE3_workspace_32_DAVE3110\\RGB_LED_Shield_v5
+ 707              		.file 8 "C:\\Users\\tomasoat\\Userdata\\AEPrograms\\DAVE3_workspace_32_DAVE3110\\RGB_LED_Shield_v5
+ 708              		.file 9 "C:\\Users\\tomasoat\\Userdata\\AEPrograms\\DAVE3_workspace_32_DAVE3110\\RGB_LED_Shield_v5
+ 709              		.file 10 "C:\\Users\\tomasoat\\Userdata\\AEPrograms\\DAVE3_workspace_32_DAVE3110\\RGB_LED_Shield_v
+ 710              		.file 11 "C:\\Users\\tomasoat\\Userdata\\AEPrograms\\DAVE3_workspace_32_DAVE3110\\RGB_LED_Shield_v
+ 711              		.file 12 "C:\\Users\\tomasoat\\Userdata\\AEPrograms\\DAVE3_workspace_32_DAVE3110\\RGB_LED_Shield_v
+ 712              		.file 13 "C:\\Users\\tomasoat\\Userdata\\AEPrograms\\DAVE3_workspace_32_DAVE3110\\RGB_LED_Shield_v
+ 713              		.file 14 "C:\\Users\\tomasoat\\Userdata\\AEPrograms\\DAVE3_workspace_32_DAVE3110\\RGB_LED_Shield_v
+ 714              		.file 15 "C:\\Users\\tomasoat\\Userdata\\AEPrograms\\DAVE3_workspace_32_DAVE3110\\RGB_LED_Shield_v
+ 715              		.file 16 "C:\\Users\\tomasoat\\Userdata\\AEPrograms\\DAVE3_workspace_32_DAVE3110\\RGB_LED_Shield_v
+ 716              		.file 17 "C:\\Users\\tomasoat\\Userdata\\AEPrograms\\DAVE3_workspace_32_DAVE3110\\RGB_LED_Shield_v
+ 717              		.file 18 "C:\\Users\\tomasoat\\Userdata\\AEPrograms\\DAVE3_workspace_32_DAVE3110\\RGB_LED_Shield_v
+DEFINED SYMBOLS
+                            *ABS*:00000000 Main.c
+C:\Users\tomasoat\AppData\Local\Temp\ccNm84oc.s:18     .text.startup.main:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\ccNm84oc.s:23     .text.startup.main:00000000 main
+C:\Users\tomasoat\AppData\Local\Temp\ccNm84oc.s:424    .text.startup.main:00000214 $d
+                            *COM*:0000005c flashBuffer
+                            *COM*:0000001c Lamphandle
+C:\Users\tomasoat\AppData\Local\Temp\ccNm84oc.s:445    .text.DMX512RD01_CallBack:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\ccNm84oc.s:450    .text.DMX512RD01_CallBack:00000000 DMX512RD01_CallBack
+C:\Users\tomasoat\AppData\Local\Temp\ccNm84oc.s:557    .text.DMX512RD01_CallBack:00000088 $d
+C:\Users\tomasoat\AppData\Local\Temp\ccNm84oc.s:597    .data:00000000 configStatus
+C:\Users\tomasoat\AppData\Local\Temp\ccNm84oc.s:649    .bss:00000010 writeToFlash
+C:\Users\tomasoat\AppData\Local\Temp\ccNm84oc.s:653    .bss:00000014 byteCount
+C:\Users\tomasoat\AppData\Local\Temp\ccNm84oc.s:621    .bss:00000000 DMX_16
+C:\Users\tomasoat\AppData\Local\Temp\ccNm84oc.s:610    .data:0000000c DMX_8
+C:\Users\tomasoat\AppData\Local\Temp\ccNm84oc.s:601    .data:00000004 DMXControl
+C:\Users\tomasoat\AppData\Local\Temp\ccNm84oc.s:657    .bss:00000018 testflash
+C:\Users\tomasoat\AppData\Local\Temp\ccNm84oc.s:661    .bss:0000001c testflashadd
+C:\Users\tomasoat\AppData\Local\Temp\ccNm84oc.s:614    .data:00000010 flashAddress
+C:\Users\tomasoat\AppData\Local\Temp\ccNm84oc.s:665    .bss:00000020 temp
+C:\Users\tomasoat\AppData\Local\Temp\ccNm84oc.s:669    .bss:00000024 dimLevel
+C:\Users\tomasoat\AppData\Local\Temp\ccNm84oc.s:673    .bss:00000028 changeAddress
+C:\Users\tomasoat\AppData\Local\Temp\ccNm84oc.s:677    .bss:0000002c DataDirect
+C:\Users\tomasoat\AppData\Local\Temp\ccNm84oc.s:681    .bss:00000030 registerAddress
+C:\Users\tomasoat\AppData\Local\Temp\ccNm84oc.s:633    .bss:00000008 dmx_BlueH
+C:\Users\tomasoat\AppData\Local\Temp\ccNm84oc.s:645    .bss:0000000e dmx_BlueL
+C:\Users\tomasoat\AppData\Local\Temp\ccNm84oc.s:629    .bss:00000006 dmx_GreenH
+C:\Users\tomasoat\AppData\Local\Temp\ccNm84oc.s:641    .bss:0000000c dmx_GreenL
+C:\Users\tomasoat\AppData\Local\Temp\ccNm84oc.s:625    .bss:00000004 dmx_RedH
+C:\Users\tomasoat\AppData\Local\Temp\ccNm84oc.s:637    .bss:0000000a dmx_RedL
+C:\Users\tomasoat\AppData\Local\Temp\ccNm84oc.s:605    .data:00000008 startingSlot
+C:\Users\tomasoat\AppData\Local\Temp\ccNm84oc.s:685    .bss:00000034 DataTotal
+C:\Users\tomasoat\AppData\Local\Temp\ccNm84oc.s:689    .bss:00000036 DataLower
+C:\Users\tomasoat\AppData\Local\Temp\ccNm84oc.s:693    .bss:00000037 DataUpper
+C:\Users\tomasoat\AppData\Local\Temp\ccNm84oc.s:697    .bss:00000038 Command
+C:\Users\tomasoat\AppData\Local\Temp\ccNm84oc.s:593    .data:00000000 $d
+C:\Users\tomasoat\AppData\Local\Temp\ccNm84oc.s:617    .bss:00000000 $d
+                     .debug_frame:00000010 $d
+                           .group:00000000 wm4.1.e09b9dd5224853206c418479f14d6963
+                           .group:00000000 wm4.XMC1200.h.45.4c899b4822ac22c0f00d6fd7f173cc96
+                           .group:00000000 wm4.core_cm0.h.47.022e66414e77714da7c4b30b3ad99fe8
+                           .group:00000000 wm4.newlib.h.8.a9901dc52d1357e3e94003403d43f8b5
+                           .group:00000000 wm4.features.h.22.b72b3baab2bb2eab3661375590100b6b
+                           .group:00000000 wm4.config.h.193.5fb8ef056cdff92dec3dee9552839d8c
+                           .group:00000000 wm4._ansi.h.23.7aefdac4826acebbfc9f3822a0aeb14c
+                           .group:00000000 wm4.stdint.h.20.54ad762faa59e3c05491630641c8d8bf
+                           .group:00000000 wm4.core_cmInstr.h.39.b7b6650bdd2316848d940915272d75b8
+                           .group:00000000 wm4.core_cm0.h.135.ca70469f87e143609670bb393bfa6518
+                           .group:00000000 wm4.XMC1000_RomFunctionTable.h.31.6d9a94465618f31b040dc9cea9a47ad7
+                           .group:00000000 wm4.XMC1200.h.122.96b58b1204def4c9f76341a4e21abaf6
+                           .group:00000000 wm4.stddef.h.40.50cf36416e06376af8a9dca28536f2e4
+                           .group:00000000 wm4.types.h.60.e75c47576398c648cdcf9000ace5e3d8
+                           .group:00000000 wm4.MULTIPLEXER.h.46.383e3edbb9cbf6e538f7c1532ef623c1
+                           .group:00000000 wm4.uc_id.h.35.62dcba5f6261c1436e3866a751c1a98b
+                           .group:00000000 wm4.BCCUDIM01_Conf.h.46.1e3ffd6581cbd401bcc28a6ce60f19f0
+                           .group:00000000 wm4.BCCUCH01_Conf.h.48.2ce679450068d1645a9e0c3a7937e697
+                           .group:00000000 wm4.CCU4Global_Conf.h.63.a52fac0daa39b5f58343578312b4eb54
+                           .group:00000000 wm4.PWMSP003_Conf.h.49.a3ea83c25b3af429e78acb0f2dc45bd4
+                           .group:00000000 wm4.PWMSP003.h.103.903071678b9af5683776405c5b299fbb
+                           .group:00000000 wm4.IO002_Conf.h.51.9fc2eb43e77e0a2c02912a3744f3ec9d
+                           .group:00000000 wm4.IO001.h.49.4efcabb368feaef60c65bd7504b48505
+                           .group:00000000 wm4.NVIC002_Conf.h.62.64042456dc7f2eb96fc713abacb4c5d4
+                           .group:00000000 wm4.DMX512RD01_Conf.h.49.036b57ce74a404ea8f8ade310b364436
+                           .group:00000000 wm4.IO004.h.53.442ea5eb47ad9eedc675253aa35f3107
+                           .group:00000000 wm4.Usic.h.40.f6a4fed014760114cf5039d398d6dd2c
+                           .group:00000000 wm4.I2C003_Conf.h.50.5fb7c255d386301836868ba2fd78b91f
+                           .group:00000000 wm4.FLASH003.h.76.20bf3d34b222314a45adfdfb414ab1b6
+                           .group:00000000 wm4.FLASH003_Conf.h.72.6d366060eda228c6c8843c467361c30c
+
+UNDEFINED SYMBOLS
+DAVE_Init
+FLASH003_ClearStatus
+FLASH003_ReadBytes
+PWMSP003_UpdateCompare
+BCCUCH01_SetIntensity
+BCCUCH01_StartLinearWalk
+GET_CHANNEL_DIM_MASK
+BCCUDIM01_AbortDimming
+BCCUDIM01_SetDimDiv
+BCCUDIM01_SetDimLvl
+BCCUDIM01_StartDimming
+COLORLAMP01_SetColor
+I2C003_ClearFlag
+PWMSP003_Handle0
+PWMSP003_Handle1
+PWMSP003_Handle2
+BCCUCH01_Handle3
+BCCUCH01_Handle4
+BCCUCH01_Handle5
+BCCUDIM01_Handle0
+COLORLAMP01_ConfigHandle0
+I2C003_Handle0
+DMX512RD01_ConfigStartSlotNo
+DMX512RD01_buffer

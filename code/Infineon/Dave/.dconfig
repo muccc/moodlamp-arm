@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ProjectConfig>
+    <CodeGenerate>
+        <JETFileMap/>
+    </CodeGenerate>
+    <ResourceReserve/>
+    <Solver>
+        <SolverBndMap>
+            <BindMap MUri="peripheral/scu/0/ccu/clkgating/usic/0" Proxy="app/clk002/0/clkgating_usic"/>
+            <BindMap MUri="peripheral/scu/0/dco/2" Proxy="app/clk002/0/dco_uri"/>
+            <BindMap MUri="peripheral/scu/0/ccu/clkgating/wdt" Proxy="app/clk002/0/clkgating_wdt"/>
+            <BindMap MUri="peripheral/bccu/0/channel/2" Proxy="app/bccuch01/5/bccuchannelhw"/>
+            <BindMap MUri="peripheral/scu/0/ccu/clkgating/ccu4/0" Proxy="app/clk002/0/clkgating_ccu4"/>
+            <BindMap MUri="peripheral/bccu/0/channel/4" Proxy="app/bccuch01/1/bccuchannelhw"/>
+            <BindMap MUri="peripheral/usic/0/channel/0" Proxy="app/dmx512rd01/0/usic_channhw"/>
+            <BindMap MUri="peripheral/bccu/0/trap" Proxy="app/bccuglobal/0/trap"/>
+            <BindMap MUri="peripheral/cpu/0/nvic/interrupt/10" Proxy="app/nvic002/1/nvicnode"/>
+            <BindMap MUri="peripheral/cpu/0/nvic/interrupt/11" Proxy="app/nvic002/2/nvicnode"/>
+            <BindMap MUri="peripheral/bccu/0/channel/0" Proxy="app/bccuch01/3/bccuchannelhw"/>
+            <BindMap MUri="peripheral/cpu/0/nvic/interrupt/9" Proxy="app/nvic002/0/nvicnode"/>
+            <BindMap MUri="peripheral/ccu4/0/cc4/3" Proxy="app/pwmsp003/0/slice"/>
+            <BindMap MUri="port/p/0/pad/9" Proxy="app/io002/1/pin"/>
+            <BindMap MUri="peripheral/scu/0/cmpcu/anacmp/2" Proxy="app/anacmp01/2/slice"/>
+            <BindMap MUri="peripheral/bccu/0/dimming_engine/2" Proxy="app/bccudim01/0/bccudimhw"/>
+            <BindMap MUri="peripheral/nvm/0/nvm" Proxy="app/flash003/0/nvm"/>
+            <BindMap MUri="port/p/0/pad/4" Proxy="app/bccuch01/3/iohw"/>
+            <BindMap MUri="port/p/2/pad/2" Proxy="app/io001/4/pin"/>
+            <BindMap MUri="peripheral/scu/0/ccu/config" Proxy="app/clk002/0/clk_uri"/>
+            <BindMap MUri="port/p/2/pad/9" Proxy="app/io001/1/pin"/>
+            <BindMap MUri="peripheral/ccu4/0/cc4/2" Proxy="app/pwmsp003/1/slice"/>
+            <BindMap MUri="port/p/0/pad/0" Proxy="app/io004/1/pin"/>
+            <BindMap MUri="peripheral/bccu/0/channel/6" Proxy="app/bccuch01/4/bccuchannelhw"/>
+            <BindMap MUri="peripheral/scu/0/cmpcu/anacmp/1" Proxy="app/anacmp01/1/slice"/>
+            <BindMap MUri="port/p/0/pad/8" Proxy="app/io002/3/pin"/>
+            <BindMap MUri="port/p/1/pad/1" Proxy="app/pwmsp003/2/pin_directoutput"/>
+            <BindMap MUri="port/p/0/pad/13" Proxy="app/io004/0/pin"/>
+            <BindMap MUri="peripheral/scu/0/ccu/clkgating/ledts/1" Proxy="app/clk002/0/clkgating_ledts1"/>
+            <BindMap MUri="port/p/0/pad/5" Proxy="app/io002/4/pin"/>
+            <BindMap MUri="port/p/0/pad/7" Proxy="app/io002/5/pin"/>
+            <BindMap MUri="peripheral/ccu4/0/global" Proxy="app/ccu4global/0/global"/>
+            <BindMap MUri="peripheral/scu/0/ccu/clkgating/ledts/0" Proxy="app/clk002/0/clkgating_ledts0"/>
+            <BindMap MUri="port/p/2/pad/8" Proxy="app/io001/0/pin"/>
+            <BindMap MUri="peripheral/scu/0/cmpcu/anacmp/0" Proxy="app/anacmp01/0/slice"/>
+            <BindMap MUri="port/p/1/pad/3" Proxy="app/pwmsp003/0/pin_directoutput"/>
+            <BindMap MUri="port/p/0/pad/6" Proxy="app/bccuch01/5/iohw"/>
+            <BindMap MUri="port/p/0/pad/12" Proxy="app/bccuch01/4/iohw"/>
+            <BindMap MUri="peripheral/bccu/0/global" Proxy="app/bccuglobal/0/global"/>
+            <BindMap MUri="peripheral/bccu/0/channel/3" Proxy="app/bccuch01/2/bccuchannelhw"/>
+            <BindMap MUri="port/p/2/pad/10" Proxy="app/i2c003/0/i2c_sda"/>
+            <BindMap MUri="peripheral/scu/0/ccu/clkgating/vadcshs" Proxy="app/clk002/0/clkgating_vadcshs"/>
+            <BindMap MUri="peripheral/bccu/0/trigger" Proxy="app/bccuglobal/0/trigger"/>
+            <BindMap MUri="port/p/1/pad/0" Proxy="app/io002/2/pin"/>
+            <BindMap MUri="port/p/2/pad/1" Proxy="app/io001/5/pin"/>
+            <BindMap MUri="peripheral/usic/0/channel/1" Proxy="app/i2c003/0/channel"/>
+            <BindMap MUri="peripheral/scu/0/cmpcu/acmp_powermode" Proxy="app/anacmpglob01/0/lowpower"/>
+            <BindMap MUri="peripheral/bccu/0/packer_fifo_event" Proxy="app/bccuglobal/0/packer_fifo_event"/>
+            <BindMap MUri="peripheral/scu/0/ccu/clkgating/rtc" Proxy="app/clk002/0/clkgating_rtc"/>
+            <BindMap MUri="port/p/2/pad/11" Proxy="app/i2c003/0/i2c_scl"/>
+            <BindMap MUri="peripheral/bccu/0/channel/5" Proxy="app/bccuch01/0/bccuchannelhw"/>
+            <BindMap MUri="port/p/1/pad/2" Proxy="app/pwmsp003/1/pin_directoutput"/>
+            <BindMap MUri="peripheral/scu/0/ccu/clkgating/bccu/0" Proxy="app/clk002/0/clkgating_bccu"/>
+            <BindMap MUri="peripheral/ccu4/0/cc4/1" Proxy="app/pwmsp003/2/slice"/>
+            <BindMap MUri="port/p/2/pad/6" Proxy="app/io001/2/pin"/>
+            <BindMap MUri="port/p/2/pad/0" Proxy="app/io002/6/pin"/>
+            <BindMap MUri="port/p/0/pad/10" Proxy="app/io002/0/pin"/>
+            <BindMap MUri="port/p/2/pad/7" Proxy="app/io001/3/pin"/>
+        </SolverBndMap>
+    </Solver>
+</ProjectConfig>

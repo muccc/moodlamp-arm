@@ -1,0 +1,701 @@
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"System_LibcStubs.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text._open,"ax",%progbits
+  18              		.align	1
+  19              		.weak	_open
+  20              		.code	16
+  21              		.thumb_func
+  23              	_open:
+  24              	.LFB0:
+  25              		.file 1 "../Lib/System_LibcStubs.c"
+   1:../Lib/System_LibcStubs.c **** /****************************************************************************/
+   2:../Lib/System_LibcStubs.c **** /**
+   3:../Lib/System_LibcStubs.c **** * @file     System_LibcStubs.c
+   4:../Lib/System_LibcStubs.c **** *           XMC4000 Device Series
+   5:../Lib/System_LibcStubs.c **** * @version  V1.3
+   6:../Lib/System_LibcStubs.c **** * @date     Jan 2014
+   7:../Lib/System_LibcStubs.c **** *
+   8:../Lib/System_LibcStubs.c **** * Copyright (C) 2012-2014 Infineon Technologies AG. All rights reserved.
+   9:../Lib/System_LibcStubs.c **** *
+  10:../Lib/System_LibcStubs.c **** *
+  11:../Lib/System_LibcStubs.c **** * @par
+  12:../Lib/System_LibcStubs.c **** * Infineon Technologies AG (Infineon) is supplying this software for use with 
+  13:../Lib/System_LibcStubs.c **** * Infineon's microcontrollers.  This file can be freely distributed within
+  14:../Lib/System_LibcStubs.c **** * development tools that are supporting such microcontrollers.
+  15:../Lib/System_LibcStubs.c **** *
+  16:../Lib/System_LibcStubs.c **** * @par
+  17:../Lib/System_LibcStubs.c **** * THIS SOFTWARE IS PROVIDED AS IS.  NO WARRANTIES, WHETHER EXPRESS, IMPLIED
+  18:../Lib/System_LibcStubs.c **** * OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF
+  19:../Lib/System_LibcStubs.c **** * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE APPLY TO THIS SOFTWARE.
+  20:../Lib/System_LibcStubs.c **** * ARM SHALL NOT, IN ANY CIRCUMSTANCES, BE LIABLE FOR SPECIAL, INCIDENTAL, OR
+  21:../Lib/System_LibcStubs.c **** * CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.
+  22:../Lib/System_LibcStubs.c **** *
+  23:../Lib/System_LibcStubs.c **** ******************************************************************************/
+  24:../Lib/System_LibcStubs.c **** 
+  25:../Lib/System_LibcStubs.c **** /* ============================ REVISION HISTORY ==============================
+  26:../Lib/System_LibcStubs.c ****    1. Prakash Kalanjeri Balasubramanian , V0.1 , Initial draft
+  27:../Lib/System_LibcStubs.c ****    2. Prakash Kalanjeri Balasubramanian , V0.2 , Label updates
+  28:../Lib/System_LibcStubs.c ****    3. Prakash Kalanjeri Balasubramanian , V1.0 , Made _Sbrk device agnostic
+  29:../Lib/System_LibcStubs.c ****    3. Prakash Kalanjeri Balasubramanian , V1.1 , C++ support
+  30:../Lib/System_LibcStubs.c ****    3. Prakash Kalanjeri Balasubramanian , V1.2 , Restored compatibilty with old
+  31:../Lib/System_LibcStubs.c ****                                                  project files
+  32:../Lib/System_LibcStubs.c ****    4. Prakash Kalanjeri Balasubramanian, V1.3 ,  Encapsulating everything in
+  33:../Lib/System_LibcStubs.c ****                                                  this file for use only with
+  34:../Lib/System_LibcStubs.c ****                                                  GCC
+  35:../Lib/System_LibcStubs.c ****    ========================================================================= */
+  36:../Lib/System_LibcStubs.c **** 
+  37:../Lib/System_LibcStubs.c **** /*
+  38:../Lib/System_LibcStubs.c ****  * This file contains stubs for standard C library functionality that must
+  39:../Lib/System_LibcStubs.c ****  * typically be provided for the underlying platform.
+  40:../Lib/System_LibcStubs.c ****  *
+  41:../Lib/System_LibcStubs.c ****  * All routines are WEAKLY defined. This creates an opportunity for application
+  42:../Lib/System_LibcStubs.c ****  * developers to override the provided implementation and define a final
+  43:../Lib/System_LibcStubs.c ****  * implementation for their platforms.
+  44:../Lib/System_LibcStubs.c ****  */
+  45:../Lib/System_LibcStubs.c **** #if   defined ( __GNUC__ )
+  46:../Lib/System_LibcStubs.c **** 
+  47:../Lib/System_LibcStubs.c **** #include <sys/stat.h>
+  48:../Lib/System_LibcStubs.c **** #include <sys/times.h>
+  49:../Lib/System_LibcStubs.c **** #include <unistd.h>
+  50:../Lib/System_LibcStubs.c **** 
+  51:../Lib/System_LibcStubs.c **** /* ========================================================================= */
+  52:../Lib/System_LibcStubs.c **** /* =========================== File I/O related ============================ */
+  53:../Lib/System_LibcStubs.c **** /* ========================================================================= */
+  54:../Lib/System_LibcStubs.c **** /*
+  55:../Lib/System_LibcStubs.c ****  * File open
+  56:../Lib/System_LibcStubs.c ****  */
+  57:../Lib/System_LibcStubs.c **** __attribute__((weak)) int _open(const char *name, int flags, int mode)
+  58:../Lib/System_LibcStubs.c **** {
+  26              		.loc 1 58 0
+  27              		.cfi_startproc
+  28              	.LVL0:
+  59:../Lib/System_LibcStubs.c ****  flags = flags;
+  60:../Lib/System_LibcStubs.c ****  mode = mode;
+  61:../Lib/System_LibcStubs.c ****  return -1;
+  29              		.loc 1 61 0
+  30 0000 0120     		mov	r0, #1
+  31              	.LVL1:
+  62:../Lib/System_LibcStubs.c **** }
+  32              		.loc 1 62 0
+  33 0002 4042     		neg	r0, r0
+  34              		@ sp needed for prologue
+  35 0004 7047     		bx	lr
+  36              		.cfi_endproc
+  37              	.LFE0:
+  39              		.section	.text._lseek,"ax",%progbits
+  40              		.align	1
+  41              		.weak	_lseek
+  42              		.code	16
+  43              		.thumb_func
+  45              	_lseek:
+  46              	.LFB1:
+  63:../Lib/System_LibcStubs.c **** 
+  64:../Lib/System_LibcStubs.c **** /*
+  65:../Lib/System_LibcStubs.c ****  * File position seek
+  66:../Lib/System_LibcStubs.c ****  */
+  67:../Lib/System_LibcStubs.c **** __attribute__((weak)) int _lseek(int file, int offset, int whence)
+  68:../Lib/System_LibcStubs.c **** {
+  47              		.loc 1 68 0
+  48              		.cfi_startproc
+  49              	.LVL2:
+  69:../Lib/System_LibcStubs.c ****  file = file;
+  70:../Lib/System_LibcStubs.c ****  offset = offset;
+  71:../Lib/System_LibcStubs.c ****  whence = whence;
+  72:../Lib/System_LibcStubs.c ****  return -1;
+  50              		.loc 1 72 0
+  51 0000 0120     		mov	r0, #1
+  52              	.LVL3:
+  73:../Lib/System_LibcStubs.c **** }
+  53              		.loc 1 73 0
+  54 0002 4042     		neg	r0, r0
+  55              		@ sp needed for prologue
+  56 0004 7047     		bx	lr
+  57              		.cfi_endproc
+  58              	.LFE1:
+  60              		.section	.text._read,"ax",%progbits
+  61              		.align	1
+  62              		.weak	_read
+  63              		.code	16
+  64              		.thumb_func
+  66              	_read:
+  67              	.LFB2:
+  74:../Lib/System_LibcStubs.c **** 
+  75:../Lib/System_LibcStubs.c **** /*
+  76:../Lib/System_LibcStubs.c ****  * File read
+  77:../Lib/System_LibcStubs.c ****  */
+  78:../Lib/System_LibcStubs.c **** __attribute__((weak)) int _read(int file, char *ptr, int len)
+  79:../Lib/System_LibcStubs.c **** {
+  68              		.loc 1 79 0
+  69              		.cfi_startproc
+  70              	.LVL4:
+  80:../Lib/System_LibcStubs.c ****  file = file;
+  81:../Lib/System_LibcStubs.c ****  len  = len;
+  82:../Lib/System_LibcStubs.c ****  return 0;
+  83:../Lib/System_LibcStubs.c **** }
+  71              		.loc 1 83 0
+  72 0000 0020     		mov	r0, #0
+  73              	.LVL5:
+  74              		@ sp needed for prologue
+  75 0002 7047     		bx	lr
+  76              		.cfi_endproc
+  77              	.LFE2:
+  79              		.section	.text._write,"ax",%progbits
+  80              		.align	1
+  81              		.weak	_write
+  82              		.code	16
+  83              		.thumb_func
+  85              	_write:
+  86              	.LFB3:
+  84:../Lib/System_LibcStubs.c **** 
+  85:../Lib/System_LibcStubs.c **** /*
+  86:../Lib/System_LibcStubs.c ****  * File write
+  87:../Lib/System_LibcStubs.c ****  */
+  88:../Lib/System_LibcStubs.c **** __attribute__((weak)) int _write(int file, char *buf, int nbytes)
+  89:../Lib/System_LibcStubs.c **** {
+  87              		.loc 1 89 0
+  88              		.cfi_startproc
+  89              	.LVL6:
+  90:../Lib/System_LibcStubs.c ****  return -1;
+  90              		.loc 1 90 0
+  91 0000 0120     		mov	r0, #1
+  92              	.LVL7:
+  91:../Lib/System_LibcStubs.c **** }
+  93              		.loc 1 91 0
+  94 0002 4042     		neg	r0, r0
+  95              		@ sp needed for prologue
+  96 0004 7047     		bx	lr
+  97              		.cfi_endproc
+  98              	.LFE3:
+ 100              		.section	.text._close,"ax",%progbits
+ 101              		.align	1
+ 102              		.weak	_close
+ 103              		.code	16
+ 104              		.thumb_func
+ 106              	_close:
+ 107              	.LFB4:
+  92:../Lib/System_LibcStubs.c **** 
+  93:../Lib/System_LibcStubs.c **** /*
+  94:../Lib/System_LibcStubs.c ****  * File close
+  95:../Lib/System_LibcStubs.c ****  */
+  96:../Lib/System_LibcStubs.c **** __attribute__((weak)) int _close(void)
+  97:../Lib/System_LibcStubs.c **** {
+ 108              		.loc 1 97 0
+ 109              		.cfi_startproc
+  98:../Lib/System_LibcStubs.c ****  return -1;
+ 110              		.loc 1 98 0
+ 111 0000 0120     		mov	r0, #1
+  99:../Lib/System_LibcStubs.c **** }
+ 112              		.loc 1 99 0
+ 113 0002 4042     		neg	r0, r0
+ 114              		@ sp needed for prologue
+ 115 0004 7047     		bx	lr
+ 116              		.cfi_endproc
+ 117              	.LFE4:
+ 119              		.section	.text._fstat,"ax",%progbits
+ 120              		.align	1
+ 121              		.weak	_fstat
+ 122              		.code	16
+ 123              		.thumb_func
+ 125              	_fstat:
+ 126              	.LFB5:
+ 100:../Lib/System_LibcStubs.c **** 
+ 101:../Lib/System_LibcStubs.c **** /*
+ 102:../Lib/System_LibcStubs.c ****  * File status
+ 103:../Lib/System_LibcStubs.c ****  */
+ 104:../Lib/System_LibcStubs.c **** __attribute__((weak)) int _fstat(int file, struct stat *st)
+ 105:../Lib/System_LibcStubs.c **** {
+ 127              		.loc 1 105 0
+ 128              		.cfi_startproc
+ 129              	.LVL8:
+ 106:../Lib/System_LibcStubs.c ****  file = file;
+ 107:../Lib/System_LibcStubs.c ****  if(st)
+ 108:../Lib/System_LibcStubs.c ****   return -1;
+ 130              		.loc 1 108 0
+ 131 0000 4842     		neg	r0, r1
+ 132 0002 4841     		adc	r0, r0, r1
+ 133              	.LVL9:
+ 134 0004 C043     		mvn	r0, r0
+ 109:../Lib/System_LibcStubs.c ****  else
+ 110:../Lib/System_LibcStubs.c ****   return -2;
+ 111:../Lib/System_LibcStubs.c **** }
+ 135              		.loc 1 111 0
+ 136              		@ sp needed for prologue
+ 137 0006 7047     		bx	lr
+ 138              		.cfi_endproc
+ 139              	.LFE5:
+ 141              		.section	.text._link,"ax",%progbits
+ 142              		.align	1
+ 143              		.weak	_link
+ 144              		.code	16
+ 145              		.thumb_func
+ 147              	_link:
+ 148              	.LFB6:
+ 112:../Lib/System_LibcStubs.c **** /*
+ 113:../Lib/System_LibcStubs.c ****  * File linking
+ 114:../Lib/System_LibcStubs.c ****  */
+ 115:../Lib/System_LibcStubs.c **** __attribute__((weak)) int _link (char *old, char *new)
+ 116:../Lib/System_LibcStubs.c **** {
+ 149              		.loc 1 116 0
+ 150              		.cfi_startproc
+ 151              	.LVL10:
+ 117:../Lib/System_LibcStubs.c ****  if (old == new)
+ 118:../Lib/System_LibcStubs.c ****   return -1;
+ 152              		.loc 1 118 0
+ 153 0000 401A     		sub	r0, r0, r1
+ 154              	.LVL11:
+ 155 0002 431E     		sub	r3, r0, #1
+ 156 0004 9841     		sbc	r0, r0, r3
+ 157 0006 C043     		mvn	r0, r0
+ 119:../Lib/System_LibcStubs.c ****  else
+ 120:../Lib/System_LibcStubs.c ****   return -2;
+ 121:../Lib/System_LibcStubs.c **** }
+ 158              		.loc 1 121 0
+ 159              		@ sp needed for prologue
+ 160 0008 7047     		bx	lr
+ 161              		.cfi_endproc
+ 162              	.LFE6:
+ 164              		.section	.text._unlink,"ax",%progbits
+ 165              		.align	1
+ 166              		.weak	_unlink
+ 167              		.code	16
+ 168              		.thumb_func
+ 170              	_unlink:
+ 171              	.LFB7:
+ 122:../Lib/System_LibcStubs.c **** 
+ 123:../Lib/System_LibcStubs.c **** /*
+ 124:../Lib/System_LibcStubs.c ****  * Unlinking directory entry
+ 125:../Lib/System_LibcStubs.c ****  */
+ 126:../Lib/System_LibcStubs.c **** __attribute__((weak)) int _unlink(char *name)
+ 127:../Lib/System_LibcStubs.c **** {
+ 172              		.loc 1 127 0
+ 173              		.cfi_startproc
+ 174              	.LVL12:
+ 128:../Lib/System_LibcStubs.c ****  return -1;
+ 175              		.loc 1 128 0
+ 176 0000 0120     		mov	r0, #1
+ 177              	.LVL13:
+ 129:../Lib/System_LibcStubs.c **** }
+ 178              		.loc 1 129 0
+ 179 0002 4042     		neg	r0, r0
+ 180              		@ sp needed for prologue
+ 181 0004 7047     		bx	lr
+ 182              		.cfi_endproc
+ 183              	.LFE7:
+ 185              		.section	.text._sbrk,"ax",%progbits
+ 186              		.align	1
+ 187              		.weak	_sbrk
+ 188              		.code	16
+ 189              		.thumb_func
+ 191              	_sbrk:
+ 192              	.LFB8:
+ 130:../Lib/System_LibcStubs.c **** /* ========================================================================= */
+ 131:../Lib/System_LibcStubs.c **** /* =================== Dynamic memory management related =================== */
+ 132:../Lib/System_LibcStubs.c **** /* ========================================================================= */
+ 133:../Lib/System_LibcStubs.c **** /*
+ 134:../Lib/System_LibcStubs.c ****  * Heap break (position)
+ 135:../Lib/System_LibcStubs.c ****  */
+ 136:../Lib/System_LibcStubs.c **** __attribute__((weak)) void *_sbrk(int RequestedSize)
+ 137:../Lib/System_LibcStubs.c **** {
+ 193              		.loc 1 137 0
+ 194              		.cfi_startproc
+ 195              	.LVL14:
+ 138:../Lib/System_LibcStubs.c ****  /* Heap limits from linker script file */
+ 139:../Lib/System_LibcStubs.c ****  extern unsigned int Heap_Bank1_Start;
+ 140:../Lib/System_LibcStubs.c ****  extern unsigned int Heap_Bank1_Size;
+ 141:../Lib/System_LibcStubs.c **** 
+ 142:../Lib/System_LibcStubs.c ****  unsigned char *CurrBreak, *NextBreak; 
+ 143:../Lib/System_LibcStubs.c ****  unsigned int  HeapSize;
+ 144:../Lib/System_LibcStubs.c ****  static unsigned char *HeapBound;
+ 145:../Lib/System_LibcStubs.c ****  static unsigned char * heap= (unsigned char *)NULL;
+ 146:../Lib/System_LibcStubs.c **** 
+ 147:../Lib/System_LibcStubs.c **** 
+ 148:../Lib/System_LibcStubs.c ****  HeapSize   = (unsigned int)(&Heap_Bank1_Size);
+ 149:../Lib/System_LibcStubs.c **** 
+ 150:../Lib/System_LibcStubs.c ****  /*
+ 151:../Lib/System_LibcStubs.c ****   * If this is the first time malloc() was invoked, we start with the
+ 152:../Lib/System_LibcStubs.c ****   * begining of the heap.
+ 153:../Lib/System_LibcStubs.c ****   */
+ 154:../Lib/System_LibcStubs.c ****  if(heap == (unsigned char *)NULL)
+ 196              		.loc 1 154 0
+ 197 0000 0A4B     		ldr	r3, .L18
+ 198 0002 1A68     		ldr	r2, [r3]
+ 199 0004 002A     		cmp	r2, #0
+ 200 0006 04D1     		bne	.L14
+ 155:../Lib/System_LibcStubs.c ****   {
+ 156:../Lib/System_LibcStubs.c ****    heap = (unsigned char *)&Heap_Bank1_Start;
+ 201              		.loc 1 156 0
+ 202 0008 094A     		ldr	r2, .L18+4
+ 157:../Lib/System_LibcStubs.c ****    HeapBound  = (unsigned char *) (heap + HeapSize);
+ 203              		.loc 1 157 0
+ 204 000a 0A49     		ldr	r1, .L18+8
+ 156:../Lib/System_LibcStubs.c ****    heap = (unsigned char *)&Heap_Bank1_Start;
+ 205              		.loc 1 156 0
+ 206 000c 1A60     		str	r2, [r3]
+ 207              		.loc 1 157 0
+ 208 000e 5218     		add	r2, r2, r1
+ 209 0010 5A60     		str	r2, [r3, #4]
+ 210              	.L14:
+ 158:../Lib/System_LibcStubs.c ****   }
+ 159:../Lib/System_LibcStubs.c **** 
+ 160:../Lib/System_LibcStubs.c ****  /* Super duper algo to find out if we have memory for the latest request */
+ 161:../Lib/System_LibcStubs.c ****  /* Given conditions are: */
+ 162:../Lib/System_LibcStubs.c ****  /* 1. Latest break */
+ 163:../Lib/System_LibcStubs.c ****  CurrBreak = heap;
+ 211              		.loc 1 163 0
+ 212 0012 1A68     		ldr	r2, [r3]
+ 213              	.LVL15:
+ 164:../Lib/System_LibcStubs.c **** 
+ 165:../Lib/System_LibcStubs.c ****  /* And 2. Potential break based on requested size */
+ 166:../Lib/System_LibcStubs.c ****  NextBreak = (unsigned char *)( (((unsigned int)(heap)) + RequestedSize + 7)
+ 214              		.loc 1 166 0
+ 215 0014 D11D     		add	r1, r2, #7
+ 216 0016 0818     		add	r0, r1, r0
+ 217              	.LVL16:
+ 167:../Lib/System_LibcStubs.c ****                                           & 0xFFFFFFF8);
+ 218              		.loc 1 167 0
+ 219 0018 0721     		mov	r1, #7
+ 220 001a 8843     		bic	r0, r1
+ 221              	.LVL17:
+ 168:../Lib/System_LibcStubs.c **** 
+ 169:../Lib/System_LibcStubs.c ****  /* Return no memory condition if we sense we are crossing the limit */
+ 170:../Lib/System_LibcStubs.c ****  if (NextBreak >=  HeapBound )
+ 222              		.loc 1 170 0
+ 223 001c 5968     		ldr	r1, [r3, #4]
+ 224 001e 8842     		cmp	r0, r1
+ 225 0020 01D2     		bcs	.L16
+ 171:../Lib/System_LibcStubs.c ****   return ((unsigned char *)NULL);
+ 172:../Lib/System_LibcStubs.c ****  else
+ 173:../Lib/System_LibcStubs.c ****  {
+ 174:../Lib/System_LibcStubs.c ****   heap = NextBreak;
+ 226              		.loc 1 174 0
+ 227 0022 1860     		str	r0, [r3]
+ 175:../Lib/System_LibcStubs.c ****   return CurrBreak;
+ 228              		.loc 1 175 0
+ 229 0024 00E0     		b	.L15
+ 230              	.L16:
+ 171:../Lib/System_LibcStubs.c ****   return ((unsigned char *)NULL);
+ 231              		.loc 1 171 0
+ 232 0026 0022     		mov	r2, #0
+ 233              	.LVL18:
+ 234              	.L15:
+ 176:../Lib/System_LibcStubs.c ****  }
+ 177:../Lib/System_LibcStubs.c **** }
+ 235              		.loc 1 177 0
+ 236 0028 101C     		mov	r0, r2
+ 237              	.LVL19:
+ 238              		@ sp needed for prologue
+ 239 002a 7047     		bx	lr
+ 240              	.L19:
+ 241              		.align	2
+ 242              	.L18:
+ 243 002c 00000000 		.word	.LANCHOR0
+ 244 0030 00000000 		.word	Heap_Bank1_Start
+ 245 0034 00000000 		.word	Heap_Bank1_Size
+ 246              		.cfi_endproc
+ 247              	.LFE8:
+ 249              		.section	.text._times,"ax",%progbits
+ 250              		.align	1
+ 251              		.weak	_times
+ 252              		.code	16
+ 253              		.thumb_func
+ 255              	_times:
+ 256              	.LFB9:
+ 178:../Lib/System_LibcStubs.c **** 
+ 179:../Lib/System_LibcStubs.c **** /* ========================================================================= */
+ 180:../Lib/System_LibcStubs.c **** /* ====================== Process related ================================== */
+ 181:../Lib/System_LibcStubs.c **** /* ========================================================================= */
+ 182:../Lib/System_LibcStubs.c **** /*
+ 183:../Lib/System_LibcStubs.c ****  * Process timing information
+ 184:../Lib/System_LibcStubs.c ****  */
+ 185:../Lib/System_LibcStubs.c **** __attribute__((weak)) int _times(struct tms *buf)
+ 186:../Lib/System_LibcStubs.c **** {
+ 257              		.loc 1 186 0
+ 258              		.cfi_startproc
+ 259              	.LVL20:
+ 187:../Lib/System_LibcStubs.c ****  return -1;
+ 260              		.loc 1 187 0
+ 261 0000 0120     		mov	r0, #1
+ 262              	.LVL21:
+ 188:../Lib/System_LibcStubs.c **** }
+ 263              		.loc 1 188 0
+ 264 0002 4042     		neg	r0, r0
+ 265              		@ sp needed for prologue
+ 266 0004 7047     		bx	lr
+ 267              		.cfi_endproc
+ 268              	.LFE9:
+ 270              		.section	.text._wait,"ax",%progbits
+ 271              		.align	1
+ 272              		.weak	_wait
+ 273              		.code	16
+ 274              		.thumb_func
+ 276              	_wait:
+ 277              	.LFB10:
+ 189:../Lib/System_LibcStubs.c **** /*
+ 190:../Lib/System_LibcStubs.c ****  * Waiting for a child process to complete
+ 191:../Lib/System_LibcStubs.c ****  */
+ 192:../Lib/System_LibcStubs.c **** __attribute__((weak)) int _wait(int *status)
+ 193:../Lib/System_LibcStubs.c **** {
+ 278              		.loc 1 193 0
+ 279              		.cfi_startproc
+ 280              	.LVL22:
+ 194:../Lib/System_LibcStubs.c ****  return -1;
+ 281              		.loc 1 194 0
+ 282 0000 0120     		mov	r0, #1
+ 283              	.LVL23:
+ 195:../Lib/System_LibcStubs.c **** }
+ 284              		.loc 1 195 0
+ 285 0002 4042     		neg	r0, r0
+ 286              		@ sp needed for prologue
+ 287 0004 7047     		bx	lr
+ 288              		.cfi_endproc
+ 289              	.LFE10:
+ 291              		.section	.text._kill,"ax",%progbits
+ 292              		.align	1
+ 293              		.weak	_kill
+ 294              		.code	16
+ 295              		.thumb_func
+ 297              	_kill:
+ 298              	.LFB11:
+ 196:../Lib/System_LibcStubs.c **** 
+ 197:../Lib/System_LibcStubs.c **** /*
+ 198:../Lib/System_LibcStubs.c ****  * Kill a process
+ 199:../Lib/System_LibcStubs.c ****  */
+ 200:../Lib/System_LibcStubs.c **** __attribute__((weak)) int _kill(int pid,int sig)
+ 201:../Lib/System_LibcStubs.c **** {
+ 299              		.loc 1 201 0
+ 300              		.cfi_startproc
+ 301              	.LVL24:
+ 202:../Lib/System_LibcStubs.c ****  pid = pid;
+ 203:../Lib/System_LibcStubs.c ****  sig = sig;
+ 204:../Lib/System_LibcStubs.c ****  return -1;
+ 302              		.loc 1 204 0
+ 303 0000 0120     		mov	r0, #1
+ 304              	.LVL25:
+ 205:../Lib/System_LibcStubs.c **** }
+ 305              		.loc 1 205 0
+ 306 0002 4042     		neg	r0, r0
+ 307              		@ sp needed for prologue
+ 308 0004 7047     		bx	lr
+ 309              		.cfi_endproc
+ 310              	.LFE11:
+ 312              		.section	.text._fork,"ax",%progbits
+ 313              		.align	1
+ 314              		.weak	_fork
+ 315              		.code	16
+ 316              		.thumb_func
+ 318              	_fork:
+ 319              	.LFB12:
+ 206:../Lib/System_LibcStubs.c **** 
+ 207:../Lib/System_LibcStubs.c **** /*
+ 208:../Lib/System_LibcStubs.c ****  * Forking a child process
+ 209:../Lib/System_LibcStubs.c ****  */
+ 210:../Lib/System_LibcStubs.c **** __attribute__((weak)) int _fork(void)
+ 211:../Lib/System_LibcStubs.c **** {
+ 320              		.loc 1 211 0
+ 321              		.cfi_startproc
+ 212:../Lib/System_LibcStubs.c ****  return -1;
+ 322              		.loc 1 212 0
+ 323 0000 0120     		mov	r0, #1
+ 213:../Lib/System_LibcStubs.c **** }
+ 324              		.loc 1 213 0
+ 325 0002 4042     		neg	r0, r0
+ 326              		@ sp needed for prologue
+ 327 0004 7047     		bx	lr
+ 328              		.cfi_endproc
+ 329              	.LFE12:
+ 331              		.section	.text._getpid,"ax",%progbits
+ 332              		.align	1
+ 333              		.weak	_getpid
+ 334              		.code	16
+ 335              		.thumb_func
+ 337              	_getpid:
+ 338              	.LFB13:
+ 214:../Lib/System_LibcStubs.c **** 
+ 215:../Lib/System_LibcStubs.c **** /*
+ 216:../Lib/System_LibcStubs.c ****  * Process ID
+ 217:../Lib/System_LibcStubs.c ****  */
+ 218:../Lib/System_LibcStubs.c **** __attribute__((weak)) int _getpid(void)
+ 219:../Lib/System_LibcStubs.c **** {
+ 339              		.loc 1 219 0
+ 340              		.cfi_startproc
+ 220:../Lib/System_LibcStubs.c ****  return -1;
+ 341              		.loc 1 220 0
+ 342 0000 0120     		mov	r0, #1
+ 221:../Lib/System_LibcStubs.c **** }
+ 343              		.loc 1 221 0
+ 344 0002 4042     		neg	r0, r0
+ 345              		@ sp needed for prologue
+ 346 0004 7047     		bx	lr
+ 347              		.cfi_endproc
+ 348              	.LFE13:
+ 350              		.section	.text._exit,"ax",%progbits
+ 351              		.align	1
+ 352              		.weak	_exit
+ 353              		.code	16
+ 354              		.thumb_func
+ 356              	_exit:
+ 357              	.LFB14:
+ 222:../Lib/System_LibcStubs.c **** 
+ 223:../Lib/System_LibcStubs.c **** /*
+ 224:../Lib/System_LibcStubs.c ****  * Program/process exit
+ 225:../Lib/System_LibcStubs.c ****  */
+ 226:../Lib/System_LibcStubs.c **** __attribute__((weak)) void _exit(int rc)
+ 227:../Lib/System_LibcStubs.c **** {
+ 358              		.loc 1 227 0
+ 359              		.cfi_startproc
+ 360              	.LVL26:
+ 361              	.L26:
+ 362 0000 FEE7     		b	.L26
+ 363              		.cfi_endproc
+ 364              	.LFE14:
+ 366              		.section	.text._init,"ax",%progbits
+ 367              		.align	1
+ 368              		.weak	_init
+ 369              		.code	16
+ 370              		.thumb_func
+ 372              	_init:
+ 373              	.LFB15:
+ 228:../Lib/System_LibcStubs.c ****  rc = rc;
+ 229:../Lib/System_LibcStubs.c ****  while(1){}
+ 230:../Lib/System_LibcStubs.c **** }
+ 231:../Lib/System_LibcStubs.c **** 
+ 232:../Lib/System_LibcStubs.c **** /* Init */
+ 233:../Lib/System_LibcStubs.c **** __attribute__((weak)) void _init(void)
+ 234:../Lib/System_LibcStubs.c **** {}
+ 374              		.loc 1 234 0
+ 375              		.cfi_startproc
+ 376              		.loc 1 234 0
+ 377              		@ sp needed for prologue
+ 378 0000 7047     		bx	lr
+ 379              		.cfi_endproc
+ 380              	.LFE15:
+ 382              		.section	.text._isatty,"ax",%progbits
+ 383              		.align	1
+ 384              		.weak	_isatty
+ 385              		.code	16
+ 386              		.thumb_func
+ 388              	_isatty:
+ 389              	.LFB16:
+ 235:../Lib/System_LibcStubs.c **** 
+ 236:../Lib/System_LibcStubs.c **** /* ========================================================================= */
+ 237:../Lib/System_LibcStubs.c **** /* ======================= TERMIO related ================================== */
+ 238:../Lib/System_LibcStubs.c **** /* ========================================================================= */
+ 239:../Lib/System_LibcStubs.c **** 
+ 240:../Lib/System_LibcStubs.c **** /*
+ 241:../Lib/System_LibcStubs.c ****  * Terminal type evaluation
+ 242:../Lib/System_LibcStubs.c ****  */
+ 243:../Lib/System_LibcStubs.c **** __attribute__((weak)) int _isatty(int file)
+ 244:../Lib/System_LibcStubs.c **** {
+ 390              		.loc 1 244 0
+ 391              		.cfi_startproc
+ 392              	.LVL27:
+ 245:../Lib/System_LibcStubs.c ****  file = file;
+ 246:../Lib/System_LibcStubs.c ****  return -1;
+ 393              		.loc 1 246 0
+ 394 0000 0120     		mov	r0, #1
+ 395              	.LVL28:
+ 247:../Lib/System_LibcStubs.c **** }
+ 396              		.loc 1 247 0
+ 397 0002 4042     		neg	r0, r0
+ 398              		@ sp needed for prologue
+ 399 0004 7047     		bx	lr
+ 400              		.cfi_endproc
+ 401              	.LFE16:
+ 403              		.global	__dso_handle
+ 404              		.bss
+ 405              		.align	2
+ 406              		.set	.LANCHOR0,. + 0
+ 409              	heap.4604:
+ 410 0000 00000000 		.space	4
+ 413              	HeapBound.4603:
+ 414 0004 00000000 		.space	4
+ 417              	__dso_handle:
+ 418 0008 00000000 		.space	4
+ 419              		.text
+ 420              	.Letext0:
+ 421              		.file 2 "c:\\dave-3.1.10\\arm-gcc\\bin\\../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/i
+ 422              		.file 3 "c:\\dave-3.1.10\\arm-gcc\\bin\\../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/i
+ 423              		.file 4 "c:\\dave-3.1.10\\arm-gcc\\bin\\../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/i
+ 424              		.file 5 "c:\\dave-3.1.10\\arm-gcc\\bin\\../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/i
+ 425              		.file 6 "c:\\dave-3.1.10\\arm-gcc\\bin\\../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/i
+DEFINED SYMBOLS
+                            *ABS*:00000000 System_LibcStubs.c
+C:\Users\tomasoat\AppData\Local\Temp\cc3g1BMX.s:18     .text._open:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\cc3g1BMX.s:23     .text._open:00000000 _open
+C:\Users\tomasoat\AppData\Local\Temp\cc3g1BMX.s:40     .text._lseek:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\cc3g1BMX.s:45     .text._lseek:00000000 _lseek
+C:\Users\tomasoat\AppData\Local\Temp\cc3g1BMX.s:61     .text._read:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\cc3g1BMX.s:66     .text._read:00000000 _read
+C:\Users\tomasoat\AppData\Local\Temp\cc3g1BMX.s:80     .text._write:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\cc3g1BMX.s:85     .text._write:00000000 _write
+C:\Users\tomasoat\AppData\Local\Temp\cc3g1BMX.s:101    .text._close:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\cc3g1BMX.s:106    .text._close:00000000 _close
+C:\Users\tomasoat\AppData\Local\Temp\cc3g1BMX.s:120    .text._fstat:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\cc3g1BMX.s:125    .text._fstat:00000000 _fstat
+C:\Users\tomasoat\AppData\Local\Temp\cc3g1BMX.s:142    .text._link:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\cc3g1BMX.s:147    .text._link:00000000 _link
+C:\Users\tomasoat\AppData\Local\Temp\cc3g1BMX.s:165    .text._unlink:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\cc3g1BMX.s:170    .text._unlink:00000000 _unlink
+C:\Users\tomasoat\AppData\Local\Temp\cc3g1BMX.s:186    .text._sbrk:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\cc3g1BMX.s:191    .text._sbrk:00000000 _sbrk
+C:\Users\tomasoat\AppData\Local\Temp\cc3g1BMX.s:243    .text._sbrk:0000002c $d
+C:\Users\tomasoat\AppData\Local\Temp\cc3g1BMX.s:250    .text._times:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\cc3g1BMX.s:255    .text._times:00000000 _times
+C:\Users\tomasoat\AppData\Local\Temp\cc3g1BMX.s:271    .text._wait:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\cc3g1BMX.s:276    .text._wait:00000000 _wait
+C:\Users\tomasoat\AppData\Local\Temp\cc3g1BMX.s:292    .text._kill:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\cc3g1BMX.s:297    .text._kill:00000000 _kill
+C:\Users\tomasoat\AppData\Local\Temp\cc3g1BMX.s:313    .text._fork:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\cc3g1BMX.s:318    .text._fork:00000000 _fork
+C:\Users\tomasoat\AppData\Local\Temp\cc3g1BMX.s:332    .text._getpid:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\cc3g1BMX.s:337    .text._getpid:00000000 _getpid
+C:\Users\tomasoat\AppData\Local\Temp\cc3g1BMX.s:351    .text._exit:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\cc3g1BMX.s:356    .text._exit:00000000 _exit
+C:\Users\tomasoat\AppData\Local\Temp\cc3g1BMX.s:367    .text._init:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\cc3g1BMX.s:372    .text._init:00000000 _init
+C:\Users\tomasoat\AppData\Local\Temp\cc3g1BMX.s:383    .text._isatty:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\cc3g1BMX.s:388    .text._isatty:00000000 _isatty
+C:\Users\tomasoat\AppData\Local\Temp\cc3g1BMX.s:417    .bss:00000008 __dso_handle
+C:\Users\tomasoat\AppData\Local\Temp\cc3g1BMX.s:405    .bss:00000000 $d
+C:\Users\tomasoat\AppData\Local\Temp\cc3g1BMX.s:409    .bss:00000000 heap.4604
+C:\Users\tomasoat\AppData\Local\Temp\cc3g1BMX.s:413    .bss:00000004 HeapBound.4603
+                     .debug_frame:00000010 $d
+                           .group:00000000 wm4.1.e09b9dd5224853206c418479f14d6963
+                           .group:00000000 wm4.newlib.h.8.a9901dc52d1357e3e94003403d43f8b5
+                           .group:00000000 wm4.features.h.22.b72b3baab2bb2eab3661375590100b6b
+                           .group:00000000 wm4.config.h.193.5fb8ef056cdff92dec3dee9552839d8c
+                           .group:00000000 wm4._ansi.h.23.7aefdac4826acebbfc9f3822a0aeb14c
+                           .group:00000000 wm4._default_types.h.6.5e12cd604db8ce00b62bb2f02708eaf3
+                           .group:00000000 wm4.lock.h.2.9bc98482741e5e2a9450b12934a684ea
+                           .group:00000000 wm4.stddef.h.349.31f4c5baff3fa2689010b32028da9c47
+                           .group:00000000 wm4.reent.h.16.9e42f0e588b85e70b2bf6572af57ce64
+                           .group:00000000 wm4.time.h.2.9857e62ad6ac99431e29d58067232314
+                           .group:00000000 wm4.time.h.24.c499d4c1915694df17abb795fd34b719
+                           .group:00000000 wm4.stddef.h.187.9e651b6b8b16e149c1353259404973ea
+                           .group:00000000 wm4.types.h.23.0d949686bbcadd1621462d4fa1f884f9
+                           .group:00000000 wm4.stddef.h.40.cf962ebbec441b3ac67502735f0765db
+                           .group:00000000 wm4.types.h.2.e9cec8c90ab35f77d9f499e06ae02400
+                           .group:00000000 wm4.types.h.80.1f2c84c0d57dd52dd9936095d9ac218e
+                           .group:00000000 wm4.time.h.124.10ced469f846269cafc58b59c853e1bb
+                           .group:00000000 wm4.stat.h.69.169a67369ef31f6ea38a12bc9ba4e5dd
+                           .group:00000000 wm4.unistd.h.2.6ce1b91c4223f6078c1b210c7538c1d2
+                           .group:00000000 wm4.stddef.h.161.e50ff8a9d5d1abbc15641da28ac571bf
+                           .group:00000000 wm4.unistd.h.251.605bc560cdc6c3b07b599bb71ac4e425
+
+UNDEFINED SYMBOLS
+Heap_Bank1_Start
+Heap_Bank1_Size

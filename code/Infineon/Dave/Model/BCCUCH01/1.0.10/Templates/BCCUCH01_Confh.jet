@@ -1,0 +1,85 @@
+<%@ jet package="CodeGenerator" class="bccuch01_confh_template"
+imports="java.util.* java.text.*  com.ifx.davex.appjetinteract.App2JetInterface" %>
+<% App2JetInterface app = (App2JetInterface) argument; %>
+<% String AppBaseuri = "app/bccuch01/"; %>
+<% String appInst  = null; %>
+<% int instance  = 0; %>
+
+/*CODE_BLOCK_BEGIN[BCCUCH01_Conf.h]*/
+
+/*******************************************************************************
+ * @file     BCCUCH01_Conf.h
+ * @brief    This file has prototypes and Configuration constants for BCCUCH01 
+ *           app.
+ * @version  V1.0.6
+ * @date     3 Sep 2013
+ *
+ * @note
+ * Copyright (C) 2012-2013 Infineon Technologies AG. All rights reserved.
+
+ *
+ * @par
+ * Infineon Technologies AG (Infineon) is supplying this software for use with 
+ * Infineon's microcontrollers.
+ *   
+ * This file can be freely distributed within development tools that are 
+ * supporting such microcontrollers.
+ *  
+ *
+ * @par
+ * THIS SOFTWARE IS PROVIDED "AS IS".  NO WARRANTIES, WHETHER EXPRESS, IMPLIED
+ * OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE APPLY TO THIS SOFTWARE.
+ * INFINEON SHALL NOT, IN ANY CIRCUMSTANCES, BE LIABLE FOR SPECIAL, INCIDENTAL,
+ * OR CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.
+ *
+ ******************************************************************************/
+/**************************** Change history ***********************************
+ * V1.0.0,	14-Feb-13	 Initial Version
+ * V1.0.2,	2-Apr-13	 Enhancement: Initial Target intensity immediately upon 
+ *                       initialization and then update the linear walk time 
+ *                       (specified in GUI) is fixed
+ * V1.0.4   5-Aug-2013  Configuration and Driver codes are separated.
+ * V1.0.6   3-Sep-2013  C++ Support extended and New SW IDs added.
+ * V1.0.8   9-Dec-2013  Added software control on BCCU Output control
+ * *************************** Change history *********************************/
+
+#ifndef _CONF_BCCUCH01_H_
+#define _CONF_BCCUCH01_H_
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
+//*****************************************************************************
+// @Defines
+//*****************************************************************************
+
+<% ArrayList<String> appsList = (ArrayList<String>)(app.getApps("app/bccuch01/")); %>
+<% for (String appIns : appsList ) {
+   appInst = appIns.substring(appIns.lastIndexOf("/")+1);%>	
+<% instance++; %>
+<%}%>
+/**
+ * @ingroup BCCUCH01_constants
+ * @{
+ */
+
+ #define BCCUCH01_NUM_INSTANCES (<%= instance%>U)
+
+/**
+  * @}
+  */
+
+#ifdef __cplusplus
+}
+#endif
+
+
+
+#endif  
+/**
+  * @}
+  */
+ /*CODE_BLOCK_END*/

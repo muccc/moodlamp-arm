@@ -1,0 +1,753 @@
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"DMX512RD01.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.USIC0_0_IRQHandler,"ax",%progbits
+  18              		.align	1
+  19              		.global	USIC0_0_IRQHandler
+  20              		.code	16
+  21              		.thumb_func
+  23              	USIC0_0_IRQHandler:
+  24              	.LFB38:
+  25              		.file 1 "../Dave/Generated/src/DMX512RD01/DMX512RD01.c"
+   1:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** /*CODE_BLOCK_BEGIN[DMX512RD01.c]*/
+   2:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** /******************************************************************************
+   3:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  * @file     DMX512RD01.c
+   4:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  * @brief    This file has initialization, ISR and Application stack of DMX512
+   5:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  * Slave receiver.
+   6:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  * @version  V1.0.4
+   7:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  * @date     06 Feb 2014
+   8:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  *
+   9:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  * @note
+  10:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  * Copyright (C) 2012-2013 Infineon Technologies AG. All rights reserved.
+  11:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+  12:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  *
+  13:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  * @par
+  14:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  * Infineon Technologies AG (Infineon) is supplying this software for use with 
+  15:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  * Infineon's microcontrollers.
+  16:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  *   
+  17:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  * This file can be freely distributed within development tools that are 
+  18:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  * supporting such microcontrollers.
+  19:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  *  
+  20:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  *
+  21:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  * @par
+  22:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  * THIS SOFTWARE IS PROVIDED "AS IS".  NO WARRANTIES, WHETHER EXPRESS, IMPLIED
+  23:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  * OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF
+  24:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE APPLY TO THIS SOFTWARE.
+  25:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  * INFINEON SHALL NOT, IN ANY CIRCUMSTANCES, BE LIABLE FOR SPECIAL, INCIDENTAL,
+  26:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  * OR CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.
+  27:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  *
+  28:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  ******************************************************************************/
+  29:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** /*
+  30:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  * *************************** Change history ********************************
+  31:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  * *************************** Change history ********************************
+  32:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  * V1.0.0, 26 Sep 2013, Initial Version
+  33:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  * V1.0.2, 20 Jan 2014, CAPCOM dependency is reduced by removing MBTS and 
+  34:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  * MBB checks
+  35:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  * V1.0.4, 06 Feb 2014, New feature accurate break detection is provided
+  36:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  */
+  37:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+  38:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** /*******************************************************************************
+  39:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** **                  INCLUDE FILES                                             **
+  40:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** ******************************************************************************/
+  41:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+  42:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** #include "../../inc/NVIC002/NVIC002.h" 
+  43:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** #ifdef DMX512RD01_ACC_BREAK_DETECT
+  44:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** #include "../../inc/CCU4GLOBAL/CCU4GLOBAL.h"
+  45:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** #endif
+  46:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** #include "../../inc/DMX512RD01/DMX512RD01.h"
+  47:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+  48:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+  49:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** /*******************************************************************************
+  50:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** **                      Private Variables                                      **
+  51:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** *******************************************************************************/
+  52:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** static uint32_t * DMX512RD01_buffer_ptr = DMX512RD01_buffer;
+  53:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+  54:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** volatile uint32_t ReadByte = 0U;
+  55:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+  56:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** static uint32_t buf_index = 0U; /* Index for data buffer */
+  57:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+  58:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** static uint32_t start_slot_num = DMX512RD01_STARTING_SLOT_NUM;
+  59:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+  60:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+  61:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** /*******************************************************************************
+  62:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** **                      Public Variables                                      **
+  63:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** *******************************************************************************/
+  64:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** uint32_t DMX512RD01_buffer[DMX512RD01_NUM_SLOTS];/* Uninitialized Array */
+  65:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** /* store DMX512 master's data here*/
+  66:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+  67:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** /*******************************************************************************
+  68:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** **                 Macro definitions                                          **
+  69:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** *******************************************************************************/
+  70:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+  71:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** /*******************************************************************************
+  72:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** **                      Private Types                                         **
+  73:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** *******************************************************************************/
+  74:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** /**
+  75:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  * @brief This function checks for a possible BREAK condition which occurs
+  76:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  *  from a HIGH to LOW pulse
+  77:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  *
+  78:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  * @param[in] period Capture Counter Value
+  79:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  * @return status DMX512RD01_SUCCESS if its a BREAK condition and DMX512RD01_ERROR
+  80:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  * otherwise.
+  81:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  *
+  82:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  *
+  83:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  * <b>Reentrant: yes</b><BR>
+  84:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  *
+  85:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  *
+  86:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  * <b>Synchronous: yes</b><BR>
+  87:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  * @code
+  88:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  * @endcode
+  89:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  **/
+  90:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** void DMX512RD01_UART_isr(void);      /* Executes on reception on a byte of data */
+  91:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** #ifdef DMX512RD01_ACC_BREAK_DETECT
+  92:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** static inline DMX512RD01_STAT DMX512RD01_chk_break(uint32_t period);
+  93:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** void DMX512RD01_CaptTmr_isr(void); /* Generated after a RISING edge */
+  94:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** #endif
+  95:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** extern void DMX512RD01_CallBack();
+  96:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** /*******************************************************************************
+  97:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** **                 Function like macro definitions                            **
+  98:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** *******************************************************************************/
+  99:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+ 100:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** /*******************************************************************************
+ 101:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** **                      Private Type Definitions                              **
+ 102:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** *******************************************************************************/
+ 103:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** #ifdef DMX512RD01_ACC_BREAK_DETECT
+ 104:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** static inline DMX512RD01_STAT DMX512RD01_chk_break(uint32_t period)
+ 105:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** {/* Check for a break */
+ 106:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     DMX512RD01_STAT status = DMX512RD01_ERROR;
+ 107:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+ 108:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     if (period >= DMX512RD01_BREAK_COUNT)/*88uS / 352 counts*/
+ 109:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     {
+ 110:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****         status = DMX512RD01_SUCCESS;
+ 111:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     }
+ 112:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     else
+ 113:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     {
+ 114:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****         /* Do nothing. MISRA compliance */
+ 115:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     }
+ 116:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     
+ 117:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     return status;
+ 118:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** }
+ 119:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+ 120:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** /*******************************************************************************
+ 121:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  **	Interrupt Service Routines     				              **
+ 122:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** *******************************************************************************/
+ 123:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** /**
+ 124:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  * @brief This ISR handles rising edges. It checks if "SPACE for BREAK" has been
+ 125:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  * long enough, resets the slot counter and flushes the UART queue.
+ 126:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  *
+ 127:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  * @param[in] none
+ 128:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  * @return  none
+ 129:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  *
+ 130:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  * @note  This is an Asynchronous, non reentrant function
+ 131:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  **/
+ 132:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** void DMX512RD01_CaptTmr_isr(void) /* Generated after a RISING edge */
+ 133:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** {
+ 134:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	uint32_t cap_count;
+ 135:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+ 136:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     cap_count  = RD_REG(DMX512RD01_Handle0.CaptureRegPtr->CV[1], CCU4_CC4_CV_CAPTV_Msk,
+ 137:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     CCU4_CC4_CV_CAPTV_Pos); /* clear the CAPTURE Count */
+ 138:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+ 139:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     if(cap_count == 0U) /* Error Condition 1 */
+ 140:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     {
+ 141:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****         DMX512RD01_Handle0.CaptureRegPtr->TCSET |= CCU4_CC4_TCSET_TRBS_Msk;
+ 142:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     	/* Restart the Capture Timer as it has overflowed */
+ 143:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     }
+ 144:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+ 145:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     if (DMX512RD01_chk_break(cap_count) == DMX512RD01_SUCCESS)
+ 146:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     {
+ 147:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****        buf_index = 0U;
+ 148:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****        DMX512RD01_buffer_ptr = DMX512RD01_buffer;
+ 149:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+ 150:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****        while((DMX512RD01_Handle0.UsicRegPtr->TRBSR & USIC_CH_TRBSR_REMPTY_Msk) != USIC_CH_TRBSR_REM
+ 151:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****        {
+ 152:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****           ReadByte = DMX512RD01_Handle0.UsicRegPtr->OUTR;
+ 153:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****        }
+ 154:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****        /* Enable USIC Standard Receive Buffer interrupt */
+ 155:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****        DMX512RD01_Handle0.UsicRegPtr->RBCTR |= ((uint32_t)USIC_CH_RBCTR_SRBIEN_Msk);
+ 156:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     }
+ 157:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** }
+ 158:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** #endif
+ 159:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+ 160:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** void DMX512RD01_UART_isr(void) /* Generated after every slot */
+ 161:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** {
+  26              		.loc 1 161 0
+  27              		.cfi_startproc
+  28 0000 38B5     		push	{r3, r4, r5, lr}
+  29              	.LCFI0:
+  30              		.cfi_def_cfa_offset 16
+  31              		.cfi_offset 3, -16
+  32              		.cfi_offset 4, -12
+  33              		.cfi_offset 5, -8
+  34              		.cfi_offset 14, -4
+ 162:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	if((DMX512RD01_Handle0.UsicRegPtr->TRBSR & USIC_CH_TRBSR_SRBI_Msk) == USIC_CH_TRBSR_SRBI_Msk)
+  35              		.loc 1 162 0
+  36 0002 1D4B     		ldr	r3, .L17
+  37 0004 0121     		mov	r1, #1
+  38 0006 1868     		ldr	r0, [r3]
+  39 0008 1C4A     		ldr	r2, .L17+4
+  40 000a 031C     		mov	r3, r0
+  41 000c FC33     		add	r3, r3, #252
+  42 000e 9C69     		ldr	r4, [r3, #24]
+  43 0010 0C42     		tst	r4, r1
+  44 0012 05D0     		beq	.L2
+ 163:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	{ /* Recieve a byte */
+ 164:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 		ReadByte = DMX512RD01_Handle0.UsicRegPtr->OUTR;
+ 165:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 		DMX512RD01_Handle0.UsicRegPtr->TRBSCR = USIC_CH_TRBSCR_CSRBI_Msk;
+ 166:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	    buf_index++;
+  45              		.loc 1 166 0
+  46 0014 5468     		ldr	r4, [r2, #4]
+ 164:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 		ReadByte = DMX512RD01_Handle0.UsicRegPtr->OUTR;
+  47              		.loc 1 164 0
+  48 0016 1D6A     		ldr	r5, [r3, #32]
+  49              		.loc 1 166 0
+  50 0018 0134     		add	r4, r4, #1
+ 164:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 		ReadByte = DMX512RD01_Handle0.UsicRegPtr->OUTR;
+  51              		.loc 1 164 0
+  52 001a 1560     		str	r5, [r2]
+  53              		.loc 1 166 0
+  54 001c 5460     		str	r4, [r2, #4]
+ 165:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 		DMX512RD01_Handle0.UsicRegPtr->TRBSCR = USIC_CH_TRBSCR_CSRBI_Msk;
+  55              		.loc 1 165 0
+  56 001e D961     		str	r1, [r3, #28]
+  57              	.L2:
+ 167:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	}
+ 168:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** #ifndef DMX512RD01_ACC_BREAK_DETECT
+ 169:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	if ((DMX512RD01_Handle0.UsicRegPtr->PSR_ASCMode & USIC_CH_PSR_ASCMode_SBD_Msk) == USIC_CH_PSR_ASCM
+  58              		.loc 1 169 0
+  59 0020 856C     		ldr	r5, [r0, #72]
+  60 0022 1749     		ldr	r1, .L17+8
+  61 0024 6D07     		lsl	r5, r5, #29
+  62 0026 10D5     		bpl	.L3
+ 170:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     {/* check if SBD occured */
+ 171:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 		DMX512RD01_Handle0.UsicRegPtr->PSCR =  DMX512RD01_USIC_CLR_STATUS;
+  63              		.loc 1 171 0
+  64 0028 164C     		ldr	r4, .L17+12
+ 172:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****         buf_index=0;
+ 173:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****         DMX512RD01_buffer_ptr = DMX512RD01_buffer;
+  65              		.loc 1 173 0
+  66 002a 174D     		ldr	r5, .L17+16
+ 171:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 		DMX512RD01_Handle0.UsicRegPtr->PSCR =  DMX512RD01_USIC_CLR_STATUS;
+  67              		.loc 1 171 0
+  68 002c C464     		str	r4, [r0, #76]
+ 172:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****         buf_index=0;
+  69              		.loc 1 172 0
+  70 002e 0020     		mov	r0, #0
+  71 0030 5060     		str	r0, [r2, #4]
+  72              		.loc 1 173 0
+  73 0032 0D60     		str	r5, [r1]
+  74              	.L4:
+ 174:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****         while((DMX512RD01_Handle0.UsicRegPtr->TRBSR & USIC_CH_TRBSR_REMPTY_Msk) != USIC_CH_TRBSR_RE
+  75              		.loc 1 174 0 discriminator 1
+  76 0034 9C69     		ldr	r4, [r3, #24]
+  77 0036 2407     		lsl	r4, r4, #28
+  78 0038 02D4     		bmi	.L16
+  79              	.L5:
+ 175:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****         {
+ 176:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****            ReadByte = DMX512RD01_Handle0.UsicRegPtr->OUTR;
+  80              		.loc 1 176 0
+  81 003a 186A     		ldr	r0, [r3, #32]
+  82 003c 1060     		str	r0, [r2]
+  83 003e F9E7     		b	.L4
+  84              	.L16:
+ 177:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****         }
+ 178:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****         /* Enable USIC Standard Receive Buffer interrupt */
+ 179:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****         DMX512RD01_Handle0.UsicRegPtr->RBCTR |= ((uint32_t)USIC_CH_RBCTR_SRBIEN_Msk);
+  85              		.loc 1 179 0
+  86 0040 1D69     		ldr	r5, [r3, #16]
+  87 0042 8020     		mov	r0, #128
+  88 0044 C405     		lsl	r4, r0, #23
+  89 0046 2C43     		orr	r4, r5
+  90 0048 1C61     		str	r4, [r3, #16]
+  91              	.L3:
+ 180:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     }
+ 181:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** #endif
+ 182:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	if ((buf_index-1) >= start_slot_num)
+  92              		.loc 1 182 0
+  93 004a 5468     		ldr	r4, [r2, #4]
+  94 004c 4868     		ldr	r0, [r1, #4]
+  95 004e 651E     		sub	r5, r4, #1
+  96 0050 8542     		cmp	r5, r0
+  97 0052 0FD3     		bcc	.L1
+ 183:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	{
+ 184:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****         if ((buf_index-1) < (start_slot_num + DMX512RD01_NUM_SLOTS))
+  98              		.loc 1 184 0
+  99 0054 0630     		add	r0, r0, #6
+ 100 0056 8542     		cmp	r5, r0
+ 101 0058 0CD2     		bcs	.L1
+ 185:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****         { /* If its valid byte, store it. */
+ 186:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****             *DMX512RD01_buffer_ptr = (ReadByte & 0xFFU);	/* Read only 8 data */
+ 102              		.loc 1 186 0
+ 103 005a 1268     		ldr	r2, [r2]
+ 104 005c D5B2     		uxtb	r5, r2
+ 105 005e 0A68     		ldr	r2, [r1]
+ 106 0060 20C2     		stmia	r2!, {r5}
+ 187:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****             DMX512RD01_buffer_ptr++;
+ 107              		.loc 1 187 0
+ 108 0062 0A60     		str	r2, [r1]
+ 188:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****             if(buf_index == (start_slot_num + DMX512RD01_NUM_SLOTS))
+ 109              		.loc 1 188 0
+ 110 0064 8442     		cmp	r4, r0
+ 111 0066 05D1     		bne	.L1
+ 189:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****             {
+ 190:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****             	/* Disable USIC Standard Receive Buffer interrupt */
+ 191:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****             	DMX512RD01_Handle0.UsicRegPtr->RBCTR &= (~(uint32_t)USIC_CH_RBCTR_SRBIEN_Msk);
+ 112              		.loc 1 191 0
+ 113 0068 1969     		ldr	r1, [r3, #16]
+ 114 006a 084C     		ldr	r4, .L17+20
+ 115 006c 0C40     		and	r4, r1
+ 116 006e 1C61     		str	r4, [r3, #16]
+ 192:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** #ifdef DMX512RD01_CALLBACK_DEFINED
+ 193:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****        DMX512RD01_CallBack();
+ 117              		.loc 1 193 0
+ 118 0070 FFF7FEFF 		bl	DMX512RD01_CallBack
+ 119              	.LVL0:
+ 120              	.L1:
+ 194:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** #endif
+ 195:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****             }
+ 196:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****             else
+ 197:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****             {
+ 198:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****             	/* Nothing to do */
+ 199:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****             }
+ 200:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****         }
+ 201:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****         else
+ 202:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****         {
+ 203:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****         	/* Nothing to do */
+ 204:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****         }
+ 205:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     }
+ 206:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     else
+ 207:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     {
+ 208:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     	/* Nothing to do */
+ 209:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     }
+ 210:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** }
+ 121              		.loc 1 210 0
+ 122              		@ sp needed for prologue
+ 123 0074 38BD     		pop	{r3, r4, r5, pc}
+ 124              	.L18:
+ 125 0076 C046     		.align	2
+ 126              	.L17:
+ 127 0078 00000000 		.word	DMX512RD01_Handle0
+ 128 007c 00000000 		.word	.LANCHOR0
+ 129 0080 00000000 		.word	.LANCHOR1
+ 130 0084 FFFF0100 		.word	131071
+ 131 0088 00000000 		.word	DMX512RD01_buffer
+ 132 008c FFFFFFBF 		.word	-1073741825
+ 133              		.cfi_endproc
+ 134              	.LFE38:
+ 136              		.section	.text.DMX512RD01_ConfigStartSlotNo,"ax",%progbits
+ 137              		.align	1
+ 138              		.global	DMX512RD01_ConfigStartSlotNo
+ 139              		.code	16
+ 140              		.thumb_func
+ 142              	DMX512RD01_ConfigStartSlotNo:
+ 143              	.LFB39:
+ 211:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+ 212:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+ 213:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** /******************************************************************************
+ 214:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** **    Public Functions                                                       **
+ 215:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** *******************************************************************************/
+ 216:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** DMX512RD01_STAT DMX512RD01_ConfigStartSlotNo(uint32_t slot_num)
+ 217:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** {
+ 144              		.loc 1 217 0
+ 145              		.cfi_startproc
+ 146              	.LVL1:
+ 218:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	DMX512RD01_STAT status = DMX512RD01_ERROR;
+ 219:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+ 220:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	if ((slot_num >= 1) && (slot_num <= 512))
+ 147              		.loc 1 220 0
+ 148 0000 074B     		ldr	r3, .L23
+ 149 0002 421E     		sub	r2, r0, #1
+ 150 0004 9A42     		cmp	r2, r3
+ 151 0006 08D8     		bhi	.L22
+ 221:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	{
+ 222:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 		if ((slot_num + DMX512RD01_NUM_SLOTS) <= 512)
+ 152              		.loc 1 222 0
+ 153 0008 8022     		mov	r2, #128
+ 154 000a 811D     		add	r1, r0, #6
+ 155 000c 9300     		lsl	r3, r2, #2
+ 156 000e 9942     		cmp	r1, r3
+ 157 0010 03D8     		bhi	.L22
+ 158              	.LVL2:
+ 223:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 		{
+ 224:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 			status = DMX512RD01_SUCCESS;
+ 225:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 			start_slot_num = slot_num;
+ 159              		.loc 1 225 0
+ 160 0012 0449     		ldr	r1, .L23+4
+ 161 0014 4860     		str	r0, [r1, #4]
+ 224:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 			status = DMX512RD01_SUCCESS;
+ 162              		.loc 1 224 0
+ 163 0016 0020     		mov	r0, #0
+ 164              	.LVL3:
+ 165 0018 01E0     		b	.L20
+ 166              	.LVL4:
+ 167              	.L22:
+ 218:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	DMX512RD01_STAT status = DMX512RD01_ERROR;
+ 168              		.loc 1 218 0
+ 169 001a 0120     		mov	r0, #1
+ 170              	.LVL5:
+ 171 001c 4042     		neg	r0, r0
+ 172              	.LVL6:
+ 173              	.L20:
+ 226:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 		}
+ 227:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 		else
+ 228:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 		{	/* MISRA Check */
+ 229:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 		}
+ 230:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	}
+ 231:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	else
+ 232:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	{ /* MISRA Check */
+ 233:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	}
+ 234:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+ 235:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	return status;
+ 236:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** }
+ 174              		.loc 1 236 0
+ 175              		@ sp needed for prologue
+ 176 001e 7047     		bx	lr
+ 177              	.L24:
+ 178              		.align	2
+ 179              	.L23:
+ 180 0020 FF010000 		.word	511
+ 181 0024 00000000 		.word	.LANCHOR1
+ 182              		.cfi_endproc
+ 183              	.LFE39:
+ 185              		.section	.text.DMX512RD01_Init,"ax",%progbits
+ 186              		.align	1
+ 187              		.global	DMX512RD01_Init
+ 188              		.code	16
+ 189              		.thumb_func
+ 191              	DMX512RD01_Init:
+ 192              	.LFB40:
+ 237:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+ 238:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** void DMX512RD01_Init(void)
+ 239:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** {
+ 193              		.loc 1 239 0
+ 194              		.cfi_startproc
+ 240:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  USIC_CH_TypeDef* UartRegs = DMX512RD01_Handle0.UsicRegPtr;
+ 241:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** #ifdef DMX512RD01_ACC_BREAK_DETECT
+ 242:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  CCU4_GLOBAL_TypeDef* CapBaseReg = DMX512RD01_Handle0.CaptureBasePtr;
+ 243:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  CCU4_CC4_TypeDef* CapSliceReg = DMX512RD01_Handle0.CaptureRegPtr;
+ 244:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** #endif
+ 245:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	 /* USIC Configuration */
+ 246:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  /* Disable the USIC0 clock gating */
+ 247:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  SCU_GENERAL->PASSWD = 0x000000C0UL;
+ 195              		.loc 1 247 0
+ 196 0000 2049     		ldr	r1, .L28
+ 197 0002 C022     		mov	r2, #192
+ 239:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** {
+ 198              		.loc 1 239 0
+ 199 0004 10B5     		push	{r4, lr}
+ 200              	.LCFI1:
+ 201              		.cfi_def_cfa_offset 8
+ 202              		.cfi_offset 4, -8
+ 203              		.cfi_offset 14, -4
+ 204              		.loc 1 247 0
+ 205 0006 4A62     		str	r2, [r1, #36]
+ 248:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  SET_BIT(SCU_CLK->CGATCLR0, SCU_CLK_CGATCLR0_USIC0_Pos);
+ 206              		.loc 1 248 0
+ 207 0008 1F4A     		ldr	r2, .L28+4
+ 240:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  USIC_CH_TypeDef* UartRegs = DMX512RD01_Handle0.UsicRegPtr;
+ 208              		.loc 1 240 0
+ 209 000a 204B     		ldr	r3, .L28+8
+ 210              		.loc 1 248 0
+ 211 000c 1069     		ldr	r0, [r2, #16]
+ 212 000e 0824     		mov	r4, #8
+ 213 0010 2043     		orr	r0, r4
+ 240:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  USIC_CH_TypeDef* UartRegs = DMX512RD01_Handle0.UsicRegPtr;
+ 214              		.loc 1 240 0
+ 215 0012 1B68     		ldr	r3, [r3]
+ 216              	.LVL7:
+ 217              		.loc 1 248 0
+ 218 0014 1061     		str	r0, [r2, #16]
+ 219              	.L26:
+ 249:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  while ((SCU_CLK->CLKCR)&(SCU_CLK_CLKCR_VDDC2LOW_Msk))
+ 220              		.loc 1 249 0 discriminator 1
+ 221 0016 1068     		ldr	r0, [r2]
+ 222 0018 4400     		lsl	r4, r0, #1
+ 223 001a FCD4     		bmi	.L26
+ 250:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  {
+ 251:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	    ;
+ 252:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  }
+ 253:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  SCU_GENERAL->PASSWD = 0x000000C3UL;
+ 224              		.loc 1 253 0
+ 225 001c C322     		mov	r2, #195
+ 226 001e 4A62     		str	r2, [r1, #36]
+ 254:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  /* Disable UART mode before configuring all USIC registers to avoid unintended edges */
+ 255:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  UartRegs->CCR &= ~( ((uint32_t)(DMX512RD01_USIC_UART  & USIC_CH_CCR_MODE_Msk)));
+ 227              		.loc 1 255 0
+ 228 0020 196C     		ldr	r1, [r3, #64]
+ 229 0022 0222     		mov	r2, #2
+ 230 0024 9143     		bic	r1, r2
+ 231 0026 1964     		str	r1, [r3, #64]
+ 256:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  /* Enable the USIC Channel */
+ 257:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  UartRegs->KSCFG |= ((((uint32_t)USIC_CH_KSCFG_MODEN_Msk)) | \
+ 232              		.loc 1 257 0
+ 233 0028 DC68     		ldr	r4, [r3, #12]
+ 234 002a 0320     		mov	r0, #3
+ 235 002c 0443     		orr	r4, r0
+ 236 002e DC60     		str	r4, [r3, #12]
+ 258:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	     (((uint32_t)USIC_CH_KSCFG_BPMODEN_Msk)));
+ 259:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  /* Configuration of USIC Channel Fractional Divider */
+ 260:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  UartRegs->FDR |= (((uint32_t)DMX512RD01_USIC_FRACDIV_MODE << USIC_CH_FDR_DM_Pos) \
+ 237              		.loc 1 260 0
+ 238 0030 1C69     		ldr	r4, [r3, #16]
+ 239 0032 8021     		mov	r1, #128
+ 240 0034 0802     		lsl	r0, r1, #8
+ 241 0036 2043     		orr	r0, r4
+ 242 0038 1861     		str	r0, [r3, #16]
+ 261:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	                                                 & USIC_CH_FDR_DM_Msk);
+ 262:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  /* Step value */
+ 263:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  UartRegs->FDR |= ((DMX512RD01_USIC_BGR_STEP) & USIC_CH_FDR_STEP_Msk);
+ 243              		.loc 1 263 0
+ 244 003a 1C69     		ldr	r4, [r3, #16]
+ 245 003c 5021     		mov	r1, #80
+ 246 003e 0C43     		orr	r4, r1
+ 247 0040 1C61     		str	r4, [r3, #16]
+ 264:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+ 265:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  /* The PreDivider for CTQ, PCTQ = 0  */
+ 266:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  /* The Denominator for CTQ, DCTQ = 16 */
+ 267:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  UartRegs->BRG |= \
+ 248              		.loc 1 267 0
+ 249 0042 5869     		ldr	r0, [r3, #20]
+ 250 0044 9024     		mov	r4, #144
+ 251 0046 A101     		lsl	r1, r4, #6
+ 252 0048 0143     		orr	r1, r0
+ 253 004a 5961     		str	r1, [r3, #20]
+ 268:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 		  ((((uint32_t)(DMX512RD01_USIC_BGR_PCTQ) << USIC_CH_BRG_PCTQ_Pos) & \
+ 269:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 			  	     USIC_CH_BRG_PCTQ_Msk) | \
+ 270:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	      (((uint32_t)(DMX512RD01_USIC_BGR_DCTQ) << USIC_CH_BRG_DCTQ_Pos) & \
+ 271:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 		     USIC_CH_BRG_DCTQ_Msk) | \
+ 272:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	      (((uint32_t)(DMX512RD01_USIC_BGR_PDIV) << USIC_CH_BRG_PDIV_Pos) &  \
+ 273:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 		     USIC_CH_BRG_PDIV_Msk));
+ 274:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+ 275:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  /* Configuration of USIC Shift Control */
+ 276:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  /* Transmit/Receive LSB first is selected  */
+ 277:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  /* Transmission Mode (TRM) = 1  */
+ 278:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  /* Passive Data Level (PDL) = 1 */
+ 279:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  UartRegs->SCTR |= ((((uint32_t)DMX512RD01_USIC_PASSIVELEV << USIC_CH_SCTR_PDL_Pos) & \
+ 254              		.loc 1 279 0
+ 255 004c 586B     		ldr	r0, [r3, #52]
+ 256 004e 8124     		mov	r4, #129
+ 257 0050 6100     		lsl	r1, r4, #1
+ 258 0052 0143     		orr	r1, r0
+ 259 0054 5963     		str	r1, [r3, #52]
+ 280:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	    USIC_CH_SCTR_PDL_Msk ) | \
+ 281:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	    (((uint32_t)DMX512RD01_USIC_DATATRANS_ACTIVE << USIC_CH_SCTR_TRM_Pos ) &   USIC_CH_SCTR_TRM_Ms
+ 282:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  /* Set Word Length (WLE) & Frame Length (FLE) */
+ 283:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  UartRegs->SCTR |= ((((uint32_t)DMX512RD01_USIC_FLE_WLE  << USIC_CH_SCTR_FLE_Pos) & \
+ 260              		.loc 1 283 0
+ 261 0056 5C6B     		ldr	r4, [r3, #52]
+ 262 0058 0D48     		ldr	r0, .L28+12
+ 284:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	                      USIC_CH_SCTR_FLE_Msk ) | \
+ 285:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	                     (((uint32_t)DMX512RD01_USIC_FLE_WLE  << USIC_CH_SCTR_WLE_Pos) & \
+ 286:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	                        USIC_CH_SCTR_WLE_Msk));
+ 287:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  /* Configuration of Protocol Control Register */
+ 288:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  /* Sample Mode (SMD) = 1 */
+ 289:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  /* 1 Stop bit is selected */
+ 290:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  /* Sample Point (SP) as configured */
+ 291:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  /* Pulse Length (PL) = 0 */
+ 292:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  UartRegs->PCR_ASCMode |= ((((uint32_t)DMX512RD01_USIC_3SAMPLES & USIC_CH_PCR_ASCMode_SMD_Msk)) |
+ 293:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	    (((uint32_t)DMX512RD01_USIC_2STOPBITS  << USIC_CH_PCR_ASCMode_STPB_Pos) & \
+ 294:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	    USIC_CH_PCR_ASCMode_STPB_Msk) | \
+ 295:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	    (((uint32_t)(DMX512RD01_USIC_BGR_SP) << USIC_CH_PCR_ASCMode_SP_Pos) & \
+ 296:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	    USIC_CH_PCR_ASCMode_SP_Msk));
+ 297:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+ 298:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  /* Configuration of Transmitter Buffer Control Register */
+ 299:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  /* Configuration of Receiver Buffer Control Register */
+ 300:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  UartRegs->RBCTR |= ((((uint32_t)DMX512RD01_USIC_RXLIMIT  << \
+ 301:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	                       USIC_CH_RBCTR_LIMIT_Pos) & USIC_CH_RBCTR_LIMIT_Msk) | \
+ 302:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 		                    (((uint32_t)DMX512RD01_USIC_LOF << USIC_CH_RBCTR_LOF_Pos) & \
+ 303:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	                       USIC_CH_RBCTR_LOF_Msk));
+ 304:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+ 305:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  /* Configuration of Channel Control Register */
+ 306:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  /* parity generation is disabled*/
+ 307:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  UartRegs->CCR |= (((uint32_t)(DMX512RD01_USIC_UART  & USIC_CH_CCR_MODE_Msk)) | \
+ 308:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	                    (((uint32_t)DMX512RD01_USIC_NOPARITY  << USIC_CH_CCR_PM_Pos) & \
+ 309:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	                     USIC_CH_CCR_PM_Msk));
+ 310:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+ 311:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****      /* Configuration of Sync. BREAK Detection */
+ 312:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	 /* Enable interrupt at SBD */
+ 313:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	 UartRegs->PCR_ASCMode |=  USIC_CH_PCR_ASCMode_SBIEN_Msk;
+ 314:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+ 315:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** #ifdef DMX512RD01_ACC_BREAK_DETECT
+ 316:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****  /* Capture Timer Configuration */
+ 317:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     /*Enable Prescaler*/
+ 318:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     WR_REG(CapBaseReg->GIDLC, CCU4_GIDLC_SPRB_Msk, CCU4_GIDLC_SPRB_Pos, 1);
+ 319:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+ 320:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     /*Global Channel Set*/
+ 321:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     /*shadow transfer set enable*/
+ 322:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     WR_REG(CapBaseReg->GCSS, DMX512RD01_SHADOW_MASK,
+ 323:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****         DMX512RD01_SHADOW_MASK_BIT_POS, 1);
+ 324:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+ 325:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     /*Input Selector Configuration*/
+ 326:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     /*Event 0 Edge Selection. 01B = Signal active on rising edge*/
+ 327:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     WR_REG(CapSliceReg->INS, CCU4_CC4_INS_EV0EM_Msk,CCU4_CC4_INS_EV0EM_Pos, 1);
+ 328:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+ 329:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     /*Event 1 Edge Selection. 10B = Signal active on falling edge*/
+ 330:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     WR_REG(CapSliceReg->INS, CCU4_CC4_INS_EV1EM_Msk,CCU4_CC4_INS_EV1EM_Pos, 2);
+ 331:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+ 332:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     /*Event1 Signal Selection*/ 
+ 333:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     WR_REG(CapSliceReg->INS, CCU4_CC4_INS_EV1IS_Msk, CCU4_CC4_INS_EV1IS_Pos, DMX512RD01_EV0IS);    
+ 334:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+ 335:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     /*Connection Matrix Control*/
+ 336:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     /*External Capture 0 Function triggered by Event 0 = 01B*/
+ 337:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     WR_REG(CapSliceReg->CMC, CCU4_CC4_CMC_CAP0S_Msk,CCU4_CC4_CMC_CAP0S_Pos, 1);
+ 338:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+ 339:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     /*External Capture 1 Function triggered by Event 1 = 10B*/
+ 340:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     WR_REG(CapSliceReg->CMC, CCU4_CC4_CMC_CAP1S_Msk,CCU4_CC4_CMC_CAP1S_Pos, 2);
+ 341:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+ 342:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     /*Slice Timer Control Capture Mode*/
+ 343:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     WR_REG(CapSliceReg->TC, CCU4_CC4_TC_CMOD_Msk,CCU4_CC4_TC_CMOD_Pos, 1);
+ 344:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+ 345:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     /*Shadow Transfer on Clear*/
+ 346:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     WR_REG(CapSliceReg->TC, CCU4_CC4_TC_CLST_Msk,CCU4_CC4_TC_CLST_Pos, 1);
+ 347:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+ 348:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     /*Clear on Capture Control: 11B = Timer is always cleared
+ 349:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     in a capture event*/
+ 350:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     WR_REG(CapSliceReg->TC, CCU4_CC4_TC_CAPC_Msk,CCU4_CC4_TC_CAPC_Pos, 3);
+ 351:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+ 352:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     /*Continuous Capture Enable*/
+ 353:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     WR_REG(CapSliceReg->TC, CCU4_CC4_TC_CCS_Msk,CCU4_CC4_TC_CCS_Pos, 1);
+ 354:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+ 355:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     /*Timer Single Shot Mode*/
+ 356:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	 WR_REG(CapSliceReg->TC, CCU4_CC4_TC_TSSM_Msk, CCU4_CC4_TC_TSSM_Pos, 1);
+ 357:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+ 358:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     /*Prescaler Control
+ 359:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     value that is loaded into the prescaler during restart
+ 360:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     120Mhz/4 = 30Mhz -> 1000us = 30k counts, 10B = presc 4*/
+ 361:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     WR_REG(CapSliceReg->PSC, CCU4_CC4_PSC_PSIV_Msk,
+ 362:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****         CCU4_CC4_PSC_PSIV_Pos, DMX512RD01_CAPTURE_PRESCALAR);
+ 363:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+ 364:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     /*Interrupt Enable Control Event 0 interrupt enable*/
+ 365:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     WR_REG(CapSliceReg->INTE, CCU4_CC4_INTE_E0AE_Msk,CCU4_CC4_INTE_E0AE_Pos, 1);
+ 366:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+ 367:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     /*Enable Capture Slice (Clear Idle Bit)*/
+ 368:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     WR_REG(CapBaseReg->GIDLC, DMX512RD01_ILDE_BIT_MASK,DMX512RD01_IDLE_BIT_POS, 1);
+ 369:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+ 370:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     /*Slice Timer Run Set Set Timer Run Bit*/
+ 371:../Dave/Generated/src/DMX512RD01/DMX512RD01.c ****     WR_REG(CapSliceReg->TCSET, CCU4_CC4_TCSET_TRBS_Msk,CCU4_CC4_TCSET_TRBS_Pos, 1);
+ 372:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** #endif
+ 373:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 
+ 374:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** }
+ 263              		.loc 1 374 0
+ 264              		@ sp needed for prologue
+ 283:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  UartRegs->SCTR |= ((((uint32_t)DMX512RD01_USIC_FLE_WLE  << USIC_CH_SCTR_FLE_Pos) & \
+ 265              		.loc 1 283 0
+ 266 005a 0443     		orr	r4, r0
+ 267 005c 5C63     		str	r4, [r3, #52]
+ 292:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  UartRegs->PCR_ASCMode |= ((((uint32_t)DMX512RD01_USIC_3SAMPLES & USIC_CH_PCR_ASCMode_SMD_Msk)) |
+ 268              		.loc 1 292 0
+ 269 005e D96B     		ldr	r1, [r3, #60]
+ 270 0060 0C4C     		ldr	r4, .L28+16
+ 300:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  UartRegs->RBCTR |= ((((uint32_t)DMX512RD01_USIC_RXLIMIT  << \
+ 271              		.loc 1 300 0
+ 272 0062 8020     		mov	r0, #128
+ 292:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  UartRegs->PCR_ASCMode |= ((((uint32_t)DMX512RD01_USIC_3SAMPLES & USIC_CH_PCR_ASCMode_SMD_Msk)) |
+ 273              		.loc 1 292 0
+ 274 0064 2143     		orr	r1, r4
+ 275 0066 D963     		str	r1, [r3, #60]
+ 300:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  UartRegs->RBCTR |= ((((uint32_t)DMX512RD01_USIC_RXLIMIT  << \
+ 276              		.loc 1 300 0
+ 277 0068 191C     		mov	r1, r3
+ 278 006a FC31     		add	r1, r1, #252
+ 279 006c 0C69     		ldr	r4, [r1, #16]
+ 280 006e 4005     		lsl	r0, r0, #21
+ 281 0070 2043     		orr	r0, r4
+ 282 0072 0861     		str	r0, [r1, #16]
+ 307:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  UartRegs->CCR |= (((uint32_t)(DMX512RD01_USIC_UART  & USIC_CH_CCR_MODE_Msk)) | \
+ 283              		.loc 1 307 0
+ 284 0074 196C     		ldr	r1, [r3, #64]
+ 313:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	 UartRegs->PCR_ASCMode |=  USIC_CH_PCR_ASCMode_SBIEN_Msk;
+ 285              		.loc 1 313 0
+ 286 0076 0824     		mov	r4, #8
+ 307:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	  UartRegs->CCR |= (((uint32_t)(DMX512RD01_USIC_UART  & USIC_CH_CCR_MODE_Msk)) | \
+ 287              		.loc 1 307 0
+ 288 0078 0A43     		orr	r2, r1
+ 289 007a 1A64     		str	r2, [r3, #64]
+ 313:../Dave/Generated/src/DMX512RD01/DMX512RD01.c **** 	 UartRegs->PCR_ASCMode |=  USIC_CH_PCR_ASCMode_SBIEN_Msk;
+ 290              		.loc 1 313 0
+ 291 007c DA6B     		ldr	r2, [r3, #60]
+ 292 007e 2243     		orr	r2, r4
+ 293 0080 DA63     		str	r2, [r3, #60]
+ 294              		.loc 1 374 0
+ 295 0082 10BD     		pop	{r4, pc}
+ 296              	.L29:
+ 297              		.align	2
+ 298              	.L28:
+ 299 0084 00000140 		.word	1073807360
+ 300 0088 00030140 		.word	1073808128
+ 301 008c 00000000 		.word	DMX512RD01_Handle0
+ 302 0090 00000707 		.word	117899264
+ 303 0094 03060000 		.word	1539
+ 304              		.cfi_endproc
+ 305              	.LFE40:
+ 307              		.comm	DMX512RD01_buffer,24,4
+ 308              		.global	ReadByte
+ 309              		.data
+ 310              		.align	2
+ 311              		.set	.LANCHOR1,. + 0
+ 314              	DMX512RD01_buffer_ptr:
+ 315 0000 00000000 		.word	DMX512RD01_buffer
+ 318              	start_slot_num:
+ 319 0004 01000000 		.word	1
+ 320              		.bss
+ 321              		.align	2
+ 322              		.set	.LANCHOR0,. + 0
+ 325              	ReadByte:
+ 326 0000 00000000 		.space	4
+ 329              	buf_index:
+ 330 0004 00000000 		.space	4
+ 331              		.text
+ 332              	.Letext0:
+ 333              		.file 2 "C:\\DAVE-3.1.10\\eclipse\\/../CMSIS/Infineon/XMC1200_series/Include/XMC1200.h"
+ 334              		.file 3 "c:\\dave-3.1.10\\arm-gcc\\bin\\../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/i
+ 335              		.file 4 "../Dave/Generated/src/DMX512RD01/../../inc/DMX512RD01/DMX512RD01.h"
+ 336              		.file 5 "../Dave/Generated/src/DMX512RD01/../../inc/DMX512RD01/DMX512RD01_Extern.h"
+DEFINED SYMBOLS
+                            *ABS*:00000000 DMX512RD01.c
+C:\Users\tomasoat\AppData\Local\Temp\ccvmm3O5.s:18     .text.USIC0_0_IRQHandler:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\ccvmm3O5.s:23     .text.USIC0_0_IRQHandler:00000000 USIC0_0_IRQHandler
+C:\Users\tomasoat\AppData\Local\Temp\ccvmm3O5.s:127    .text.USIC0_0_IRQHandler:00000078 $d
+                            *COM*:00000018 DMX512RD01_buffer
+C:\Users\tomasoat\AppData\Local\Temp\ccvmm3O5.s:137    .text.DMX512RD01_ConfigStartSlotNo:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\ccvmm3O5.s:142    .text.DMX512RD01_ConfigStartSlotNo:00000000 DMX512RD01_ConfigStartSlotNo
+C:\Users\tomasoat\AppData\Local\Temp\ccvmm3O5.s:180    .text.DMX512RD01_ConfigStartSlotNo:00000020 $d
+C:\Users\tomasoat\AppData\Local\Temp\ccvmm3O5.s:186    .text.DMX512RD01_Init:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\ccvmm3O5.s:191    .text.DMX512RD01_Init:00000000 DMX512RD01_Init
+C:\Users\tomasoat\AppData\Local\Temp\ccvmm3O5.s:299    .text.DMX512RD01_Init:00000084 $d
+C:\Users\tomasoat\AppData\Local\Temp\ccvmm3O5.s:325    .bss:00000000 ReadByte
+C:\Users\tomasoat\AppData\Local\Temp\ccvmm3O5.s:310    .data:00000000 $d
+C:\Users\tomasoat\AppData\Local\Temp\ccvmm3O5.s:314    .data:00000000 DMX512RD01_buffer_ptr
+C:\Users\tomasoat\AppData\Local\Temp\ccvmm3O5.s:318    .data:00000004 start_slot_num
+C:\Users\tomasoat\AppData\Local\Temp\ccvmm3O5.s:321    .bss:00000000 $d
+C:\Users\tomasoat\AppData\Local\Temp\ccvmm3O5.s:329    .bss:00000004 buf_index
+                     .debug_frame:00000010 $d
+                           .group:00000000 wm4.1.e09b9dd5224853206c418479f14d6963
+                           .group:00000000 wm4.uc_id.h.35.62dcba5f6261c1436e3866a751c1a98b
+                           .group:00000000 wm4.XMC1200.h.45.4c899b4822ac22c0f00d6fd7f173cc96
+                           .group:00000000 wm4.core_cm0.h.47.022e66414e77714da7c4b30b3ad99fe8
+                           .group:00000000 wm4.newlib.h.8.a9901dc52d1357e3e94003403d43f8b5
+                           .group:00000000 wm4.features.h.22.b72b3baab2bb2eab3661375590100b6b
+                           .group:00000000 wm4.config.h.193.5fb8ef056cdff92dec3dee9552839d8c
+                           .group:00000000 wm4._ansi.h.23.7aefdac4826acebbfc9f3822a0aeb14c
+                           .group:00000000 wm4.stdint.h.20.54ad762faa59e3c05491630641c8d8bf
+                           .group:00000000 wm4.core_cmInstr.h.39.b7b6650bdd2316848d940915272d75b8
+                           .group:00000000 wm4.core_cm0.h.135.ca70469f87e143609670bb393bfa6518
+                           .group:00000000 wm4.XMC1000_RomFunctionTable.h.31.6d9a94465618f31b040dc9cea9a47ad7
+                           .group:00000000 wm4.XMC1200.h.122.96b58b1204def4c9f76341a4e21abaf6
+                           .group:00000000 wm4.NVIC002_Conf.h.62.64042456dc7f2eb96fc713abacb4c5d4
+                           .group:00000000 wm4.DMX512RD01_Conf.h.49.036b57ce74a404ea8f8ade310b364436
+
+UNDEFINED SYMBOLS
+DMX512RD01_CallBack
+DMX512RD01_Handle0

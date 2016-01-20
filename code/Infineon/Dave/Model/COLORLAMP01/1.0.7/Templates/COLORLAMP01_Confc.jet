@@ -1,0 +1,169 @@
+<%@ jet package="CodeGenerator" class="colorlamp01_confc_template"
+imports="java.util.* com.ifx.davex.appjetinteract.App2JetInterface" %>
+<% App2JetInterface app = (App2JetInterface) argument; %>
+
+/*CODE_BLOCK_BEGIN[COLORLAMP01_Conf.c]*/
+
+/*******************************************************************************
+ Copyright (c) 2013, Infineon Technologies AG                                 **
+ All rights reserved.                                                         **
+                                                                              **
+ Redistribution and use in source and binary forms, with or without           **
+ modification,are permitted provided that the following conditions are met:   **
+                                                                              **
+ *Redistributions of source code must retain the above copyright notice,      **
+ this list of conditions and the following disclaimer.                        **
+ *Redistributions in binary form must reproduce the above copyright notice,   **
+ this list of conditions and the following disclaimer in the documentation    **
+ and/or other materials provided with the distribution.                       **
+ *Neither the name of the copyright holders nor the names of its contributors **
+ may be used to endorse or promote products derived from this software without**
+ specific prior written permission.                                           **
+                                                                              **
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"  **
+ AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE    **
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE   **
+ ARE  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE   **
+ LIABLE  FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR         **
+ CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF         **
+ SUBSTITUTE GOODS OR  SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS    **
+ INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN      **
+ CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)       **
+ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE   **
+ POSSIBILITY OF SUCH DAMAGE.                                                  **
+                                                                              **
+ To improve the quality of the software, users are encouraged to share        **
+ modifications, enhancements or bug fixes with Infineon Technologies AG       **
+ dave@infineon.com).                                                          **
+                                                                              **
+********************************************************************************
+**                                                                            **
+**                                                                            **
+** PLATFORM : Infineon XMC1000 Series                                         **
+**                                                                            **
+** COMPILER : Compiler Independent                                            **
+**                                                                            **
+** AUTHOR   : App Developer                                                   **
+**                                                                            **
+** MAY BE CHANGED BY USER [yes/no]: Yes                                       **
+**                                                                            **
+** MODIFICATION DATE : Dec 06, 2013                                           **
+**                                                                            **
+*******************************************************************************/
+
+/*******************************************************************************
+**                       Author(s) Identity                                   **
+********************************************************************************
+**                                                                            **
+** Initials     Name                                                          **
+** ---------------------------------------------------------------------------**
+** ES          App Developer                                 		          **
+*******************************************************************************/
+/**
+ * @file  COLORLAMP01_Conf.c
+ * @brief This file contains the Handles or the generated configuration for the 
+ * App.
+ */
+/*
+ * Revision History
+ * 14 Feb  2013 v1.0.0  Initial Version.
+ * 03 Apr  2013 v1.0.2  UTP AI00164659: unable to compile the code w Global 
+ *                      Dimming configuration is fixed.
+ * 26 Sep  2013 v1.0.4  Added support for XMC1202 device.
+ * 06 Dec  2013 v1.0.5  Changes related to LIGHTINGSYS01 has taken care.
+ */
+
+#include <DAVE3.h>
+
+<% String AppBaseuri = "app/colorlamp01/";%>
+<% String MappedUri = null; %>
+<% String appInst  = null; %>
+<% String ChanURIForDim = null; %>
+<% String ChanMappedUri = null; %>
+<% int ChannelMask = 0; %>
+<% ArrayList<String> appsList = (ArrayList<String>)(app.getApps("app/colorlamp01/"));
+ for (String appIns : appsList ) { %>
+ <% appInst = appIns.substring(appIns.lastIndexOf("/")+1);%>
+ <% if((appInst != null) && (appInst != "")) { %>
+ <% ChannelMask = 0; %>
+
+const COLORLAMP01_ConfigHandleType  COLORLAMP01_ConfigHandle<%=appInst%> =
+{
+<% MappedUri = app.getMappedUri(AppBaseuri + appInst + "/redlmpchapp"); %>
+ <% if((MappedUri != null) && (MappedUri != "")) { %>
+  .ChannelRed = &BCCUCH01_Handle<%=MappedUri.substring(MappedUri.lastIndexOf("/")+1)%>,
+  <%ChanURIForDim = MappedUri; %>
+  <%ChanMappedUri= app.getMappedUri(MappedUri + "/bccuchannelhw");%>
+  <%ChannelMask |= (1 << Integer.parseInt(ChanMappedUri.substring(ChanMappedUri.lastIndexOf("/")+1))); %>
+  <% } else {%>
+  .ChannelRed = NULL,
+ <% }%>
+<% MappedUri = app.getMappedUri(AppBaseuri + appInst + "/greenlmpchapp"); %>
+ <% if((MappedUri != null) && (MappedUri != "")) { %>
+  .ChannelGreen = &BCCUCH01_Handle<%=MappedUri.substring(MappedUri.lastIndexOf("/")+1)%>,
+  <%ChanURIForDim = MappedUri; %>
+  <%ChanMappedUri= app.getMappedUri(MappedUri + "/bccuchannelhw");%>
+  <%ChannelMask |= (1 << Integer.parseInt(ChanMappedUri.substring(ChanMappedUri.lastIndexOf("/")+1))); %>
+ <% } else {%>
+  .ChannelGreen = NULL,
+ <% }%>
+<% MappedUri = app.getMappedUri(AppBaseuri + appInst + "/bluelmpchapp"); %>
+ <% if((MappedUri != null) && (MappedUri != "")) { %>
+  .ChannelBlue = &BCCUCH01_Handle<%=MappedUri.substring(MappedUri.lastIndexOf("/")+1)%>,
+  <%ChanURIForDim = MappedUri; %>
+  <%ChanMappedUri= app.getMappedUri(MappedUri + "/bccuchannelhw");%>
+  <%ChannelMask |= (1 << Integer.parseInt(ChanMappedUri.substring(ChanMappedUri.lastIndexOf("/")+1))); %>
+ <% } else {%>
+  .ChannelBlue = NULL,
+ <% }%>
+<% MappedUri = app.getMappedUri(AppBaseuri + appInst + "/whitelmpchapp"); %>
+ <% if((MappedUri != null) && (MappedUri != "")) { %>
+  .ChannelWhite = &BCCUCH01_Handle<%=MappedUri.substring(MappedUri.lastIndexOf("/")+1)%>,
+  <%ChanURIForDim = MappedUri; %>
+  <%ChanMappedUri= app.getMappedUri(MappedUri + "/bccuchannelhw");%>
+  <%ChannelMask |= (1 << Integer.parseInt(ChanMappedUri.substring(ChanMappedUri.lastIndexOf("/")+1))); %>
+ <% } else {%>
+  .ChannelWhite = NULL,
+ <% }%>
+<% MappedUri = app.getMappedUri(AppBaseuri + appInst + "/amberlmpchapp"); %>
+ <% if((MappedUri != null) && (MappedUri != "")) { %>
+  .ChannelAmber = &BCCUCH01_Handle<%=MappedUri.substring(MappedUri.lastIndexOf("/")+1)%>,
+  <%ChanURIForDim = MappedUri; %>
+  <%ChanMappedUri= app.getMappedUri(MappedUri + "/bccuchannelhw");%>
+  <%ChannelMask |= (1 << Integer.parseInt(ChanMappedUri.substring(ChanMappedUri.lastIndexOf("/")+1))); %>
+ <% } else {%>
+  .ChannelAmber = NULL,
+ <% }%>
+<% MappedUri = app.getMappedUri(AppBaseuri + appInst + "/freelmpchapp"); %>
+ <% if((MappedUri != null) && (MappedUri != "")) { %>
+  .ChannelFree = &BCCUCH01_Handle<%=MappedUri.substring(MappedUri.lastIndexOf("/")+1)%>,
+  <%ChanURIForDim = MappedUri; %>
+  <%ChanMappedUri= app.getMappedUri(MappedUri + "/bccuchannelhw");%>
+  <%ChannelMask |= (1 << Integer.parseInt(ChanMappedUri.substring(ChanMappedUri.lastIndexOf("/")+1))); %>
+ <% } else {%>
+  .ChannelFree = NULL,
+ <% }%>
+  .ChannelMask = 0x<%=Integer.toHexString(ChannelMask)%>UL,
+<% MappedUri = app.getMappedUri(AppBaseuri + appInst + "/dimapp"); %>
+#ifdef DIMAPP_USEDBY_COLORLAMP01
+ <% if((MappedUri != null) && (MappedUri != "")) { %>
+  .DimEngine = &BCCUDIM01_Handle<%=MappedUri.substring(MappedUri.lastIndexOf("/")+1)%>,
+ <% } else {%>
+  .DimEngine = NULL,
+ <% }%>
+#endif
+<% MappedUri = app.getMappedUri(AppBaseuri + appInst + "/globalapp"); %>
+ <% if((MappedUri != null) && (MappedUri != "")) { %>
+  .BCCUGlobal = &BCCUGlobal_Handle<%=MappedUri.substring(MappedUri.lastIndexOf("/")+1)%>
+ <% } else {%>
+  .BCCUGlobal = NULL,
+ <% }%>
+};
+
+<% } %>
+<% else { %>
+//INFO: App Instance <%=appInst%> not mapped
+<% } %>
+<%}%>
+
+/*CODE_BLOCK_END*/

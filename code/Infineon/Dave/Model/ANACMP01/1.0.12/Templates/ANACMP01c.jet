@@ -1,0 +1,260 @@
+<%@ jet package="CodeGenerator" class="anacmp01c_template"
+imports="java.util.* com.ifx.davex.appjetinteract.App2JetInterface" %>
+<% App2JetInterface app = (App2JetInterface) argument; %>
+/*CODE_BLOCK_BEGIN[ANACMP01.c]*/
+
+/*******************************************************************************
+ Copyright (c) 2013, Infineon Technologies AG                                 **
+ All rights reserved.                                                         **
+                                                                              **
+ Redistribution and use in source and binary forms, with or without           **
+ modification,are permitted provided that the following conditions are met:   **
+                                                                              **
+ *Redistributions of source code must retain the above copyright notice,      **
+ this list of conditions and the following disclaimer.                        **
+ *Redistributions in binary form must reproduce the above copyright notice,   **
+ this list of conditions and the following disclaimer in the documentation    **
+ and/or other materials provided with the distribution.                       **
+ *Neither the name of the copyright holders nor the names of its contributors **
+ may be used to endorse or promote products derived from this software without**
+ specific prior written permission.                                           **
+                                                                              **
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"  **
+ AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE    **
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE   **
+ ARE  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE   **
+ LIABLE  FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR         **
+ CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF         **
+ SUBSTITUTE GOODS OR  SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS    **
+ INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN      **
+ CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)       **
+ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE   **
+ POSSIBILITY OF SUCH DAMAGE.                                                  **
+                                                                              **
+ To improve the quality of the software, users are encouraged to share        **
+ modifications, enhancements or bug fixes with Infineon Technologies AG       **
+ dave@infineon.com).                                                          **
+                                                                              **
+********************************************************************************
+**                                                                            **
+**                                                                            **
+** PLATFORM : Infineon XMC1000 Series                           			  **
+**                                                                            **
+** COMPILER : Compiler Independent                                            **
+**                                                                            **
+** AUTHOR : App Developer                                                     **
+**                                                                            **
+** MAY BE CHANGED BY USER [yes/no]: Yes                                       **
+**                                                                            **
+** MODIFICATION DATE : Aug 29, 2013                                           **
+**                                                                            **
+*******************************************************************************/
+
+/**
+ * @file ANACMP01.c
+ *
+ * @brief
+ * This app is used for Analog comparator initialisation and check the status 
+ * of the output.
+ *
+ * Use case:
+ * To compare the two input voltages and check the status which input voltage
+ * is bigger. 
+ *
+ * Change History:
+ * Date       version       Details 
+ * 25-Mar-13    1.0.6   1. Initial version
+ *                       2. Two IO001 apps consumtion done for two input pins   
+ *                      3. Register structure defined in anacmpglob01 app due
+ *                         to XMC1000 header file update not available and
+ *                         code corrected as per this structure.
+ *                      4. Register structure removed and Code is modified to 
+ *                         support updated header files.
+ *                      5. Help Document updated.
+ * 10-Sep-13    1.0.8   1. Added support for the following devices under 
+ *                         XMC1200 and XMC1300 Series XMC1201, XMC1202, XMC1301  
+ *
+ */
+
+/******************************************************************************
+**                      Author(s) Identity                                   **
+*******************************************************************************
+**                                                                           **
+** Initials     Name                                                         **
+** NL           App Developer                                                **
+** --------------------------------------------------------------------------**
+
+*******************************************************************************/
+
+/*******************************************************************************
+ ** INCLUDE FILES                                                             **
+ ******************************************************************************/
+#include <DAVE3.h>
+
+/**
+ * @cond INTERNAL_DOCS
+ */
+
+/*******************************************************************************
+**                      Private Type Definitions                              **
+*******************************************************************************/
+
+/*******************************************************************************
+**                      Global Constant Definitions                           **
+*******************************************************************************/
+
+/*******************************************************************************
+**                      Global Variable Definitions                           **
+*******************************************************************************/
+
+/*******************************************************************************
+**                      Private Constant Definitions                          **
+*******************************************************************************/
+
+/**
+* @}
+*/
+/*******************************************************************************
+**                 Private Function Definitions:
+*******************************************************************************/
+/**
+ * @brief This function initializes the app.
+ *
+ * @param [in] HandlePtr pointer to the Instance variable<BR>
+ *
+ * @return  NOne <BR>
+ *
+ * <b>Reentrancy:  Yes</b><BR>
+ * <b>Sync/Async:  Synchronous</b><BR>
+ */
+
+void ANACMP01_lInit(const ANACMP01_HandleType *HandlePtr );
+
+/**
+ * @addtogroup ANACMP01_PriviteFunctions
+ * @{
+ */
+/**
+ * @brief Initialization function which initializes the App internal data
+ *  structures to default values.
+ *
+ * @param [in] None<BR>
+ *
+ * @return  void<BR>
+ *
+ * <b>Reentrancy:  Yes</b><BR>
+ * <b>Sync/Async:  Synchronous</b><BR>
+ */
+<% String AppBaseuri = "app/anacmp01/"; %>
+<% String appInst  = null; %>
+<% String ConfigUri = null; %>
+<% String kernelUri = null; %>
+<% String InstanceNo = null; %>
+<%  String uriSCU_CMPCU = null;%>
+<% ArrayList<String> appsList = (ArrayList<String>)(app.getApps("app/anacmp01/"));%>
+  void ANACMP01_Init(void)
+  {
+     <% for (String appIns : appsList ) {
+          appInst = appIns.substring(appIns.lastIndexOf("/")+1);  %>
+          <% ConfigUri = app.getMappedUri(AppBaseuri + appInst +"/slice"); %>
+              <% if ((ConfigUri != null) && (ConfigUri.trim() != "")) { %>
+              <% kernelUri = ConfigUri.substring(ConfigUri.length()-1,ConfigUri.indexOf("anacmp")+8); %>
+              <% InstanceNo = kernelUri.substring(kernelUri.length() -1); %>
+     /* Call the local function with the handle pointer for each instance */
+     ANACMP01_lInit(&ANACMP01_Handle<%= InstanceNo%>);
+           <%}}%>
+           
+           <% uriSCU_CMPCU = "peripheral/scu/0/cmpcu/anacmp/0/acmp_sel"; %>
+<% if ((app.getIntegerValue(uriSCU_CMPCU) == 1)) {%>	
+  WR_REG(COMPARATOR->ANACMP0, COMPARATOR_ANACMP0_ACMP0_SEL_Msk, COMPARATOR_ANACMP0_ACMP0_SEL_Pos,1);                /*    COMPARATOR->ANACMP0_ACMP0_SEL */
+                <% }
+                uriSCU_CMPCU = "peripheral/scu/0/cmpcu/anacmp/1/ref_div_en";
+  if (app.getIntegerValue(uriSCU_CMPCU) == 1) {%>	
+  WR_REG(COMPARATOR->ANACMP1, COMPARATOR_ANACMP1_REF_DIV_EN_Msk, COMPARATOR_ANACMP1_REF_DIV_EN_Pos, 1);                /*    COMPARATOR->ANACMP1_REF_DIV_EN */
+                <% }
+                uriSCU_CMPCU = "peripheral/scu/0/cmpcu/anacmp/2/acmp_sel";
+                 if ((app.getIntegerValue(uriSCU_CMPCU) == 1)) {%>	
+  WR_REG(COMPARATOR->ANACMP2, COMPARATOR_ANACMP2_ACMP2_SEL_Msk, COMPARATOR_ANACMP2_ACMP2_SEL_Pos, 1);                /*    COMPARATOR->ANACMP2_ACMP2_SEL */
+                <% }%>
+  }
+   
+ /**
+ * @brief This function initialises the  ANACMPx slice with the configured 
+ * parameters to compare the two input signal levels.
+ *
+ * @param [in] const ANACMP01_HandleType* HandlePtr<BR>
+ *
+ * @return  void<BR>
+ *
+ * <b>Reentrancy:  Yes</b><BR>
+ * <b>Sync/Async:  Synchronous</b><BR>
+ */
+  void ANACMP01_lInit(const ANACMP01_HandleType* HandlePtr)
+  {
+	  COMPARATOR_Type* ANACMPRegsPtr = HandlePtr->ANACMPSliceRegs0Ptr;
+
+      /* Enable AnalogComparator
+       * Disable Filter selection
+       * Invert the output
+       * Selecting the Hysteresis mode selection.
+       * */
+	  <% for (String appIns : appsList ) { appInst = appIns.substring(appIns.lastIndexOf("/")+1);  
+	             ConfigUri = app.getMappedUri(AppBaseuri + appInst +"/slice"); 
+	             if ((ConfigUri != null) && (ConfigUri.trim() != "")) { 
+	                 kernelUri = ConfigUri.substring(ConfigUri.length()-1,ConfigUri.indexOf("anacmp")+8); 
+	                 InstanceNo = kernelUri.substring(kernelUri.length() -1); %>
+      if((HandlePtr) == (&ANACMP01_Handle<%= InstanceNo%>))
+      {	    
+	    ANACMPRegsPtr->ANACMP<%=InstanceNo%> = (ANACMPRegsPtr->ANACMP<%=InstanceNo%> & ~COMPARATOR_ANACMP0_CMP_EN_Msk) | HandlePtr->EnableAnaCmp;
+	               
+	    ANACMPRegsPtr->ANACMP<%=InstanceNo%> = ((ANACMPRegsPtr->ANACMP<%=InstanceNo%> & ~COMPARATOR_ANACMP0_CMP_FLT_OFF_Msk) \
+	                                          | (HandlePtr->DisableFilterAnaCmp<<COMPARATOR_ANACMP0_CMP_FLT_OFF_Pos));
+	    ANACMPRegsPtr->ANACMP<%=InstanceNo%> = ((ANACMPRegsPtr->ANACMP<%=InstanceNo%> & ~COMPARATOR_ANACMP0_CMP_INV_OUT_Msk) \
+	    		                              | (HandlePtr->InvertOutputAnaCmp<< COMPARATOR_ANACMP0_CMP_INV_OUT_Pos));
+	    ANACMPRegsPtr->ANACMP<%=InstanceNo%> = ((ANACMPRegsPtr->ANACMP<%=InstanceNo%> & ~COMPARATOR_ANACMP0_CMP_HYST_ADJ_Msk) \
+	    						              | (HandlePtr->Hysmodesel << COMPARATOR_ANACMP0_CMP_HYST_ADJ_Pos));
+       }
+	  <%}}%>
+	  
+	  
+  }
+
+ /*******************************************************************************
+  **                      Public Function Definitions                          **
+  *******************************************************************************/
+  /**
+   * @addtogroup ANACMP01_PublicFunctions
+   * @{
+   */
+
+ /**
+ * @brief This api checks the output status.
+ *
+ * @param [in] const ANACMP01_HandleType* HandlePtr<BR>
+ *
+ * @return  void<BR>
+ *
+ * <b>Reentrancy:  Yes</b><BR>
+ * <b>Sync/Async:  Synchronous</b><BR>
+ */
+
+  uint8_t ANACMP01_CheckAnacmpOutstatus(const ANACMP01_HandleType* HandlePtr)
+  {
+	  uint8_t OutputStatus=0;
+	  COMPARATOR_Type* ANACMPRegsPtr = HandlePtr->ANACMPSliceRegs0Ptr;
+	  <% for (String appIns : appsList ) { appInst = appIns.substring(appIns.lastIndexOf("/")+1);  
+	 	             ConfigUri = app.getMappedUri(AppBaseuri + appInst +"/slice"); 
+	 	             if ((ConfigUri != null) && (ConfigUri.trim() != "")) { 
+	 	                 kernelUri = ConfigUri.substring(ConfigUri.length()-1,ConfigUri.indexOf("anacmp")+8); 
+	 	                 InstanceNo = kernelUri.substring(kernelUri.length() -1); %>
+	  if((HandlePtr) == (&ANACMP01_Handle<%= InstanceNo%>))
+	  {	    
+	     OutputStatus = (ANACMPRegsPtr->ANACMP<%= InstanceNo%> >> 15);
+	  }
+	  <%}}%>
+	  return OutputStatus;	  
+  }
+ /**
+ * @endcond
+ */ 
+/*CODE_BLOCK_END*/

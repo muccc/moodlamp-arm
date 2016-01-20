@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.ifx.davex.uimodel:UIDataModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.ifx.davex.uimodel="com.ifx.davex.uimodel">
+  <controls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="DefaultPage" displayName="Dimming Engine Configuration" className="IfxGroupBox" controlId="1354777618993">
+    <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+    <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccudim01/0/enable_at_init" displayName="Dimming Engine Enable" className="EnumerationType" paramName="app/bccudim01/0/enable_at_init:Dimming Engine Enable" controlId="1358775886501">
+      <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+    </subControls>
+    <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group86" displayName="Initial Dimming Level" className="IfxGroupBox" controlId="1354777790569">
+      <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccudim01/0/bccuch_dls_tdlev" displayName="Dimming Level" className="IntegerType" paramName="app/bccudim01/0/bccuch_dls_tdlev:Dimming Level" controlId="1386073745236">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+        <conversionType>dec</conversionType>
+        <conversionType>hex</conversionType>
+      </subControls>
+      <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+    </subControls>
+    <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group9" displayName="Dimming Transition Configuration" className="IfxGroupBox" controlId="1354777829390">
+      <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" grabExcessHorizontalSpace="true" grabExcessVerticalSpace="true"/>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccudim01/0/bccudim_dten" displayName="Dither Function" className="EnumerationType" constraint="if(CM.getParamValue(&quot;app/bccudim01/0/bccudim_dtt_csel/0&quot;) ==&quot;1&quot;) &#xD;&#xA;{&#xD;&#xA;   CM.setEnable(true); &#xD;&#xA;}else{&#xD;&#xA;    CM.setEnable(false); &#xD;&#xA;}" paramName="app/bccudim01/0/bccudim_dten:Dither Function" controlId="1357741732171">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccudim01/0/bccudim_dtt_csel" displayName="Dimming Curve Selection" className="EnumerationType" constraint="if(CM.getParamValue(&quot;app/bccudim01/0/bccudim_dten&quot;) ==&quot;1&quot;) &#xD;&#xA;{&#xD;&#xA;   CM.setEnable(false); &#xD;&#xA;}else{&#xD;&#xA;    CM.setEnable(true); &#xD;&#xA;}" paramName="app/bccudim01/0/bccudim_dtt_csel:Dimming Curve Selection" controlId="1357741724917">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccudim01/0/bccuch_trans_time" displayName="Desired Transition Time from 0% to 100% dimming level" className="IntegerType" paramName="app/bccudim01/0/bccuch_trans_time:Desired Transition Time from 0% to 100% dimming level" controlId="1357883985965" defaultType="msec" customControl="true">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+        <conversionType>msec</conversionType>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccudim01/0/bccuch_trans_time_act" displayName="Actual Transition Time from 0% to 100% dimming level" readonly="true" className="IntegerType" paramName="app/bccudim01/0/bccuch_trans_time_act:Actual Transition Time from 0% to 100% dimming level" controlId="1358770292185" defaultType="msec" customControl="true">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+        <conversionType>msec</conversionType>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccudim01/0/bccuch_dtt_dimdiv" displayName="DIMDIV" readonly="true" className="IntegerType" paramName="app/bccudim01/0/bccuch_dtt_dimdiv:DIMDIV" controlId="1358770297208">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+        <conversionType>dec</conversionType>
+      </subControls>
+      <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+    </subControls>
+    <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+  </controls>
+</com.ifx.davex.uimodel:UIDataModel>

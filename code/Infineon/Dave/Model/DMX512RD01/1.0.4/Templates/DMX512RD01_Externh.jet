@@ -1,0 +1,97 @@
+<%@ jet package="CodeGenerator" class="dmx512rd01_externh_template"
+imports="java.util.* java.text.*  com.ifx.davex.appjetinteract.App2JetInterface" %>
+<% App2JetInterface app = (App2JetInterface) argument; %>
+<% String AppBaseuri = "app/dmx512rd01/"; %>
+<% String appInst  = null; %>
+
+/*CODE_BLOCK_BEGIN[DMX512RD01_Extern.h]*/
+
+/******************************************************************************
+ * @file     DMX512RD01_Extern.h
+ *
+ * @brief  This defines the dynamic or User defined  objects, enums 
+ * and apis of DMX512 APP
+ * @version  V<%= app.getAppVersion(AppBaseuri)%>
+ * @date     26 Sep 2013
+ *
+ * @note
+ * Copyright (C) 2012-2013 Infineon Technologies AG. All rights reserved.
+
+ *
+ * @par
+ * Infineon Technologies AG (Infineon) is supplying this software for use with 
+ * Infineon’s microcontrollers.
+ *   
+ * This file can be freely distributed within development tools that are 
+ * supporting such microcontrollers.
+ *  
+ *
+ * @par
+ * THIS SOFTWARE IS PROVIDED "AS IS".  NO WARRANTIES, WHETHER EXPRESS, IMPLIED
+ * OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE APPLY TO THIS SOFTWARE.
+ * INFINEON SHALL NOT, IN ANY CIRCUMSTANCES, BE LIABLE FOR SPECIAL, INCIDENTAL,
+ * OR CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.
+ *
+ ******************************************************************************/
+/*
+ * *************************** Change history ********************************
+ * *************************** Change history ********************************
+ * V1.0.0, 26 Sep 2013, Initial Version
+ * V1.0.2, 20 Jan 2014, CAPCOM dependency is reduced by removing MBTS and 
+ * MBB checks
+ */
+
+
+#ifndef __DMX512RD01_EXTERN__
+#define __DMX512RD01_EXTERN__
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
+
+/*******************************************************************************
+**                      Private Type Definitions                              **
+*******************************************************************************/
+
+
+/*****************************************************************************
+ *                            Macros                                        **
+ *****************************************************************************/
+
+
+/*******************************************************************************
+**                 Function like macro definitions                            **
+*******************************************************************************/
+
+/*******************************************************************************
+**                      Global Variable Definitions                           **
+*******************************************************************************/
+ /**
+* @addtogroup DMX512RD01_datastructures
+* @{
+*/
+<% ArrayList<String> appsList = (ArrayList<String>)(app.getApps("app/dmx512rd01/"));%>
+<% for (String appIns : appsList ) {
+ appInst = appIns.substring(appIns.lastIndexOf("/")+1);%>
+
+extern const DMX512RD01_HandleType DMX512RD01_Handle<%=appInst%>;
+<%}%>
+
+/**
+ * @}
+ */
+/*******************************************************************************
+ **FUNCTION PROTOTYPES                                                        **
+*******************************************************************************/
+
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif
+/*CODE_BLOCK_END*/
+

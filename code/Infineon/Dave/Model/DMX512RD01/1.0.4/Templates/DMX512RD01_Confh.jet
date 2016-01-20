@@ -1,0 +1,146 @@
+<%@ jet package="CodeGenerator" class="dmx512rd01_confh_template"
+imports="java.util.* java.text.*  com.ifx.davex.appjetinteract.App2JetInterface" %>
+<% App2JetInterface app = (App2JetInterface) argument; %>
+<% String AppBaseuri = "app/dmx512rd01/"; %>
+<% String appInst  = null; %>
+
+/*CODE_BLOCK_BEGIN[DMX512RD01_Conf.h]*/
+
+/******************************************************************************
+ * @file     DMX512RD01_Conf.h
+ *
+ * @brief  This defines the dynamic or User defined  objects, enums 
+ * and apis of DMX512 APP
+ * @version  V<%= app.getAppVersion(AppBaseuri)%>
+ * @date     06 Feb 2014
+ *
+ * @note
+ * Copyright (C) 2012-2013 Infineon Technologies AG. All rights reserved.
+
+ *
+ * @par
+ * Infineon Technologies AG (Infineon) is supplying this software for use with 
+ * Infineon’s microcontrollers.
+ *   
+ * This file can be freely distributed within development tools that are 
+ * supporting such microcontrollers.
+ *  
+ *
+ * @par
+ * THIS SOFTWARE IS PROVIDED "AS IS".  NO WARRANTIES, WHETHER EXPRESS, IMPLIED
+ * OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE APPLY TO THIS SOFTWARE.
+ * INFINEON SHALL NOT, IN ANY CIRCUMSTANCES, BE LIABLE FOR SPECIAL, INCIDENTAL,
+ * OR CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.
+ *
+ ******************************************************************************/
+/*
+ * *************************** Change history ********************************
+ * *************************** Change history ********************************
+ * V1.0.0, 26 Sep 2013, Initial Version
+ * V1.0.2, 20 Jan 2014, CAPCOM dependency is reduced by removing MBTS and 
+ * MBB checks
+ * V1.0.4, 06 Feb 2014, New feature accurate break detection is provided
+ */
+
+
+#ifndef __DMX512RD01_CONF__
+#define __DMX512RD01_CONF__
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
+
+/*******************************************************************************
+**                      Private Type Definitions                              **
+*******************************************************************************/
+
+
+/*****************************************************************************
+ *                            Macros                                        **
+ *****************************************************************************/
+ /**
+* @addtogroup DMX512RD01_constants
+* @{
+*/
+<% ArrayList<String> appsList = (ArrayList<String>)(app.getApps("app/dmx512rd01/"));
+for (String appIns : appsList ) {
+    appInst = appIns.substring(appIns.lastIndexOf("/")+1);%>
+ <%}%>
+
+#define DMX512RD01_STARTING_SLOT_NUM (<%=app.getIntegerValue (AppBaseuri + appInst + "/dmx512rd01_slave_num" )%>U)
+#define DMX512RD01_NUM_SLOTS (<%=app.getIntegerValue (AppBaseuri + appInst + "/dmx512rd01_num_chnl" )%>U)
+
+<%int AccBrkDet = app.getIntegerValue (AppBaseuri + appInst + "/dmx512rd01_dummy_AccBreDetect" ); %>
+<% if(AccBrkDet==1) {%>
+#define DMX512RD01_ACC_BREAK_DETECT (1U)
+<%}%>
+/* UART Mode of Reception */
+#define DMX512RD01_USIC_FRACDIV_MODE (0x2U)
+#define DMX512RD01_USIC_PASSIVELEV (0x1U)
+#define DMX512RD01_USIC_DATATRANS_ACTIVE (0x1U)
+#define DMX512RD01_USIC_FLE_WLE (0x7U)
+#define DMX512RD01_USIC_3SAMPLES (0x1U)
+#define DMX512RD01_USIC_2STOPBITS (0x1U)
+#define DMX512RD01_USIC_RXLIMIT (0x0U)
+#define DMX512RD01_USIC_LOF (0x1U)
+#define DMX512RD01_USIC_UART (0x02U)
+#define DMX512RD01_USIC_NOPARITY (0x0U)
+#define DMX512RD01_USIC_BGR_STEP 80 //TBC
+#define DMX512RD01_USIC_BGR_PCTQ 0 //TBC
+#define DMX512RD01_USIC_BGR_DCTQ 9 //TBC
+#define DMX512RD01_USIC_BGR_PDIV 0 //TBC
+#define DMX512RD01_USIC_BGR_SP 6 //TBC
+#define DMX512RD01_USIC_CLR_STATUS (0x1FFFFU)
+<%int prescalar = app.getIntegerValue(AppBaseuri + appInst + "/dmx512rd01_capture_prescalar");%>
+<% String SliceUri = app.getMappedUri(AppBaseuri + appInst + "/capturehw"); %>
+<%if(SliceUri != null){%>
+#ifdef DMX512RD01_ACC_BREAK_DETECT
+  #define DMX512RD01_BREAK_COUNT (352) //TBC
+  #define DMX512RD01_CAPTURE_PRESCALAR (<%=prescalar%>U)
+<%String Channel =SliceUri.substring(SliceUri.indexOf("/cc4/")+5,SliceUri.length());%> 
+<%String kernelNo =SliceUri.substring(SliceUri.indexOf("peripheral/ccu4/")+16,SliceUri.indexOf("/cc4/"));%>
+  #define DMX512RD01_SHADOW_MASK CCU4_GCSS_S<%= Channel%>SE_Msk
+  #define DMX512RD01_SHADOW_MASK_BIT_POS CCU4_GCSS_S<%= Channel%>SE_Pos
+  #define DMX512RD01_ILDE_BIT_MASK CCU4_GIDLC_CS<%= Channel%>I_Msk
+  #define DMX512RD01_IDLE_BIT_POS CCU4_GIDLC_CS<%= Channel%>I_Pos
+  #define DMX512RD01_PRS_MASK (<%=(((32 + ((prescalar - 3)* 32) ) * 4) - 1)%>U) /*!< Period Shadow mask*/
+  #define DMX512RD01_EV0IS (<%=app.getMuxValue ("peripheral/ccu4/" + kernelNo + "/cc4/" + Channel + "/cc4" + Channel + "ins_ev0is" )%>U)
+
+#endif
+<%}%>
+
+<% String callBack = app.getStringValue(AppBaseuri + appInst +"/dmx512rd01_user_call_back"); %> 
+<%if(!(callBack.equals(null) || (callBack.equals("")) )){%>
+#define DMX512RD01_CALLBACK_DEFINED 1
+#define DMX512RD01_CallBack   <%=callBack%>  /* This is the user callback function */
+<%}%>
+/**
+ * @}
+ */
+
+
+
+/*******************************************************************************
+**                 Function like macro definitions                            **
+*******************************************************************************/
+
+/*******************************************************************************
+**                      Global Variable Definitions                           **
+*******************************************************************************/
+
+
+/*******************************************************************************
+ **FUNCTION PROTOTYPES                                                        **
+*******************************************************************************/
+
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif
+/*CODE_BLOCK_END*/
+

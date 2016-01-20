@@ -1,0 +1,253 @@
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"BCCUCH01_Conf.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.global	BCCUCH01_HandleArr
+  18              		.global	BCCUCH01_Handle5
+  19              		.global	BCCUCH01_Handle4
+  20              		.global	BCCUCH01_Handle3
+  21              		.global	BCCUCH01_Handle2
+  22              		.global	BCCUCH01_Handle1
+  23              		.global	BCCUCH01_Handle0
+  24              		.section	.rodata
+  25              		.align	2
+  28              	BCCUCH01_Handle5:
+  29 0000 00000350 		.word	1342373888
+  30 0004 64000350 		.word	1342373988
+  31 0008 02000000 		.word	2
+  32 000c 00000440 		.word	1074003968
+  33 0010 00000000 		.word	0
+  34 0014 06000000 		.word	6
+  35 0018 13000000 		.word	19
+  36 001c 01000000 		.word	1
+  37 0020 00000000 		.word	0
+  38 0024 14000000 		.word	20
+  39 0028 01       		.byte	1
+  40 0029 000000   		.space	3
+  41 002c 00000000 		.word	0
+  42 0030 15000000 		.word	21
+  43 0034 01       		.byte	1
+  44 0035 00       		.byte	0
+  45 0036 00       		.byte	0
+  46 0037 00       		.byte	0
+  47 0038 00       		.byte	0
+  48 0039 00       		.byte	0
+  49 003a 00       		.byte	0
+  50 003b 00       		.byte	0
+  51 003c 00       		.byte	0
+  52 003d 00       		.byte	0
+  53 003e 0000     		.space	2
+  54 0040 02000000 		.word	2
+  55 0044 27000000 		.word	39
+  56 0048 FF000000 		.word	255
+  57 004c 00000000 		.word	0
+  58 0050 00000000 		.word	0
+  61              	BCCUCH01_Handle4:
+  62 0054 00000350 		.word	1342373888
+  63 0058 B4000350 		.word	1342374068
+  64 005c 06000000 		.word	6
+  65 0060 00000440 		.word	1074003968
+  66 0064 00000000 		.word	0
+  67 0068 0C000000 		.word	12
+  68 006c 03000000 		.word	3
+  69 0070 01000000 		.word	1
+  70 0074 00000000 		.word	0
+  71 0078 18000000 		.word	24
+  72 007c 01       		.byte	1
+  73 007d 000000   		.space	3
+  74 0080 00000000 		.word	0
+  75 0084 15000000 		.word	21
+  76 0088 01       		.byte	1
+  77 0089 00       		.byte	0
+  78 008a 00       		.byte	0
+  79 008b 00       		.byte	0
+  80 008c 00       		.byte	0
+  81 008d 00       		.byte	0
+  82 008e 00       		.byte	0
+  83 008f 00       		.byte	0
+  84 0090 00       		.byte	0
+  85 0091 00       		.byte	0
+  86 0092 0000     		.space	2
+  87 0094 02000000 		.word	2
+  88 0098 27000000 		.word	39
+  89 009c FF000000 		.word	255
+  90 00a0 00000000 		.word	0
+  91 00a4 00000000 		.word	0
+  94              	BCCUCH01_Handle3:
+  95 00a8 00000350 		.word	1342373888
+  96 00ac 3C000350 		.word	1342373948
+  97 00b0 00000000 		.word	0
+  98 00b4 00000440 		.word	1074003968
+  99 00b8 00000000 		.word	0
+ 100 00bc 04000000 		.word	4
+ 101 00c0 03000000 		.word	3
+ 102 00c4 01000000 		.word	1
+ 103 00c8 00000000 		.word	0
+ 104 00cc 14000000 		.word	20
+ 105 00d0 01       		.byte	1
+ 106 00d1 000000   		.space	3
+ 107 00d4 00000000 		.word	0
+ 108 00d8 15000000 		.word	21
+ 109 00dc 01       		.byte	1
+ 110 00dd 00       		.byte	0
+ 111 00de 00       		.byte	0
+ 112 00df 00       		.byte	0
+ 113 00e0 00       		.byte	0
+ 114 00e1 00       		.byte	0
+ 115 00e2 00       		.byte	0
+ 116 00e3 00       		.byte	0
+ 117 00e4 00       		.byte	0
+ 118 00e5 00       		.byte	0
+ 119 00e6 0000     		.space	2
+ 120 00e8 02000000 		.word	2
+ 121 00ec 27000000 		.word	39
+ 122 00f0 FF000000 		.word	255
+ 123 00f4 00000000 		.word	0
+ 124 00f8 00000000 		.word	0
+ 127              	BCCUCH01_Handle2:
+ 128 00fc 00000350 		.word	1342373888
+ 129 0100 78000350 		.word	1342374008
+ 130 0104 03000000 		.word	3
+ 131 0108 00000440 		.word	1074003968
+ 132 010c 00000000 		.word	0
+ 133 0110 00000000 		.word	0
+ 134 0114 03000000 		.word	3
+ 135 0118 00000000 		.word	0
+ 136 011c 00000000 		.word	0
+ 137 0120 00000000 		.word	0
+ 138 0124 01       		.byte	1
+ 139 0125 000000   		.space	3
+ 140 0128 10000000 		.word	16
+ 141 012c 00000000 		.word	0
+ 142 0130 00       		.byte	0
+ 143 0131 00       		.byte	0
+ 144 0132 01       		.byte	1
+ 145 0133 00       		.byte	0
+ 146 0134 00       		.byte	0
+ 147 0135 00       		.byte	0
+ 148 0136 00       		.byte	0
+ 149 0137 00       		.byte	0
+ 150 0138 00       		.byte	0
+ 151 0139 01       		.byte	1
+ 152 013a 0000     		.space	2
+ 153 013c 02000000 		.word	2
+ 154 0140 03000000 		.word	3
+ 155 0144 C7000000 		.word	199
+ 156 0148 00000000 		.word	0
+ 157 014c 84000000 		.word	132
+ 160              	BCCUCH01_Handle1:
+ 161 0150 00000350 		.word	1342373888
+ 162 0154 8C000350 		.word	1342374028
+ 163 0158 04000000 		.word	4
+ 164 015c 00000440 		.word	1074003968
+ 165 0160 00000000 		.word	0
+ 166 0164 00000000 		.word	0
+ 167 0168 03000000 		.word	3
+ 168 016c 00000000 		.word	0
+ 169 0170 00000000 		.word	0
+ 170 0174 00000000 		.word	0
+ 171 0178 01       		.byte	1
+ 172 0179 000000   		.space	3
+ 173 017c 10000000 		.word	16
+ 174 0180 00000000 		.word	0
+ 175 0184 00       		.byte	0
+ 176 0185 00       		.byte	0
+ 177 0186 01       		.byte	1
+ 178 0187 00       		.byte	0
+ 179 0188 00       		.byte	0
+ 180 0189 00       		.byte	0
+ 181 018a 00       		.byte	0
+ 182 018b 00       		.byte	0
+ 183 018c 00       		.byte	0
+ 184 018d 01       		.byte	1
+ 185 018e 0000     		.space	2
+ 186 0190 02000000 		.word	2
+ 187 0194 03000000 		.word	3
+ 188 0198 C7000000 		.word	199
+ 189 019c 00000000 		.word	0
+ 190 01a0 42000000 		.word	66
+ 193              	BCCUCH01_Handle0:
+ 194 01a4 00000350 		.word	1342373888
+ 195 01a8 A0000350 		.word	1342374048
+ 196 01ac 05000000 		.word	5
+ 197 01b0 00000440 		.word	1074003968
+ 198 01b4 00000000 		.word	0
+ 199 01b8 00000000 		.word	0
+ 200 01bc 03000000 		.word	3
+ 201 01c0 00000000 		.word	0
+ 202 01c4 00000000 		.word	0
+ 203 01c8 00000000 		.word	0
+ 204 01cc 01       		.byte	1
+ 205 01cd 000000   		.space	3
+ 206 01d0 10000000 		.word	16
+ 207 01d4 00000000 		.word	0
+ 208 01d8 00       		.byte	0
+ 209 01d9 00       		.byte	0
+ 210 01da 01       		.byte	1
+ 211 01db 00       		.byte	0
+ 212 01dc 00       		.byte	0
+ 213 01dd 00       		.byte	0
+ 214 01de 00       		.byte	0
+ 215 01df 00       		.byte	0
+ 216 01e0 00       		.byte	0
+ 217 01e1 01       		.byte	1
+ 218 01e2 0000     		.space	2
+ 219 01e4 02000000 		.word	2
+ 220 01e8 03000000 		.word	3
+ 221 01ec C7000000 		.word	199
+ 222 01f0 00000000 		.word	0
+ 223 01f4 00000000 		.word	0
+ 224              		.data
+ 225              		.align	2
+ 228              	BCCUCH01_HandleArr:
+ 229 0000 00000000 		.word	BCCUCH01_Handle0
+ 230 0004 00000000 		.word	BCCUCH01_Handle1
+ 231 0008 00000000 		.word	BCCUCH01_Handle2
+ 232 000c 00000000 		.word	BCCUCH01_Handle3
+ 233 0010 00000000 		.word	BCCUCH01_Handle4
+ 234 0014 00000000 		.word	BCCUCH01_Handle5
+ 235              		.text
+ 236              	.Letext0:
+ 237              		.file 1 "C:\\DAVE-3.1.10\\eclipse\\/../CMSIS/Infineon/XMC1200_series/Include/XMC1200.h"
+ 238              		.file 2 "c:\\dave-3.1.10\\arm-gcc\\bin\\../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/i
+ 239              		.file 3 "../Dave/Generated/src/BCCUCH01/../../inc/BCCUCH01/BCCUCH01.h"
+ 240              		.file 4 "../Dave/Generated/src/BCCUCH01/BCCUCH01_Conf.c"
+DEFINED SYMBOLS
+                            *ABS*:00000000 BCCUCH01_Conf.c
+C:\Users\tomasoat\AppData\Local\Temp\ccHKQw1h.s:228    .data:00000000 BCCUCH01_HandleArr
+C:\Users\tomasoat\AppData\Local\Temp\ccHKQw1h.s:28     .rodata:00000000 BCCUCH01_Handle5
+C:\Users\tomasoat\AppData\Local\Temp\ccHKQw1h.s:61     .rodata:00000054 BCCUCH01_Handle4
+C:\Users\tomasoat\AppData\Local\Temp\ccHKQw1h.s:94     .rodata:000000a8 BCCUCH01_Handle3
+C:\Users\tomasoat\AppData\Local\Temp\ccHKQw1h.s:127    .rodata:000000fc BCCUCH01_Handle2
+C:\Users\tomasoat\AppData\Local\Temp\ccHKQw1h.s:160    .rodata:00000150 BCCUCH01_Handle1
+C:\Users\tomasoat\AppData\Local\Temp\ccHKQw1h.s:193    .rodata:000001a4 BCCUCH01_Handle0
+C:\Users\tomasoat\AppData\Local\Temp\ccHKQw1h.s:25     .rodata:00000000 $d
+C:\Users\tomasoat\AppData\Local\Temp\ccHKQw1h.s:225    .data:00000000 $d
+                           .group:00000000 wm4.1.e09b9dd5224853206c418479f14d6963
+                           .group:00000000 wm4.uc_id.h.35.62dcba5f6261c1436e3866a751c1a98b
+                           .group:00000000 wm4.XMC1200.h.45.4c899b4822ac22c0f00d6fd7f173cc96
+                           .group:00000000 wm4.core_cm0.h.47.022e66414e77714da7c4b30b3ad99fe8
+                           .group:00000000 wm4.newlib.h.8.a9901dc52d1357e3e94003403d43f8b5
+                           .group:00000000 wm4.features.h.22.b72b3baab2bb2eab3661375590100b6b
+                           .group:00000000 wm4.config.h.193.5fb8ef056cdff92dec3dee9552839d8c
+                           .group:00000000 wm4._ansi.h.23.7aefdac4826acebbfc9f3822a0aeb14c
+                           .group:00000000 wm4.stdint.h.20.54ad762faa59e3c05491630641c8d8bf
+                           .group:00000000 wm4.core_cmInstr.h.39.b7b6650bdd2316848d940915272d75b8
+                           .group:00000000 wm4.core_cm0.h.135.ca70469f87e143609670bb393bfa6518
+                           .group:00000000 wm4.XMC1000_RomFunctionTable.h.31.6d9a94465618f31b040dc9cea9a47ad7
+                           .group:00000000 wm4.XMC1200.h.122.96b58b1204def4c9f76341a4e21abaf6
+                           .group:00000000 wm4.BCCUCH01_Conf.h.48.2ce679450068d1645a9e0c3a7937e697
+
+NO UNDEFINED SYMBOLS

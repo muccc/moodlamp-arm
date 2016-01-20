@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.ifx.davex.uimodel:UIDataModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.ifx.davex.uimodel="com.ifx.davex.uimodel">
+  <controls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="DefaultPage" displayName="Global Configuration" className="IfxGroupBox" controlId="1351682456847">
+    <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+    <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group94" displayName="Clock Configuration" className="IfxGroupBox" controlId="1353081696308">
+      <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" verticalSpan="3"/>
+      <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group15" displayName="Fast Clock (FCLK)" className="IfxGroupBox" controlId="1354685720988">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+        <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccuglobal/0/bccuglobal_reqfclk" displayName="Desired Fast Clock Frequency" className="IntegerType" paramName="app/bccuglobal/0/bccuglobal_reqfclk:Desired Fast Clock Frequency" controlId="1354690383033" defaultType="Hz" customControl="true">
+          <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+          <conversionType>Hz</conversionType>
+          <conversionType>KHz</conversionType>
+          <conversionType>MHz</conversionType>
+        </subControls>
+        <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccuglobal/0/bccuglobal_realfclk" displayName="Actual Fast Clock Frequency" readonly="true" className="IntegerType" paramName="app/bccuglobal/0/bccuglobal_realfclk:Actual Fast Clock Frequency" controlId="1354690538133" defaultType="Hz" customControl="true">
+          <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+          <conversionType>Hz</conversionType>
+          <conversionType>KHz</conversionType>
+          <conversionType>MHz</conversionType>
+        </subControls>
+        <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccuglobal/0/bccuglobal_fclk_ps" displayName="Prescaler Factor (FCLK_PS)" readonly="true" className="IntegerType" paramName="app/bccuglobal/0/bccuglobal_fclk_ps:Prescaler Factor (FCLK_PS)" controlId="1357839499471" defaultType="hex">
+          <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+          <conversionType>hex</conversionType>
+        </subControls>
+        <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group79" displayName="Bit Clock (BCLK)" className="IfxGroupBox" controlId="1357842004688">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+        <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccuglobal/0/bccuglobal_bclksel" displayName="Bit Clock (BCLK)" labelRequired="false" className="EnumerationType" paramName="app/bccuglobal/0/bccuglobal_bclksel:Bit Clock" controlId="1354685583059">
+          <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+        </subControls>
+        <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccuglobal/0/bccuglobal_actbclkfreq" displayName="Actual Bit Clock Frequency" readonly="true" className="IntegerType" paramName="app/bccuglobal/0/bccuglobal_actbclkfreq:Actual Bit Clock Frequency" controlId="1357842061255" defaultType="Hz" customControl="true">
+          <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+          <conversionType>Hz</conversionType>
+          <conversionType>KHz</conversionType>
+          <conversionType>MHz</conversionType>
+        </subControls>
+        <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccuglobal/0/bccuglobal_actbclktime" displayName="Actual Bit Time" readonly="true" className="IntegerType" paramName="app/bccuglobal/0/bccuglobal_actbclktime:Actual Bit Time" controlId="1357842080740" defaultType="nsec" customControl="true">
+          <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+          <conversionType>nsec</conversionType>
+          <conversionType>usec</conversionType>
+        </subControls>
+        <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group69" displayName="Dimming Engine Clock (DCLK)" className="IfxGroupBox" controlId="1354689926786">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+        <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccuglobal/0/bccuglobal_reqdclk" displayName="Desired Dimming Engine Clock Frequency" className="IntegerType" paramName="app/bccuglobal/0/bccuglobal_reqdclk:Desired Dimming Engine Clock Frequency" controlId="1354690566619" defaultType="Hz" customControl="true">
+          <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+          <conversionType>Hz</conversionType>
+          <conversionType>KHz</conversionType>
+          <conversionType>MHz</conversionType>
+        </subControls>
+        <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccuglobal/0/bccuglobal_realdclk" displayName="Actual Dimming Engine Clock Frequency" readonly="true" className="IntegerType" paramName="app/bccuglobal/0/bccuglobal_realdclk:Actual Dimming Engine Clock Frequency" controlId="1354690572657" defaultType="Hz" customControl="true">
+          <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+          <conversionType>Hz</conversionType>
+          <conversionType>KHz</conversionType>
+          <conversionType>MHz</conversionType>
+        </subControls>
+        <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccuglobal/0/bccuglobal_dclk_ps" displayName="Prescaler Factor (DCLK_PS)" readonly="true" className="IntegerType" paramName="app/bccuglobal/0/bccuglobal_dclk_ps:Prescaler Factor (DCLK_PS)" controlId="1357839513449" defaultType="hex">
+          <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+          <conversionType>hex</conversionType>
+        </subControls>
+        <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+      </subControls>
+      <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+    </subControls>
+    <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group22" displayName="Trigger / Trap Configuration" className="IfxGroupBox" controlId="1353081869971">
+      <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccuglobal/0/bccuglobal_trigmode" displayName="Trigger Mode Selection" className="EnumerationType" paramName="app/bccuglobal/0/bccuglobal_trigmode:Mode Selection" controlId="1353565387270">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccuglobal/0/bccuglobal_trigdelay" displayName="Trigger Delay Selection" className="EnumerationType" paramName="app/bccuglobal/0/bccuglobal_trigdelay:Delay selection" controlId="1353565399002">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccuglobal/0/bccuglobal_trapedge" displayName="Trap Edge Selection" className="EnumerationType" paramName="app/bccuglobal/0/bccuglobal_trapedge:Edge Selection" controlId="1353565346553">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+    </subControls>
+    <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group48" displayName="Global Dimming Initial Level" className="IfxGroupBox" controlId="1354694153001">
+      <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccuglobal/0/bccuglobal_glob_dimlevel" displayName="Initial Global Dimming Level" className="IntegerType" paramName="app/bccuglobal/0/bccuglobal_glob_dimlevel:Initial Global Dimming Level" controlId="1355564602129">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+        <conversionType>dec</conversionType>
+        <conversionType>hex</conversionType>
+      </subControls>
+      <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+    </subControls>
+    <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group82" displayName="Flicker Watchdog Settings" className="IfxGroupBox" controlId="1354696605589">
+      <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccuglobal/0/bccuglobal_maxbitno" displayName="ON-bit Insertion Threshold" className="IntegerType" paramName="app/bccuglobal/0/bccuglobal_maxbitno:ON-bit Insertion Threshold" controlId="1379589498141">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+        <conversionType>dec</conversionType>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccuglobal/0/bccuglobal_minbrightness" displayName="Minimum Brightness" readonly="true" className="IntegerType" paramName="app/bccuglobal/0/bccuglobal_minbrightness:Minimum Brightness" controlId="1385983025237" defaultType="percentage" customControl="true">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+        <conversionType>percentage</conversionType>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccuglobal/0/bccuglobal_longestofftime" displayName="Longest OFF-time at Modulator Output" readonly="true" className="IntegerType" paramName="app/bccuglobal/0/bccuglobal_longestofftime:Longest OFF-time at Modulator Output" controlId="1364526804122" defaultType="nsec" customControl="true">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+        <conversionType>usec</conversionType>
+        <conversionType>nsec</conversionType>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccuglobal/0/bccuglobal_lowestfreq" displayName="Lowest Frequency at Modulator Output" readonly="true" className="IntegerType" paramName="app/bccuglobal/0/bccuglobal_lowestfreq:Lowest Frequency at Modulator Output" controlId="1364526851546" defaultType="Hz" customControl="true">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+        <conversionType>Hz</conversionType>
+      </subControls>
+      <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+    </subControls>
+    <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout" numColumns="2"/>
+  </controls>
+  <controls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Page55" displayName="Interrupt Configuration" className="IfxGroupBox" controlId="1353129830624">
+    <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+    <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group11" displayName="Interrupt Configuration" className="IfxGroupBox" controlId="1353085149065">
+      <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccuglobal/0/bccuglobal_trig0int_en" displayName="Trigger 0 Interrupt" labelRequired="false" className="EnumerationType" paramName="app/bccuglobal/0/bccuglobal_trig0int_en:Trigger 0 Interrupt Selection" controlId="1354693116103">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccuglobal/0/bccuglobal_trig1int_en" displayName="Trigger 1 Interrupt Selection" labelRequired="false" className="EnumerationType" paramName="app/bccuglobal/0/bccuglobal_trig1int_en:Trigger 1 Interrupt Selection" controlId="1354693120143">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccuglobal/0/bccuglobal_fifofullint_en" displayName="FIFO Full Interrupt Selection" labelRequired="false" className="EnumerationType" paramName="app/bccuglobal/0/bccuglobal_fifofullint_en:FIFO Full Interrupt Selection" controlId="1354693125182">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccuglobal/0/bccuglobal_fifoemptint_en" displayName="FIFO Empty Interrupt Selection" labelRequired="false" className="EnumerationType" paramName="app/bccuglobal/0/bccuglobal_fifoemptint_en:FIFO Empty Interrupt Selection" controlId="1354693169924">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccuglobal/0/bccuglobal_trapint_en" displayName="Trap Interrupt Selection" labelRequired="false" className="EnumerationType" paramName="app/bccuglobal/0/bccuglobal_trapint_en:Trap Interrupt Selection" controlId="1354693182389">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout" numColumns="2"/>
+    </subControls>
+    <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+  </controls>
+</com.ifx.davex.uimodel:UIDataModel>

@@ -1,0 +1,169 @@
+<%@ jet package="CodeGenerator" class="bccuch01_confc_template"
+imports="java.util.* java.text.*  com.ifx.davex.appjetinteract.App2JetInterface" %>
+<% App2JetInterface app = (App2JetInterface) argument; %>
+<% String AppBaseuri = "app/bccuch01/"; %>
+<% String appInst  = null; %>
+
+/*CODE_BLOCK_BEGIN[BCCUCH01_Confc.c]*/
+/*******************************************************************************
+ * @file     BCCUCH01_Conf.c
+ * @brief    This file has configuration codes related to BCCUCH01 App.
+ * @version  V1.0.6
+ * @date     3 Sep 2013
+ *
+ * @note
+ * Copyright (C) 2012-2013 Infineon Technologies AG. All rights reserved.
+
+ *
+ * @par
+ * Infineon Technologies AG (Infineon) is supplying this software for use with 
+ * Infineon's microcontrollers.
+ *   
+ * This file can be freely distributed within development tools that are 
+ * supporting such microcontrollers.
+ *  
+ *
+ * @par
+ * THIS SOFTWARE IS PROVIDED "AS IS".  NO WARRANTIES, WHETHER EXPRESS, IMPLIED
+ * OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE APPLY TO THIS SOFTWARE.
+ * INFINEON SHALL NOT, IN ANY CIRCUMSTANCES, BE LIABLE FOR SPECIAL, INCIDENTAL,
+ * OR CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.
+ *
+ ******************************************************************************/
+/**************************** Change history ***********************************
+ * V1.0.0,	14-Feb-13	 Initial Version
+ * V1.0.2,	2-Apr-13	 Enhancement: Initial Target intensity immediately upon 
+ *                       initialization and then update the linear walk time 
+ *                       (specified in GUI) is fixed
+ * V1.0.4   5-Aug-2013  Configuration and Driver codes are separated.
+ * V1.0.6   3-Sep-2013  C++ Support extended and New SW IDs added.
+ * V1.0.8   9-Dec-2013  Added software control on BCCU Output control
+ * *************************** Change history *********************************/
+
+#include "../../inc/BCCUCH01/BCCUCH01.h" 
+
+<% ArrayList<String> appsList = (ArrayList<String>)(app.getApps("app/bccuch01/"));
+for (String appIns : appsList ) {
+ appInst = appIns.substring(appIns.lastIndexOf("/")+1);%> 
+ <% String bccuchannelnumuri = null; %>
+<% String channelNo = null; %>
+ <% String bccudimappuri = null; %>
+ <% String bccudimengineappuri = null; %>
+ <% String dimengineNo = null; %>
+<% bccuchannelnumuri = app.getMappedUri(AppBaseuri + appInst + "/bccuchannelhw"); %>
+<% channelNo = bccuchannelnumuri.substring(bccuchannelnumuri.lastIndexOf("/")+1); %>
+<% int dummy = 0; %>
+<% int dummy1 = 0; %>
+<%if((app.getIntegerValue(AppBaseuri + appInst +"/bccuch_de_slelect")) == 1){%> 
+	<% bccudimappuri = app.getMappedUri(AppBaseuri + appInst + "/bccudimapp"); %> 
+	 <% bccudimengineappuri=app.getMappedUri (bccudimappuri+ "/bccudimhw");%> 
+	 <% dimengineNo = bccudimengineappuri.substring(bccudimengineappuri.lastIndexOf("/")+1); %>
+	 <%dummy=1;%><%} else{%><%dummy=0;%><%}%>
+<%if((app.getIntegerValue(AppBaseuri + appInst +"/bccuch_pen")) == 1){%> 
+		 <%dummy1=1;%><%} else{%><%dummy1=0;%><%}%>	 
+   <%String port_string = null; %>
+    <%String PORT = "0"; %>
+    <%String PIN = "0"; %>
+
+    <% int pin = 0; %>
+    <% int offset = 0; %>
+    <% int pc = 0; %>
+
+    
+    
+    <%if((app.getIntegerValue(AppBaseuri + appInst +"/bccuch01_erwdirectoutputpadenable")) == 1 ){%>
+    
+    <% port_string = app.getMappedUri(AppBaseuri + appInst + "/iohw"); %>
+    <% PORT = port_string.substring(port_string.indexOf("port/p/") + 7,port_string.indexOf("/pad/")); %>
+    <% PIN = port_string.substring(port_string.lastIndexOf("/")+1); %>
+    
+    <% pin = Integer.parseInt(PIN); %>
+    <% offset = 0; %>
+    <% pc = 0; %>
+
+    <% if(pin < 4) %>
+              <% { offset = 0x00000010; pc = 0; %> 
+    <% } else  if(pin < 8){ offset = 0x00000014; pc = 4; %>
+              <% } else  if(pin < 12){ offset = 0x00000018; pc = 8;%> 
+    <% } else  { offset = 0x00000018; pc = 12;%> 
+    <% } %>
+
+    <%}%>
+    <%else%>
+    <%{%>
+    
+    <%}%>
+    
+const BCCUCH01_HandleType  BCCUCH01_Handle<%=appInst%> =
+{
+    .BCCURegs = BCCU0,	
+    .BCCU_CH = BCCU0_CH<%=channelNo%>,	
+    .ChNum = <%=channelNo%>U,	
+    .IOCR_ptr = PORT<%= PORT%>_BASE,	/* Location of IOCR Register */
+    .port_num = <%= PORT %>, /* Port number */
+    .pin = <%= PIN %>, 	/* Pin Number */
+    
+    .IOCR_Val = PORT<%=PORT%>_IOCR<%=pc%>_PC<%=pin%>_Pos,  /* Value to be written to IOCR Register */
+    .op_en =  <%if((app.getIntegerValue(AppBaseuri + appInst +"/bccuch01_erwdirectoutputpadenable")) == 1 ){%>1U <%} else{%>0U <%}%>, /* Output Enable: 0-Disable, 1-Enable */
+    .pad_char = <%if((app.getIntegerValue(AppBaseuri + appInst +"/bccuch01_erwdirectoutputpadchar")) == 1 ){%>1U <%} else{%>0U <%}%>,  /* Pad characteristic; 0-Push pull, 1-OpenDrain */
+    .IOCR_offset = <%= offset %>,
+    .LinPres=<%=app.getIntegerValue (AppBaseuri + appInst + "/bccuchannelhw/chconfig/linpres" )%>U,
+    .InitialIntensity = <%=app.getIntegerValue (AppBaseuri + appInst + "/bccuch_ints_tchint" )%>U,
+    .DimmingSrcBypass = <%if((app.getIntegerValue(AppBaseuri + appInst +"/bccuch_dbp")) == 1){%>BCCUCH01_DE_BYPASS,<%} else{%>BCCUCH01_DE_NOT_BYPASS,<%}%>	
+    .GateEnable = <%if((app.getIntegerValue(AppBaseuri + appInst +"/bccuch_gen")) == 1){%>BCCUCH01_GATING_FN_EN,<%} else{%>BCCUCH01_GATING_FN_DS,<%}%> 
+    .FlickerWDGEnable = <%if((app.getIntegerValue(AppBaseuri + appInst +"/bccuch_wen")) == 1){%>BCCUCH01_FLICKER_WDT_EN,<%} else{%>BCCUCH01_FLICKER_WDT_DS,<%}%>
+    .EnableAtInit = <%if((app.getIntegerValue(AppBaseuri + appInst +"/enable_at_init")) == 1){%>BCCUCH01_ENABLE_AT_INIT,<%} else{%>BCCUCH01_DISABLE_AT_INIT,<%}%>	
+    .OpPassiveLvl = <%if((app.getIntegerValue(AppBaseuri + appInst +"/bccuch_chop_slelect")) == 1){%>BCCUCH01_ACTIVE_LOW,<%} else{%>BCCUCH01_ACTIVE_HIGH,<%}%>
+    .TrapEnable = <%if((app.getIntegerValue(AppBaseuri + appInst +"/bccuch_chocon_chtpe")) == 1){%>BCCUCH01_TRAP_EN,<%} else{%>BCCUCH01_TRAP_DS,<%}%>
+    .TrigEnable = <%if((app.getIntegerValue(AppBaseuri + appInst +"/bccuch_chtrig_ety")) == 1){%>BCCUCH01_TRIGGER_EN,<%} else{%>BCCUCH01_TRIGGER_DS,<%}%>	
+    .TrigSel =  <%if((app.getIntegerValue(AppBaseuri + appInst +"/bccuch_chtrig_tos")) == 1){%>BCCUCH01_TRIG_OUT1,<%} else{%>BCCUCH01_TRIG_OUT0,<%}%>
+    .TrigEdgeSel = <%if((app.getIntegerValue(AppBaseuri + appInst +"/bccuch_tred_slelect")) == 1){%>BCCUCH01_TRG_NGT_EDG,<%} else{%>BCCUCH01_TRG_PST_EDG,<%}%>	
+    .ForceTrigger = <%if((app.getIntegerValue(AppBaseuri + appInst +"/bccuch_enft")) == 1){%><%if(dummy1 == 1){%>BCCUCH01_FORCED_TRG_DS<%} else{%>BCCUCH01_FORCED_TRG_EN<%}%>,<%} else{%>BCCUCH01_FORCED_TRG_DS,<%}%> 
+    .PackerEnable =<%if((app.getIntegerValue(AppBaseuri + appInst +"/bccuch_pen")) == 1){%>BCCUCH01_PACKER_EN,<%} else{%>BCCUCH01_PACKER_DS,<%}%> 
+    .PackerThreshold = <%=app.getIntegerValue (AppBaseuri + appInst + "/bccuch_chconfig_pkth" )%>U,
+    .PackerONCmpLevel = <%=app.getIntegerValue (AppBaseuri + appInst + "/bccuch_pkcmp_oncmp" )%>U,
+    .PackerOFFCmpLevel =<%=app.getIntegerValue (AppBaseuri + appInst + "/bccuch_pkcmp_offcmp" )%>U,
+    .PackerONTimeCntrAtInit =<%=app.getIntegerValue (AppBaseuri + appInst + "/bccuch_pkcmp_oncntval" )%>U,
+    .PackerOFFTimeCntrAtInit =<%=app.getIntegerValue (AppBaseuri + appInst + "/bccuch_pkcmp_offcntval" )%>U,	
+};
+<%}%>
+
+
+const BCCUCH01_HandleType * BCCUCH01_HandleArr[BCCUCH01_NUM_INSTANCES] =
+{
+<% int instance = 0; %>
+<% for (String appIns : appsList ) { %>
+<% appInst = appIns.substring(appIns.lastIndexOf("/")+1);%>
+<% instance++; %> 
+<%}%>
+<% String lastAppInstance = null; %>
+<% for (int index = 0;  index < (instance); index++) {  %>
+   &BCCUCH01_Handle<%=index%><% if(index+1 != (instance)) {%>,<%} %> 
+<%}%>
+};
+
+
+/**
+  * @}
+  */
+ /*CODE_BLOCK_END*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

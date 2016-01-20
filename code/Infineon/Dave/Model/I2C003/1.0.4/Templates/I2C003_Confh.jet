@@ -1,0 +1,129 @@
+<%@ jet package="CodeGenerator" class="i2c003_confh_template"
+imports="java.util.* com.ifx.davex.appjetinteract.App2JetInterface" %>
+<% App2JetInterface app = (App2JetInterface) argument; %>
+
+/*CODE_BLOCK_BEGIN[I2C003_Conf.h]*/
+/*******************************************************************************
+ *
+ * Copyright (C) 2014 Infineon Technologies AG. All rights reserved.
+ *
+ * Infineon Technologies AG (Infineon) is supplying this software for use with 
+ * Infineon's microcontrollers.  
+ * This file can be freely distributed within development tools that are 
+ * supporting such microcontrollers. 
+ *
+ * THIS SOFTWARE IS PROVIDED "AS IS".  NO WARRANTIES, WHETHER EXPRESS, IMPLIED
+ * OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE APPLY TO THIS SOFTWARE.
+ * INFINEON SHALL NOT, IN ANY CIRCUMSTANCES, BE LIABLE FOR SPECIAL, INCIDENTAL, 
+ * OR CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.
+ *
+********************************************************************************
+**                                                                            **
+** PLATFORM : Infineon XMC4000/XMC1000 Series                                 **
+**                                                                            **
+** COMPILER : Compiler Independent                                            **
+**                                                                            **
+** AUTHOR   : App Developer                                                   **
+**                                                                            **
+** NOTE     : Any Changes made to this file will be overwritten during Code   **
+**            Generation                                                      **
+**                                                                            **
+********************************************************************************
+** VERSION HISTORY:
+********************************************************************************
+** v1.0.4, 17 Feb 2014,  Initial version 
+*******************************************************************************/
+<% String AppBaseuri = "app/i2c003/";%>
+/**
+ * @file   I2C003_Conf.h
+ *
+ * @App Version I2C003 <<%=app.getAppVersion(AppBaseuri) %>>
+ *
+ * @brief  This file contains global macro definitions of I2C003.
+ *
+ */
+
+#ifndef I2C003_CONF_H_
+#define I2C003_CONF_H_
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+/*******************************************************************************
+** @Defines
+*******************************************************************************/
+
+<% String MappedUri = null; %>
+<% String appInst  = null; %>
+<% String UnitInst = null; %>
+<% String ChannelInst = null; %>
+<% int NodeNr = 0; %>
+<% int USIC0_Enable = 0; %>
+<% int USIC1_Enable = 0; %>
+<% int USIC2_Enable = 0; %>
+<% int TxFifo_Enable = 0; %>
+<% int RxFifo_Enable = 0; %>
+<% int TxStd_Enable = 0; %>
+<% int RxStd_Enable = 0; %>
+<% double clockfreq = 0; %>
+<% int Is44Device = -1; %>
+<% int Is42Device = -1; %>
+<% int Is45Device = -1; %>
+<% int Is1xDevice = -1; %>
+<% String deviceId = null; %>
+<% deviceId = app.getSoftwareId(); %>
+<% if (deviceId != null)
+{      
+   Is44Device = ((deviceId.substring(0,2).compareTo("44")==0)?1:0);
+   Is42Device = ((deviceId.substring(0,2).compareTo("42")==0)?1:0);
+   Is45Device = ((deviceId.substring(0,2).compareTo("45")==0)?1:0);
+   Is1xDevice = ((deviceId.substring(0,1).compareTo("1")==0)?1:0); 	
+}%>     
+
+<% if(Is1xDevice == 1){
+  clockfreq = app.getDoubleValue (AppBaseuri + 0 + "/clockapp_XMC1000/clk002_irMCLK" );
+}else if ((Is45Device==1)||(Is44Device==1)||(Is42Device==1)){
+  clockfreq = app.getDoubleValue (AppBaseuri + 0 + "/clockapp_XMC4000/clk001_iroActualFreqPB" );
+}
+else{}
+%>
+/* System Core clock frequency in MHz */
+#define I2C003_USIC_CLOCK    <%= clockfreq%>F 
+<% ArrayList<String> appsList = (ArrayList<String>)(app.getApps("app/i2c003/"));
+ for (String appIns : appsList ) {
+ appInst = appIns.substring(appIns.lastIndexOf("/")+1);
+ MappedUri = app.getMappedUri(AppBaseuri + appInst + "/channel");
+ if((MappedUri != null) && (MappedUri != "")) {
+ NodeNr++;
+ UnitInst = MappedUri.substring(MappedUri .length()-11,MappedUri.indexOf("/channel/")); 
+ int Unit = Integer.parseInt(UnitInst); %>
+ <% if((Unit == 0) && (USIC0_Enable == 0)) { %>
+ /*USIC0 peripheral module has been configured */
+#define I2C003_PER0_USIC<%= Unit %>_ENABLED
+ <% USIC0_Enable = 1; %>
+ <%} else if ((Unit == 1) && (USIC1_Enable == 0)){%>
+ /*USIC1 peripheral module has been configured */
+#define I2C003_PER1_USIC<%= Unit %>_ENABLED
+ <% USIC1_Enable = 1; %>
+ <% } else if ((Unit == 2) && (USIC2_Enable == 0)){%>
+ /*USIC1 peripheral module has been configured */
+#define I2C003_PER1_USIC<%= Unit %>_ENABLED
+ <% USIC2_Enable = 1; %>
+ <% }%>
+<% }else { %>
+/* CHANNEL IS NOT MAPPED */
+<% } %>
+<%} %>
+/* Macro specifying the number of I2C003 handles */
+#define I2C003_NUM_HANDLES   <%=NodeNr%>
+
+
+#ifdef __cplusplus
+}
+#endif                     
+
+#endif  /* ifndef I2C003_CONF_H_ */
+
+/*CODE_BLOCK_END*/

@@ -1,0 +1,58 @@
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"BCCUGLOBAL_Conf.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.global	BCCUGlobal_Handle0
+  18              		.section	.rodata
+  19              		.align	2
+  22              	BCCUGlobal_Handle0:
+  23 0000 00000350 		.word	1342373888
+  24 0004 5000     		.short	80
+  25 0006 00       		.byte	0
+  26 0007 00       		.space	1
+  27 0008 DB00     		.short	219
+  28 000a 00       		.byte	0
+  29 000b 00       		.byte	0
+  30 000c C800     		.short	200
+  31 000e 00       		.byte	0
+  32 000f 00       		.space	1
+  33 0010 0000     		.short	0
+  34 0012 00       		.byte	0
+  35 0013 00       		.space	1
+  36              		.text
+  37              	.Letext0:
+  38              		.file 1 "c:\\dave-3.1.10\\arm-gcc\\bin\\../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/i
+  39              		.file 2 "C:\\DAVE-3.1.10\\eclipse\\/../CMSIS/Infineon/XMC1200_series/Include/XMC1200.h"
+  40              		.file 3 "../Dave/Generated/src/BCCUGLOBAL/../../inc/BCCUGLOBAL/BCCUGLOBAL.h"
+  41              		.file 4 "../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL_Conf.c"
+DEFINED SYMBOLS
+                            *ABS*:00000000 BCCUGLOBAL_Conf.c
+C:\Users\tomasoat\AppData\Local\Temp\ccclG027.s:22     .rodata:00000000 BCCUGlobal_Handle0
+C:\Users\tomasoat\AppData\Local\Temp\ccclG027.s:19     .rodata:00000000 $d
+                           .group:00000000 wm4.1.e09b9dd5224853206c418479f14d6963
+                           .group:00000000 wm4.uc_id.h.35.62dcba5f6261c1436e3866a751c1a98b
+                           .group:00000000 wm4.XMC1200.h.45.4c899b4822ac22c0f00d6fd7f173cc96
+                           .group:00000000 wm4.core_cm0.h.47.022e66414e77714da7c4b30b3ad99fe8
+                           .group:00000000 wm4.newlib.h.8.a9901dc52d1357e3e94003403d43f8b5
+                           .group:00000000 wm4.features.h.22.b72b3baab2bb2eab3661375590100b6b
+                           .group:00000000 wm4.config.h.193.5fb8ef056cdff92dec3dee9552839d8c
+                           .group:00000000 wm4._ansi.h.23.7aefdac4826acebbfc9f3822a0aeb14c
+                           .group:00000000 wm4.stdint.h.20.54ad762faa59e3c05491630641c8d8bf
+                           .group:00000000 wm4.core_cmInstr.h.39.b7b6650bdd2316848d940915272d75b8
+                           .group:00000000 wm4.core_cm0.h.135.ca70469f87e143609670bb393bfa6518
+                           .group:00000000 wm4.XMC1000_RomFunctionTable.h.31.6d9a94465618f31b040dc9cea9a47ad7
+                           .group:00000000 wm4.XMC1200.h.122.96b58b1204def4c9f76341a4e21abaf6
+
+NO UNDEFINED SYMBOLS

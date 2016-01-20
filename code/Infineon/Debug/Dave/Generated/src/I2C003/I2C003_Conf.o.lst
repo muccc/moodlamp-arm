@@ -1,0 +1,81 @@
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"I2C003_Conf.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.global	I2C003_HandleArray
+  18              		.global	I2C003_Handle0
+  19              		.section	.rodata
+  20              		.align	2
+  23              	I2C003_Handle0:
+  24 0000 00020048 		.word	1207960064
+  25 0004 00020440 		.word	1074004480
+  26 0008 0B       		.byte	11
+  27 0009 000000   		.space	3
+  28 000c 00020440 		.word	1074004480
+  29 0010 0A       		.byte	10
+  30 0011 000000   		.space	3
+  31 0014 5E79     		.short	31070
+  32 0016 0000     		.space	2
+  33 0018 64000000 		.word	100
+  34 001c 01       		.byte	1
+  35 001d 01       		.byte	1
+  36 001e 00       		.byte	0
+  37 001f 00       		.byte	0
+  38 0020 01       		.byte	1
+  39 0021 01       		.byte	1
+  40 0022 01       		.byte	1
+  41 0023 00       		.byte	0
+  42 0024 01       		.byte	1
+  43 0025 00       		.byte	0
+  44 0026 00       		.byte	0
+  45 0027 00       		.space	1
+  46 0028 0002     		.short	512
+  47 002a 0F00     		.short	15
+  48              		.data
+  49              		.align	2
+  52              	I2C003_HandleArray:
+  53 0000 00000000 		.word	I2C003_Handle0
+  54              		.text
+  55              	.Letext0:
+  56              		.file 1 "c:\\dave-3.1.10\\arm-gcc\\bin\\../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/i
+  57              		.file 2 "C:\\DAVE-3.1.10\\eclipse\\/../CMSIS/Infineon/XMC1200_series/Include/XMC1200.h"
+  58              		.file 3 "C:\\Users\\tomasoat\\Userdata\\AEPrograms\\DAVE3_workspace_32_DAVE3110\\RGB_LED_Shield_v5
+  59              		.file 4 "../Dave/Generated/src/I2C003/../../inc/I2C003/I2C003.h"
+  60              		.file 5 "../Dave/Generated/src/I2C003/I2C003_Conf.c"
+DEFINED SYMBOLS
+                            *ABS*:00000000 I2C003_Conf.c
+C:\Users\tomasoat\AppData\Local\Temp\ccCbfuRW.s:52     .data:00000000 I2C003_HandleArray
+C:\Users\tomasoat\AppData\Local\Temp\ccCbfuRW.s:23     .rodata:00000000 I2C003_Handle0
+C:\Users\tomasoat\AppData\Local\Temp\ccCbfuRW.s:20     .rodata:00000000 $d
+C:\Users\tomasoat\AppData\Local\Temp\ccCbfuRW.s:49     .data:00000000 $d
+                           .group:00000000 wm4.1.e09b9dd5224853206c418479f14d6963
+                           .group:00000000 wm4.uc_id.h.35.62dcba5f6261c1436e3866a751c1a98b
+                           .group:00000000 wm4.XMC1200.h.45.4c899b4822ac22c0f00d6fd7f173cc96
+                           .group:00000000 wm4.core_cm0.h.47.022e66414e77714da7c4b30b3ad99fe8
+                           .group:00000000 wm4.newlib.h.8.a9901dc52d1357e3e94003403d43f8b5
+                           .group:00000000 wm4.features.h.22.b72b3baab2bb2eab3661375590100b6b
+                           .group:00000000 wm4.config.h.193.5fb8ef056cdff92dec3dee9552839d8c
+                           .group:00000000 wm4._ansi.h.23.7aefdac4826acebbfc9f3822a0aeb14c
+                           .group:00000000 wm4.stdint.h.20.54ad762faa59e3c05491630641c8d8bf
+                           .group:00000000 wm4.core_cmInstr.h.39.b7b6650bdd2316848d940915272d75b8
+                           .group:00000000 wm4.core_cm0.h.135.ca70469f87e143609670bb393bfa6518
+                           .group:00000000 wm4.XMC1000_RomFunctionTable.h.31.6d9a94465618f31b040dc9cea9a47ad7
+                           .group:00000000 wm4.XMC1200.h.122.96b58b1204def4c9f76341a4e21abaf6
+                           .group:00000000 wm4.Usic.h.77.db6db4239fc9f2a70c0f0c1c261ff0c3
+                           .group:00000000 wm4.stddef.h.40.50cf36416e06376af8a9dca28536f2e4
+                           .group:00000000 wm4.types.h.60.e75c47576398c648cdcf9000ace5e3d8
+                           .group:00000000 wm4.I2C003_Conf.h.50.5fb7c255d386301836868ba2fd78b91f
+
+NO UNDEFINED SYMBOLS

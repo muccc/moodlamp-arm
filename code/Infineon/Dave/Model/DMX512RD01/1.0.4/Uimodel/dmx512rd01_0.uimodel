@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.ifx.davex.uimodel:UIDataModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.ifx.davex.uimodel="com.ifx.davex.uimodel">
+  <controls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group89" displayName="Slave Configuration" className="IfxGroupBox" controlId="1362631944611">
+    <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" verticalAlignment="RIGHT"/>
+    <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group1" displayName="Slave Configuration" className="IfxGroupBox" controlId="1390992314862">
+      <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group95" displayName="Slot Configuration" className="IfxGroupBox" controlId="1362636521198">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+        <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/dmx512rd01/0/dmx512rd01_slave_num" displayName="First Relevant Slot" className="IntegerType" paramName="app/dmx512rd01/0/dmx512rd01_slave_num:First Relevant Slot" controlId="1377836231541">
+          <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" horizontalAlignment="RIGHT"/>
+          <conversionType>dec</conversionType>
+        </subControls>
+        <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/dmx512rd01/0/dmx512rd01_num_chnl" displayName="Number of Relevant Slots" className="IntegerType" paramName="app/dmx512rd01/0/dmx512rd01_num_chnl:Number of Relevant Slots" controlId="1377836389971">
+          <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" horizontalAlignment="RIGHT"/>
+          <conversionType>dec</conversionType>
+        </subControls>
+        <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/dmx512rd01/0/dmx512rd01_AccBreDetect" displayName="Enable Accurate Break Detection" labelRequired="false" className="EnumerationType" paramName="app/dmx512rd01/0/dmx512rd01_AccBreDetect:Enable Accurate Break Detection" controlId="1391491115468">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/dmx512rd01/0/dmx512rd01_user_call_back" displayName="User Defined CallBack" className="StringType" paramName="app/dmx512rd01/0/dmx512rd01_user_call_back:User defined Callback" controlId="1390452832665">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+    </subControls>
+    <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+  </controls>
+</com.ifx.davex.uimodel:UIDataModel>

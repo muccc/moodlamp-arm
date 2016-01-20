@@ -1,0 +1,1214 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ResourceModel:Peripheral xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ResourceModel="http://www.infineon.com/Davex/Resource.ecore" name="BCCU0" description="Brightness and color control unit" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0">
+  <provided xsi:type="ResourceModel:ResourceGroup" name="channel_5" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/5">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_0.app#//@consumed.11"/>
+    <resourcesList name="chocon_chop" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/chocon/ch5op" isResolved="true"/>
+    <resourcesList name="chocon_chtpe" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/chocon/ch5tpe" isResolved="true"/>
+    <resourcesList name="chstrcon_chs" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/chstrcon/ch5s" isResolved="true"/>
+    <resourcesList name="chstrcon_cha" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/chstrcon/ch5a" isResolved="true"/>
+    <resourcesList name="chen_ech" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/chen/ech5" isResolved="true"/>
+    <resourcesList name="chtrig_tos" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/chtrig/tos5" isResolved="true"/>
+    <resourcesList name="chtrig_et" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/chtrig/et5" isResolved="true"/>
+    <resourcesList name="ltchol_ltol" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/ltchol/ltol5" isResolved="true"/>
+    <resourcesList name="ints" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/ch5_ints" isResolved="true"/>
+    <resourcesList name="int" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/ch5_int" isResolved="true"/>
+    <resourcesList name="chconfig" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/ch5_chconfig" isResolved="true"/>
+    <resourcesList name="chconfig_dsel" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/ch5_chconfig/dsel" isResolved="true"/>
+    <resourcesList name="pkcmp" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/ch5_pkcmp" isResolved="true"/>
+    <resourcesList name="pkcntr" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/ch5_pkcntr" isResolved="true"/>
+    <resourcesList name="out" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/out5" isResolved="true"/>
+    <resourcesList name="dimin" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/dimin5" isResolved="true"/>
+    <resourcesList name="in" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/in5" isResolved="true"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="in" description="channel_in" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/5/in" signalType="SINGAL" direction="IN" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_0.app#//@consumed.13"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="dimin5" description="dimming_in" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/5/dimin" signalType="SINGAL" direction="IN" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_0.app#//@consumed.15"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="out" description="channel_out" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/5/out" signalType="SINGAL" direction="OUT" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_0.app#//@consumed.16"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="TCHINT" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/5/ints/tchint" maxValue="4095" minValue="0" startPos="0" stopPos="11" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_0.app#//@consumed.17"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Target Channel Intensity</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="CHINT" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/5/int/chint" maxValue="4095" minValue="0" startPos="0" stopPos="11">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_0.app#//@consumed.18"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Channel Intensity</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PKTH" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/5/chconfig/pkth" maxValue="7" minValue="0" startPos="0" stopPos="2" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_0.app#//@consumed.19"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <toolTipHelpDescription>Packer Threshold</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PEN" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/5/chconfig/pen" maxValue="1" minValue="0" startPos="3" stopPos="3" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_0.app#//@consumed.20"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <toolTipHelpDescription>Packer Enable</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="The packer is not used"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="On-time and off-time counters are running and the packed output bitstream with the packer trigger are generated."/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DSEL" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/5/chconfig/dsel" maxValue="7" minValue="0" startPos="4" stopPos="6" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_0.app#//@consumed.21"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Dimming Select</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b000" description="Dimming Engine 0"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b001" description="Dimming Engine 1"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b010" description="Dimming Engine 2"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b011" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b100" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b101" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b110" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b111" description="Global Dimming Level"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DBP" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/5/chconfig/dbp" maxValue="1" minValue="0" startPos="7" stopPos="7" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_0.app#//@consumed.22"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Dimming Engine Bypass</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Channel brightness is the product of the selected dimming input and the channel intensity"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="No dimming input is used, channel brightness is only determined by the channel intensity level"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="GEN" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/5/chconfig/gen" maxValue="1" minValue="0" startPos="8" stopPos="8" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_0.app#//@consumed.23"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Gating Enable</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Gating function is disabled, the input signal (BCCU.INy) has no effect"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Gating function is enabled, the output gating signal is BCCU.INy"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="WEN" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/5/chconfig/wen" maxValue="1" minValue="0" startPos="9" stopPos="9" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_0.app#//@consumed.24"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <toolTipHelpDescription>Flicker Watchdog Enable</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="The flicker watchdog is not used"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="The flicker watchdog is active and limits the number of consecutive zeroes at the sigma-delta modulator output according to GLOBCON.WDMBN"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="TRED" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/5/chconfig/tred" maxValue="1" minValue="0" startPos="10" stopPos="10" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_0.app#//@consumed.25"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Trigger Edge</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Channel triggers occur on channel output transition from passive to active level"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Channel triggers occur on channel output transition from active to passive level"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="ENFT" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/5/chconfig/enft" maxValue="1" minValue="0" startPos="11" stopPos="11" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_0.app#//@consumed.26"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Forced Trigger Enable</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="No forced trigger is generated"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="The trigger generator generates a trigger if the output of the sigma-delta modulator hasn't changed state for 256 bit times; only takes effect if the packer is disabled (PEN=0)"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="LINPRES" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/5/chconfig/linpres" maxValue="1023" minValue="0" startPos="16" stopPos="25" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_0.app#//@consumed.27"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="10"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="10"/>
+    <toolTipHelpDescription>Linear Walker Clock Prescaler</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="ONCMP" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/5/pkcmp/oncmp" maxValue="255" minValue="0" startPos="16" stopPos="23" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="27"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_0.app#//@consumed.32"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="3"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="3"/>
+    <toolTipHelpDescription>Packer On-Time Compare Level</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="OFFCMP" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/5/pkcmp/offcmp" maxValue="255" minValue="0" startPos="0" stopPos="7" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="ff"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_0.app#//@consumed.33"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="c7"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="c7"/>
+    <toolTipHelpDescription>Packer Off-Time Compare Level</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="ONCNTVAL" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/5/pkcntr/oncntval" maxValue="255" minValue="0" startPos="16" stopPos="23" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_0.app#//@consumed.34"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>On-Time Counter Value</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="OFFCNTVAL" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/5/pkcntr/offcntval" maxValue="255" minValue="0" startPos="0" stopPos="7" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_0.app#//@consumed.35"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Off-Time Counter Value</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:ResourceGroup" name="channel_4" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/4">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_1.app#//@consumed.11"/>
+    <resourcesList name="chocon_chop" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/chocon/ch4op" isResolved="true"/>
+    <resourcesList name="chocon_chtpe" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/chocon/ch4tpe" isResolved="true"/>
+    <resourcesList name="chstrcon_chs" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/chstrcon/ch4s" isResolved="true"/>
+    <resourcesList name="chstrcon_cha" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/chstrcon/ch4a" isResolved="true"/>
+    <resourcesList name="chen_ech" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/chen/ech4" isResolved="true"/>
+    <resourcesList name="chtrig_tos" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/chtrig/tos4" isResolved="true"/>
+    <resourcesList name="chtrig_et" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/chtrig/et4" isResolved="true"/>
+    <resourcesList name="ltchol_ltol" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/ltchol/ltol4" isResolved="true"/>
+    <resourcesList name="ints" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/ch4_ints" isResolved="true"/>
+    <resourcesList name="int" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/ch0_int" isResolved="true"/>
+    <resourcesList name="chconfig" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/ch4_chconfig" isResolved="true"/>
+    <resourcesList name="chconfig_dsel" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/ch4_chconfig/dsel" isResolved="true"/>
+    <resourcesList name="pkcmp" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/ch4_pkcmp" isResolved="true"/>
+    <resourcesList name="pkcntr" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/ch4_pkcntr" isResolved="true"/>
+    <resourcesList name="out" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/out4" isResolved="true"/>
+    <resourcesList name="dimin" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/dimin4" isResolved="true"/>
+    <resourcesList name="in" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/in4" isResolved="true"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="in" description="channel_in" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/4/in" signalType="SINGAL" direction="IN" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_1.app#//@consumed.13"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="dimin4" description="dimming_in" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/4/dimin" signalType="SINGAL" direction="IN" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_1.app#//@consumed.15"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="out" description="channel_out" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/4/out" signalType="SINGAL" direction="OUT" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_1.app#//@consumed.16"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="TCHINT" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/4/ints/tchint" maxValue="4095" minValue="0" startPos="0" stopPos="11" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_1.app#//@consumed.17"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Target Channel Intensity</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="CHINT" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/4/int/chint" maxValue="4095" minValue="0" startPos="0" stopPos="11">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_1.app#//@consumed.18"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Channel Intensity</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PKTH" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/4/chconfig/pkth" maxValue="7" minValue="0" startPos="0" stopPos="2" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_1.app#//@consumed.19"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <toolTipHelpDescription>Packer Threshold</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PEN" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/4/chconfig/pen" maxValue="1" minValue="0" startPos="3" stopPos="3" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_1.app#//@consumed.20"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <toolTipHelpDescription>Packer Enable</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="The packer is not used"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="On-time and off-time counters are running and the packed output bitstream with the packer trigger are generated."/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DSEL" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/4/chconfig/dsel" maxValue="7" minValue="0" startPos="4" stopPos="6" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_1.app#//@consumed.21"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Dimming Select</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b000" description="Dimming Engine 0"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b001" description="Dimming Engine 1"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b010" description="Dimming Engine 2"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b011" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b100" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b101" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b110" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b111" description="Global Dimming Level"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DBP" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/4/chconfig/dbp" maxValue="1" minValue="0" startPos="7" stopPos="7" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_1.app#//@consumed.22"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Dimming Engine Bypass</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Channel brightness is the product of the selected dimming input and the channel intensity"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="No dimming input is used, channel brightness is only determined by the channel intensity level"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="GEN" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/4/chconfig/gen" maxValue="1" minValue="0" startPos="8" stopPos="8" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_1.app#//@consumed.23"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Gating Enable</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Gating function is disabled, the input signal (BCCU.INy) has no effect"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Gating function is enabled, the output gating signal is BCCU.INy"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="WEN" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/4/chconfig/wen" maxValue="1" minValue="0" startPos="9" stopPos="9" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_1.app#//@consumed.24"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <toolTipHelpDescription>Flicker Watchdog Enable</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="The flicker watchdog is not used"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="The flicker watchdog is active and limits the number of consecutive zeroes at the sigma-delta modulator output according to GLOBCON.WDMBN"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="TRED" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/4/chconfig/tred" maxValue="1" minValue="0" startPos="10" stopPos="10" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_1.app#//@consumed.25"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Trigger Edge</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Channel triggers occur on channel output transition from passive to active level"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Channel triggers occur on channel output transition from active to passive level"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="ENFT" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/4/chconfig/enft" maxValue="1" minValue="0" startPos="11" stopPos="11" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_1.app#//@consumed.26"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Forced Trigger Enable</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="No forced trigger is generated"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="The trigger generator generates a trigger if the output of the sigma-delta modulator hasn't changed state for 256 bit times; only takes effect if the packer is disabled (PEN=0)"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="LINPRES" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/4/chconfig/linpres" maxValue="1023" minValue="0" startPos="16" stopPos="25" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_1.app#//@consumed.27"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="10"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="10"/>
+    <toolTipHelpDescription>Linear Walker Clock Prescaler</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="ONCMP" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/4/pkcmp/oncmp" maxValue="255" minValue="0" startPos="16" stopPos="23" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="27"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_1.app#//@consumed.32"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="3"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="3"/>
+    <toolTipHelpDescription>Packer On-Time Compare Level</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="OFFCMP" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/4/pkcmp/offcmp" maxValue="255" minValue="0" startPos="0" stopPos="7" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="ff"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_1.app#//@consumed.33"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="c7"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="c7"/>
+    <toolTipHelpDescription>Packer Off-Time Compare Level</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="ONCNTVAL" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/4/pkcntr/oncntval" maxValue="255" minValue="0" startPos="16" stopPos="23" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_1.app#//@consumed.34"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>On-Time Counter Value</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="OFFCNTVAL" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/4/pkcntr/offcntval" maxValue="255" minValue="0" startPos="0" stopPos="7" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_1.app#//@consumed.35"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Off-Time Counter Value</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:ResourceGroup" name="channel_3" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/3">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_2.app#//@consumed.11"/>
+    <resourcesList name="chocon_chop" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/chocon/ch3op" isResolved="true"/>
+    <resourcesList name="chocon_chtpe" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/chocon/ch3tpe" isResolved="true"/>
+    <resourcesList name="chstrcon_chs" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/chstrcon/ch3s" isResolved="true"/>
+    <resourcesList name="chstrcon_cha" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/chstrcon/ch3a" isResolved="true"/>
+    <resourcesList name="chen_ech" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/chen/ech3" isResolved="true"/>
+    <resourcesList name="chtrig_tos" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/chtrig/tos3" isResolved="true"/>
+    <resourcesList name="chtrig_et" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/chtrig/et3" isResolved="true"/>
+    <resourcesList name="ltchol_ltol" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/ltchol/ltol3" isResolved="true"/>
+    <resourcesList name="ints" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/ch3_ints" isResolved="true"/>
+    <resourcesList name="int" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/ch3_int" isResolved="true"/>
+    <resourcesList name="chconfig" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/ch3_chconfig" isResolved="true"/>
+    <resourcesList name="chconfig_dsel" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/ch3_chconfig/dsel" isResolved="true"/>
+    <resourcesList name="pkcmp" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/ch3_pkcmp" isResolved="true"/>
+    <resourcesList name="pkcntr" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/ch3_pkcntr" isResolved="true"/>
+    <resourcesList name="out" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/out3" isResolved="true"/>
+    <resourcesList name="dimin" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/dimin3" isResolved="true"/>
+    <resourcesList name="in" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/in3" isResolved="true"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="in" description="channel_in" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/3/in" signalType="SINGAL" direction="IN" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_2.app#//@consumed.13"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="dimin3" description="dimming_in" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/3/dimin" signalType="SINGAL" direction="IN" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_2.app#//@consumed.15"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="out" description="channel_out" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/3/out" signalType="SINGAL" direction="OUT" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_2.app#//@consumed.16"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="TCHINT" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/3/ints/tchint" maxValue="4095" minValue="0" startPos="0" stopPos="11" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_2.app#//@consumed.17"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Target Channel Intensity</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="CHINT" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/3/int/chint" maxValue="4095" minValue="0" startPos="0" stopPos="11">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_2.app#//@consumed.18"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Channel Intensity</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PKTH" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/3/chconfig/pkth" maxValue="7" minValue="0" startPos="0" stopPos="2" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_2.app#//@consumed.19"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <toolTipHelpDescription>Packer Threshold</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PEN" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/3/chconfig/pen" maxValue="1" minValue="0" startPos="3" stopPos="3" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_2.app#//@consumed.20"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <toolTipHelpDescription>Packer Enable</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="The packer is not used"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="On-time and off-time counters are running and the packed output bitstream with the packer trigger are generated."/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DSEL" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/3/chconfig/dsel" maxValue="7" minValue="0" startPos="4" stopPos="6" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_2.app#//@consumed.21"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Dimming Select</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b000" description="Dimming Engine 0"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b001" description="Dimming Engine 1"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b010" description="Dimming Engine 2"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b011" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b100" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b101" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b110" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b111" description="Global Dimming Level"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DBP" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/3/chconfig/dbp" maxValue="1" minValue="0" startPos="7" stopPos="7" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_2.app#//@consumed.22"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Dimming Engine Bypass</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Channel brightness is the product of the selected dimming input and the channel intensity"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="No dimming input is used, channel brightness is only determined by the channel intensity level"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="GEN" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/3/chconfig/gen" maxValue="1" minValue="0" startPos="8" stopPos="8" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_2.app#//@consumed.23"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Gating Enable</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Gating function is disabled, the input signal (BCCU.INy) has no effect"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Gating function is enabled, the output gating signal is BCCU.INy"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="WEN" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/3/chconfig/wen" maxValue="1" minValue="0" startPos="9" stopPos="9" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_2.app#//@consumed.24"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <toolTipHelpDescription>Flicker Watchdog Enable</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="The flicker watchdog is not used"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="The flicker watchdog is active and limits the number of consecutive zeroes at the sigma-delta modulator output according to GLOBCON.WDMBN"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="TRED" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/3/chconfig/tred" maxValue="1" minValue="0" startPos="10" stopPos="10" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_2.app#//@consumed.25"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Trigger Edge</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Channel triggers occur on channel output transition from passive to active level"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Channel triggers occur on channel output transition from active to passive level"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="ENFT" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/3/chconfig/enft" maxValue="1" minValue="0" startPos="11" stopPos="11" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_2.app#//@consumed.26"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Forced Trigger Enable</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="No forced trigger is generated"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="The trigger generator generates a trigger if the output of the sigma-delta modulator hasn't changed state for 256 bit times; only takes effect if the packer is disabled (PEN=0)"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="LINPRES" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/3/chconfig/linpres" maxValue="1023" minValue="0" startPos="16" stopPos="25" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_2.app#//@consumed.27"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="10"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="10"/>
+    <toolTipHelpDescription>Linear Walker Clock Prescaler</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="ONCMP" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/3/pkcmp/oncmp" maxValue="255" minValue="0" startPos="16" stopPos="23" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="27"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_2.app#//@consumed.32"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="3"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="3"/>
+    <toolTipHelpDescription>Packer On-Time Compare Level</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="OFFCMP" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/3/pkcmp/offcmp" maxValue="255" minValue="0" startPos="0" stopPos="7" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="ff"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_2.app#//@consumed.33"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="c7"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="c7"/>
+    <toolTipHelpDescription>Packer Off-Time Compare Level</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="ONCNTVAL" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/3/pkcntr/oncntval" maxValue="255" minValue="0" startPos="16" stopPos="23" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_2.app#//@consumed.34"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>On-Time Counter Value</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="OFFCNTVAL" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/3/pkcntr/offcntval" maxValue="255" minValue="0" startPos="0" stopPos="7" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_2.app#//@consumed.35"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Off-Time Counter Value</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:ResourceGroup" name="channel_0" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/0">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_3.app#//@consumed.11"/>
+    <resourcesList name="chocon_chop" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/chocon/ch0op" isResolved="true"/>
+    <resourcesList name="chocon_chtpe" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/chocon/ch0tpe" isResolved="true"/>
+    <resourcesList name="chstrcon_chs" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/chstrcon/ch0s" isResolved="true"/>
+    <resourcesList name="chstrcon_cha" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/chstrcon/ch0a" isResolved="true"/>
+    <resourcesList name="chen_ech" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/chen/ech0" isResolved="true"/>
+    <resourcesList name="chtrig_tos" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/chtrig/tos0" isResolved="true"/>
+    <resourcesList name="chtrig_et" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/chtrig/et0" isResolved="true"/>
+    <resourcesList name="ltchol_ltol" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/ltchol/ltol0" isResolved="true"/>
+    <resourcesList name="ints" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/ch0_ints" isResolved="true"/>
+    <resourcesList name="int" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/ch0_int" isResolved="true"/>
+    <resourcesList name="chconfig" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/ch0_chconfig" isResolved="true"/>
+    <resourcesList name="chconfig_dsel" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/ch0_chconfig/dsel" isResolved="true"/>
+    <resourcesList name="pkcmp" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/ch0_pkcmp" isResolved="true"/>
+    <resourcesList name="pkcntr" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/ch0_pkcntr" isResolved="true"/>
+    <resourcesList name="out" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/out0" isResolved="true"/>
+    <resourcesList name="dimin" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/dimin0" isResolved="true"/>
+    <resourcesList name="in" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/in0" isResolved="true"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="in" description="channel_in" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/0/in" signalType="SINGAL" direction="IN" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_3.app#//@consumed.13"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="dimin0" description="dimming_in" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/0/dimin" signalType="SINGAL" direction="IN" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_3.app#//@consumed.15"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="out" description="channel_out" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/0/out" signalType="SINGAL" direction="OUT" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_3.app#//@consumed.16"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="TCHINT" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/0/ints/tchint" maxValue="4095" minValue="0" startPos="0" stopPos="11" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_3.app#//@consumed.17"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="15"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="15"/>
+    <toolTipHelpDescription>Target Channel Intensity</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="CHINT" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/0/int/chint" maxValue="4095" minValue="0" startPos="0" stopPos="11">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_3.app#//@consumed.18"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Channel Intensity</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PKTH" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/0/chconfig/pkth" maxValue="7" minValue="0" startPos="0" stopPos="2" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_3.app#//@consumed.19"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <toolTipHelpDescription>Packer Threshold</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PEN" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/0/chconfig/pen" maxValue="1" minValue="0" startPos="3" stopPos="3" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_3.app#//@consumed.20"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Packer Enable</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="The packer is not used"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="On-time and off-time counters are running and the packed output bitstream with the packer trigger are generated."/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DSEL" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/0/chconfig/dsel" maxValue="7" minValue="0" startPos="4" stopPos="6" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_3.app#//@consumed.21"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Dimming Select</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b000" description="Dimming Engine 0"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b001" description="Dimming Engine 1"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b010" description="Dimming Engine 2"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b011" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b100" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b101" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b110" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b111" description="Global Dimming Level"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DBP" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/0/chconfig/dbp" maxValue="1" minValue="0" startPos="7" stopPos="7" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_3.app#//@consumed.22"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <toolTipHelpDescription>Dimming Engine Bypass</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Channel brightness is the product of the selected dimming input and the channel intensity"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="No dimming input is used, channel brightness is only determined by the channel intensity level"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="GEN" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/0/chconfig/gen" maxValue="1" minValue="0" startPos="8" stopPos="8" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_3.app#//@consumed.23"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Gating Enable</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Gating function is disabled, the input signal (BCCU.INy) has no effect"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Gating function is enabled, the output gating signal is BCCU.INy"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="WEN" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/0/chconfig/wen" maxValue="1" minValue="0" startPos="9" stopPos="9" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_3.app#//@consumed.24"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Flicker Watchdog Enable</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="The flicker watchdog is not used"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="The flicker watchdog is active and limits the number of consecutive zeroes at the sigma-delta modulator output according to GLOBCON.WDMBN"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="TRED" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/0/chconfig/tred" maxValue="1" minValue="0" startPos="10" stopPos="10" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_3.app#//@consumed.25"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Trigger Edge</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Channel triggers occur on channel output transition from passive to active level"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Channel triggers occur on channel output transition from active to passive level"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="ENFT" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/0/chconfig/enft" maxValue="1" minValue="0" startPos="11" stopPos="11" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_3.app#//@consumed.26"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Forced Trigger Enable</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="No forced trigger is generated"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="The trigger generator generates a trigger if the output of the sigma-delta modulator hasn't changed state for 256 bit times; only takes effect if the packer is disabled (PEN=0)"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="LINPRES" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/0/chconfig/linpres" maxValue="1023" minValue="0" startPos="16" stopPos="25" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_3.app#//@consumed.27"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Linear Walker Clock Prescaler</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="ONCMP" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/0/pkcmp/oncmp" maxValue="255" minValue="0" startPos="16" stopPos="23" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="27"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_3.app#//@consumed.32"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="27"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="27"/>
+    <toolTipHelpDescription>Packer On-Time Compare Level</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="OFFCMP" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/0/pkcmp/offcmp" maxValue="255" minValue="0" startPos="0" stopPos="7" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="ff"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_3.app#//@consumed.33"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="ff"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="ff"/>
+    <toolTipHelpDescription>Packer Off-Time Compare Level</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="ONCNTVAL" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/0/pkcntr/oncntval" maxValue="255" minValue="0" startPos="16" stopPos="23" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_3.app#//@consumed.34"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>On-Time Counter Value</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="OFFCNTVAL" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/0/pkcntr/offcntval" maxValue="255" minValue="0" startPos="0" stopPos="7" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_3.app#//@consumed.35"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Off-Time Counter Value</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:ResourceGroup" name="channel_6" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/6">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_4.app#//@consumed.11"/>
+    <resourcesList name="chocon_chop" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/chocon/ch6op" isResolved="true"/>
+    <resourcesList name="chocon_chtpe" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/chocon/ch6tpe" isResolved="true"/>
+    <resourcesList name="chstrcon_chs" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/chstrcon/ch6s" isResolved="true"/>
+    <resourcesList name="chstrcon_cha" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/chstrcon/ch6a" isResolved="true"/>
+    <resourcesList name="chen_ech" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/chen/ech6" isResolved="true"/>
+    <resourcesList name="chtrig_tos" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/chtrig/tos6" isResolved="true"/>
+    <resourcesList name="chtrig_et" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/chtrig/et6" isResolved="true"/>
+    <resourcesList name="ltchol_ltol" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/ltchol/ltol6" isResolved="true"/>
+    <resourcesList name="ints" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/ch6_ints" isResolved="true"/>
+    <resourcesList name="int" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/ch6_int" isResolved="true"/>
+    <resourcesList name="chconfig" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/ch6_chconfig" isResolved="true"/>
+    <resourcesList name="chconfig_dsel" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/ch6_chconfig/dsel" isResolved="true"/>
+    <resourcesList name="pkcmp" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/ch6_pkcmp" isResolved="true"/>
+    <resourcesList name="pkcntr" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/ch6_pkcntr" isResolved="true"/>
+    <resourcesList name="out" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/out6" isResolved="true"/>
+    <resourcesList name="dimin" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/dimin6" isResolved="true"/>
+    <resourcesList name="in" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/in6" isResolved="true"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="in" description="channel_in" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/6/in" signalType="SINGAL" direction="IN" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_4.app#//@consumed.13"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="dimin6" description="dimming_in" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/6/dimin" signalType="SINGAL" direction="IN" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_4.app#//@consumed.15"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="out" description="channel_out" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/6/out" signalType="SINGAL" direction="OUT" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_4.app#//@consumed.16"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="TCHINT" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/6/ints/tchint" maxValue="4095" minValue="0" startPos="0" stopPos="11" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_4.app#//@consumed.17"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="15"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="15"/>
+    <toolTipHelpDescription>Target Channel Intensity</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="CHINT" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/6/int/chint" maxValue="4095" minValue="0" startPos="0" stopPos="11">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_4.app#//@consumed.18"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Channel Intensity</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PKTH" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/6/chconfig/pkth" maxValue="7" minValue="0" startPos="0" stopPos="2" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_4.app#//@consumed.19"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <toolTipHelpDescription>Packer Threshold</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PEN" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/6/chconfig/pen" maxValue="1" minValue="0" startPos="3" stopPos="3" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_4.app#//@consumed.20"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Packer Enable</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="The packer is not used"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="On-time and off-time counters are running and the packed output bitstream with the packer trigger are generated."/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DSEL" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/6/chconfig/dsel" maxValue="7" minValue="0" startPos="4" stopPos="6" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_4.app#//@consumed.21"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Dimming Select</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b000" description="Dimming Engine 0"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b001" description="Dimming Engine 1"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b010" description="Dimming Engine 2"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b011" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b100" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b101" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b110" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b111" description="Global Dimming Level"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DBP" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/6/chconfig/dbp" maxValue="1" minValue="0" startPos="7" stopPos="7" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_4.app#//@consumed.22"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <toolTipHelpDescription>Dimming Engine Bypass</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Channel brightness is the product of the selected dimming input and the channel intensity"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="No dimming input is used, channel brightness is only determined by the channel intensity level"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="GEN" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/6/chconfig/gen" maxValue="1" minValue="0" startPos="8" stopPos="8" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_4.app#//@consumed.23"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Gating Enable</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Gating function is disabled, the input signal (BCCU.INy) has no effect"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Gating function is enabled, the output gating signal is BCCU.INy"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="WEN" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/6/chconfig/wen" maxValue="1" minValue="0" startPos="9" stopPos="9" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_4.app#//@consumed.24"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Flicker Watchdog Enable</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="The flicker watchdog is not used"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="The flicker watchdog is active and limits the number of consecutive zeroes at the sigma-delta modulator output according to GLOBCON.WDMBN"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="TRED" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/6/chconfig/tred" maxValue="1" minValue="0" startPos="10" stopPos="10" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_4.app#//@consumed.25"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Trigger Edge</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Channel triggers occur on channel output transition from passive to active level"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Channel triggers occur on channel output transition from active to passive level"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="ENFT" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/6/chconfig/enft" maxValue="1" minValue="0" startPos="11" stopPos="11" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_4.app#//@consumed.26"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Forced Trigger Enable</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="No forced trigger is generated"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="The trigger generator generates a trigger if the output of the sigma-delta modulator hasn't changed state for 256 bit times; only takes effect if the packer is disabled (PEN=0)"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="LINPRES" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/6/chconfig/linpres" maxValue="1023" minValue="0" startPos="16" stopPos="25" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_4.app#//@consumed.27"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Linear Walker Clock Prescaler</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="ONCMP" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/6/pkcmp/oncmp" maxValue="255" minValue="0" startPos="16" stopPos="23" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="27"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_4.app#//@consumed.32"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="27"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="27"/>
+    <toolTipHelpDescription>Packer On-Time Compare Level</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="OFFCMP" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/6/pkcmp/offcmp" maxValue="255" minValue="0" startPos="0" stopPos="7" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="ff"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_4.app#//@consumed.33"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="ff"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="ff"/>
+    <toolTipHelpDescription>Packer Off-Time Compare Level</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="ONCNTVAL" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/6/pkcntr/oncntval" maxValue="255" minValue="0" startPos="16" stopPos="23" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_4.app#//@consumed.34"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>On-Time Counter Value</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="OFFCNTVAL" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/6/pkcntr/offcntval" maxValue="255" minValue="0" startPos="0" stopPos="7" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_4.app#//@consumed.35"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Off-Time Counter Value</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:ResourceGroup" name="channel_2" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/2">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_5.app#//@consumed.11"/>
+    <resourcesList name="chocon_chop" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/chocon/ch2op" isResolved="true"/>
+    <resourcesList name="chocon_chtpe" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/chocon/ch2tpe" isResolved="true"/>
+    <resourcesList name="chstrcon_chs" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/chstrcon/ch2s" isResolved="true"/>
+    <resourcesList name="chstrcon_cha" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/chstrcon/ch2a" isResolved="true"/>
+    <resourcesList name="chen_ech" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/chen/ech2" isResolved="true"/>
+    <resourcesList name="chtrig_tos" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/chtrig/tos2" isResolved="true"/>
+    <resourcesList name="chtrig_et" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/chtrig/et2" isResolved="true"/>
+    <resourcesList name="ltchol_ltol" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/ltchol/ltol2" isResolved="true"/>
+    <resourcesList name="ints" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/ch2_ints" isResolved="true"/>
+    <resourcesList name="int" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/ch2_int" isResolved="true"/>
+    <resourcesList name="chconfig" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/ch2_chconfig" isResolved="true"/>
+    <resourcesList name="chconfig_dsel" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/ch2_chconfig/dsel" isResolved="true"/>
+    <resourcesList name="pkcmp" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/ch2_pkcmp" isResolved="true"/>
+    <resourcesList name="pkcntr" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/ch2_pkcntr" isResolved="true"/>
+    <resourcesList name="out" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/out2" isResolved="true"/>
+    <resourcesList name="dimin" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/dimin2" isResolved="true"/>
+    <resourcesList name="in" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/in2" isResolved="true"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="in" description="channel_in" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/2/in" signalType="SINGAL" direction="IN" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_5.app#//@consumed.13"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="dimin2" description="dimming_in" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/2/dimin" signalType="SINGAL" direction="IN" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_5.app#//@consumed.15"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="out" description="channel_out" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/2/out" signalType="SINGAL" direction="OUT" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_5.app#//@consumed.16"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="TCHINT" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/2/ints/tchint" maxValue="4095" minValue="0" startPos="0" stopPos="11" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_5.app#//@consumed.17"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="15"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="15"/>
+    <toolTipHelpDescription>Target Channel Intensity</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="CHINT" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/2/int/chint" maxValue="4095" minValue="0" startPos="0" stopPos="11">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_5.app#//@consumed.18"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Channel Intensity</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PKTH" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/2/chconfig/pkth" maxValue="7" minValue="0" startPos="0" stopPos="2" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_5.app#//@consumed.19"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <toolTipHelpDescription>Packer Threshold</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PEN" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/2/chconfig/pen" maxValue="1" minValue="0" startPos="3" stopPos="3" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_5.app#//@consumed.20"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Packer Enable</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="The packer is not used"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="On-time and off-time counters are running and the packed output bitstream with the packer trigger are generated."/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DSEL" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/2/chconfig/dsel" maxValue="7" minValue="0" startPos="4" stopPos="6" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_5.app#//@consumed.21"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Dimming Select</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b000" description="Dimming Engine 0"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b001" description="Dimming Engine 1"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b010" description="Dimming Engine 2"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b011" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b100" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b101" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b110" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b111" description="Global Dimming Level"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DBP" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/2/chconfig/dbp" maxValue="1" minValue="0" startPos="7" stopPos="7" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_5.app#//@consumed.22"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <toolTipHelpDescription>Dimming Engine Bypass</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Channel brightness is the product of the selected dimming input and the channel intensity"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="No dimming input is used, channel brightness is only determined by the channel intensity level"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="GEN" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/2/chconfig/gen" maxValue="1" minValue="0" startPos="8" stopPos="8" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_5.app#//@consumed.23"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Gating Enable</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Gating function is disabled, the input signal (BCCU.INy) has no effect"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Gating function is enabled, the output gating signal is BCCU.INy"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="WEN" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/2/chconfig/wen" maxValue="1" minValue="0" startPos="9" stopPos="9" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_5.app#//@consumed.24"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Flicker Watchdog Enable</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="The flicker watchdog is not used"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="The flicker watchdog is active and limits the number of consecutive zeroes at the sigma-delta modulator output according to GLOBCON.WDMBN"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="TRED" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/2/chconfig/tred" maxValue="1" minValue="0" startPos="10" stopPos="10" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_5.app#//@consumed.25"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Trigger Edge</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Channel triggers occur on channel output transition from passive to active level"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Channel triggers occur on channel output transition from active to passive level"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="ENFT" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/2/chconfig/enft" maxValue="1" minValue="0" startPos="11" stopPos="11" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_5.app#//@consumed.26"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Forced Trigger Enable</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="No forced trigger is generated"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="The trigger generator generates a trigger if the output of the sigma-delta modulator hasn't changed state for 256 bit times; only takes effect if the packer is disabled (PEN=0)"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="LINPRES" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/2/chconfig/linpres" maxValue="1023" minValue="0" startPos="16" stopPos="25" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_5.app#//@consumed.27"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Linear Walker Clock Prescaler</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="ONCMP" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/2/pkcmp/oncmp" maxValue="255" minValue="0" startPos="16" stopPos="23" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="27"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_5.app#//@consumed.32"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="27"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="27"/>
+    <toolTipHelpDescription>Packer On-Time Compare Level</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="OFFCMP" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/2/pkcmp/offcmp" maxValue="255" minValue="0" startPos="0" stopPos="7" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="ff"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_5.app#//@consumed.33"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="ff"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="ff"/>
+    <toolTipHelpDescription>Packer Off-Time Compare Level</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="ONCNTVAL" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/2/pkcntr/oncntval" maxValue="255" minValue="0" startPos="16" stopPos="23" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_5.app#//@consumed.34"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>On-Time Counter Value</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="OFFCNTVAL" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/2/pkcntr/offcntval" maxValue="255" minValue="0" startPos="0" stopPos="7" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUCH01/1.0.10/bccuch01_5.app#//@consumed.35"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Off-Time Counter Value</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:ResourceGroup" name="DIMMING_ENGINE_2" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/dimming_engine/2">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUDIM01/1.0.8/bccudim01_0.app#//@consumed.5"/>
+    <resourcesList name="dls" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/de2_dls" isResolved="true"/>
+    <resourcesList name="dl" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/de2_dl" isResolved="true"/>
+    <resourcesList name="dtt" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/de2_dtt" isResolved="true"/>
+    <resourcesList name="deen_ede" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/deen/ede2" isResolved="true"/>
+    <resourcesList name="destrcon_des" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/destrcon/de2s" isResolved="true"/>
+    <resourcesList name="destrcon_dea" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/destrcon/de2a" isResolved="true"/>
+    <resourcesList name="dimout" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/dim2out" isResolved="true"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="TDLEV" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/dimming_engine/2/dls/tdlev" maxValue="4095" minValue="0" startPos="0" stopPos="11" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUDIM01/1.0.8/bccudim01_0.app#//@consumed.6"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="fff"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="fff"/>
+    <toolTipHelpDescription>Target Dimming Level</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DLEV" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/dimming_engine/2/dl/dlev" maxValue="4095" minValue="0" startPos="0" stopPos="11">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUDIM01/1.0.8/bccudim01_0.app#//@consumed.7"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Dimming Level</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DIMDIV" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/dimming_engine/2/dtt/dimdiv" maxValue="1023" minValue="0" startPos="0" stopPos="9" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUDIM01/1.0.8/bccudim01_0.app#//@consumed.8"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Dimming Clock Divider</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DTEN" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/dimming_engine/2/dtt/dten" maxValue="1" minValue="0" startPos="16" stopPos="16" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUDIM01/1.0.8/bccudim01_0.app#//@consumed.9"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Dither Enable</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="No dithering"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Dithering is added to every dimming step if the dimming level is below 128; the coarse curve is used for the entire dimming range"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="CSEL" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/dimming_engine/2/dtt/csel" maxValue="1" minValue="0" startPos="17" stopPos="17" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUDIM01/1.0.8/bccudim01_0.app#//@consumed.10"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Curve Select</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Coarse curve"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Fine curve"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="dimzout" description="dimming_engine_dimming_out" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/dimming_engine/2/dimout" signalType="SINGAL" direction="OUT" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUDIM01/1.0.8/bccudim01_0.app#//@consumed.12"/>
+  </provided>
+  <provided xsi:type="ResourceModel:ResourceGroup" name="GLOBAL" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/global">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUGLOBAL/1.0.12/bccuglobal_0.app#//@consumed.1"/>
+    <resourcesList name="globcon_suscfg" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/globcon/suscfg" isResolved="true"/>
+    <resourcesList name="globcon_wdmbn" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/globcon/wdmbn" isResolved="true"/>
+    <resourcesList name="globclk" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/globclk" isResolved="true"/>
+    <resourcesList name="id" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/id" isResolved="true"/>
+    <resourcesList name="globdim" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/globdim" isResolved="true"/>
+    <resourcesList name="globdimout" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/global_globdimout" isResolved="true"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="FCLK_PS" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/global/globclk/fclk_ps" maxValue="4095" minValue="0" startPos="0" stopPos="11" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="190"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUGLOBAL/1.0.12/bccuglobal_0.app#//@consumed.18"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="c8"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="c8"/>
+    <toolTipHelpDescription>Fast Clock Prescaler Factor</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0" description="No clock"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="1" description="Divide by 1"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="4095" description="Divide by 4095"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DCLK_PS" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/global/globclk/dclk_ps" maxValue="4095" minValue="0" startPos="16" stopPos="27" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="db"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUGLOBAL/1.0.12/bccuglobal_0.app#//@consumed.19"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="6e"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="6e"/>
+    <toolTipHelpDescription>Dimmer Clock Prescaler Factor</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0" description="No clock"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="1" description="Divide by 1"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="4095" description="Divide by 4095"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="BCS" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/global/globclk/bcs" maxValue="1" minValue="0" startPos="15" stopPos="15" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUGLOBAL/1.0.12/bccuglobal_0.app#//@consumed.20"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Bit-Clock Selector</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Normal Mode: BCCU_bclk is generated from BCCU_fclk by a division of 4"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Fast Mode: BCCU_bclk is the same as BCCU_fclk"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="GLOBDIM" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/global/globdim/globdim" maxValue="4095" minValue="0" startPos="0" stopPos="11" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUGLOBAL/1.0.12/bccuglobal_0.app#//@consumed.34"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Global Dimming Level</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="globdimout" description="global_dimming_level_register" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/global/globdimout" signalType="SINGAL" direction="OUT" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUGLOBAL/1.0.12/bccuglobal_0.app#//@consumed.41"/>
+  </provided>
+  <provided xsi:type="ResourceModel:ResourceGroup" name="TRAP" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/trap">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUGLOBAL/1.0.12/bccuglobal_0.app#//@consumed.2"/>
+    <resourcesList name="globcon_traped" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/globcon/traped" isResolved="true"/>
+    <resourcesList name="globcon_trapis" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/globcon/trapis" isResolved="true"/>
+    <resourcesList name="evfr_tpf" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/evfr/tpf" isResolved="true"/>
+    <resourcesList name="evfr_tpsf" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/evfr/tpsf" isResolved="true"/>
+    <resourcesList name="evfr_tpinl" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/evfr/tpinl" isResolved="true"/>
+    <resourcesList name="evfsr_tpfs" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/evfsr/tpfs" isResolved="true"/>
+    <resourcesList name="evfsr_tps" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/evfsr/tps" isResolved="true"/>
+    <resourcesList name="evfcr_tpfc" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/evfcr/tpfc" isResolved="true"/>
+    <resourcesList name="evfcr_tpc" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/evfcr/tpc" isResolved="true"/>
+    <resourcesList name="evier_tpien" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/evier/tpien" isResolved="true"/>
+    <resourcesList name="trap_out" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/trap_out" isResolved="true"/>
+    <resourcesList name="trap_in" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/trap_in" isResolved="true"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="TRAPED" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/trap/globcon_traped" maxValue="1" minValue="0" startPos="10" stopPos="10" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUGLOBAL/1.0.12/bccuglobal_0.app#//@consumed.33"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Trap Edge</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Trap occurs (trap flag is set) on rising edge of the BCCU.TRAPL signal"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Trap occurs (trap flag is set) on falling edge of the BCCU.TRAPL signal"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="trap_in" description="trap_in" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/trap/trap_in" signalType="SINGAL" direction="OUT" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUGLOBAL/1.0.12/bccuglobal_0.app#//@consumed.42"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="trap_out" description="trap_out" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/trap/trap_out" signalType="SINGAL" direction="OUT" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUGLOBAL/1.0.12/bccuglobal_0.app#//@consumed.43"/>
+  </provided>
+  <provided xsi:type="ResourceModel:ResourceGroup" name="TRIGGER" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/trigger">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUGLOBAL/1.0.12/bccuglobal_0.app#//@consumed.3"/>
+    <resourcesList name="globcon_tm" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/globcon/tm" isResolved="true"/>
+    <resourcesList name="globcon_trd" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/globcon/trdel" isResolved="true"/>
+    <resourcesList name="globcon_ltrs" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/globcon/ltrs" isResolved="true"/>
+    <resourcesList name="evfr_t0f" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/evfr/t0f" isResolved="true"/>
+    <resourcesList name="evfr_t1f" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/evfr/t1f" isResolved="true"/>
+    <resourcesList name="evfsr_t0fs" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/evfsr/t0fs" isResolved="true"/>
+    <resourcesList name="evfsr_t1fs" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/evfsr/t1fs" isResolved="true"/>
+    <resourcesList name="evfcr_t0fc" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/evfcr/t0fc" isResolved="true"/>
+    <resourcesList name="evfcr_t1fc" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/evfcr/t1fc" isResolved="true"/>
+    <resourcesList name="evier_t0ien" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/evier/t0ien" isResolved="true"/>
+    <resourcesList name="evier_t1ien" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/evier/t1ien" isResolved="true"/>
+    <resourcesList name="trigger_out0" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/trigger_out0" isResolved="true"/>
+    <resourcesList name="trigger_out1" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/trigger_out1" isResolved="true"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="TM" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/trigger/globcon_tm" maxValue="1" minValue="0" startPos="0" stopPos="0" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUGLOBAL/1.0.12/bccuglobal_0.app#//@consumed.30"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Trigger Mode</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Mode 0: BCCU trigger occurs if there is any channel trigger (OR logic)"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Mode 1: BCCU trigger occurs if there is a channel trigger event on the active channel. When this happens, the next trigger-enabled channel will be active following the round robin."/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="trigger_out1" description="TRIGGER_OUT1" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/trigger/trigger_out1" signalType="SINGAL" direction="OUT" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUGLOBAL/1.0.12/bccuglobal_0.app#//@consumed.44"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="trigger_out0" description="TRIGGER_OUT0" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/trigger/trigger_out0" signalType="SINGAL" direction="OUT" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUGLOBAL/1.0.12/bccuglobal_0.app#//@consumed.45"/>
+  </provided>
+  <provided xsi:type="ResourceModel:ResourceGroup" name="PACKER_FIFO_EVENT" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/packer_fifo_event">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUGLOBAL/1.0.12/bccuglobal_0.app#//@consumed.4"/>
+    <resourcesList name="evfr_ff" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/evfr/ff" isResolved="true"/>
+    <resourcesList name="evfr_ef" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/evfr/ef" isResolved="true"/>
+    <resourcesList name="evfsr_ffs" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/evfsr/ffs" isResolved="true"/>
+    <resourcesList name="evfsr_efs" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/evfsr/efs" isResolved="true"/>
+    <resourcesList name="evfcr_ffc" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/evfcr/ffc" isResolved="true"/>
+    <resourcesList name="evfcr_efc" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/evfcr/efc" isResolved="true"/>
+    <resourcesList name="evier_fien" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/evier/fien" isResolved="true"/>
+    <resourcesList name="evier_eien" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/evier/eien" isResolved="true"/>
+    <resourcesList name="event_full" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/event_full" isResolved="true"/>
+    <resourcesList name="event_empty" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/bccu/0/event_empty" isResolved="true"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="event_empty" description="event_empty" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/packer_fifo_event/event_empty" signalType="SINGAL" direction="OUT" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUGLOBAL/1.0.12/bccuglobal_0.app#//@consumed.15"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="event_full" description="event_full" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/packer_fifo_event/event_full" signalType="SINGAL" direction="OUT" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../BCCUGLOBAL/1.0.12/bccuglobal_0.app#//@consumed.16"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DSEL" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/3/chconfig_dsel" maxValue="7" minValue="0" startPos="4" stopPos="6" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <toolTipHelpDescription>Dimming Select</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b000" description="Dimming Engine 0"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b001" description="Dimming Engine 1"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b010" description="Dimming Engine 2"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b011" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b100" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b101" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b110" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b111" description="Global Dimming Level"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DSEL" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/4/chconfig_dsel" maxValue="7" minValue="0" startPos="4" stopPos="6" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <toolTipHelpDescription>Dimming Select</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b000" description="Dimming Engine 0"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b001" description="Dimming Engine 1"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b010" description="Dimming Engine 2"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b011" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b100" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b101" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b110" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b111" description="Global Dimming Level"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DSEL" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/5/chconfig_dsel" maxValue="7" minValue="0" startPos="4" stopPos="6" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <toolTipHelpDescription>Dimming Select</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b000" description="Dimming Engine 0"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b001" description="Dimming Engine 1"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b010" description="Dimming Engine 2"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b011" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b100" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b101" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b110" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b111" description="Global Dimming Level"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DSEL" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/6/chconfig_dsel" maxValue="7" minValue="0" startPos="4" stopPos="6" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="7"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="7"/>
+    <toolTipHelpDescription>Dimming Select</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b000" description="Dimming Engine 0"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b001" description="Dimming Engine 1"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b010" description="Dimming Engine 2"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b011" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b100" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b101" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b110" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b111" description="Global Dimming Level"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DSEL" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/0/chconfig_dsel" maxValue="7" minValue="0" startPos="4" stopPos="6" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="7"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="7"/>
+    <toolTipHelpDescription>Dimming Select</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b000" description="Dimming Engine 0"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b001" description="Dimming Engine 1"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b010" description="Dimming Engine 2"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b011" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b100" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b101" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b110" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b111" description="Global Dimming Level"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DSEL" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/channel/2/chconfig_dsel" maxValue="7" minValue="0" startPos="4" stopPos="6" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="7"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="7"/>
+    <toolTipHelpDescription>Dimming Select</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b000" description="Dimming Engine 0"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b001" description="Dimming Engine 1"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b010" description="Dimming Engine 2"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b011" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b100" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b101" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b110" description="Reserved"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b111" description="Global Dimming Level"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="TRAPIS" URI="http://www.infineon.com/0.10.0/peripheral/bccu/0/trap/globcon_trapis" maxValue="15" minValue="0" startPos="6" stopPos="9" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Trap Input Pin Selector</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0000" description="BCCU.TRAPINA"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0001" description="BCCU.TRAPINB"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0010" description="BCCU.TRAPINC"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0011" description="BCCU.TRAPIND"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0100" description="BCCU.TRAPINE"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0101" description="BCCU.TRAPINF"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0110" description="BCCU.TRAPING"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0111" description="BCCU.TRAPINH"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1000" description="BCCU.TRAPINI"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1001" description="BCCU.TRAPING"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1010" description="BCCU.TRAPINK"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1011" description="BCCU.TRAPINL"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1100" description="BCCU.TRAPINM"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1101" description="BCCU.TRAPINN"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1110" description="BCCU.TRAPINO"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1111" description="BCCU.TRAPINP"/>
+  </provided>
+  <categoryDescription description="Brightness and color control unit (BCCU)" name="bccu"/>
+</ResourceModel:Peripheral>

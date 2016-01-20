@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.ifx.davex.uimodel:UIDataModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.ifx.davex.uimodel="com.ifx.davex.uimodel">
+  <controls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="DefaultPage72" displayName="NVM" className="IfxGroupBox" controlId="1366108443508">
+    <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+    <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group5" displayName="Configurations" className="IfxGroupBox" controlId="1366803795639">
+      <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" grabExcessHorizontalSpace="true" verticalAlignment="LEFT"/>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/flash003/0/flash003_erwFlashMemoryReq" displayName="Required Flash Size(Bytes)" className="IntegerType" paramName="app/flash003/0/flash003_erwFlashMemoryReq:Flash Memory Required" controlId="1368097511741">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" horizontalAlignment="RIGHT"/>
+        <conversionType>dec</conversionType>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/flash003/0/flash003_erwStartAddress" displayName="Start Address" readonly="true" className="IntegerType" paramName="app/flash003/0/flash003_erwStartAddress:Starting Address of the Flash" controlId="1368097550112" defaultType="hex">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" horizontalAlignment="RIGHT"/>
+        <conversionType>dec</conversionType>
+        <conversionType>hex</conversionType>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/flash003/0/flash003_erwFlashMemoryActual" displayName="Actual Flash Size(Bytes)" readonly="true" className="IntegerType" paramName="app/flash003/0/flash003_erwFlashMemoryActual:Actual Flash Memory allocated" controlId="1368097614153" defaultType="hex">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" horizontalAlignment="RIGHT"/>
+        <conversionType>dec</conversionType>
+        <conversionType>hex</conversionType>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/flash003/0/flash003_erwEndAddress" displayName="End Address" readonly="true" className="IntegerType" paramName="app/flash003/0/flash003_erwEndAddress:End Address of the Flash" controlId="1368097448830" defaultType="hex">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" horizontalAlignment="RIGHT"/>
+        <conversionType>dec</conversionType>
+        <conversionType>hex</conversionType>
+      </subControls>
+      <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout" numColumns="2"/>
+    </subControls>
+    <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group93" displayName="Event Handler" className="IfxGroupBox" controlId="1366804282601">
+      <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" horizontalAlignment="LEFT" verticalAlignment="LEFT"/>
+      <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group66" displayName="Event1" className="IfxGroupBox" controlId="1390887135447">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+        <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/flash003/0/flash003_erwCompletionofSequence" displayName="" className="EnumerationType" paramName="app/flash003/0/flash003_erwCompletionofSequence:Interrupts for Seq" controlId="1390887319298">
+          <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+        </subControls>
+        <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/flash003/0/flash003_irwCallbackFunc" displayName="User defined Event Handler" className="StringType" constraint="if(CM.getParamValue(&quot;app/flash003/0/flash003_erwCompletionofSequence/0&quot;) == &quot;1&quot;) &#xD;&#xA;{&#xD;&#xA;      CM.setVisible(true); &#xD;&#xA;     CM.setEnable(true);&#xD;&#xA;}&#xD;&#xA;else &#xD;&#xA;{&#xD;&#xA;    CM.setVisible(true); &#xD;&#xA;    CM.setEnable(false); &#xD;&#xA;}" paramName="app/flash003/0/flash003_irwCallbackFunc:User defined Event Handler" controlId="1374550325972">
+          <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+        </subControls>
+        <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group45" displayName="Event2" className="IfxGroupBox" controlId="1390887163337">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+        <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/flash003/0/flash003_erwdoublebiteccevent" displayName="" className="EnumerationType" paramName="app/flash003/0/flash003_erwdoublebiteccevent:Interrupts for ECC" controlId="1390887329818">
+          <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+        </subControls>
+        <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/flash003/0/flash003_irwCallbackFunc2" displayName="User defined Event Handler" className="StringType" constraint="if(CM.getParamValue(&quot;app/flash003/0/flash003_erwdoublebiteccevent/0&quot;) == &quot;1&quot;) &#xD;&#xA;{&#xD;&#xA;      CM.setVisible(true); &#xD;&#xA;     CM.setEnable(true);&#xD;&#xA;}&#xD;&#xA;else &#xD;&#xA;{&#xD;&#xA;    CM.setVisible(true); &#xD;&#xA;    CM.setEnable(false); &#xD;&#xA;}" paramName="app/flash003/0/flash003_irwCallbackFunc2:User defined Event Handler for ECC Error" controlId="1390887187947">
+          <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+        </subControls>
+        <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+      </subControls>
+      <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout" numColumns="2"/>
+    </subControls>
+    <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+  </controls>
+</com.ifx.davex.uimodel:UIDataModel>

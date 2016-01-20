@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.ifx.davex.uimodel:UIDataModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.ifx.davex.uimodel="com.ifx.davex.uimodel">
+  <controls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="DefaultPage42" displayName="Configuration" className="IfxGroupBox" controlId="1355398542347">
+    <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+    <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group17" displayName="Color Lamp Selection" className="IfxGroupBox" controlId="1357545987691">
+      <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/colorlamp01/0/colorlamp01_redlampsel" displayName="Red" className="EnumerationType" constraint="if(CM.getParamValue(&quot;app/colorlamp01/0colorlamp01_redlampseldummy&quot;) ==&quot;0&quot;) &#xD;&#xA;{&#xD;&#xA;  if(CM.getInstanceCount(&quot;app/bccuch01&quot;) == &quot;8&quot;)&#xD;&#xA;  {&#xD;&#xA;     CM.setEnable(false); &#xD;&#xA;  }else{&#xD;&#xA;    CM.setEnable(true); &#xD;&#xA;  }&#xD;&#xA;}&#xD;&#xA;if(CM.getParamValue(&quot;app/colorlamp01/0/colorlamp01_fromupperuidisable&quot;) ==1)&#xD;&#xA;{&#xD;&#xA;CM.setEnable(false); &#xD;&#xA;}else{&#xD;&#xA;    CM.setEnable(true); &#xD;&#xA;}" paramName="app/colorlamp01/0/colorlamp01_redlampsel:Red" controlId="1357635455777">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/colorlamp01/0/colorlamp01_greenlampsel" displayName="Green" className="EnumerationType" constraint="if(CM.getParamValue(&quot;app/colorlamp01/0/colorlamp01_fromupperuidisable&quot;) ==1)&#xD;&#xA;{&#xD;&#xA;CM.setEnable(false); &#xD;&#xA;}else{&#xD;&#xA;CM.setEnable(true);&#xD;&#xA;}" paramName="app/colorlamp01/0/colorlamp01_greenlampsel:Green" controlId="1357816650235">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/colorlamp01/0/colorlamp01_bluelampsel" displayName="Blue" className="EnumerationType" constraint="if(CM.getParamValue(&quot;app/colorlamp01/0/colorlamp01_fromupperuidisable&quot;) ==1)&#xD;&#xA;{&#xD;&#xA;CM.setEnable(false); &#xD;&#xA;}else{&#xD;&#xA;CM.setEnable(true);&#xD;&#xA;}" paramName="app/colorlamp01/0/colorlamp01_bluelampsel:Blue" controlId="1357816654619">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/colorlamp01/0/colorlamp01_whitelampsel" displayName="White" className="EnumerationType" constraint="if(CM.getParamValue(&quot;app/colorlamp01/0/colorlamp01_fromupperuidisable&quot;) ==1)&#xD;&#xA;{&#xD;&#xA;CM.setEnable(false); &#xD;&#xA;}else{&#xD;&#xA;CM.setEnable(true);&#xD;&#xA;}" paramName="app/colorlamp01/0/colorlamp01_whitelampsel:White" controlId="1357816659564">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/colorlamp01/0/colorlamp01_amberlampsel" displayName="Amber" className="EnumerationType" constraint="if(CM.getParamValue(&quot;app/colorlamp01/0/colorlamp01_fromupperuidisable&quot;) ==1)&#xD;&#xA;{&#xD;&#xA;CM.setEnable(false); &#xD;&#xA;}else{&#xD;&#xA;CM.setEnable(true);&#xD;&#xA;}" paramName="app/colorlamp01/0/colorlamp01_amberlampsel:Amber" controlId="1357816664868">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/colorlamp01/0/colorlamp01_freelampsel" displayName="Free" className="EnumerationType" constraint="if(CM.getParamValue(&quot;app/colorlamp01/0/colorlamp01_fromupperuidisable&quot;) ==1)&#xD;&#xA;{&#xD;&#xA;CM.setEnable(false); &#xD;&#xA;}else{&#xD;&#xA;CM.setEnable(true);&#xD;&#xA;}" paramName="app/colorlamp01/0/colorlamp01_freelampsel:Free" controlId="1357816669486">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout" numColumns="3"/>
+    </subControls>
+    <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/colorlamp01/0/colorlamp01_dimsel" displayName="Source of Dimming" className="EnumerationType" paramName="app/colorlamp01/0/colorlamp01_dimsel:Source of Dimming" controlId="1355398577667">
+      <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+    </subControls>
+    <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+  </controls>
+</com.ifx.davex.uimodel:UIDataModel>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.ifx.davex.uimodel:UIDataModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.ifx.davex.uimodel="com.ifx.davex.uimodel">
+  <controls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="DefaultPage" displayName="Channel Configuration" className="IfxGroupBox" controlId="1354703795894">
+    <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" grabExcessHorizontalSpace="true" grabExcessVerticalSpace="true" horizontalAlignment="CENTER" verticalAlignment="CENTER"/>
+    <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group0" displayName="Channel Configuration" className="IfxGroupBox" controlId="1354712799711">
+      <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccuch01/0/enable_at_init" displayName="Channel Enable" className="EnumerationType" paramName="app/bccuch01/0/enable_at_init:Channel Enable" controlId="1358751384431">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccuch01/0/bccuch_gen" displayName="Output Gating" className="EnumerationType" paramName="app/bccuch01/0/bccuch_gen:Output Gating" controlId="1358751495597">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccuch01/0/bccuch_wen" displayName="Flicker Watchdog" className="EnumerationType" paramName="app/bccuch01/0/bccuch_wen:Flicker Watchdog" controlId="1358751516860">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccuch01/0/bccuch_chtrig_ety" displayName="Trigger Enable" className="EnumerationType" paramName="app/bccuch01/0/bccuch_chtrig_ety:Trigger Enable" controlId="1358751527374">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccuch01/0/bccuch_tred_slelect" displayName="Trigger Edge Selection" className="EnumerationType" paramName="app/bccuch01/0/bccuch_tred_slelect:Trigger Edge Selection" controlId="1358751544066">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccuch01/0/bccuch_chtrig_tos" displayName="Trigger Output Selection" className="EnumerationType" paramName="app/bccuch01/0/bccuch_chtrig_tos:Trigger Output Selection" controlId="1386203758218">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccuch01/0/bccuch_enft" displayName="Forced Trigger Selection" className="EnumerationType" constraint="if(CM.getParamValue(&quot;app/bccuch01/0/bccuch_pen/0&quot;) ==&quot;1&quot;) &#xD;&#xA;{&#xD;&#xA;  CM.setEnable(false);  &#xD;&#xA;}else{&#xD;&#xA;   CM.setEnable(true);  &#xD;&#xA;}" paramName="app/bccuch01/0/bccuch_enft:Forced Trigger Selection" controlId="1358751560477">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccuch01/0/bccuch_chocon_chtpe" displayName="Trap Enable" className="EnumerationType" paramName="app/bccuch01/0/bccuch_chocon_chtpe:Trap Enable" controlId="1358751764182">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccuch01/0/bccuch_chop_slelect" displayName="Output Passive Level Selection" className="EnumerationType" paramName="app/bccuch01/0/bccuch_chop_slelect:Output Passive Level Selection" controlId="1358751768987">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout" numColumns="3"/>
+    </subControls>
+    <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group98" displayName="Dimming Engine Configuration" className="IfxGroupBox" controlId="1358752501915">
+      <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccuch01/0/bccuch_de_slelect" displayName="Source of Dimming" className="EnumerationType" constraint="if(CM.getParamValue(&quot;app/bccuch01/0/bccuch_dimsel_bytoplevelapp_dummy&quot;) ==&quot;1&quot;) &#xD;&#xA;{&#xD;&#xA;   CM.setEnable(false); &#xD;&#xA;}else{&#xD;&#xA;    CM.setEnable(true); &#xD;&#xA;}" paramName="app/bccuch01/0/bccuch_de_slelect:Source of Dimming" controlId="1358752532319">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccuch01/0/bccuch_dbp" displayName="Dimming Input Bypass" className="EnumerationType" paramName="app/bccuch01/0/bccuch_dbp:Dimming Input Bypass" controlId="1358752536063">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout" numColumns="2"/>
+    </subControls>
+    <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group84" displayName="Linear Walk Configuration" className="IfxGroupBox" controlId="1358752563816">
+      <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccuch01/0/bccuch_Linear_walk_config_linpres" displayName="Desired Linear Walk Time" className="IntegerType" paramName="app/bccuch01/0/bccuch_Linear_walk_config_linpres:Desired Linear Walk Time" controlId="1358752602176" defaultType="msec" customControl="true">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+        <conversionType>msec</conversionType>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccuch01/0/bccuch_Linear_walk_Actual" displayName="Actual Linear Walk Time" readonly="true" className="IntegerType" paramName="app/bccuch01/0/bccuch_Linear_walk_Actual:Actual Linear Walk Time" controlId="1358755884889" defaultType="msec" customControl="true">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+        <conversionType>msec</conversionType>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccuch01/0/bccuch_chconfig_linpres" displayName="LINPRES" readonly="true" className="IntegerType" paramName="app/bccuch01/0/bccuch_chconfig_linpres:LINPRES" controlId="1358755902969">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+        <conversionType>dec</conversionType>
+      </subControls>
+      <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+    </subControls>
+    <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+  </controls>
+  <controls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Page22" displayName="Intensity and Packer Configuration" className="IfxGroupBox" controlId="1358752764229">
+    <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+    <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group13" displayName="Initial Intensity" className="IfxGroupBox" controlId="1358752844896">
+      <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccuch01/0/bccuch_ints_tchint" displayName="Channel Intensity" className="IntegerType" paramName="app/bccuch01/0/bccuch_ints_tchint:Channel Intensity" controlId="1358752895080">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+        <conversionType>dec</conversionType>
+      </subControls>
+      <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+    </subControls>
+    <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group27" displayName="Packer Comparator Configuration" className="IfxGroupBox" controlId="1358753022638">
+      <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccuch01/0/bccuch_pen" displayName="Packer Selection" className="EnumerationType" paramName="app/bccuch01/0/bccuch_pen:Packer Selection" controlId="1358753098499">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccuch01/0/bccuch_chconfig_pkth" displayName="Packer FIFO Depth" className="IntegerType" constraint="if(CM.getParamValue(&quot;app/bccuch01/0/bccuch_pen&quot;) ==0)&#xD;&#xA;{&#xD;&#xA;CM.setEnable(false); &#xD;&#xA;}else{&#xD;&#xA;CM.setEnable(true);&#xD;&#xA;}" paramName="app/bccuch01/0/bccuch_chconfig_pkth:Packer FIFO Depth" controlId="1358753104365">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+        <conversionType>dec</conversionType>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccuch01/0/bccuch_pkcmp_oncntval" displayName="Initial on-bit counter value" className="IntegerType" constraint="if(CM.getParamValue(&quot;app/bccuch01/0/bccuch_pen&quot;) ==0)&#xD;&#xA;{&#xD;&#xA;CM.setEnable(false); &#xD;&#xA;}else{&#xD;&#xA;CM.setEnable(true);&#xD;&#xA;}" paramName="app/bccuch01/0/bccuch_pkcmp_oncntval:Initial on-bit counter value" controlId="1358753154845">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+        <conversionType>dec</conversionType>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccuch01/0/bccuch_pkcmp_offcntval" displayName="Initial off-bit counter value" className="IntegerType" constraint="if(CM.getParamValue(&quot;app/bccuch01/0/bccuch_pen&quot;) ==0)&#xD;&#xA;{&#xD;&#xA;CM.setEnable(false); &#xD;&#xA;}else{&#xD;&#xA;CM.setEnable(true);&#xD;&#xA;}" paramName="app/bccuch01/0/bccuch_pkcmp_offcntval:Initial off-bit counter value" controlId="1358753186498">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+        <conversionType>dec</conversionType>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccuch01/0/bccuch_pkcmp_oncmp" displayName="Number of on-bits grouped together" className="IntegerType" constraint="if(CM.getParamValue(&quot;app/bccuch01/0/bccuch_pen&quot;) ==0)&#xD;&#xA;{&#xD;&#xA;CM.setEnable(false); &#xD;&#xA;}else{&#xD;&#xA;CM.setEnable(true);&#xD;&#xA;}" paramName="app/bccuch01/0/bccuch_pkcmp_oncmp:Number of on-bits grouped together" controlId="1358753195031">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+        <conversionType>dec</conversionType>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccuch01/0/bccuch_pkcmp_offcmp" displayName="Number of off-bits grouped together" className="IntegerType" constraint="if(CM.getParamValue(&quot;app/bccuch01/0/bccuch_pen&quot;) ==0)&#xD;&#xA;{&#xD;&#xA;CM.setEnable(false); &#xD;&#xA;}else{&#xD;&#xA;CM.setEnable(true);&#xD;&#xA;}" paramName="app/bccuch01/0/bccuch_pkcmp_offcmp:Number of off-bits grouped together" controlId="1358753205888">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+        <conversionType>dec</conversionType>
+      </subControls>
+      <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+    </subControls>
+    <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+  </controls>
+  <controls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Page6" displayName="Pin Configuration" className="IfxGroupBox" controlId="1386204556258">
+    <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+    <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group28" displayName="Direct Output pin Configuration" className="IfxGroupBox" controlId="1386204628299">
+      <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccuch01/0/bccuch01_erwdirectoutputpadenable" displayName="Output Enable" className="EnumerationType" paramName="app/bccuch01/0/bccuch01_erwdirectoutputpadenable:Output Enable" controlId="1386204660763">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/bccuch01/0/bccuch01_erwdirectoutputpadchar" displayName="Output Characteristics" className="EnumerationType" constraint="if(CM.getParamValue(&quot;app/bccuch01/0/bccuch01_erwdirectoutputpadenable/0&quot;) == &quot;1&quot;)&#xD;&#xA;{&#xD;&#xA;&#x9;CM.setEnable(true);&#xD;&#xA;}&#xD;&#xA;else&#xD;&#xA;{&#xD;&#xA;    CM.setEnable(false);&#xD;&#xA;}" paramName="app/bccuch01/0/bccuch01_erwdirectoutputpadchar:Output Characteristics" controlId="1386204670903">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+    </subControls>
+    <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+  </controls>
+</com.ifx.davex.uimodel:UIDataModel>

@@ -1,0 +1,85 @@
+<%@ jet package="CodeGenerator" class="dmx512rd01_confc_template"
+imports="java.util.* java.text.*  com.ifx.davex.appjetinteract.App2JetInterface" %>
+<% App2JetInterface app = (App2JetInterface) argument; %>
+<% String AppBaseuri = "app/dmx512rd01/"; %>
+<% String appInst = null; %>
+
+<% ArrayList<String> appsList = (ArrayList<String>)(app.getApps("app/dmx512rd01/"));
+for (String appIns : appsList ) {
+    appInst = appIns.substring(appIns.lastIndexOf("/")+1);%>
+ <%}%>
+
+<% String SliceUri = app.getMappedUri(AppBaseuri + appInst + "/capturehw"); %>
+<%String kernelNo = null; %>
+<%String Channel = null; %>
+<% if(SliceUri != null) {%>
+<%kernelNo =SliceUri.substring(SliceUri.indexOf("peripheral/ccu4/")+16,SliceUri.indexOf("/cc4/"));%>
+<%Channel =SliceUri.substring(SliceUri.indexOf("/cc4/")+5,SliceUri.length());%> 
+<%}%>
+<% String UnitInst = null; %>
+<% String ChannelInst = null; %>
+<% String MappedUri = app.getMappedUri(AppBaseuri + appInst + "/usic_channhw"); %>
+<% UnitInst = MappedUri.substring(MappedUri .length()-11,MappedUri.indexOf("/channel/")); %>
+<% ChannelInst = MappedUri.substring(MappedUri.length()-1); %>
+
+/*CODE_BLOCK_BEGIN[DMX512RD01_Conf.h]*/
+
+/******************************************************************************
+ * @file     DMX512RD01_Conf.c
+ *
+ * @brief  This defines the dynamic or User defined  objects, enums 
+ * and APIs of DMX512 APP
+ * @version  V<%= app.getAppVersion(AppBaseuri)%>
+ * @date     06 Feb 2014
+ *
+ * @note
+ * Copyright (C) 2012-2013 Infineon Technologies AG. All rights reserved.
+
+ *
+ * @par
+ * Infineon Technologies AG (Infineon) is supplying this software for use with 
+ * Infineon’s microcontrollers.
+ *   
+ * This file can be freely distributed within development tools that are 
+ * supporting such microcontrollers.
+ *  
+ *
+ * @par
+ * THIS SOFTWARE IS PROVIDED "AS IS".  NO WARRANTIES, WHETHER EXPRESS, IMPLIED
+ * OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE APPLY TO THIS SOFTWARE.
+ * INFINEON SHALL NOT, IN ANY CIRCUMSTANCES, BE LIABLE FOR SPECIAL, INCIDENTAL,
+ * OR CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.
+ *
+ ******************************************************************************/
+/*
+ * *************************** Change history ********************************
+ * *************************** Change history ********************************
+ * V1.0.0, 26 Sep 2013, Initial Version
+ * V1.0.2, 20 Jan 2014, CAPCOM dependency is reduced by removing MBTS and 
+ * MBB checks
+ * V1.0.4, 06 Feb 2014, New feature accurate break detection is provided
+ */
+
+ /*******************************************************************************
+ ** INCLUDE FILES                                                             **
+ ******************************************************************************/
+#include "../../inc/DMX512RD01/DMX512RD01.h"
+#include "stddef.h"
+
+const DMX512RD01_HandleType DMX512RD01_Handle<%=appInst%> =
+{
+    /** CMSIS defined structure for USIC module */
+    .UsicRegPtr = USIC<%= UnitInst %>_CH<%= ChannelInst %>,
+	/* Capture Hardware related Variables */
+<% if(SliceUri != null) {%>
+	.CaptureBasePtr = (CCU4_GLOBAL_TypeDef *)CCU4<%= kernelNo%>, /* <! Capture Base Register pointer */
+	.CaptureRegPtr = (CCU4_CC4_TypeDef * )CCU4<%= kernelNo%>_CC4<%= Channel%>, /* <! Capture Channel Register Pointer */
+<%}%>
+<% else {%>
+	.CaptureBasePtr = NULL, /* <! Capture Base Register pointer */
+	.CaptureRegPtr = NULL, /* <! Capture Channel Register Pointer */
+<%}%>
+};
+
+/*CODE_BLOCK_END*/

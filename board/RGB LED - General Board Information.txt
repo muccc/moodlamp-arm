@@ -1,0 +1,8 @@
+?	Usual FR4 TG130 PCB
+?	Red PCB colour
+?	1.5mm PCB thickness
+?	White silk
+?	Chem Ni/Pd/Au surface
+?	35um copper
+?	Two layers
+?	Mounting on top layer only

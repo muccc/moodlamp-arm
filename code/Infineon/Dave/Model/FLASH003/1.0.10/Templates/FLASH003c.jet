@@ -1,0 +1,818 @@
+<%@ jet package="CodeGenerator" class="flash003c_template" 
+imports="java.util.* com.ifx.davex.appjetinteract.App2JetInterface" %>
+<% App2JetInterface app = (App2JetInterface) argument; %>
+<% String AppBaseuri = "app/flash003/";%>
+/*CODE_BLOCK_BEGIN[FLASH003.c]*/
+
+/*******************************************************************************
+Copyright (c) 2014, Infineon Technologies AG                                  **
+All rights reserved.                                                          **
+                                                                              **
+Redistribution and use in source and binary forms, with or without            **
+modification,are permitted provided that the following conditions are met:    **
+                                                                              **
+*Redistributions of source code must retain the above copyright notice,       **
+this list of conditions and the following disclaimer.                         **
+*Redistributions in binary form must reproduce the above copyright notice,    **
+this list of conditions and the following disclaimer in the documentation     **
+and/or other materials provided with the distribution.                        **
+*Neither the name of the copyright holders nor the names of its contributors  **
+may be used to endorse or promote products derived from this software without ** 
+specific prior written permission.                                            **
+                                                                              **
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"   **
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE     **
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE    **
+ARE  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE    **
+LIABLE  FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR          **
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF          **
+SUBSTITUTE GOODS OR  SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS     **
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN       **
+CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)        **
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE    **
+POSSIBILITY OF SUCH DAMAGE.                                                   **
+                                                                              **
+To improve the quality of the software, users are encouraged to share         **
+modifications, enhancements or bug fixes with Infineon Technologies AG        **
+dave@infineon.com).                                                           **
+                                                                              **
+********************************************************************************
+**                                                                            **
+**                                                                            **
+** PLATFORM : Infineon XMC1000 Series                                         **
+**                                                                            **
+** COMPILER : GCC                                                             **
+**                                                                            **
+** AUTHOR   : App Developer                                                   **
+**                                                                            **
+** MAY BE CHANGED BY USER [Yes/No]: Yes                                       **
+**                                                                            **
+** MODIFICATION DATE : Jan 06, 2014                                           **
+**                                                                            **
+*******************************************************************************/
+/* Revision History
+ *****************************************************************************
+ * Date          Version   Remarks
+ * 28 June 2013  1.0.0     Initial Version
+ * 28 Aug  2013  1.0.4     1.FLASH003_RegisterCallbackEvent,
+ *                           FLASH003_lEccInterrupt,
+ *                           FLASH003_lSeqInterrupt are added 
+ *                         2.Each api is edited to support Asynchronous mode
+ *                           of Operation with interrupts.
+ *                         3.FLASH003_Read APIs are changed to read the data
+ *                           with ECC errors also.
+ *                         4.Changed the naming convention of the ROM apis and
+ * 							 return status.
+ * 30 Oct  2013   1.0.6    1.In FLASH003_WriteMultipleBlocks(),
+ *                           FLASH003_WriteBlock() APIs corrected the macros to 
+ *                           read the Verification status from NVM_STATUS
+ *                           Register.
+ *                         2.In FLASH003_Read APIs during checking for ECC 
+ *                           errors changed the condition check to return 
+ *                           Flash_error if any one is set.
+ * 27 Jan  2014   1.0.8    1.Defect fix 36939 :Whenever interrupts are enabled,
+ *                           the FLASH003_global_status is cleared if  wrong 
+ *                           parameter is passed as input to the APIs. 
+ *                         2.FLASH003_Init() changed to support auto 
+ *                           registration of the events configured in UI.
+ *                         3.FLASH003_RegisterCallbackEvent() api is changed to 
+ *                           support registration of 5 callbacks to each event.
+ */
+
+/**
+ * @file FLASH003.c
+ *
+ * App Version FLASH003 <<%=app.getAppVersion(AppBaseuri) %>>
+ *
+ * @brief  Flash App implementation.
+ *
+ */
+/*******************************************************************************
+ ** INCLUDE FILES                                                             **
+ ******************************************************************************/
+#include <DAVE3.h>
+#include "../../inc/FLASH003/FLASH003_Conf.h"
+/*******************************************************************************
+**                      Private Macro Definitions                             **
+*******************************************************************************/
+/*Macro to check the Block alignment of the input Address*/
+#define FLASH003_BLOCK_ALIGN_CHECK          0xFU
+/*Command for ONESHOT_WRITE_AUTOVERIFY*/
+#define FLASH003_ONESHOT_WRITE_AUTOVERIFY   0x51U
+/*Reset State*/
+#define FLASH003_RESET                      0x0000U
+/*Macro to check ECC and Verification error*/
+#define FLASH003_ECCVERRRST_IDLESET         0x3000U
+/*Delay of 10us for each block write*/
+#define FLASH003_DELAY                      0x2AAU
+/*Macro to check for NULL Event Handler*/
+#define FLASH003_NULL_HANDLER               0x0U
+/*Macro to check for Max. Call back Events*/
+#define FLASH003_MAX_CALLBACK               0x2U
+/*Macro to check the interrupt status*/
+#define FLASH003_INTR_ENABLED               0x1U
+/* ROM function Table */
+/*Start address of the ROM function table*/
+#define FLASH003_ROM_FUNCTION_TABLE_START   (0x00000100U)   
+/*Pointer to Erase Flash Page routine*/
+#define FLASH003_NvmErase            (FLASH003_ROM_FUNCTION_TABLE_START + 0x00U) 
+/*Pointer to Erase, Program & Verify Flash Page routine*/
+#define FLASH003_NvmProgVerify       (FLASH003_ROM_FUNCTION_TABLE_START + 0x04U) 
+/*Macro for Erase Flash Page routine*/
+#define FLASH003_NvmErasePage \
+        (*((FLASH003_NVM_STATUS (**) (uint32_t * src_add)) FLASH003_NvmErase))
+/*Macro for ProgVerifyPage Flash Page routine*/
+#define FLASH003_NvmProgVerifyPage \
+        (*((FLASH003_NVM_STATUS (**) (uint32_t * src_add, uint32_t * dst_add))\
+        FLASH003_NvmProgVerify))
+/*******************************************************************************
+**                      Private Type Definitions                              **
+*******************************************************************************/
+
+/*******************************************************************************
+**                 Private Function Declarations                              **
+*******************************************************************************/
+/*Local function to write the Block of Data*/
+void FLASH003_lWriteBlock (uint32_t Address, const uint32_t pBuf[]);
+#if (FLASH003_SEQ_INTERRUPT == FLASH003_INTR_ENABLED)
+/*Local Handler for End of Sequence event to register with NVIC_SR001 App*/
+void FLASH003_lSeqInterrupt(uint32_t cbargs);
+#endif
+#if (FLASH003_ECC_INTERRUPT == FLASH003_INTR_ENABLED)
+/*Local Handler for ECC event to register with NVIC_SR001 App*/
+void FLASH003_lEccInterrupt(uint32_t cbargs);
+#endif
+/*******************************************************************************
+**                      Extern Declaration                                    **
+*******************************************************************************/
+
+/*******************************************************************************
+**                      Global Constant Definitions                           **
+*******************************************************************************/
+
+/*******************************************************************************
+**                      Global Variable Definitions                           **
+*******************************************************************************/
+
+/*******************************************************************************
+**                      Private Constant Definitions                          **
+*******************************************************************************/
+
+/*******************************************************************************
+**                      Private Function Definitions                          **
+*******************************************************************************/
+
+/*******************************************************************************
+**                      Public Function Definitions                           **
+*******************************************************************************/
+
+void FLASH003_Init()
+{
+    <% String Fls_NVMUri = null; %>
+    <% String appInst  = null; %>
+    <% ArrayList<String> appsList = (ArrayList<String>)(app.getApps("app/flash003/"));
+    for (String appIns : appsList ) {
+        appInst = appIns.substring(appIns.lastIndexOf("/")+1);%>
+        <% Fls_NVMUri = app.getMappedUri(AppBaseuri + appInst +"/nvm"); %>
+        <% if ((Fls_NVMUri != null) && (Fls_NVMUri.trim() != "")) { %>
+	const FLASH003_HandleType* Handle;
+	Handle = &FLASH003_Handle<%=appInst%>;
+    /*Enabling flash Idle State*/
+	Handle->FlashRegsPtr->NVMPROG = FLASH003_ECCVERRRST_IDLESET;
+    /*reset ECC2READ,ECC1READ in NVMSTATUS*/
+    SET_BIT(Handle->FlashRegsPtr->NVMPROG,NVM_NVMPROG_RSTECC_Pos);
+    /*reset Write protocol error in NVMSTATUS*/
+    SET_BIT(Handle->FlashRegsPtr->NVMPROG,NVM_NVMPROG_RSTVERR_Pos);
+
+	#if (FLASH003_SEQ_INTERRUPT == FLASH003_INTR_ENABLED)
+	FLASH003_RegisterCallbackEvent(FLASH003_FLCMPLTI,FLASH003_SEQ_EVENT,0);
+	NVIC_SR001_RegisterCallback(NVIC_SR001_FLCMPLTI,FLASH003_lSeqInterrupt,0U);
+	#endif
+    #if (FLASH003_ECC_INTERRUPT == FLASH003_INTR_ENABLED)
+	FLASH003_RegisterCallbackEvent(FLASH003_FLECC2I,FLASH003_ECC_EVENT,0);
+	NVIC_SR001_RegisterCallback(NVIC_SR001_FLECC2I,FLASH003_lEccInterrupt,0U);
+	#endif
+	<%}else {%> /*This app is not mapped to any NVM module*/ <%}%>
+    <%}%>
+}
+/*
+ *  This function executes a 'Clear Status' Command
+ *  A clear status command clears all error flags in the 
+ *  flash status register. 
+ */
+void FLASH003_ClearStatus(void)
+{
+	const FLASH003_HandleType* Handle;
+	Handle = &FLASH003_Handle<%=appInst%>;
+	/*clear error status*/
+    /*reset ECC2READ,ECC1READ in NVMSTATUS*/
+    SET_BIT(Handle->FlashRegsPtr->NVMPROG,NVM_NVMPROG_RSTECC_Pos);
+    /*reset Write protocol error in NVMSTATUS*/
+    SET_BIT(Handle->FlashRegsPtr->NVMPROG,NVM_NVMPROG_RSTVERR_Pos);
+}
+/*
+ *  The function programs one Block of the Flash using
+ *  WriteBlock command
+ */
+status_t FLASH003_WriteBlock (uint32_t Address, const uint32_t pBuf[])
+{
+    FLASH003Status_Type status;
+	const FLASH003_HandleType* Handle;
+    uint32_t rd1;
+    uint32_t rd2;
+    uint32_t rd3;
+
+    #if (FLASH003_SEQ_INTERRUPT == FLASH003_INTR_ENABLED)
+      FLASH003_DynamicHandleType* DynamicHandle;
+      DynamicHandle = &FLASH003_DynamicHandle<%=appInst%>;
+      /*no of blocks will be only one,so while interrupt is called user handler 
+        has to be called at first time itself*/
+      DynamicHandle->FLASH003_Blk_Cnt = 0U;
+      if(DynamicHandle->FLASH003_global_status != FLASH003_IDLE)
+      {
+        DynamicHandle->FLASH003_global_status = FLASH003_ERROR;
+      }
+      else
+    #endif
+      {
+    #if (FLASH003_SEQ_INTERRUPT == FLASH003_INTR_ENABLED)
+      DynamicHandle->FLASH003_global_status = FLASH003_IN_PROGRESS;
+    #endif
+      Handle = &FLASH003_Handle<%=appInst%>;
+      status = FLASH003_IN_PROGRESS;
+      
+      rd1 = RD_REG(Handle->FlashRegsPtr->NVMPROG,NVM_NVMPROG_ACTION_Msk,\
+    		                                            NVM_NVMPROG_ACTION_Pos);
+      rd2 = RD_REG(Handle->FlashRegsPtr->NVMSTATUS,NVM_NVMSTATUS_BUSY_Msk,\
+    		                                            NVM_NVMSTATUS_BUSY_Pos);
+      rd3 = RD_REG(Handle->FlashRegsPtr->NVMSTATUS,NVM_NVMSTATUS_SLEEP_Msk,\
+    		                                           NVM_NVMSTATUS_SLEEP_Pos);
+     /* <<<DD_FLASH003_API_3>>> */
+     /*validate the Address for Range and Block Alignment*/
+      if((Address < Handle->kStart_Address) || (Address > Handle->kEnd_Address)\
+    		                  || ((Address & FLASH003_BLOCK_ALIGN_CHECK) != 0U))
+      {
+        status = FLASH003_INVALID_ADDRESS;
+		#if (FLASH003_SEQ_INTERRUPT == FLASH003_INTR_ENABLED)
+            DynamicHandle->FLASH003_global_status = FLASH003_IDLE;
+        #endif
+      }
+      /*Checking for the status of Flash for Idle and Sleep Mode*/
+      else if((rd1 == FLASH003_RESET) && (rd2 == FLASH003_RESET) && \
+                                                        (rd3 == FLASH003_RESET))
+      {
+        /*Calling Write Block API*/
+        FLASH003_lWriteBlock (Address, pBuf);
+        /*Checking for verification flag for any writing errors*/
+        if(RD_REG(Handle->FlashRegsPtr->NVMSTATUS,NVM_NVMSTATUS_VERR_Msk,\
+        		                      NVM_NVMSTATUS_VERR_Pos) == FLASH003_RESET)
+        {
+          status = FLASH003_COMPLETE;
+        }
+        else
+        {
+          status = FLASH003_ERROR;
+		  /* need to be checked whether required or not*/
+		  #if (FLASH003_SEQ_INTERRUPT == FLASH003_INTR_ENABLED)
+             DynamicHandle->FLASH003_global_status = FLASH003_IDLE;
+          #endif
+        }
+      }
+      else
+      {
+        status = FLASH003_ERROR;
+		#if (FLASH003_SEQ_INTERRUPT == FLASH003_INTR_ENABLED)
+            DynamicHandle->FLASH003_global_status = FLASH003_IDLE;
+        #endif
+      }
+   }
+    return (uint32_t)status;
+}
+
+/*
+ *  The function programs Multiple No_of_Blocks of the Flash using
+ *  WriteMultipleBlocks command
+ */
+status_t FLASH003_WriteMultipleBlocks(uint32_t Address,const uint32_t pBuf[],\
+                                                          uint32_t No_of_Blocks)
+{
+    FLASH003Status_Type status;
+	const FLASH003_HandleType* Handle;
+	
+    uint32_t lBlk_Cnt;
+    uint32_t lAddress;
+    uint32_t rd1;
+    uint32_t rd2;
+    uint32_t rd3;
+    /*This is to check weather the last byte of data is crossing the max limit
+     *of the flash or not.
+     */
+    uint32_t final_blk_end_add;
+    
+    #if (FLASH003_SEQ_INTERRUPT == FLASH003_INTR_ENABLED)
+      FLASH003_DynamicHandleType* DynamicHandle;
+      DynamicHandle = &FLASH003_DynamicHandle<%=appInst%>;
+      DynamicHandle->FLASH003_Blk_Cnt = No_of_Blocks;
+      if(DynamicHandle->FLASH003_global_status != FLASH003_IDLE)
+      {
+        DynamicHandle->FLASH003_global_status = FLASH003_ERROR;
+      }
+      else
+    #endif
+      {
+    #if (FLASH003_SEQ_INTERRUPT == FLASH003_INTR_ENABLED)
+      DynamicHandle->FLASH003_global_status = FLASH003_IN_PROGRESS;
+    #endif
+      Handle = &FLASH003_Handle<%=appInst%>;
+      status = FLASH003_IN_PROGRESS;
+      /*calculation of the last byte address*/
+      final_blk_end_add = (uint32_t)((uint32_t)Address + \
+                    (uint32_t)(No_of_Blocks*FLASH003_BLOCK_SIZE)) - 1U;
+      rd1 = RD_REG(Handle->FlashRegsPtr->NVMPROG,NVM_NVMPROG_ACTION_Msk,\
+    		                                            NVM_NVMPROG_ACTION_Pos);
+      rd2 = RD_REG(Handle->FlashRegsPtr->NVMSTATUS,NVM_NVMSTATUS_BUSY_Msk,\
+    		                                            NVM_NVMSTATUS_BUSY_Pos);
+      rd3 = RD_REG(Handle->FlashRegsPtr->NVMSTATUS,NVM_NVMSTATUS_SLEEP_Msk,\
+    		                                           NVM_NVMSTATUS_SLEEP_Pos);
+      /*validate the Address for Range and Block Alignment*/
+      if((Address < Handle->kStart_Address) || (Address > Handle->kEnd_Address)\
+    		                  || (final_blk_end_add > Handle->kEnd_Address) || \
+                                 ((Address & FLASH003_BLOCK_ALIGN_CHECK) != 0U))
+      {
+        status = FLASH003_INVALID_ADDRESS;
+		#if (FLASH003_SEQ_INTERRUPT == FLASH003_INTR_ENABLED)
+            DynamicHandle->FLASH003_global_status = FLASH003_IDLE;
+        #endif
+      }
+      /*Checking for the status of Flash for Idle and Sleep Mode*/
+      else if((rd1 == FLASH003_RESET) && (rd2 == FLASH003_RESET) && \
+             (rd3 == FLASH003_RESET))
+      {
+        for(lBlk_Cnt = 0U;lBlk_Cnt < (uint32_t)No_of_Blocks;lBlk_Cnt++)
+        {
+          /*Updating the Address for each Block*/
+          lAddress = Address+(FLASH003_BLOCK_SIZE*lBlk_Cnt);
+          /*Calling Write Block API*/
+          FLASH003_lWriteBlock (lAddress, pBuf+(FLASH003_WORD_SIZE*lBlk_Cnt));
+          /*Checking for verification flag for any writing errors*/
+          if(RD_REG(Handle->FlashRegsPtr->NVMSTATUS,NVM_NVMSTATUS_VERR_Msk,\
+        		                      NVM_NVMSTATUS_VERR_Pos) == FLASH003_RESET)
+          {
+            status = FLASH003_COMPLETE;
+          }
+          else
+          {
+            status = FLASH003_ERROR;
+			#if (FLASH003_SEQ_INTERRUPT == FLASH003_INTR_ENABLED)
+                DynamicHandle->FLASH003_global_status = FLASH003_IDLE;
+            #endif
+            break;
+          }
+        }
+      }
+      else
+      {
+        status = FLASH003_ERROR;
+		#if (FLASH003_SEQ_INTERRUPT == FLASH003_INTR_ENABLED)
+            DynamicHandle->FLASH003_global_status = FLASH003_IDLE;
+        #endif
+      }
+    }
+    return (uint32_t)status;
+}
+/*
+ *  The function is local to Flash app 
+ *  used to write the block of data
+ */
+void FLASH003_lWriteBlock (uint32_t Address, const uint32_t pBuf[])
+{
+    uint32_t lWord_Cnt;
+    const FLASH003_HandleType* Handle;
+	Handle = &FLASH003_Handle<%=appInst%>;
+    /*updating the ACTION with Oneshot Write and Auto Verify*/
+    WR_REG(Handle->FlashRegsPtr->NVMPROG,NVM_NVMPROG_ACTION_Msk,\
+    		          NVM_NVMPROG_ACTION_Pos,FLASH003_ONESHOT_WRITE_AUTOVERIFY);
+    /*Writing a Block of Data*/
+    for(lWord_Cnt = 0U;lWord_Cnt < FLASH003_WORD_SIZE;lWord_Cnt++)
+    {
+      *((uint32_t *) (Address + (FLASH003_WORD_SIZE * lWord_Cnt) )) = \
+                                                                pBuf[lWord_Cnt];
+    }
+
+    #if (FLASH003_SEQ_INTERRUPT != FLASH003_INTR_ENABLED)
+    /*Polling Busy Flag until Idle State*/
+    while(RD_REG(Handle->FlashRegsPtr->NVMSTATUS,NVM_NVMSTATUS_BUSY_Msk,\
+    		                          NVM_NVMSTATUS_BUSY_Pos) != FLASH003_RESET)
+    {
+      ;
+    }
+    /*Wait for 10us to complete the verification(need to check)*/
+    WR_REG(SCU_CLK->CLKCR, SCU_CLK_CLKCR_CNTADJ_Msk, SCU_CLK_CLKCR_CNTADJ_Pos,\
+                                                            FLASH003_DELAY);
+    while (SCU_CLK->CLKCR&(SCU_CLK_CLKCR_VDDC2LOW_Msk))
+    {
+      ;
+    }
+    #endif
+}
+/*
+ *  The function uses the ROM api to Erase 
+ *  the one page of data
+ */
+status_t FLASH003_ErasePage (uint32_t Address)
+{
+    FLASH003Status_Type status;
+    FLASH003_NVM_STATUS lstatus;
+	const FLASH003_HandleType* Handle;
+
+	#if (FLASH003_SEQ_INTERRUPT == FLASH003_INTR_ENABLED)
+      FLASH003_DynamicHandleType* DynamicHandle;
+      DynamicHandle = &FLASH003_DynamicHandle<%=appInst%>;
+      if(DynamicHandle->FLASH003_global_status != FLASH003_IDLE)
+      {
+        DynamicHandle->FLASH003_global_status = FLASH003_ERROR;
+      }
+      else
+    #endif
+      {
+    #if (FLASH003_SEQ_INTERRUPT == FLASH003_INTR_ENABLED)
+      DynamicHandle->FLASH003_global_status = FLASH003_IN_PROGRESS;
+    #endif
+      status = FLASH003_IN_PROGRESS;
+      lstatus = FLASH003_NVM_E_FAIL;
+	  Handle = &FLASH003_Handle<%=appInst%>;
+	
+      /*validate the Address Range*/
+      if((Address < Handle->kStart_Address) || (Address > Handle->kEnd_Address))
+      {
+      	 status = FLASH003_INVALID_ADDRESS;
+  		 #if (FLASH003_SEQ_INTERRUPT == FLASH003_INTR_ENABLED)
+  			DynamicHandle->FLASH003_global_status = FLASH003_IDLE;
+  		 #endif
+      }
+      else
+      {
+		  /*Calling ROM API to Erase a Page*/
+		  lstatus = FLASH003_NvmErasePage((uint32_t *)Address);
+		  /*Mapping different status returned by ROM Api to Standard Return*/
+		  if(lstatus == FLASH003_NVM_PASS)
+		  {
+			status = FLASH003_COMPLETE;
+		  }
+		  else if((lstatus == FLASH003_NVM_E_FAIL) ||
+				 (lstatus == FLASH003_NVM_E_NVM_FAIL) || \
+				 (lstatus == FLASH003_NVM_E_VERIFY))
+		  {
+			status = FLASH003_ERROR;
+			#if (FLASH003_SEQ_INTERRUPT == FLASH003_INTR_ENABLED)
+				DynamicHandle->FLASH003_global_status = FLASH003_IDLE;
+			#endif
+		  }
+		  else
+		  {
+			status = FLASH003_INVALID_ADDRESS;
+			#if (FLASH003_SEQ_INTERRUPT == FLASH003_INTR_ENABLED)
+				DynamicHandle->FLASH003_global_status = FLASH003_IDLE;
+			#endif
+		  }
+      }
+    }
+    return (uint32_t)status;
+}
+/*
+ *  The function uses the ROM api to Program one Page 
+ *  which will Erase,Write and Verify
+ */
+status_t FLASH003_ProgVerifyPage (uint32_t dstAddress,const uint32_t pBuf[])
+{
+    FLASH003Status_Type status;
+    FLASH003_NVM_STATUS lstatus;
+	const FLASH003_HandleType* Handle;
+
+    #if (FLASH003_SEQ_INTERRUPT == FLASH003_INTR_ENABLED)
+      FLASH003_DynamicHandleType* DynamicHandle;
+      DynamicHandle = &FLASH003_DynamicHandle<%=appInst%>;
+      DynamicHandle->FLASH003_Blk_Cnt = FLASH003_BLOCK_SIZE;
+
+      if(DynamicHandle->FLASH003_global_status != FLASH003_IDLE)
+      {
+        DynamicHandle->FLASH003_global_status = FLASH003_ERROR;
+      }
+      else
+    #endif
+      {
+    #if (FLASH003_SEQ_INTERRUPT == FLASH003_INTR_ENABLED)
+      DynamicHandle->FLASH003_global_status = FLASH003_IN_PROGRESS;
+    #endif
+      lstatus = FLASH003_NVM_E_FAIL;
+      status = FLASH003_IN_PROGRESS;
+      Handle = &FLASH003_Handle<%=appInst%>;
+    
+      /*validate the Address Range*/
+      if((dstAddress < Handle->kStart_Address) || (dstAddress > Handle->kEnd_Address))
+      {
+    	  status = FLASH003_INVALID_ADDRESS;
+		  #if (FLASH003_SEQ_INTERRUPT == FLASH003_INTR_ENABLED)
+			DynamicHandle->FLASH003_global_status = FLASH003_IDLE;
+		  #endif
+      }
+      else
+      {
+          /*Calling ROM API to Program a Page*/
+          lstatus = FLASH003_NvmProgVerifyPage((uint32_t *)pBuf ,\
+                                                        (uint32_t *)dstAddress);
+          /*Mapping the status returned by ROM Api to Standard Return Defined*/
+          if(lstatus == FLASH003_NVM_PASS)
+          {
+            status = FLASH003_COMPLETE;
+          }
+          else if((lstatus == FLASH003_NVM_E_FAIL) ||\
+                  (lstatus == FLASH003_NVM_E_NVM_FAIL) || \
+                  (lstatus == FLASH003_NVM_E_VERIFY))
+          {
+            status = FLASH003_ERROR;
+    		#if (FLASH003_SEQ_INTERRUPT == FLASH003_INTR_ENABLED)
+                DynamicHandle->FLASH003_global_status = FLASH003_IDLE;
+            #endif
+          }
+          else
+          {
+            status = FLASH003_INVALID_ADDRESS;
+    		#if (FLASH003_SEQ_INTERRUPT == FLASH003_INTR_ENABLED)
+                DynamicHandle->FLASH003_global_status = FLASH003_IDLE;
+            #endif
+          }
+      }
+    }
+    return (uint32_t)status;
+}
+/*
+ * This function used to read a word
+ * from the specified address
+ */
+status_t FLASH003_ReadWord(uint32_t Address,uint32_t* buf)
+{
+    FLASH003Status_Type status;
+	const FLASH003_HandleType* Handle;
+    uint32_t rd1;
+    uint32_t rd2;
+    uint32_t rd3;
+
+	Handle = &FLASH003_Handle<%=appInst%>;
+    status = FLASH003_IN_PROGRESS;
+    rd1 = RD_REG(Handle->FlashRegsPtr->NVMPROG,NVM_NVMPROG_ACTION_Msk,\
+    		                                            NVM_NVMPROG_ACTION_Pos);
+    rd2 = RD_REG(Handle->FlashRegsPtr->NVMSTATUS,NVM_NVMSTATUS_BUSY_Msk,\
+    		                                            NVM_NVMSTATUS_BUSY_Pos);
+    rd3 = RD_REG(Handle->FlashRegsPtr->NVMSTATUS,NVM_NVMSTATUS_SLEEP_Msk,\
+    		                                           NVM_NVMSTATUS_SLEEP_Pos);
+    /*validate the Address for Range*/
+    if ((Address < Handle->kStart_Address) || (Address > Handle->kEnd_Address))
+    {
+      status = FLASH003_INVALID_ADDRESS;
+    }
+    /*Checking for the status of Flash for Idle and Sleep Mode*/
+    else if((rd1 == FLASH003_RESET) && (rd2 == FLASH003_RESET) && \
+            (rd3 == FLASH003_RESET))
+    {
+      /* reads one word*/
+      *buf = *((uint32_t*)Address);
+      status = FLASH003_COMPLETE;
+        
+      rd1 = RD_REG(Handle->FlashRegsPtr->NVMSTATUS,NVM_NVMSTATUS_ECC1READ_Msk,\
+    		                                        NVM_NVMSTATUS_ECC1READ_Pos);
+      rd2 = RD_REG(Handle->FlashRegsPtr->NVMSTATUS,NVM_NVMSTATUS_ECC2READ_Msk,\
+    		                                        NVM_NVMSTATUS_ECC2READ_Pos); 
+      /*Checking for ECC error flags*/
+      if((rd1 != FLASH003_RESET) || (rd2 != FLASH003_RESET))
+      {
+        status = FLASH003_ERROR;
+      }
+    }
+    else
+    {
+      status = FLASH003_ERROR;
+    }
+  return (uint32_t)status;
+}
+/*
+ * This function used to read the Block 
+ * from the specified address
+ */
+status_t FLASH003_ReadBlock(uint32_t Address,uint32_t buf[])
+{
+    FLASH003Status_Type status;
+    uint32_t lWord_Cnt;
+	const FLASH003_HandleType* Handle;
+    uint32_t rd1;
+    uint32_t rd2;
+    uint32_t rd3;
+    status = FLASH003_IN_PROGRESS;
+	Handle = &FLASH003_Handle<%=appInst%>;
+
+    rd1 = RD_REG(Handle->FlashRegsPtr->NVMPROG,NVM_NVMPROG_ACTION_Msk,\
+    		                                            NVM_NVMPROG_ACTION_Pos);
+    rd2 = RD_REG(Handle->FlashRegsPtr->NVMSTATUS,NVM_NVMSTATUS_BUSY_Msk,\
+    		                                            NVM_NVMSTATUS_BUSY_Pos);
+    rd3 = RD_REG(Handle->FlashRegsPtr->NVMSTATUS,NVM_NVMSTATUS_SLEEP_Msk,\
+    		                                           NVM_NVMSTATUS_SLEEP_Pos);
+    /*validate the Address for Range and Block Alignment*/
+    if ((Address < Handle->kStart_Address) || (Address > Handle->kEnd_Address) \
+    		                  || ((Address & FLASH003_BLOCK_ALIGN_CHECK) != 0U))
+    {
+      status = FLASH003_INVALID_ADDRESS;
+    }
+    /*Checking for the status of Flash for Idle and Sleep Mode*/
+    else if((rd1 == FLASH003_RESET) && (rd2 == FLASH003_RESET) && \
+           (rd3 == FLASH003_RESET))
+    {
+      /* reads one Block*/  
+      for(lWord_Cnt = 0U;lWord_Cnt < (uint32_t)FLASH003_WORD_SIZE;lWord_Cnt++)
+      {
+        /* reads one word*/
+        *(buf + lWord_Cnt) = *((uint32_t*)Address + lWord_Cnt);
+        status = FLASH003_COMPLETE;
+      }
+      
+      rd1 = RD_REG(Handle->FlashRegsPtr->NVMSTATUS,\
+            NVM_NVMSTATUS_ECC1READ_Msk,NVM_NVMSTATUS_ECC1READ_Pos);
+      rd2 = RD_REG(Handle->FlashRegsPtr->NVMSTATUS,\
+            NVM_NVMSTATUS_ECC2READ_Msk,NVM_NVMSTATUS_ECC2READ_Pos);
+      /*Checking for ECC error flags*/
+      if((rd1 != FLASH003_RESET) || (rd2 != FLASH003_RESET))
+      {
+        status = FLASH003_ERROR;
+      }
+    }
+    else
+    {
+      status = FLASH003_ERROR;
+    }
+  return (uint32_t)status;
+}
+/*
+ * This function used to read the No_of_bytes
+ * from the specified address
+ */
+status_t FLASH003_ReadBytes(uint32_t Address, uint8_t buf[],\
+                                                        uint32_t No_of_bytes)
+{
+    FLASH003Status_Type status;
+	const FLASH003_HandleType* Handle;
+    uint32_t lByte_Cnt;
+    uint32_t rd1;
+    uint32_t rd2;
+    uint32_t rd3;
+	Handle = &FLASH003_Handle<%=appInst%>;
+
+    /*This is to check weather the last byte of data is crossing the max limit
+     *of the flash or not.
+     */
+    uint32_t final_add_location;
+    status = FLASH003_IN_PROGRESS;
+    /*calculation of the last byte address*/
+    final_add_location = (uint32_t)((uint32_t)Address + \
+                                      (uint32_t)No_of_bytes) - 1U;
+
+    rd1 = RD_REG(Handle->FlashRegsPtr->NVMPROG,NVM_NVMPROG_ACTION_Msk,\
+    		                                            NVM_NVMPROG_ACTION_Pos);
+    rd2 = RD_REG(Handle->FlashRegsPtr->NVMSTATUS,NVM_NVMSTATUS_BUSY_Msk,\
+    		                                            NVM_NVMSTATUS_BUSY_Pos);
+    rd3 = RD_REG(Handle->FlashRegsPtr->NVMSTATUS,NVM_NVMSTATUS_SLEEP_Msk,\
+    		                                           NVM_NVMSTATUS_SLEEP_Pos);
+    /*validate the Address for Range and Block Alignment*/
+    if ((Address < Handle->kStart_Address) || (Address > Handle->kEnd_Address)\
+    		                     || (final_add_location > Handle->kEnd_Address))
+    {
+      status = FLASH003_INVALID_ADDRESS;
+    }
+    /*Checking for the status of Flash for Idle and Sleep Mode*/
+    else if((rd1 == FLASH003_RESET) && (rd2 == FLASH003_RESET) && \
+           (rd3 == FLASH003_RESET))
+    {
+      /* reads no of bytes specified*/  
+      for(lByte_Cnt = 0U;lByte_Cnt < (uint32_t)No_of_bytes;lByte_Cnt++)
+      {
+        /* reads one byte*/
+        *(buf + lByte_Cnt) = *((uint8_t*)Address + lByte_Cnt);
+        status = FLASH003_COMPLETE;
+      }
+      rd1 = RD_REG(Handle->FlashRegsPtr->NVMSTATUS,NVM_NVMSTATUS_ECC1READ_Msk,\
+    		                                        NVM_NVMSTATUS_ECC1READ_Pos);
+      rd2 = RD_REG(Handle->FlashRegsPtr->NVMSTATUS,NVM_NVMSTATUS_ECC2READ_Msk,\
+    		                                        NVM_NVMSTATUS_ECC2READ_Pos);
+      /*Checking for ECC error flags*/
+      if((rd1 != FLASH003_RESET) || (rd2 != FLASH003_RESET))
+      {
+        status = FLASH003_ERROR;
+      }
+    }
+    else
+    {
+      status = FLASH003_ERROR;
+    }
+  return (uint32_t)status;
+}
+#if (FLASH003_SEQ_INTERRUPT == FLASH003_INTR_ENABLED)
+/*
+ * This function used to call the user defined Event handler
+ * for EndofSequence Interrupt
+ */
+void FLASH003_lSeqInterrupt(uint32_t cbargs)
+{
+	  FLASH003_CallbackType FLASH003_UserCallback;
+	  FLASH003_DynamicHandleType* DynamicHandle = &FLASH003_DynamicHandle<%=appInst%>;
+	  uint32_t CallbackArg = 0U;
+	  uint32_t levents = 0U;
+
+	  /* Checking for Block Count*/
+	  if(1U < DynamicHandle->FLASH003_Blk_Cnt)
+	  {
+		  DynamicHandle->FLASH003_Blk_Cnt--;
+	  }
+	  else
+	  {
+		  for(levents = 0; levents < DynamicHandle->\
+		                              callback[1].FLASH003_CallBacks; levents++)
+		  {
+			  FLASH003_UserCallback = DynamicHandle->\
+					                            callback[1].CbListener[levents];
+			  CallbackArg = DynamicHandle->callback[1].CbArg[levents];
+			  if(FLASH003_NULL_HANDLER != FLASH003_UserCallback)
+			  {
+			  FLASH003_UserCallback(CallbackArg);
+			  }
+		  }
+		  DynamicHandle->FLASH003_global_status = FLASH003_IDLE;
+	  }
+}
+#endif
+
+#if (FLASH003_ECC_INTERRUPT == FLASH003_INTR_ENABLED)
+/*
+ * This function used to call the user defined Event handler
+ * for EndofSequence Interrupt
+ */
+void FLASH003_lEccInterrupt(uint32_t cbargs)
+{
+	  FLASH003_CallbackType FLASH003_UserCallback;
+	  FLASH003_DynamicHandleType* DynamicHandle = &FLASH003_DynamicHandle<%=appInst%>;
+	  uint32_t CallbackArg = 0U;
+	  uint32_t levents = 0U;
+
+	  for(levents = 0; levents < DynamicHandle->\
+		                              callback[0].FLASH003_CallBacks; levents++)
+		  {
+			  FLASH003_UserCallback = DynamicHandle->\
+					                            callback[0].CbListener[levents];
+			  CallbackArg = DynamicHandle->callback[0].CbArg[levents];
+			  if(FLASH003_NULL_HANDLER != FLASH003_UserCallback)
+			  {
+			  FLASH003_UserCallback(CallbackArg);
+			  }
+		  }
+		  DynamicHandle->FLASH003_global_status = FLASH003_IDLE;
+}
+#endif
+/*
+ * This is utility function to register Event Handler 
+ * for a given event.
+ */
+status_t FLASH003_RegisterCallbackEvent(FLASH003_InterruptId IntID,\
+		                     FLASH003_CallbackType userFunction,uint32_t CbArgs)
+{
+    FLASH003Status_Type status;
+    FLASH003_DynamicHandleType* DynamicHandle = &FLASH003_DynamicHandle<%=appInst%>;
+    status = FLASH003_ERROR;
+
+    switch(IntID)
+    {
+    case 0:
+      if(DynamicHandle->callback[0].FLASH003_CallBacks < FLASH003_MAX_CALLBACKS)
+      {
+         DynamicHandle->callback[0].CbListener[DynamicHandle->\
+                                 callback[0].FLASH003_CallBacks] = userFunction;
+         DynamicHandle->callback[0].CbArg[DynamicHandle->\
+                                       callback[0].FLASH003_CallBacks] = CbArgs;
+         DynamicHandle->callback[0].FLASH003_CallBacks++;
+         status = FLASH003_COMPLETE;
+      }
+      break;
+    case 1:
+      if(DynamicHandle->callback[1].FLASH003_CallBacks < FLASH003_MAX_CALLBACKS)
+      {
+         DynamicHandle->callback[1].CbListener[DynamicHandle->\
+                                 callback[1].FLASH003_CallBacks] = userFunction;
+         DynamicHandle->callback[1].CbArg[DynamicHandle->\
+                                       callback[1].FLASH003_CallBacks] = CbArgs;
+         DynamicHandle->callback[1].FLASH003_CallBacks++;
+         status = FLASH003_COMPLETE;
+      }
+      break;
+    default:
+      status = FLASH003_COMPLETE;
+    }
+
+  return (uint32_t)status;
+}
+/*CODE_BLOCK_END*/

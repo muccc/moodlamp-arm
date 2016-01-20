@@ -1,0 +1,236 @@
+<%@ jet package="CodeGenerator" class="colorlamp01c_template"
+imports="java.util.* com.ifx.davex.appjetinteract.App2JetInterface" %>
+<% App2JetInterface app = (App2JetInterface) argument; %>
+
+/*CODE_BLOCK_BEGIN[COLORLAMP01.c]*/
+/*******************************************************************************
+ Copyright (c) 2013, Infineon Technologies AG                                 **
+ All rights reserved.                                                         **
+                                                                              **
+ Redistribution and use in source and binary forms, with or without           **
+ modification,are permitted provided that the following conditions are met:   **
+                                                                              **
+ *Redistributions of source code must retain the above copyright notice,      **
+ this list of conditions and the following disclaimer.                        **
+ *Redistributions in binary form must reproduce the above copyright notice,   **
+ this list of conditions and the following disclaimer in the documentation    **
+ and/or other materials provided with the distribution.                       **
+ *Neither the name of the copyright holders nor the names of its contributors **
+ may be used to endorse or promote products derived from this software without** 
+ specific prior written permission.                                           **
+                                                                              **
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"  **
+ AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE    **
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE   **
+ ARE  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE   **
+ LIABLE  FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR         **
+ CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF         **
+ SUBSTITUTE GOODS OR  SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS    **
+ INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN      **
+ CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)       **
+ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE   **
+ POSSIBILITY OF SUCH DAMAGE.                                                  **
+                                                                              **
+ To improve the quality of the software, users are encouraged to share        **
+ modifications, enhancements or bug fixes with Infineon Technologies AG       **
+ dave@infineon.com).                                                          **
+                                                                              **
+********************************************************************************
+**                                                                            **
+**                                                                            **
+** PLATFORM : Infineon XMC1000 Series   			                          **
+**                                                                            **
+** COMPILER : Compiler Independent                                            **
+**                                                                            **
+** AUTHOR   : App Developer                                                   **
+**                                                                            **
+** MAY BE CHANGED BY USER [yes/no]: Yes                                       **
+**                                                                            **
+** MODIFICATION DATE : Dec 06, 2013                                           **
+**                                                                            **
+*******************************************************************************/
+/*******************************************************************************
+**                      Author(s) Identity                                    **
+********************************************************************************
+**                                                                            **
+** Initials     Name                                                          **
+** ---------------------------------------------------------------------------**
+** ES          App Developer                                                  **
+**                                                                            **
+*******************************************************************************/
+/**
+ * @file   COLORLAMP01.c
+ *
+ * @brief  This file contains implementations of all Public and Private functions 
+ *        of COLORLAMP01 App.
+ */
+/*
+ * Revision History
+ * 14 Feb  2013 v1.0.0  Initial Version.
+ * 03 Apr  2013 v1.0.2  UTP AI00164659: unable to compile the code w Global 
+ *                      Dimming configuration is fixed.
+ * 26 Sep  2013 v1.0.4  Added support for XMC1202 device.
+ * 06 Dec  2013 v1.0.5  Changes related to LIGHTINGSYS01 has taken care.
+ */
+/*******************************************************************************
+ ** INCLUDE FILES                                                             **
+ ******************************************************************************/
+
+/** Inclusion of header file */
+#include <DAVE3.h>
+
+/*******************************************************************************
+**                      Private Macro Definitions                             **
+*******************************************************************************/
+
+/*******************************************************************************
+**                      Private Type Definitions                              **
+*******************************************************************************/
+
+
+/*******************************************************************************
+**                 Private Function Declarations                              **
+*******************************************************************************/
+
+
+/*******************************************************************************
+**                      Global Constant Definitions                           **
+*******************************************************************************/
+
+/*******************************************************************************
+**                      Global Variable Definitions                           **
+*******************************************************************************/
+
+/*******************************************************************************
+**                      Private Constant Definitions                          **
+*******************************************************************************/
+
+/*******************************************************************************
+**                 Function like macro definitions                            **
+*******************************************************************************/
+/*******************************************************************************
+**                      Private Function Definitions                          **
+*******************************************************************************/
+
+/*******************************************************************************
+**                      Public Function Definitions                           **
+*******************************************************************************/
+//This function is called by DAVESupport App
+void COLORLAMP01_Init(void)
+{
+	
+}
+
+/* Enable the Color lamp */
+void COLORLAMP01_Enable(const COLORLAMP01_ConfigHandleType *Handle)
+{
+  BCCUCH01_Enable(Handle->BCCUGlobal, Handle->ChannelMask);
+}
+
+/* Disable the Color lamp */
+void COLORLAMP01_Disable(const COLORLAMP01_ConfigHandleType *Handle)
+{	
+  BCCUCH01_Disable(Handle->BCCUGlobal, Handle->ChannelMask);
+}
+
+/* Set the target Color */
+void COLORLAMP01_SetColor(const COLORLAMP01_ConfigHandleType *Handle,
+                          COLORLAMP01_ColorHandleType *HandleColor)
+{
+
+  if(Handle->ChannelRed != NULL) {
+
+    BCCUCH01_SetIntensity((Handle->ChannelRed), (HandleColor->Intensity_Red));
+
+    BCCUCH01_SetLinearWalkPrescaler((Handle->ChannelRed), 
+                               (HandleColor->LinearWalkPrescaler));
+  }
+
+  if(Handle->ChannelGreen != NULL) {
+
+    BCCUCH01_SetIntensity((Handle->ChannelGreen), 
+                          (HandleColor->Intensity_Green));
+
+    BCCUCH01_SetLinearWalkPrescaler((Handle->ChannelGreen), 
+                               (HandleColor->LinearWalkPrescaler));
+  }
+
+  if(Handle->ChannelBlue != NULL) {
+
+    BCCUCH01_SetIntensity((Handle->ChannelBlue), (HandleColor->Intensity_Blue));
+
+    BCCUCH01_SetLinearWalkPrescaler((Handle->ChannelBlue), 
+                               (HandleColor->LinearWalkPrescaler));
+  }
+
+  if(Handle->ChannelWhite != NULL) {
+
+    BCCUCH01_SetIntensity((Handle->ChannelWhite), 
+                          (HandleColor->Intensity_White));
+
+    BCCUCH01_SetLinearWalkPrescaler((Handle->ChannelWhite), 
+                               (HandleColor->LinearWalkPrescaler));
+  }
+
+  if(Handle->ChannelAmber != NULL) {
+
+    BCCUCH01_SetIntensity((Handle->ChannelAmber), 
+                          (HandleColor->Intensity_Amber));
+
+    BCCUCH01_SetLinearWalkPrescaler((Handle->ChannelAmber), 
+                               (HandleColor->LinearWalkPrescaler));
+  }
+
+  if(Handle->ChannelFree != NULL) {
+
+    BCCUCH01_SetIntensity((Handle->ChannelFree), 
+                           (HandleColor->Intensity_Free));
+
+    BCCUCH01_SetLinearWalkPrescaler((Handle->ChannelFree), 
+                               (HandleColor->LinearWalkPrescaler));
+  }
+    
+  BCCUCH01_StartLinearWalk(Handle->BCCUGlobal, Handle->ChannelMask);
+
+}
+
+void COLORLAMP01_AbortColorChange(const COLORLAMP01_ConfigHandleType *Handle,
+                          COLORLAMP01_ColorHandleType *HandleColor)
+{
+  BCCUCH01_AbortLinearWalk(Handle->BCCUGlobal, Handle->ChannelMask);
+}
+
+
+/* Dim level setting with exponential property using Dimming Engine */
+void COLORLAMP01_SetDimLevelExponential(const COLORLAMP01_ConfigHandleType
+                                        *Handle, uint32_t DimLevel,
+                                        uint32_t DimDiv,
+                                        uint32_t DimPs
+										)
+{  
+#ifdef DIMAPP_USEDBY_COLORLAMP01
+  if(Handle->DimEngine != NULL) {
+    /* Write DimPs into Reg */
+    BCCUGLOBAL_SetDimClkPS(Handle->BCCUGlobal, DimPs);
+
+    BCCUDIM01_SetDimDiv(Handle->DimEngine, DimDiv);
+
+    /* Configure DimLevel in Reg */
+    BCCUDIM01_SetDimLvl(Handle->DimEngine, DimLevel);
+    /* Start Dimming */
+    BCCUDIM01_StartDimming(Handle->DimEngine,
+           GET_CHANNEL_DIM_MASK(Handle->DimEngine->DE_Num));
+  }
+#endif
+}
+
+
+/* Manual Dimming Level Setting */ 
+void COLORLAMP01_SetDimLevelManual(const COLORLAMP01_ConfigHandleType *Handle,
+                                   uint32_t DimLevel)
+{
+  BCCUGLOBAL_SetDimLevel(Handle->BCCUGlobal, DimLevel);
+}
+
+/*CODE_BLOCK_END*/ 
+

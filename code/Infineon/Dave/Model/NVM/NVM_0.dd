@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ResourceModel:Peripheral xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ResourceModel="http://www.infineon.com/Davex/Resource.ecore" name="NVM" description="Non Volatile Memory/Flash" URI="http://www.infineon.com/0.10.0/peripheral/nvm/0">
+  <provided xsi:type="ResourceModel:ResourceGroup" name="NVM" URI="http://www.infineon.com/0.10.0/peripheral/nvm/0/nvm">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../FLASH003/1.0.10/flash003_0.app#//@consumed.0"/>
+    <resourcesList name="status" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/nvm/0/nvmstatus" isResolved="true"/>
+    <resourcesList name="prog" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/nvm/0/nvmprog" isResolved="true"/>
+    <resourcesList name="conf" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/nvm/0/nvmconf" isResolved="true"/>
+    <resourcesList name="sr" requiredResourceUri="http://www.infineon.com/0.10.0/peripheral/nvm/0/nvmsr" isResolved="true"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="nvmsr" description="nvm_service_request_0" URI="http://www.infineon.com/0.10.0/peripheral/nvm/0/nvm/sr" signalType="INTERRUPT" direction="OUT" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../FLASH003/1.0.10/flash003_0.app#//@consumed.9"/>
+  </provided>
+  <provided xsi:type="ResourceModel:RegisterParameter" name="NVMCONF" URI="http://www.infineon.com/0.10.0/peripheral/nvm/0/nvm/conf" accessPermission="rw" addressOffset="0x0008" resetValue="9000" resetMask="0xFFFF">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="9000"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../FLASH003/1.0.10/flash003_0.app#//@consumed.10"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="9000"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="9000"/>
+    <toolTipHelpDescription>NVM Configuration Register</toolTipHelpDescription>
+    <bitFields name="NVM_ON" URI="http://www.infineon.com/0.10.0/peripheral/nvm/0/nvm/conf/nvm_on" maxValue="1" minValue="0" startPos="15" stopPos="15" accessPermission="rw">
+      <defaultValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+      <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+      <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+      <toolTipHelpDescription>NVM On</toolTipHelpDescription>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="NVM is switched to or stays in sleep mode."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="NVM is switched to or stays in normal mode."/>
+    </bitFields>
+    <bitFields name="INT_ON" URI="http://www.infineon.com/0.10.0/peripheral/nvm/0/nvm/conf/int_on" maxValue="1" minValue="0" startPos="14" stopPos="14" accessPermission="rw">
+      <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+      <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+      <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+      <toolTipHelpDescription>Interrupt On</toolTipHelpDescription>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="No NVM ready interrupts are generated."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="NVM ready interrupts are generated."/>
+    </bitFields>
+    <bitFields name="SECPROT" URI="http://www.infineon.com/0.10.0/peripheral/nvm/0/nvm/conf/secprot" maxValue="255" minValue="0" startPos="4" stopPos="11" accessPermission="rw">
+      <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+      <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+      <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+      <toolTipHelpDescription>Sector Protection</toolTipHelpDescription>
+    </bitFields>
+    <bitFields name="HRLEV" URI="http://www.infineon.com/0.10.0/peripheral/nvm/0/nvm/conf/hrlev" maxValue="3" minValue="0" startPos="1" stopPos="2" accessPermission="rw">
+      <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+      <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+      <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+      <toolTipHelpDescription>Hardread Level</toolTipHelpDescription>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b00" description="Normal read"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b01" description="Hardread written"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b10" description="Hardread erased"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b11" description="Reserved for Future Use"/>
+    </bitFields>
+  </provided>
+  <categoryDescription description="Non Volatile Memory/Flash" name="NVM"/>
+</ResourceModel:Peripheral>

@@ -1,0 +1,851 @@
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"BCCUGLOBAL.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.GET_CHANNEL_DIM_MASK,"ax",%progbits
+  18              		.align	1
+  19              		.global	GET_CHANNEL_DIM_MASK
+  20              		.code	16
+  21              		.thumb_func
+  23              	GET_CHANNEL_DIM_MASK:
+  24              	.LFB34:
+  25              		.file 1 "../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c"
+   1:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** /*CODE_BLOCK_BEGIN[BCCUGlobal.c]*/
+   2:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** /****************************************************************************
+   3:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****  * @file     BCCUGLOBAL.c
+   4:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****  * @brief    This file has Definitions of APIs for initialization of BCCU global
+   5:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****  *           register set.
+   6:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****  * @version  V1.0.8
+   7:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****  * @date     3 Sep 2013
+   8:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****  *
+   9:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****  * @note
+  10:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****  * Copyright (C) 2012-2013 Infineon Technologies AG. All rights reserved.
+  11:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 
+  12:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****  *
+  13:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****  * @par
+  14:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****  * Infineon Technologies AG (Infineon) is supplying this software for use with
+  15:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****  * Infineon's microcontrollers.
+  16:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****  *
+  17:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****  * This file can be freely distributed within development tools that are
+  18:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****  * supporting such microcontrollers.
+  19:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****  *
+  20:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****  *
+  21:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****  * @par
+  22:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****  * THIS SOFTWARE IS PROVIDED "AS IS".  NO WARRANTIES, WHETHER EXPRESS, IMPLIED
+  23:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****  * OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF
+  24:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****  * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE APPLY TO THIS SOFTWARE.
+  25:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****  * INFINEON SHALL NOT, IN ANY CIRCUMSTANCES, BE LIABLE FOR SPECIAL, INCIDENTAL,
+  26:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****  * OR CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.
+  27:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****  *
+  28:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****  ******************************************************************************/
+  29:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** /**************************** Change history ***********************************
+  30:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****  * V1.0.0,	14-Feb-13	 Initial Version
+  31:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****  * V1.0.2,	3-Apr-13	 Two new UI widgets ("Longest OFF-time at Modulator
+  32:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****  *                       Output", "Lowest Frequency at Modulator Output")
+  33:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****  *                       are added.”
+  34:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****  * V1.0.4   25-Apr-2013  WDMBN related UI is extended.
+  35:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****  * V1.0.6   6-Aug-2013   Configuration Dependent and Independent codes are
+  36:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****  *                       separated, MISRA checks are made.
+  37:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****  * V1.0.8   3-Sep-2013  C++ Support extended and New SW IDs added.
+  38:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** * *************************** Change history *********************************/
+  39:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** /*******************************************************************************
+  40:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****  ** INCLUDE FILES                                                             **
+  41:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****  ******************************************************************************/
+  42:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 
+  43:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** /** Inclusion of header file */
+  44:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** #include "../../inc/BCCUGLOBAL/BCCUGLOBAL.h"
+  45:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 
+  46:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** /*******************************************************************************
+  47:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** **                      Private Macro Definitions                             **
+  48:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** *******************************************************************************/
+  49:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 
+  50:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** /*******************************************************************************
+  51:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** **                      Private Type Definitions                              **
+  52:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** *******************************************************************************/
+  53:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 
+  54:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 
+  55:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** /*******************************************************************************
+  56:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** **                 Private Function Declarations                              **
+  57:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** *******************************************************************************/
+  58:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 
+  59:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 
+  60:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** /*******************************************************************************
+  61:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** **                      Global Constant Definitions                           **
+  62:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** *******************************************************************************/
+  63:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 
+  64:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** /*******************************************************************************
+  65:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** **                      Global Variable Definitions                           **
+  66:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** *******************************************************************************/
+  67:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 
+  68:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** /*******************************************************************************
+  69:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** **                      Private Constant Definitions                          **
+  70:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** *******************************************************************************/
+  71:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 
+  72:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** /*******************************************************************************
+  73:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** **                 Function like macro definitions                            **
+  74:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** *******************************************************************************/
+  75:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** /*******************************************************************************
+  76:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** **                      Private Function Definitions                          **
+  77:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** *******************************************************************************/
+  78:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** static void BCCUGLOBAL_lGUIInit(const BCCUGlobal_HandleType* Handle)
+  79:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** {
+  80:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   BCCU_Type* BCCURegs = Handle->BCCURegs;
+  81:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 
+  82:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   /* Open the lock to write protected bits */
+  83:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   SCU_GENERAL->PASSWD = 0x000000C0UL;
+  84:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   /* Disable the BCCU0 clock gating */
+  85:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   SET_BIT(SCU_CLK->CGATCLR0, SCU_CLK_CGATCLR0_BCCU0_Pos);
+  86:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   /* Wait for VDDC to stabilise */
+  87:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   while ((uint32_t)SCU_CLK->CLKCR & (uint32_t)SCU_CLK_CLKCR_VDDC2LOW_Msk)
+  88:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   {
+  89:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   	    ;
+  90:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   }
+  91:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   /*Close the lock to stop access protected bits */
+  92:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   SCU_GENERAL->PASSWD = 0x000000C3UL;
+  93:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   
+  94:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   /* FCLK, BCLK, DCLK configuration */
+  95:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   BCCURegs->GLOBCLK = ((Handle->FastClk_PS) | ((uint32_t)(Handle->BitClk_Div) << 
+  96:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****     BCCU_GLOBCLK_BCS_Pos) | ((uint32_t)(Handle->DimClk_PS) << BCCU_GLOBCLK_DCLK_PS_Pos));
+  97:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   
+  98:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   /* Trigger & Trap Configuration */
+  99:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   BCCURegs->GLOBCON |= ((Handle->TriggerMode) | 
+ 100:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****     ((uint32_t)(Handle->TriggerDelay) << BCCU_GLOBCON_TRDEL_Pos) | 
+ 101:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****     ((uint32_t)(Handle->TrapEdge) << BCCU_GLOBCON_TRAPED_Pos));
+ 102:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 
+ 103:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   /* Maximum Off-Bits Allowed at Output */
+ 104:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   WR_REG(BCCURegs->GLOBCON, BCCU_GLOBCON_WDMBN_Msk, BCCU_GLOBCON_WDMBN_Pos, 
+ 105:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****     Handle->OutMaxZeroTime);
+ 106:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 
+ 107:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   /* Interrupt Configuration */
+ 108:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   BCCURegs->EVIER = Handle->EnableEventIntr;
+ 109:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   
+ 110:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   /* Global Dimming Level Configuration */
+ 111:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   BCCURegs->GLOBDIM = Handle->GlobalDimInitialLevel;
+ 112:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 
+ 113:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** }
+ 114:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****  
+ 115:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** /*******************************************************************************
+ 116:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** **                      Public Function Definitions                           **
+ 117:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** *******************************************************************************/
+ 118:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 
+ 119:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 
+ 120:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** inline uint32_t GET_CHANNEL_DIM_MASK(uint32_t Number)
+ 121:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** {
+  26              		.loc 1 121 0
+  27              		.cfi_startproc
+  28              	.LVL0:
+ 122:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 	return ((uint32_t)1 << (uint32_t)Number);
+  29              		.loc 1 122 0
+  30 0000 0123     		mov	r3, #1
+  31 0002 8340     		lsl	r3, r3, r0
+  32 0004 181C     		mov	r0, r3
+  33              	.LVL1:
+ 123:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** }
+  34              		.loc 1 123 0
+  35              		@ sp needed for prologue
+  36 0006 7047     		bx	lr
+  37              		.cfi_endproc
+  38              	.LFE34:
+  40              		.section	.text.BCCUGLOBAL_Init,"ax",%progbits
+  41              		.align	1
+  42              		.global	BCCUGLOBAL_Init
+  43              		.code	16
+  44              		.thumb_func
+  46              	BCCUGLOBAL_Init:
+  47              	.LFB35:
+ 124:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 
+ 125:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 
+ 126:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** //This function is called by DAVESupport App
+ 127:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** void BCCUGLOBAL_Init(void)
+ 128:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** {
+  48              		.loc 1 128 0
+  49              		.cfi_startproc
+  50              	.LVL2:
+  51              	.LBB4:
+  52              	.LBB5:
+  83:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   SCU_GENERAL->PASSWD = 0x000000C0UL;
+  53              		.loc 1 83 0
+  54 0000 1748     		ldr	r0, .L6
+  55 0002 C021     		mov	r1, #192
+  56              	.LBE5:
+  57              	.LBE4:
+  58              		.loc 1 128 0
+  59 0004 30B5     		push	{r4, r5, lr}
+  60              	.LCFI0:
+  61              		.cfi_def_cfa_offset 12
+  62              		.cfi_offset 4, -12
+  63              		.cfi_offset 5, -8
+  64              		.cfi_offset 14, -4
+  65              	.LBB8:
+  66              	.LBB6:
+  83:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   SCU_GENERAL->PASSWD = 0x000000C0UL;
+  67              		.loc 1 83 0
+  68 0006 4162     		str	r1, [r0, #36]
+  85:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   SET_BIT(SCU_CLK->CGATCLR0, SCU_CLK_CGATCLR0_BCCU0_Pos);
+  69              		.loc 1 85 0
+  70 0008 1649     		ldr	r1, .L6+4
+  80:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   BCCU_Type* BCCURegs = Handle->BCCURegs;
+  71              		.loc 1 80 0
+  72 000a 174B     		ldr	r3, .L6+8
+  85:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   SET_BIT(SCU_CLK->CGATCLR0, SCU_CLK_CGATCLR0_BCCU0_Pos);
+  73              		.loc 1 85 0
+  74 000c 0C69     		ldr	r4, [r1, #16]
+  75 000e 1025     		mov	r5, #16
+  76 0010 2C43     		orr	r4, r5
+  80:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   BCCU_Type* BCCURegs = Handle->BCCURegs;
+  77              		.loc 1 80 0
+  78 0012 1A68     		ldr	r2, [r3]
+  79              	.LVL3:
+  85:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   SET_BIT(SCU_CLK->CGATCLR0, SCU_CLK_CGATCLR0_BCCU0_Pos);
+  80              		.loc 1 85 0
+  81 0014 0C61     		str	r4, [r1, #16]
+  82              	.L3:
+  87:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   while ((uint32_t)SCU_CLK->CLKCR & (uint32_t)SCU_CLK_CLKCR_VDDC2LOW_Msk)
+  83              		.loc 1 87 0
+  84 0016 0C68     		ldr	r4, [r1]
+  85 0018 6500     		lsl	r5, r4, #1
+  86 001a FCD4     		bmi	.L3
+  92:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   SCU_GENERAL->PASSWD = 0x000000C3UL;
+  87              		.loc 1 92 0
+  88 001c C321     		mov	r1, #195
+  89 001e 4162     		str	r1, [r0, #36]
+  96:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****     BCCU_GLOBCLK_BCS_Pos) | ((uint32_t)(Handle->DimClk_PS) << BCCU_GLOBCLK_DCLK_PS_Pos));
+  90              		.loc 1 96 0
+  91 0020 1C89     		ldrh	r4, [r3, #8]
+  95:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   BCCURegs->GLOBCLK = ((Handle->FastClk_PS) | ((uint32_t)(Handle->BitClk_Div) << 
+  92              		.loc 1 95 0
+  93 0022 9879     		ldrb	r0, [r3, #6]
+  96:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****     BCCU_GLOBCLK_BCS_Pos) | ((uint32_t)(Handle->DimClk_PS) << BCCU_GLOBCLK_DCLK_PS_Pos));
+  94              		.loc 1 96 0
+  95 0024 2104     		lsl	r1, r4, #16
+  95:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   BCCURegs->GLOBCLK = ((Handle->FastClk_PS) | ((uint32_t)(Handle->BitClk_Div) << 
+  96              		.loc 1 95 0
+  97 0026 C503     		lsl	r5, r0, #15
+  98 0028 9888     		ldrh	r0, [r3, #4]
+  99 002a 2943     		orr	r1, r5
+  96:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****     BCCU_GLOBCLK_BCS_Pos) | ((uint32_t)(Handle->DimClk_PS) << BCCU_GLOBCLK_DCLK_PS_Pos));
+ 100              		.loc 1 96 0
+ 101 002c 0143     		orr	r1, r0
+  95:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   BCCURegs->GLOBCLK = ((Handle->FastClk_PS) | ((uint32_t)(Handle->BitClk_Div) << 
+ 102              		.loc 1 95 0
+ 103 002e 5160     		str	r1, [r2, #4]
+  99:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   BCCURegs->GLOBCON |= ((Handle->TriggerMode) | 
+ 104              		.loc 1 99 0
+ 105 0030 1568     		ldr	r5, [r2]
+ 106 0032 9C7A     		ldrb	r4, [r3, #10]
+ 100:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****     ((uint32_t)(Handle->TriggerDelay) << BCCU_GLOBCON_TRDEL_Pos) | 
+ 107              		.loc 1 100 0
+ 108 0034 D97A     		ldrb	r1, [r3, #11]
+  99:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   BCCURegs->GLOBCON |= ((Handle->TriggerMode) | 
+ 109              		.loc 1 99 0
+ 110 0036 2543     		orr	r5, r4
+ 101:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****     ((uint32_t)(Handle->TrapEdge) << BCCU_GLOBCON_TRAPED_Pos));
+ 111              		.loc 1 101 0
+ 112 0038 9C7B     		ldrb	r4, [r3, #14]
+ 100:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****     ((uint32_t)(Handle->TriggerDelay) << BCCU_GLOBCON_TRDEL_Pos) | 
+ 113              		.loc 1 100 0
+ 114 003a 8800     		lsl	r0, r1, #2
+ 115 003c 0543     		orr	r5, r0
+ 101:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****     ((uint32_t)(Handle->TrapEdge) << BCCU_GLOBCON_TRAPED_Pos));
+ 116              		.loc 1 101 0
+ 117 003e A102     		lsl	r1, r4, #10
+  99:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   BCCURegs->GLOBCON |= ((Handle->TriggerMode) | 
+ 118              		.loc 1 99 0
+ 119 0040 0D43     		orr	r5, r1
+ 120 0042 1560     		str	r5, [r2]
+ 104:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   WR_REG(BCCURegs->GLOBCON, BCCU_GLOBCON_WDMBN_Msk, BCCU_GLOBCON_WDMBN_Pos, 
+ 121              		.loc 1 104 0
+ 122 0044 9D89     		ldrh	r5, [r3, #12]
+ 123 0046 1468     		ldr	r4, [r2]
+ 124 0048 2804     		lsl	r0, r5, #16
+ 125 004a 0849     		ldr	r1, .L6+12
+ 126 004c 084D     		ldr	r5, .L6+16
+ 127 004e 0840     		and	r0, r1
+ 128 0050 2540     		and	r5, r4
+ 108:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   BCCURegs->EVIER = Handle->EnableEventIntr;
+ 129              		.loc 1 108 0
+ 130 0052 9C7C     		ldrb	r4, [r3, #18]
+ 111:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   BCCURegs->GLOBDIM = Handle->GlobalDimInitialLevel;
+ 131              		.loc 1 111 0
+ 132 0054 1B8A     		ldrh	r3, [r3, #16]
+ 104:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   WR_REG(BCCURegs->GLOBCON, BCCU_GLOBCON_WDMBN_Msk, BCCU_GLOBCON_WDMBN_Pos, 
+ 133              		.loc 1 104 0
+ 134 0056 0543     		orr	r5, r0
+ 135 0058 1560     		str	r5, [r2]
+ 136              	.LBE6:
+ 137              	.LBE8:
+ 129:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 	BCCUGLOBAL_lGUIInit(&BCCUGlobal_Handle0);
+ 130:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** }
+ 138              		.loc 1 130 0
+ 139              		@ sp needed for prologue
+ 140              	.LBB9:
+ 141              	.LBB7:
+ 108:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   BCCURegs->EVIER = Handle->EnableEventIntr;
+ 142              		.loc 1 108 0
+ 143 005a D462     		str	r4, [r2, #44]
+ 111:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   BCCURegs->GLOBDIM = Handle->GlobalDimInitialLevel;
+ 144              		.loc 1 111 0
+ 145 005c 9362     		str	r3, [r2, #40]
+ 146              	.LBE7:
+ 147              	.LBE9:
+ 148              		.loc 1 130 0
+ 149 005e 30BD     		pop	{r4, r5, pc}
+ 150              	.L7:
+ 151              		.align	2
+ 152              	.L6:
+ 153 0060 00000140 		.word	1073807360
+ 154 0064 00030140 		.word	1073808128
+ 155 0068 00000000 		.word	BCCUGlobal_Handle0
+ 156 006c 0000FF0F 		.word	268369920
+ 157 0070 FFFF00F0 		.word	-268369921
+ 158              		.cfi_endproc
+ 159              	.LFE35:
+ 161              		.section	.text.BCCUGLOBAL_GetLastTrigSrc,"ax",%progbits
+ 162              		.align	1
+ 163              		.global	BCCUGLOBAL_GetLastTrigSrc
+ 164              		.code	16
+ 165              		.thumb_func
+ 167              	BCCUGLOBAL_GetLastTrigSrc:
+ 168              	.LFB36:
+ 131:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 
+ 132:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 
+ 133:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 
+ 134:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** uint32_t BCCUGLOBAL_GetLastTrigSrc(const BCCUGlobal_HandleType* Handle)
+ 135:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** {
+ 169              		.loc 1 135 0
+ 170              		.cfi_startproc
+ 171              	.LVL4:
+ 136:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   uint32_t status = 0xFFU;
+ 137:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 
+ 138:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   BCCU_Type* BCCURegs = Handle->BCCURegs;
+ 172              		.loc 1 138 0
+ 173 0000 0368     		ldr	r3, [r0]
+ 174              	.LVL5:
+ 136:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   uint32_t status = 0xFFU;
+ 175              		.loc 1 136 0
+ 176 0002 FF20     		mov	r0, #255
+ 177              	.LVL6:
+ 139:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   
+ 140:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   /* Trigger Mode: 1*/
+ 141:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   if((BCCURegs->GLOBCON & BCCU_GLOBCON_TM_Msk) == BCCU_GLOBCON_TM_Msk)
+ 178              		.loc 1 141 0
+ 179 0004 1A68     		ldr	r2, [r3]
+ 180 0006 D107     		lsl	r1, r2, #31
+ 181 0008 02D5     		bpl	.L9
+ 142:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   {
+ 143:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****     status = ((BCCURegs->GLOBCON & BCCU_GLOBCON_LTRS_Msk) >>
+ 182              		.loc 1 143 0
+ 183 000a 1868     		ldr	r0, [r3]
+ 184 000c 0104     		lsl	r1, r0, #16
+ 185 000e 080F     		lsr	r0, r1, #28
+ 186              	.LVL7:
+ 187              	.L9:
+ 144:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****              BCCU_GLOBCON_LTRS_Pos);
+ 145:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   }
+ 146:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   /* Trigger Mode: 0 */
+ 147:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   else
+ 148:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   {/* Status = 0xFFU */
+ 149:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   }
+ 150:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 
+ 151:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   return status;
+ 152:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** }
+ 188              		.loc 1 152 0
+ 189              		@ sp needed for prologue
+ 190 0010 7047     		bx	lr
+ 191              		.cfi_endproc
+ 192              	.LFE36:
+ 194              		.section	.text.BCCUGLOBAL_SetDimLevel,"ax",%progbits
+ 195              		.align	1
+ 196              		.global	BCCUGLOBAL_SetDimLevel
+ 197              		.code	16
+ 198              		.thumb_func
+ 200              	BCCUGLOBAL_SetDimLevel:
+ 201              	.LFB37:
+ 153:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 
+ 154:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** inline void BCCUGLOBAL_SetDimLevel(const BCCUGlobal_HandleType* Handle,
+ 155:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****                             uint32_t Level)
+ 156:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** {
+ 202              		.loc 1 156 0
+ 203              		.cfi_startproc
+ 204              	.LVL8:
+ 157:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   /* Global Dimming Level Configuration */
+ 158:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   WR_REG(Handle->BCCURegs->GLOBDIM, BCCU_GLOBDIM_GLOBDIM_Msk,
+ 205              		.loc 1 158 0
+ 206 0000 0368     		ldr	r3, [r0]
+ 207 0002 0905     		lsl	r1, r1, #20
+ 208              	.LVL9:
+ 209 0004 9A6A     		ldr	r2, [r3, #40]
+ 210 0006 080D     		lsr	r0, r1, #20
+ 211              	.LVL10:
+ 212 0008 120B     		lsr	r2, r2, #12
+ 213 000a 1103     		lsl	r1, r2, #12
+ 214 000c 0843     		orr	r0, r1
+ 215 000e 9862     		str	r0, [r3, #40]
+ 159:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****               BCCU_GLOBDIM_GLOBDIM_Pos, Level);
+ 160:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** }
+ 216              		.loc 1 160 0
+ 217              		@ sp needed for prologue
+ 218 0010 7047     		bx	lr
+ 219              		.cfi_endproc
+ 220              	.LFE37:
+ 222              		.section	.text.BCCUGLOBAL_GetIntEvent,"ax",%progbits
+ 223              		.align	1
+ 224              		.global	BCCUGLOBAL_GetIntEvent
+ 225              		.code	16
+ 226              		.thumb_func
+ 228              	BCCUGLOBAL_GetIntEvent:
+ 229              	.LFB38:
+ 161:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 
+ 162:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** /**
+ 163:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** * @brief Get the current details of the Event Flags raised, Reads EVFR register.
+ 164:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** *
+ 165:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** * @param[in] Handle Instance Handle
+ 166:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** * @return Event Flags raised
+ 167:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** * */
+ 168:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** inline uint32_t BCCUGLOBAL_GetIntEvent(const BCCUGlobal_HandleType* Handle)
+ 169:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** {
+ 230              		.loc 1 169 0
+ 231              		.cfi_startproc
+ 232              	.LVL11:
+ 170:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   /* Returns status of Event Flags */
+ 171:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   return (Handle->BCCURegs->EVFR & 0x1FU);
+ 233              		.loc 1 171 0
+ 234 0000 0368     		ldr	r3, [r0]
+ 235 0002 1F21     		mov	r1, #31
+ 236 0004 186B     		ldr	r0, [r3, #48]
+ 237              	.LVL12:
+ 172:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 
+ 173:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** }
+ 238              		.loc 1 173 0
+ 239              		@ sp needed for prologue
+ 171:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   return (Handle->BCCURegs->EVFR & 0x1FU);
+ 240              		.loc 1 171 0
+ 241 0006 0840     		and	r0, r1
+ 242              		.loc 1 173 0
+ 243 0008 7047     		bx	lr
+ 244              		.cfi_endproc
+ 245              	.LFE38:
+ 247              		.section	.text.BCCUGLOBAL_SetEventFlag,"ax",%progbits
+ 248              		.align	1
+ 249              		.global	BCCUGLOBAL_SetEventFlag
+ 250              		.code	16
+ 251              		.thumb_func
+ 253              	BCCUGLOBAL_SetEventFlag:
+ 254              	.LFB39:
+ 174:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 
+ 175:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 
+ 176:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 
+ 177:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** /**
+ 178:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** * @brief Set the current details of the Event Flags raised, Reads EVFR register.
+ 179:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** *
+ 180:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** * @param[in] Handle Instance Handle
+ 181:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** * @param[in] EventMask Event Mask, multiple events can be set with this mask.
+ 182:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** *
+ 183:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** * @return none
+ 184:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** * */
+ 185:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** inline void BCCUGLOBAL_SetEventFlag(const BCCUGlobal_HandleType* Handle,
+ 186:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****                              BCCUGLOBAL_EventFlagSel EventMask)
+ 187:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** {
+ 255              		.loc 1 187 0
+ 256              		.cfi_startproc
+ 257              	.LVL13:
+ 188:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   /* Set the Event Flags and it generates the interrupt if enabled
+ 189:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   in EVIER register */
+ 190:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****     Handle->BCCURegs->EVFSR |= (uint32_t)EventMask;
+ 258              		.loc 1 190 0
+ 259 0000 0368     		ldr	r3, [r0]
+ 191:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** }
+ 260              		.loc 1 191 0
+ 261              		@ sp needed for prologue
+ 190:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****     Handle->BCCURegs->EVFSR |= (uint32_t)EventMask;
+ 262              		.loc 1 190 0
+ 263 0002 5A6B     		ldr	r2, [r3, #52]
+ 264 0004 1143     		orr	r1, r2
+ 265              	.LVL14:
+ 266 0006 5963     		str	r1, [r3, #52]
+ 267              		.loc 1 191 0
+ 268 0008 7047     		bx	lr
+ 269              		.cfi_endproc
+ 270              	.LFE39:
+ 272              		.section	.text.BCCUGLOBAL_ClearEventFlag,"ax",%progbits
+ 273              		.align	1
+ 274              		.global	BCCUGLOBAL_ClearEventFlag
+ 275              		.code	16
+ 276              		.thumb_func
+ 278              	BCCUGLOBAL_ClearEventFlag:
+ 279              	.LFB40:
+ 192:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 
+ 193:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 
+ 194:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** /**
+ 195:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** * @brief Clear the current details of the Event Flags raised, Reads EVFR register.
+ 196:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** *
+ 197:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** * @param[in] Handle Instance Handle
+ 198:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** * @param[in] EventMask Event Mask. Multiple flags can be cleared with this mask.
+ 199:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** * @return none
+ 200:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** * */
+ 201:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** inline void BCCUGLOBAL_ClearEventFlag(const BCCUGlobal_HandleType* Handle,
+ 202:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****                                BCCUGLOBAL_EventFlagSel EventMask)
+ 203:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** {
+ 280              		.loc 1 203 0
+ 281              		.cfi_startproc
+ 282              	.LVL15:
+ 204:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   /* Clear the Event Flags */
+ 205:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   Handle->BCCURegs->EVFCR |= EventMask;
+ 283              		.loc 1 205 0
+ 284 0000 0368     		ldr	r3, [r0]
+ 206:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** }
+ 285              		.loc 1 206 0
+ 286              		@ sp needed for prologue
+ 205:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   Handle->BCCURegs->EVFCR |= EventMask;
+ 287              		.loc 1 205 0
+ 288 0002 9A6B     		ldr	r2, [r3, #56]
+ 289 0004 1143     		orr	r1, r2
+ 290              	.LVL16:
+ 291 0006 9963     		str	r1, [r3, #56]
+ 292              		.loc 1 206 0
+ 293 0008 7047     		bx	lr
+ 294              		.cfi_endproc
+ 295              	.LFE40:
+ 297              		.section	.text.BCCUGLOBAL_IntEnable,"ax",%progbits
+ 298              		.align	1
+ 299              		.global	BCCUGLOBAL_IntEnable
+ 300              		.code	16
+ 301              		.thumb_func
+ 303              	BCCUGLOBAL_IntEnable:
+ 304              	.LFB41:
+ 207:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 
+ 208:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 
+ 209:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** /**
+ 210:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** * @brief Enable the Interrupts
+ 211:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** *
+ 212:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** * @param[in] Handle Instance Handle
+ 213:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** * @param[in] IntMask Interrupt Mask, multiple interrupts can be enabled with the mask.
+ 214:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** * @return none
+ 215:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** * */
+ 216:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** inline void BCCUGLOBAL_IntEnable(const BCCUGlobal_HandleType* Handle,
+ 217:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****                           BCCUGLOBAL_EventIntrSel IntMask)
+ 218:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** {
+ 305              		.loc 1 218 0
+ 306              		.cfi_startproc
+ 307              	.LVL17:
+ 219:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   /* Enable the Interrupts */
+ 220:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   Handle->BCCURegs->EVIER |= (uint32_t)IntMask;
+ 308              		.loc 1 220 0
+ 309 0000 0368     		ldr	r3, [r0]
+ 221:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** }
+ 310              		.loc 1 221 0
+ 311              		@ sp needed for prologue
+ 220:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   Handle->BCCURegs->EVIER |= (uint32_t)IntMask;
+ 312              		.loc 1 220 0
+ 313 0002 DA6A     		ldr	r2, [r3, #44]
+ 314 0004 1143     		orr	r1, r2
+ 315              	.LVL18:
+ 316 0006 D962     		str	r1, [r3, #44]
+ 317              		.loc 1 221 0
+ 318 0008 7047     		bx	lr
+ 319              		.cfi_endproc
+ 320              	.LFE41:
+ 322              		.section	.text.BCCUGLOBAL_IntDisable,"ax",%progbits
+ 323              		.align	1
+ 324              		.global	BCCUGLOBAL_IntDisable
+ 325              		.code	16
+ 326              		.thumb_func
+ 328              	BCCUGLOBAL_IntDisable:
+ 329              	.LFB42:
+ 222:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 
+ 223:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 
+ 224:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** /**
+ 225:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** * @brief Disable Interrupt
+ 226:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** *
+ 227:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** * @param[in] Handle Instance Handle
+ 228:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** * @param[in] IntMask Interrupt Mask, multiple interrupts can be disabled with the mask.
+ 229:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** * @return none
+ 230:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** * */
+ 231:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** inline void BCCUGLOBAL_IntDisable(const BCCUGlobal_HandleType* Handle,
+ 232:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****                            BCCUGLOBAL_EventIntrSel IntMask)
+ 233:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** {
+ 330              		.loc 1 233 0
+ 331              		.cfi_startproc
+ 332              	.LVL19:
+ 234:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   /* Disable the Interrupts */
+ 235:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   Handle->BCCURegs->EVIER &= ~(uint32_t)IntMask;
+ 333              		.loc 1 235 0
+ 334 0000 0368     		ldr	r3, [r0]
+ 236:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** }
+ 335              		.loc 1 236 0
+ 336              		@ sp needed for prologue
+ 235:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   Handle->BCCURegs->EVIER &= ~(uint32_t)IntMask;
+ 337              		.loc 1 235 0
+ 338 0002 DA6A     		ldr	r2, [r3, #44]
+ 339 0004 8A43     		bic	r2, r1
+ 340 0006 DA62     		str	r2, [r3, #44]
+ 341              		.loc 1 236 0
+ 342 0008 7047     		bx	lr
+ 343              		.cfi_endproc
+ 344              	.LFE42:
+ 346              		.section	.text.BCCUGLOBAL_ForceTrap,"ax",%progbits
+ 347              		.align	1
+ 348              		.global	BCCUGLOBAL_ForceTrap
+ 349              		.code	16
+ 350              		.thumb_func
+ 352              	BCCUGLOBAL_ForceTrap:
+ 353              	.LFB43:
+ 237:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 
+ 238:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 
+ 239:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** /**
+ 240:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** * @brief Generate the Trap Interrupt.
+ 241:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** *
+ 242:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** * @param[in] Handle Instance Handle
+ 243:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** * @return none
+ 244:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** * */
+ 245:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** inline void BCCUGLOBAL_ForceTrap(const BCCUGlobal_HandleType* Handle)
+ 246:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** {
+ 354              		.loc 1 246 0
+ 355              		.cfi_startproc
+ 356              	.LVL20:
+ 247:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   /* Generates the Trap Interrupt */
+ 248:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 	Handle->BCCURegs->EVFSR |= (uint32_t)BCCU_EVFSR_TPS_Msk;
+ 357              		.loc 1 248 0
+ 358 0000 0368     		ldr	r3, [r0]
+ 359 0002 4021     		mov	r1, #64
+ 360 0004 5A6B     		ldr	r2, [r3, #52]
+ 249:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** }
+ 361              		.loc 1 249 0
+ 362              		@ sp needed for prologue
+ 248:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 	Handle->BCCURegs->EVFSR |= (uint32_t)BCCU_EVFSR_TPS_Msk;
+ 363              		.loc 1 248 0
+ 364 0006 0A43     		orr	r2, r1
+ 365 0008 5A63     		str	r2, [r3, #52]
+ 366              		.loc 1 249 0
+ 367 000a 7047     		bx	lr
+ 368              		.cfi_endproc
+ 369              	.LFE43:
+ 371              		.section	.text.BCCUGLOBAL_ExitTrap,"ax",%progbits
+ 372              		.align	1
+ 373              		.global	BCCUGLOBAL_ExitTrap
+ 374              		.code	16
+ 375              		.thumb_func
+ 377              	BCCUGLOBAL_ExitTrap:
+ 378              	.LFB44:
+ 250:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 
+ 251:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 
+ 252:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** /**
+ 253:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** * @brief Exits the Trap State.
+ 254:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** *
+ 255:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** * @param[in] Handle Instance Handle
+ 256:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** * @return none
+ 257:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** * */
+ 258:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** inline void BCCUGLOBAL_ExitTrap(const BCCUGlobal_HandleType* Handle)
+ 259:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** {
+ 379              		.loc 1 259 0
+ 380              		.cfi_startproc
+ 381              	.LVL21:
+ 260:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   /* Exits the Trap State */
+ 261:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   Handle->BCCURegs->EVFCR |= (uint32_t)BCCU_EVFCR_TPC_Msk;
+ 382              		.loc 1 261 0
+ 383 0000 0368     		ldr	r3, [r0]
+ 384 0002 4021     		mov	r1, #64
+ 385 0004 9A6B     		ldr	r2, [r3, #56]
+ 262:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** }
+ 386              		.loc 1 262 0
+ 387              		@ sp needed for prologue
+ 261:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   Handle->BCCURegs->EVFCR |= (uint32_t)BCCU_EVFCR_TPC_Msk;
+ 388              		.loc 1 261 0
+ 389 0006 0A43     		orr	r2, r1
+ 390 0008 9A63     		str	r2, [r3, #56]
+ 391              		.loc 1 262 0
+ 392 000a 7047     		bx	lr
+ 393              		.cfi_endproc
+ 394              	.LFE44:
+ 396              		.section	.text.BCCUGLOBAL_GetTrapState,"ax",%progbits
+ 397              		.align	1
+ 398              		.global	BCCUGLOBAL_GetTrapState
+ 399              		.code	16
+ 400              		.thumb_func
+ 402              	BCCUGLOBAL_GetTrapState:
+ 403              	.LFB45:
+ 263:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 
+ 264:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** /**
+ 265:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** * @brief Check the current trap state.
+ 266:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** *
+ 267:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** * @param[in] Handle Instance Handle
+ 268:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** * @return BCCUGLOBAL_TrapState Trap state
+ 269:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** * */
+ 270:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** inline BCCUGLOBAL_TrapState BCCUGLOBAL_GetTrapState(const BCCUGlobal_HandleType*
+ 271:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****                                              Handle)
+ 272:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** {
+ 404              		.loc 1 272 0
+ 405              		.cfi_startproc
+ 406              	.LVL22:
+ 273:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   return (BCCUGLOBAL_TrapState)((Handle->BCCURegs->EVFR & BCCU_EVFR_TPSF_Msk) >>
+ 407              		.loc 1 273 0
+ 408 0000 0368     		ldr	r3, [r0]
+ 274:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****                                  BCCU_EVFR_TPSF_Pos);
+ 275:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** }
+ 409              		.loc 1 275 0
+ 410              		@ sp needed for prologue
+ 273:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   return (BCCUGLOBAL_TrapState)((Handle->BCCURegs->EVFR & BCCU_EVFR_TPSF_Msk) >>
+ 411              		.loc 1 273 0
+ 412 0002 186B     		ldr	r0, [r3, #48]
+ 413              	.LVL23:
+ 414 0004 4106     		lsl	r1, r0, #25
+ 415 0006 C80F     		lsr	r0, r1, #31
+ 416              		.loc 1 275 0
+ 417 0008 7047     		bx	lr
+ 418              		.cfi_endproc
+ 419              	.LFE45:
+ 421              		.section	.text.BCCUGLOBAL_GetTrapInputLvl,"ax",%progbits
+ 422              		.align	1
+ 423              		.global	BCCUGLOBAL_GetTrapInputLvl
+ 424              		.code	16
+ 425              		.thumb_func
+ 427              	BCCUGLOBAL_GetTrapInputLvl:
+ 428              	.LFB46:
+ 276:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 
+ 277:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 
+ 278:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** /**
+ 279:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** * @brief Get the Trap input level.
+ 280:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** *
+ 281:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** * @param[in] Handle Instance Handle
+ 282:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** * @return BCCUGLOBAL_TrapInLevel Trap input level
+ 283:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** * */
+ 284:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** inline BCCUGLOBAL_TrapInLevel BCCUGLOBAL_GetTrapInputLvl(const BCCUGlobal_HandleType*
+ 285:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****                                                   Handle)
+ 286:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** {
+ 429              		.loc 1 286 0
+ 430              		.cfi_startproc
+ 431              	.LVL24:
+ 287:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   return (BCCUGLOBAL_TrapInLevel)((Handle->BCCURegs->EVFR & BCCU_EVFR_TPINL_Msk) >>
+ 432              		.loc 1 287 0
+ 433 0000 0368     		ldr	r3, [r0]
+ 288:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****                                    BCCU_EVFR_TPINL_Pos);
+ 289:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** }
+ 434              		.loc 1 289 0
+ 435              		@ sp needed for prologue
+ 287:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   return (BCCUGLOBAL_TrapInLevel)((Handle->BCCURegs->EVFR & BCCU_EVFR_TPINL_Msk) >>
+ 436              		.loc 1 287 0
+ 437 0002 186B     		ldr	r0, [r3, #48]
+ 438              	.LVL25:
+ 439 0004 0106     		lsl	r1, r0, #24
+ 440 0006 C80F     		lsr	r0, r1, #31
+ 441              		.loc 1 289 0
+ 442 0008 7047     		bx	lr
+ 443              		.cfi_endproc
+ 444              	.LFE46:
+ 446              		.section	.text.BCCUGLOBAL_SetDimClkPS,"ax",%progbits
+ 447              		.align	1
+ 448              		.global	BCCUGLOBAL_SetDimClkPS
+ 449              		.code	16
+ 450              		.thumb_func
+ 452              	BCCUGLOBAL_SetDimClkPS:
+ 453              	.LFB47:
+ 290:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** 
+ 291:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** /**
+ 292:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** * @brief Dimming Clock Prescalar Configuration
+ 293:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** *
+ 294:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** * @param[in] Handle Instance Handle
+ 295:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** * @param[in] DimClkPS  Dimming Clock prescalar value
+ 296:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** * @return none
+ 297:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** * */
+ 298:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** inline void BCCUGLOBAL_SetDimClkPS(const BCCUGlobal_HandleType* Handle,
+ 299:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****                             uint32_t DimClkPS)
+ 300:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** {
+ 454              		.loc 1 300 0
+ 455              		.cfi_startproc
+ 456              	.LVL26:
+ 301:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   /* Dimming Clock Prescaler Configuration */
+ 302:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   WR_REG(Handle->BCCURegs->GLOBCLK, BCCU_GLOBCLK_DCLK_PS_Msk,
+ 457              		.loc 1 302 0
+ 458 0000 0368     		ldr	r3, [r0]
+ 459 0002 044A     		ldr	r2, .L23
+ 460 0004 0904     		lsl	r1, r1, #16
+ 461              	.LVL27:
+ 462 0006 5868     		ldr	r0, [r3, #4]
+ 463              	.LVL28:
+ 464 0008 1140     		and	r1, r2
+ 465 000a 034A     		ldr	r2, .L23+4
+ 303:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****               BCCU_GLOBCLK_DCLK_PS_Pos, DimClkPS);
+ 304:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c **** }
+ 466              		.loc 1 304 0
+ 467              		@ sp needed for prologue
+ 302:../Dave/Generated/src/BCCUGLOBAL/BCCUGLOBAL.c ****   WR_REG(Handle->BCCURegs->GLOBCLK, BCCU_GLOBCLK_DCLK_PS_Msk,
+ 468              		.loc 1 302 0
+ 469 000c 0240     		and	r2, r0
+ 470 000e 1143     		orr	r1, r2
+ 471 0010 5960     		str	r1, [r3, #4]
+ 472              		.loc 1 304 0
+ 473 0012 7047     		bx	lr
+ 474              	.L24:
+ 475              		.align	2
+ 476              	.L23:
+ 477 0014 0000FF0F 		.word	268369920
+ 478 0018 FFFF00F0 		.word	-268369921
+ 479              		.cfi_endproc
+ 480              	.LFE47:
+ 482              		.text
+ 483              	.Letext0:
+ 484              		.file 2 "c:\\dave-3.1.10\\arm-gcc\\bin\\../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/i
+ 485              		.file 3 "C:\\DAVE-3.1.10\\eclipse\\/../CMSIS/Infineon/XMC1200_series/Include/XMC1200.h"
+ 486              		.file 4 "../Dave/Generated/src/BCCUGLOBAL/../../inc/BCCUGLOBAL/BCCUGLOBAL.h"
+ 487              		.file 5 "../Dave/Generated/src/BCCUGLOBAL/../../inc/BCCUGLOBAL/BCCUGLOBAL_Extern.h"
+DEFINED SYMBOLS
+                            *ABS*:00000000 BCCUGLOBAL.c
+C:\Users\tomasoat\AppData\Local\Temp\ccZQWzb8.s:18     .text.GET_CHANNEL_DIM_MASK:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\ccZQWzb8.s:23     .text.GET_CHANNEL_DIM_MASK:00000000 GET_CHANNEL_DIM_MASK
+C:\Users\tomasoat\AppData\Local\Temp\ccZQWzb8.s:41     .text.BCCUGLOBAL_Init:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\ccZQWzb8.s:46     .text.BCCUGLOBAL_Init:00000000 BCCUGLOBAL_Init
+C:\Users\tomasoat\AppData\Local\Temp\ccZQWzb8.s:153    .text.BCCUGLOBAL_Init:00000060 $d
+C:\Users\tomasoat\AppData\Local\Temp\ccZQWzb8.s:162    .text.BCCUGLOBAL_GetLastTrigSrc:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\ccZQWzb8.s:167    .text.BCCUGLOBAL_GetLastTrigSrc:00000000 BCCUGLOBAL_GetLastTrigSrc
+C:\Users\tomasoat\AppData\Local\Temp\ccZQWzb8.s:195    .text.BCCUGLOBAL_SetDimLevel:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\ccZQWzb8.s:200    .text.BCCUGLOBAL_SetDimLevel:00000000 BCCUGLOBAL_SetDimLevel
+C:\Users\tomasoat\AppData\Local\Temp\ccZQWzb8.s:223    .text.BCCUGLOBAL_GetIntEvent:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\ccZQWzb8.s:228    .text.BCCUGLOBAL_GetIntEvent:00000000 BCCUGLOBAL_GetIntEvent
+C:\Users\tomasoat\AppData\Local\Temp\ccZQWzb8.s:248    .text.BCCUGLOBAL_SetEventFlag:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\ccZQWzb8.s:253    .text.BCCUGLOBAL_SetEventFlag:00000000 BCCUGLOBAL_SetEventFlag
+C:\Users\tomasoat\AppData\Local\Temp\ccZQWzb8.s:273    .text.BCCUGLOBAL_ClearEventFlag:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\ccZQWzb8.s:278    .text.BCCUGLOBAL_ClearEventFlag:00000000 BCCUGLOBAL_ClearEventFlag
+C:\Users\tomasoat\AppData\Local\Temp\ccZQWzb8.s:298    .text.BCCUGLOBAL_IntEnable:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\ccZQWzb8.s:303    .text.BCCUGLOBAL_IntEnable:00000000 BCCUGLOBAL_IntEnable
+C:\Users\tomasoat\AppData\Local\Temp\ccZQWzb8.s:323    .text.BCCUGLOBAL_IntDisable:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\ccZQWzb8.s:328    .text.BCCUGLOBAL_IntDisable:00000000 BCCUGLOBAL_IntDisable
+C:\Users\tomasoat\AppData\Local\Temp\ccZQWzb8.s:347    .text.BCCUGLOBAL_ForceTrap:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\ccZQWzb8.s:352    .text.BCCUGLOBAL_ForceTrap:00000000 BCCUGLOBAL_ForceTrap
+C:\Users\tomasoat\AppData\Local\Temp\ccZQWzb8.s:372    .text.BCCUGLOBAL_ExitTrap:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\ccZQWzb8.s:377    .text.BCCUGLOBAL_ExitTrap:00000000 BCCUGLOBAL_ExitTrap
+C:\Users\tomasoat\AppData\Local\Temp\ccZQWzb8.s:397    .text.BCCUGLOBAL_GetTrapState:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\ccZQWzb8.s:402    .text.BCCUGLOBAL_GetTrapState:00000000 BCCUGLOBAL_GetTrapState
+C:\Users\tomasoat\AppData\Local\Temp\ccZQWzb8.s:422    .text.BCCUGLOBAL_GetTrapInputLvl:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\ccZQWzb8.s:427    .text.BCCUGLOBAL_GetTrapInputLvl:00000000 BCCUGLOBAL_GetTrapInputLvl
+C:\Users\tomasoat\AppData\Local\Temp\ccZQWzb8.s:447    .text.BCCUGLOBAL_SetDimClkPS:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\ccZQWzb8.s:452    .text.BCCUGLOBAL_SetDimClkPS:00000000 BCCUGLOBAL_SetDimClkPS
+C:\Users\tomasoat\AppData\Local\Temp\ccZQWzb8.s:477    .text.BCCUGLOBAL_SetDimClkPS:00000014 $d
+                     .debug_frame:00000010 $d
+                           .group:00000000 wm4.1.e09b9dd5224853206c418479f14d6963
+                           .group:00000000 wm4.uc_id.h.35.62dcba5f6261c1436e3866a751c1a98b
+                           .group:00000000 wm4.XMC1200.h.45.4c899b4822ac22c0f00d6fd7f173cc96
+                           .group:00000000 wm4.core_cm0.h.47.022e66414e77714da7c4b30b3ad99fe8
+                           .group:00000000 wm4.newlib.h.8.a9901dc52d1357e3e94003403d43f8b5
+                           .group:00000000 wm4.features.h.22.b72b3baab2bb2eab3661375590100b6b
+                           .group:00000000 wm4.config.h.193.5fb8ef056cdff92dec3dee9552839d8c
+                           .group:00000000 wm4._ansi.h.23.7aefdac4826acebbfc9f3822a0aeb14c
+                           .group:00000000 wm4.stdint.h.20.54ad762faa59e3c05491630641c8d8bf
+                           .group:00000000 wm4.core_cmInstr.h.39.b7b6650bdd2316848d940915272d75b8
+                           .group:00000000 wm4.core_cm0.h.135.ca70469f87e143609670bb393bfa6518
+                           .group:00000000 wm4.XMC1000_RomFunctionTable.h.31.6d9a94465618f31b040dc9cea9a47ad7
+                           .group:00000000 wm4.XMC1200.h.122.96b58b1204def4c9f76341a4e21abaf6
+
+UNDEFINED SYMBOLS
+BCCUGlobal_Handle0

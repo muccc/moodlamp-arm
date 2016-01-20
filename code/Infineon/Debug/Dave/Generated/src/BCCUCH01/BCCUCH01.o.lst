@@ -1,0 +1,1107 @@
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"BCCUCH01.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.BCCUCH01_Init,"ax",%progbits
+  18              		.align	1
+  19              		.global	BCCUCH01_Init
+  20              		.code	16
+  21              		.thumb_func
+  23              	BCCUCH01_Init:
+  24              	.LFB34:
+  25              		.file 1 "../Dave/Generated/src/BCCUCH01/BCCUCH01.c"
+   1:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** /*[BCCUCH01.c]*/
+   2:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** /*******************************************************************************
+   3:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****  * @file     BCCUCH01.c
+   4:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****  * @brief    This file defines the codes to initialize, configure and control
+   5:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****  *           the BCCU Channels.
+   6:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****  * @version  V1.0.6
+   7:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****  * @date     3 Sep 2013
+   8:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****  *
+   9:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****  * @note
+  10:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****  * Copyright (C) 2012-2013 Infineon Technologies AG. All rights reserved.
+  11:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 
+  12:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****  *
+  13:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****  * @par
+  14:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****  * Infineon Technologies AG (Infineon) is supplying this software for use with 
+  15:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****  * Infineon's microcontrollers.
+  16:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****  *   
+  17:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****  * This file can be freely distributed within development tools that are 
+  18:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****  * supporting such microcontrollers.
+  19:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****  *  
+  20:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****  *
+  21:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****  * @par
+  22:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****  * THIS SOFTWARE IS PROVIDED "AS IS".  NO WARRANTIES, WHETHER EXPRESS, IMPLIED
+  23:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****  * OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF
+  24:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****  * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE APPLY TO THIS SOFTWARE.
+  25:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****  * INFINEON SHALL NOT, IN ANY CIRCUMSTANCES, BE LIABLE FOR SPECIAL, INCIDENTAL,
+  26:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****  * OR CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.
+  27:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****  *
+  28:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****  ******************************************************************************/
+  29:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** /**************************** Change history ***********************************
+  30:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****  * V1.0.0,  14-Feb-13    Initial Version
+  31:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****  * V1.0.2,  2-Apr-13     Enhancement: Initial Target intensity immediately upon 
+  32:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****  *                       initialization and then update the linear walk time 
+  33:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****  *                       (specified in GUI) is fixed
+  34:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****  * V1.0.4   5-Aug-2013  Configuration and Driver codes are separated. MISRA 
+  35:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****  *                      Checks are fixed
+  36:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****  * V1.0.6   3-Sep-2013  C++ Support extended and New SW IDs added.
+  37:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****  * V1.0.8   9-Dec-2013  Added software control on BCCU Output control
+  38:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****  * *************************** Change history *********************************/
+  39:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 
+  40:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****  
+  41:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** /*******************************************************************************
+  42:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****  ** INCLUDE FILES                                                             **
+  43:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****  ******************************************************************************/
+  44:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 
+  45:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** /** Inclusion of header file */
+  46:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** #include "../../inc/BCCUCH01/BCCUCH01.h"
+  47:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 
+  48:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** /*******************************************************************************
+  49:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** **                      Private Macro Definitions                             **
+  50:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** *******************************************************************************/
+  51:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** /*#define GET_CHANNEL_DIM_MASK(x) (1UL << x)  This is moved to BCCUGLOBAL.h*/
+  52:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** /*******************************************************************************
+  53:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** **                      Private Type Definitions                              **
+  54:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** *******************************************************************************/
+  55:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 
+  56:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 
+  57:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** /*******************************************************************************
+  58:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** **                 Private Function Declarations                              **
+  59:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** *******************************************************************************/
+  60:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** static void BCCUCH01_lGUIInit(const BCCUCH01_HandleType * handle);
+  61:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 
+  62:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** /*******************************************************************************
+  63:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** **                      Global Constant Definitions                           **
+  64:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** *******************************************************************************/
+  65:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 
+  66:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** /*******************************************************************************
+  67:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** **                      Global Variable Definitions                           **
+  68:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** *******************************************************************************/
+  69:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 
+  70:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** /*******************************************************************************
+  71:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** **                      Private Constant Definitions                          **
+  72:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** *******************************************************************************/
+  73:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 
+  74:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** /*******************************************************************************
+  75:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** **                 Function like macro definitions                            **
+  76:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** *******************************************************************************/
+  77:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** /*******************************************************************************
+  78:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** **                      Private Function Definitions                          **
+  79:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** *******************************************************************************/
+  80:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** static void BCCUCH01_lGUIInit(const BCCUCH01_HandleType * handle)
+  81:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** {
+  82:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   /* Pointer Declaration of type BCCU_Type for accessing BCCU
+  83:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   * global registers */
+  84:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   BCCU_Type * BCCURegs = handle->BCCURegs;
+  85:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 
+  86:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   /* Pointer Declaration of type BCCU_CH_Type for accessing BCCU
+  87:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   * channel registers */
+  88:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   BCCU_CH_Type * BCCUCh = handle->BCCU_CH;
+  89:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 
+  90:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   /* Channel Output ControlRegister */
+  91:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   BCCURegs->CHOCON |= (
+  92:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     /* Channel Output Passive Level */
+  93:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     ((uint32_t)(handle->OpPassiveLvl) << (handle->ChNum)) |
+  94:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     /* Trap enable */
+  95:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     (((uint32_t)(handle->TrapEnable) << (handle->ChNum))
+  96:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****         << BCCU_CHOCON_CH0TPE_Pos)
+  97:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   );
+  98:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 
+  99:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   /* Channel Trigger Register */
+ 100:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   BCCURegs->CHTRIG |= (
+ 101:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****       /* Channel Trigger Enable */
+ 102:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****       ((uint32_t)(handle->TrigEnable) << (handle->ChNum))
+ 103:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   );
+ 104:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 
+ 105:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   /*Channel ConfigurationRegister*/
+ 106:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   BCCUCh->CHCONFIG |= (
+ 107:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     /* forced Trigger enable */
+ 108:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     ((uint32_t)(handle->ForceTrigger) << BCCU_CH_CHCONFIG_ENFT_Pos)|
+ 109:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     /* Trigger Edge */
+ 110:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     ((uint32_t)(handle->TrigEdgeSel) << BCCU_CH_CHCONFIG_TRED_Pos) |
+ 111:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     /* Flicker Watchdog Enable */
+ 112:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     ((uint32_t)(handle->FlickerWDGEnable) << BCCU_CH_CHCONFIG_WEN_Pos) |
+ 113:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     /* Gating Enable */
+ 114:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     ((uint32_t)(handle->GateEnable) << BCCU_CH_CHCONFIG_GEN_Pos)|
+ 115:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     /* dimming source bypass*/
+ 116:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     ((uint32_t)(handle->DimmingSrcBypass) <<  BCCU_CH_CHCONFIG_DBP_Pos) |
+ 117:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     /* Packer Enable */
+ 118:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     ((uint32_t)(handle->PackerEnable) << BCCU_CH_CHCONFIG_PEN_Pos)
+ 119:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   );
+ 120:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 
+ 121:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   /*   Packer Threshold */
+ 122:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   WR_REG_SIZE(BCCUCh->CHCONFIG, BCCU_CH_CHCONFIG_PKTH_Msk,
+ 123:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****       BCCU_CH_CHCONFIG_PKTH_Pos, handle->PackerThreshold, 32);
+ 124:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 
+ 125:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   /* Packer Compare Register */
+ 126:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   BCCUCh->PKCMP = (
+ 127:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     /* Packer On-Time Compare Level */
+ 128:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     ((uint32_t)(handle->PackerONCmpLevel) << BCCU_CH_PKCMP_ONCMP_Pos) |
+ 129:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     /* Packer Off-Time Compare Level */
+ 130:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     ((uint32_t)(handle->PackerOFFCmpLevel) << BCCU_CH_PKCMP_OFFCMP_Pos)
+ 131:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   );
+ 132:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   /* Packer Counter Register */
+ 133:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   BCCUCh->PKCNTR |= (
+ 134:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     /* On-Time Counter Value */
+ 135:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     ((uint32_t)(handle->PackerONTimeCntrAtInit)
+ 136:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****         << BCCU_CH_PKCNTR_ONCNTVAL_Pos) |
+ 137:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     /*Off-Time Counter Value */
+ 138:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     ((uint32_t)(handle->PackerOFFTimeCntrAtInit)
+ 139:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****         << BCCU_CH_PKCNTR_OFFCNTVAL_Pos)
+ 140:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   );
+ 141:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 
+ 142:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****  if (handle->op_en == 1)
+ 143:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     *((uint32_t *)(handle->IOCR_ptr)) |= 
+ 144:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****            (uint32_t)(handle->pad_char 
+ 145:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 	             << (handle->IOCR_Val + handle->IOCR_offset));
+ 146:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   /* Global Control Register */
+ 147:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 
+ 148:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   /*Channel Enable*/
+ 149:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   if (BCCUCH01_ENABLE_AT_INIT == handle->EnableAtInit)
+ 150:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   {
+ 151:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****       BCCURegs->CHEN |=  ((uint32_t)(handle->EnableAtInit) << (handle->ChNum));
+ 152:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   }
+ 153:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 
+ 154:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   /* Configures Initial Target Intensity */
+ 155:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   BCCUCh->INTS = handle->InitialIntensity;
+ 156:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 
+ 157:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   /* Enable the Shadow Transfer with Initial Channel Intensity */
+ 158:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   BCCURegs->CHSTRCON |= GET_CHANNEL_DIM_MASK(handle->ChNum);
+ 159:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 
+ 160:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   /*Channel Configuration Register*/
+ 161:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   BCCUCh->CHCONFIG |= (
+ 162:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     /*Linear Walker Clock Prescaler (LINPRES) */
+ 163:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     ((uint32_t)(handle->LinPres) << BCCU_CH_CHCONFIG_LINPRES_Pos)
+ 164:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   );
+ 165:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** }
+ 166:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 
+ 167:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 
+ 168:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** /*******************************************************************************
+ 169:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** **                      Public Function Definitions                           **
+ 170:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** *******************************************************************************/
+ 171:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** void BCCUCH01_Init(void)
+ 172:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** {
+  26              		.loc 1 172 0
+  27              		.cfi_startproc
+  28              	.LVL0:
+  29 0000 F7B5     		push	{r0, r1, r2, r4, r5, r6, r7, lr}
+  30              	.LCFI0:
+  31              		.cfi_def_cfa_offset 32
+  32              		.cfi_offset 0, -32
+  33              		.cfi_offset 1, -28
+  34              		.cfi_offset 2, -24
+  35              		.cfi_offset 4, -20
+  36              		.cfi_offset 5, -16
+  37              		.cfi_offset 6, -12
+  38              		.cfi_offset 7, -8
+  39              		.cfi_offset 14, -4
+  40              		.loc 1 172 0
+  41 0002 0027     		mov	r7, #0
+  42              	.LVL1:
+  43              	.L4:
+ 173:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   uint32_t i;
+ 174:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 
+ 175:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   for (i = 0; i < BCCUCH01_NUM_INSTANCES; i++)
+ 176:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   {
+ 177:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****       BCCUCH01_lGUIInit(BCCUCH01_HandleArr[i]);
+  44              		.loc 1 177 0 discriminator 2
+  45 0004 3A4B     		ldr	r3, .L7
+  46 0006 DC59     		ldr	r4, [r3, r7]
+  47              	.LVL2:
+  48              	.LBB5:
+  49              	.LBB6:
+  93:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     ((uint32_t)(handle->OpPassiveLvl) << (handle->ChNum)) |
+  50              		.loc 1 93 0 discriminator 2
+  51 0008 221C     		mov	r2, r4
+  84:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   BCCU_Type * BCCURegs = handle->BCCURegs;
+  52              		.loc 1 84 0 discriminator 2
+  53 000a 2668     		ldr	r6, [r4]
+  54              	.LVL3:
+  93:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     ((uint32_t)(handle->OpPassiveLvl) << (handle->ChNum)) |
+  55              		.loc 1 93 0 discriminator 2
+  56 000c 3732     		add	r2, r2, #55
+  57 000e A068     		ldr	r0, [r4, #8]
+  58 0010 1378     		ldrb	r3, [r2]
+  91:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   BCCURegs->CHOCON |= (
+  59              		.loc 1 91 0 discriminator 2
+  60 0012 3169     		ldr	r1, [r6, #16]
+  93:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     ((uint32_t)(handle->OpPassiveLvl) << (handle->ChNum)) |
+  61              		.loc 1 93 0 discriminator 2
+  62 0014 8340     		lsl	r3, r3, r0
+  63 0016 0B43     		orr	r3, r1
+  95:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     (((uint32_t)(handle->TrapEnable) << (handle->ChNum))
+  64              		.loc 1 95 0 discriminator 2
+  65 0018 211C     		mov	r1, r4
+  66 001a 3831     		add	r1, r1, #56
+  67 001c 0A78     		ldrb	r2, [r1]
+  88:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   BCCU_CH_Type * BCCUCh = handle->BCCU_CH;
+  68              		.loc 1 88 0 discriminator 2
+  69 001e 6568     		ldr	r5, [r4, #4]
+  70              	.LVL4:
+  95:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     (((uint32_t)(handle->TrapEnable) << (handle->ChNum))
+  71              		.loc 1 95 0 discriminator 2
+  72 0020 8240     		lsl	r2, r2, r0
+  96:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****         << BCCU_CHOCON_CH0TPE_Pos)
+  73              		.loc 1 96 0 discriminator 2
+  74 0022 1104     		lsl	r1, r2, #16
+  91:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   BCCURegs->CHOCON |= (
+  75              		.loc 1 91 0 discriminator 2
+  76 0024 0B43     		orr	r3, r1
+  77 0026 3361     		str	r3, [r6, #16]
+ 102:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****       ((uint32_t)(handle->TrigEnable) << (handle->ChNum))
+  78              		.loc 1 102 0 discriminator 2
+  79 0028 231C     		mov	r3, r4
+  80 002a 3933     		add	r3, r3, #57
+  81 002c 1978     		ldrb	r1, [r3]
+ 100:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   BCCURegs->CHTRIG |= (
+  82              		.loc 1 100 0 discriminator 2
+  83 002e 7269     		ldr	r2, [r6, #20]
+ 102:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****       ((uint32_t)(handle->TrigEnable) << (handle->ChNum))
+  84              		.loc 1 102 0 discriminator 2
+  85 0030 8140     		lsl	r1, r1, r0
+  86 0032 081C     		mov	r0, r1
+ 100:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   BCCURegs->CHTRIG |= (
+  87              		.loc 1 100 0 discriminator 2
+  88 0034 1043     		orr	r0, r2
+ 108:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     ((uint32_t)(handle->ForceTrigger) << BCCU_CH_CHCONFIG_ENFT_Pos)|
+  89              		.loc 1 108 0 discriminator 2
+  90 0036 231C     		mov	r3, r4
+ 100:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   BCCURegs->CHTRIG |= (
+  91              		.loc 1 100 0 discriminator 2
+  92 0038 7061     		str	r0, [r6, #20]
+ 108:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     ((uint32_t)(handle->ForceTrigger) << BCCU_CH_CHCONFIG_ENFT_Pos)|
+  93              		.loc 1 108 0 discriminator 2
+  94 003a 3C33     		add	r3, r3, #60
+  95 003c 1978     		ldrb	r1, [r3]
+ 110:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     ((uint32_t)(handle->TrigEdgeSel) << BCCU_CH_CHCONFIG_TRED_Pos) |
+  96              		.loc 1 110 0 discriminator 2
+  97 003e 013B     		sub	r3, r3, #1
+  98 0040 1B78     		ldrb	r3, [r3]
+ 106:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   BCCUCh->CHCONFIG |= (
+  99              		.loc 1 106 0 discriminator 2
+ 100 0042 AA68     		ldr	r2, [r5, #8]
+ 108:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     ((uint32_t)(handle->ForceTrigger) << BCCU_CH_CHCONFIG_ENFT_Pos)|
+ 101              		.loc 1 108 0 discriminator 2
+ 102 0044 C802     		lsl	r0, r1, #11
+ 110:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     ((uint32_t)(handle->TrigEdgeSel) << BCCU_CH_CHCONFIG_TRED_Pos) |
+ 103              		.loc 1 110 0 discriminator 2
+ 104 0046 9902     		lsl	r1, r3, #10
+ 108:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     ((uint32_t)(handle->ForceTrigger) << BCCU_CH_CHCONFIG_ENFT_Pos)|
+ 105              		.loc 1 108 0 discriminator 2
+ 106 0048 0143     		orr	r1, r0
+ 110:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     ((uint32_t)(handle->TrigEdgeSel) << BCCU_CH_CHCONFIG_TRED_Pos) |
+ 107              		.loc 1 110 0 discriminator 2
+ 108 004a 1143     		orr	r1, r2
+ 112:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     ((uint32_t)(handle->FlickerWDGEnable) << BCCU_CH_CHCONFIG_WEN_Pos) |
+ 109              		.loc 1 112 0 discriminator 2
+ 110 004c 221C     		mov	r2, r4
+ 111 004e 3632     		add	r2, r2, #54
+ 112 0050 1078     		ldrb	r0, [r2]
+ 114:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     ((uint32_t)(handle->GateEnable) << BCCU_CH_CHCONFIG_GEN_Pos)|
+ 113              		.loc 1 114 0 discriminator 2
+ 114 0052 221C     		mov	r2, r4
+ 115 0054 3532     		add	r2, r2, #53
+ 112:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     ((uint32_t)(handle->FlickerWDGEnable) << BCCU_CH_CHCONFIG_WEN_Pos) |
+ 116              		.loc 1 112 0 discriminator 2
+ 117 0056 4302     		lsl	r3, r0, #9
+ 114:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     ((uint32_t)(handle->GateEnable) << BCCU_CH_CHCONFIG_GEN_Pos)|
+ 118              		.loc 1 114 0 discriminator 2
+ 119 0058 1078     		ldrb	r0, [r2]
+ 116:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     ((uint32_t)(handle->DimmingSrcBypass) <<  BCCU_CH_CHCONFIG_DBP_Pos) |
+ 120              		.loc 1 116 0 discriminator 2
+ 121 005a 221C     		mov	r2, r4
+ 122 005c 3432     		add	r2, r2, #52
+ 112:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     ((uint32_t)(handle->FlickerWDGEnable) << BCCU_CH_CHCONFIG_WEN_Pos) |
+ 123              		.loc 1 112 0 discriminator 2
+ 124 005e 1943     		orr	r1, r3
+ 114:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     ((uint32_t)(handle->GateEnable) << BCCU_CH_CHCONFIG_GEN_Pos)|
+ 125              		.loc 1 114 0 discriminator 2
+ 126 0060 0302     		lsl	r3, r0, #8
+ 116:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     ((uint32_t)(handle->DimmingSrcBypass) <<  BCCU_CH_CHCONFIG_DBP_Pos) |
+ 127              		.loc 1 116 0 discriminator 2
+ 128 0062 1078     		ldrb	r0, [r2]
+ 118:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     ((uint32_t)(handle->PackerEnable) << BCCU_CH_CHCONFIG_PEN_Pos)
+ 129              		.loc 1 118 0 discriminator 2
+ 130 0064 221C     		mov	r2, r4
+ 131 0066 3D32     		add	r2, r2, #61
+ 114:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     ((uint32_t)(handle->GateEnable) << BCCU_CH_CHCONFIG_GEN_Pos)|
+ 132              		.loc 1 114 0 discriminator 2
+ 133 0068 1943     		orr	r1, r3
+ 116:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     ((uint32_t)(handle->DimmingSrcBypass) <<  BCCU_CH_CHCONFIG_DBP_Pos) |
+ 134              		.loc 1 116 0 discriminator 2
+ 135 006a C301     		lsl	r3, r0, #7
+ 118:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     ((uint32_t)(handle->PackerEnable) << BCCU_CH_CHCONFIG_PEN_Pos)
+ 136              		.loc 1 118 0 discriminator 2
+ 137 006c 1078     		ldrb	r0, [r2]
+ 116:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     ((uint32_t)(handle->DimmingSrcBypass) <<  BCCU_CH_CHCONFIG_DBP_Pos) |
+ 138              		.loc 1 116 0 discriminator 2
+ 139 006e 1943     		orr	r1, r3
+ 118:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     ((uint32_t)(handle->PackerEnable) << BCCU_CH_CHCONFIG_PEN_Pos)
+ 140              		.loc 1 118 0 discriminator 2
+ 141 0070 C300     		lsl	r3, r0, #3
+ 106:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   BCCUCh->CHCONFIG |= (
+ 142              		.loc 1 106 0 discriminator 2
+ 143 0072 1943     		orr	r1, r3
+ 144 0074 A960     		str	r1, [r5, #8]
+ 145              	.LVL5:
+ 146              	.LBB7:
+ 122:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   WR_REG_SIZE(BCCUCh->CHCONFIG, BCCU_CH_CHCONFIG_PKTH_Msk,
+ 147              		.loc 1 122 0 discriminator 2
+ 148 0076 A968     		ldr	r1, [r5, #8]
+ 149              	.LVL6:
+ 150 0078 206C     		ldr	r0, [r4, #64]
+ 151 007a 0722     		mov	r2, #7
+ 152 007c 9143     		bic	r1, r2
+ 153              	.LVL7:
+ 154 007e 0240     		and	r2, r0
+ 155              	.LVL8:
+ 156              	.LBE7:
+ 128:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     ((uint32_t)(handle->PackerONCmpLevel) << BCCU_CH_PKCMP_ONCMP_Pos) |
+ 157              		.loc 1 128 0 discriminator 2
+ 158 0080 636C     		ldr	r3, [r4, #68]
+ 159              	.LBB8:
+ 122:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   WR_REG_SIZE(BCCUCh->CHCONFIG, BCCU_CH_CHCONFIG_PKTH_Msk,
+ 160              		.loc 1 122 0 discriminator 2
+ 161 0082 0A43     		orr	r2, r1
+ 162              	.LVL9:
+ 163 0084 AA60     		str	r2, [r5, #8]
+ 164              	.LBE8:
+ 128:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     ((uint32_t)(handle->PackerONCmpLevel) << BCCU_CH_PKCMP_ONCMP_Pos) |
+ 165              		.loc 1 128 0 discriminator 2
+ 166 0086 A26C     		ldr	r2, [r4, #72]
+ 167 0088 1904     		lsl	r1, r3, #16
+ 168 008a 1143     		orr	r1, r2
+ 126:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   BCCUCh->PKCMP = (
+ 169              		.loc 1 126 0 discriminator 2
+ 170 008c E960     		str	r1, [r5, #12]
+ 133:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   BCCUCh->PKCNTR |= (
+ 171              		.loc 1 133 0 discriminator 2
+ 172 008e 2B69     		ldr	r3, [r5, #16]
+ 136:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****         << BCCU_CH_PKCNTR_ONCNTVAL_Pos) |
+ 173              		.loc 1 136 0 discriminator 2
+ 174 0090 206D     		ldr	r0, [r4, #80]
+ 175 0092 E16C     		ldr	r1, [r4, #76]
+ 176 0094 0343     		orr	r3, r0
+ 177 0096 0A04     		lsl	r2, r1, #16
+ 133:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   BCCUCh->PKCNTR |= (
+ 178              		.loc 1 133 0 discriminator 2
+ 179 0098 1343     		orr	r3, r2
+ 180 009a 2B61     		str	r3, [r5, #16]
+ 142:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****  if (handle->op_en == 1)
+ 181              		.loc 1 142 0 discriminator 2
+ 182 009c E369     		ldr	r3, [r4, #28]
+ 183 009e 012B     		cmp	r3, #1
+ 184 00a0 09D1     		bne	.L2
+ 145:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 	             << (handle->IOCR_Val + handle->IOCR_offset));
+ 185              		.loc 1 145 0
+ 186 00a2 606A     		ldr	r0, [r4, #36]
+ 187 00a4 A169     		ldr	r1, [r4, #24]
+ 143:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     *((uint32_t *)(handle->IOCR_ptr)) |= 
+ 188              		.loc 1 143 0
+ 189 00a6 E368     		ldr	r3, [r4, #12]
+ 145:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 	             << (handle->IOCR_Val + handle->IOCR_offset));
+ 190              		.loc 1 145 0
+ 191 00a8 4218     		add	r2, r0, r1
+ 144:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****            (uint32_t)(handle->pad_char 
+ 192              		.loc 1 144 0
+ 193 00aa 206A     		ldr	r0, [r4, #32]
+ 143:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     *((uint32_t *)(handle->IOCR_ptr)) |= 
+ 194              		.loc 1 143 0
+ 195 00ac 1968     		ldr	r1, [r3]
+ 144:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****            (uint32_t)(handle->pad_char 
+ 196              		.loc 1 144 0
+ 197 00ae 9040     		lsl	r0, r0, r2
+ 198 00b0 021C     		mov	r2, r0
+ 143:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     *((uint32_t *)(handle->IOCR_ptr)) |= 
+ 199              		.loc 1 143 0
+ 200 00b2 0A43     		orr	r2, r1
+ 201 00b4 1A60     		str	r2, [r3]
+ 202              	.L2:
+ 149:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   if (BCCUCH01_ENABLE_AT_INIT == handle->EnableAtInit)
+ 203              		.loc 1 149 0
+ 204 00b6 231C     		mov	r3, r4
+ 205 00b8 2833     		add	r3, r3, #40
+ 206 00ba 1978     		ldrb	r1, [r3]
+ 207 00bc A068     		ldr	r0, [r4, #8]
+ 208 00be 0129     		cmp	r1, #1
+ 209 00c0 03D1     		bne	.L3
+ 151:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****       BCCURegs->CHEN |=  ((uint32_t)(handle->EnableAtInit) << (handle->ChNum));
+ 210              		.loc 1 151 0
+ 211 00c2 F268     		ldr	r2, [r6, #12]
+ 212 00c4 8140     		lsl	r1, r1, r0
+ 213 00c6 1143     		orr	r1, r2
+ 214 00c8 F160     		str	r1, [r6, #12]
+ 215              	.L3:
+ 155:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   BCCUCh->INTS = handle->InitialIntensity;
+ 216              		.loc 1 155 0
+ 217 00ca 236B     		ldr	r3, [r4, #48]
+ 218 00cc 0437     		add	r7, r7, #4
+ 219 00ce 2B60     		str	r3, [r5]
+ 158:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   BCCURegs->CHSTRCON |= GET_CHANNEL_DIM_MASK(handle->ChNum);
+ 220              		.loc 1 158 0
+ 221 00d0 B169     		ldr	r1, [r6, #24]
+ 222 00d2 0191     		str	r1, [sp, #4]
+ 223 00d4 FFF7FEFF 		bl	GET_CHANNEL_DIM_MASK
+ 224              	.LVL10:
+ 225 00d8 019A     		ldr	r2, [sp, #4]
+ 163:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     ((uint32_t)(handle->LinPres) << BCCU_CH_CHCONFIG_LINPRES_Pos)
+ 226              		.loc 1 163 0
+ 227 00da E46A     		ldr	r4, [r4, #44]
+ 228              	.LVL11:
+ 158:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   BCCURegs->CHSTRCON |= GET_CHANNEL_DIM_MASK(handle->ChNum);
+ 229              		.loc 1 158 0
+ 230 00dc 1043     		orr	r0, r2
+ 231 00de B061     		str	r0, [r6, #24]
+ 161:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   BCCUCh->CHCONFIG |= (
+ 232              		.loc 1 161 0
+ 233 00e0 AE68     		ldr	r6, [r5, #8]
+ 234              	.LVL12:
+ 163:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     ((uint32_t)(handle->LinPres) << BCCU_CH_CHCONFIG_LINPRES_Pos)
+ 235              		.loc 1 163 0
+ 236 00e2 2004     		lsl	r0, r4, #16
+ 161:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   BCCUCh->CHCONFIG |= (
+ 237              		.loc 1 161 0
+ 238 00e4 3043     		orr	r0, r6
+ 239 00e6 A860     		str	r0, [r5, #8]
+ 240              	.LBE6:
+ 241              	.LBE5:
+ 175:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   for (i = 0; i < BCCUCH01_NUM_INSTANCES; i++)
+ 242              		.loc 1 175 0
+ 243 00e8 182F     		cmp	r7, #24
+ 244 00ea 8BD1     		bne	.L4
+ 178:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   }
+ 179:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** }
+ 245              		.loc 1 179 0
+ 246              		@ sp needed for prologue
+ 247              	.LVL13:
+ 248 00ec F7BD     		pop	{r0, r1, r2, r4, r5, r6, r7, pc}
+ 249              	.L8:
+ 250 00ee C046     		.align	2
+ 251              	.L7:
+ 252 00f0 00000000 		.word	BCCUCH01_HandleArr
+ 253              		.cfi_endproc
+ 254              	.LFE34:
+ 256              		.section	.text.BCCUCH01_Enable,"ax",%progbits
+ 257              		.align	1
+ 258              		.global	BCCUCH01_Enable
+ 259              		.code	16
+ 260              		.thumb_func
+ 262              	BCCUCH01_Enable:
+ 263              	.LFB35:
+ 180:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 
+ 181:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 
+ 182:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** inline void BCCUCH01_Enable(const BCCUGlobal_HandleType* handle,
+ 183:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     uint32_t ChannelMask)
+ 184:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** {
+ 264              		.loc 1 184 0
+ 265              		.cfi_startproc
+ 266              	.LVL14:
+ 185:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   handle->BCCURegs->CHEN |= ChannelMask;
+ 267              		.loc 1 185 0
+ 268 0000 0368     		ldr	r3, [r0]
+ 186:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** }
+ 269              		.loc 1 186 0
+ 270              		@ sp needed for prologue
+ 185:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   handle->BCCURegs->CHEN |= ChannelMask;
+ 271              		.loc 1 185 0
+ 272 0002 DA68     		ldr	r2, [r3, #12]
+ 273 0004 1143     		orr	r1, r2
+ 274              	.LVL15:
+ 275 0006 D960     		str	r1, [r3, #12]
+ 276              		.loc 1 186 0
+ 277 0008 7047     		bx	lr
+ 278              		.cfi_endproc
+ 279              	.LFE35:
+ 281              		.section	.text.BCCUCH01_Disable,"ax",%progbits
+ 282              		.align	1
+ 283              		.global	BCCUCH01_Disable
+ 284              		.code	16
+ 285              		.thumb_func
+ 287              	BCCUCH01_Disable:
+ 288              	.LFB36:
+ 187:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 
+ 188:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 
+ 189:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** inline void BCCUCH01_Disable(const BCCUGlobal_HandleType* handle,
+ 190:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     uint32_t ChannelMask)
+ 191:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** {
+ 289              		.loc 1 191 0
+ 290              		.cfi_startproc
+ 291              	.LVL16:
+ 192:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   handle->BCCURegs->CHEN &= ~ChannelMask;
+ 292              		.loc 1 192 0
+ 293 0000 0368     		ldr	r3, [r0]
+ 193:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** }
+ 294              		.loc 1 193 0
+ 295              		@ sp needed for prologue
+ 192:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   handle->BCCURegs->CHEN &= ~ChannelMask;
+ 296              		.loc 1 192 0
+ 297 0002 DA68     		ldr	r2, [r3, #12]
+ 298 0004 8A43     		bic	r2, r1
+ 299 0006 DA60     		str	r2, [r3, #12]
+ 300              		.loc 1 193 0
+ 301 0008 7047     		bx	lr
+ 302              		.cfi_endproc
+ 303              	.LFE36:
+ 305              		.section	.text.BCCUCH01_GateEnable,"ax",%progbits
+ 306              		.align	1
+ 307              		.global	BCCUCH01_GateEnable
+ 308              		.code	16
+ 309              		.thumb_func
+ 311              	BCCUCH01_GateEnable:
+ 312              	.LFB37:
+ 194:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 
+ 195:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** inline void BCCUCH01_GateEnable(const BCCUCH01_HandleType* handle,
+ 196:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     uint32_t ChannelMask)
+ 197:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** {
+ 313              		.loc 1 197 0
+ 314              		.cfi_startproc
+ 315              	.LVL17:
+ 198:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   handle->BCCU_CH->CHCONFIG |= BCCU_CH_CHCONFIG_GEN_Msk;
+ 316              		.loc 1 198 0
+ 317 0000 4368     		ldr	r3, [r0, #4]
+ 318 0002 8022     		mov	r2, #128
+ 319 0004 9968     		ldr	r1, [r3, #8]
+ 320              	.LVL18:
+ 321 0006 5000     		lsl	r0, r2, #1
+ 322              	.LVL19:
+ 323 0008 0843     		orr	r0, r1
+ 324 000a 9860     		str	r0, [r3, #8]
+ 199:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** }
+ 325              		.loc 1 199 0
+ 326              		@ sp needed for prologue
+ 327 000c 7047     		bx	lr
+ 328              		.cfi_endproc
+ 329              	.LFE37:
+ 331              		.section	.text.BCCUCH01_GateDisable,"ax",%progbits
+ 332              		.align	1
+ 333              		.global	BCCUCH01_GateDisable
+ 334              		.code	16
+ 335              		.thumb_func
+ 337              	BCCUCH01_GateDisable:
+ 338              	.LFB38:
+ 200:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 
+ 201:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** inline void BCCUCH01_GateDisable(const BCCUCH01_HandleType* handle,
+ 202:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     uint32_t ChannelMask)
+ 203:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** {
+ 339              		.loc 1 203 0
+ 340              		.cfi_startproc
+ 341              	.LVL20:
+ 204:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   handle->BCCU_CH->CHCONFIG &= (~BCCU_CH_CHCONFIG_GEN_Msk);
+ 342              		.loc 1 204 0
+ 343 0000 4368     		ldr	r3, [r0, #4]
+ 344 0002 024A     		ldr	r2, .L13
+ 345 0004 9968     		ldr	r1, [r3, #8]
+ 346              	.LVL21:
+ 205:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** }
+ 347              		.loc 1 205 0
+ 348              		@ sp needed for prologue
+ 204:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   handle->BCCU_CH->CHCONFIG &= (~BCCU_CH_CHCONFIG_GEN_Msk);
+ 349              		.loc 1 204 0
+ 350 0006 0A40     		and	r2, r1
+ 351 0008 9A60     		str	r2, [r3, #8]
+ 352              		.loc 1 205 0
+ 353 000a 7047     		bx	lr
+ 354              	.L14:
+ 355              		.align	2
+ 356              	.L13:
+ 357 000c FFFEFFFF 		.word	-257
+ 358              		.cfi_endproc
+ 359              	.LFE38:
+ 361              		.section	.text.BCCUCH01_StartLinearWalk,"ax",%progbits
+ 362              		.align	1
+ 363              		.global	BCCUCH01_StartLinearWalk
+ 364              		.code	16
+ 365              		.thumb_func
+ 367              	BCCUCH01_StartLinearWalk:
+ 368              	.LFB39:
+ 206:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 
+ 207:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 
+ 208:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** inline void BCCUCH01_StartLinearWalk(const BCCUGlobal_HandleType* handle,
+ 209:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     uint32_t ChannelMask)
+ 210:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** {
+ 369              		.loc 1 210 0
+ 370              		.cfi_startproc
+ 371              	.LVL22:
+ 211:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   handle->BCCURegs->CHSTRCON |= ChannelMask;
+ 372              		.loc 1 211 0
+ 373 0000 0368     		ldr	r3, [r0]
+ 212:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** }
+ 374              		.loc 1 212 0
+ 375              		@ sp needed for prologue
+ 211:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   handle->BCCURegs->CHSTRCON |= ChannelMask;
+ 376              		.loc 1 211 0
+ 377 0002 9A69     		ldr	r2, [r3, #24]
+ 378 0004 1143     		orr	r1, r2
+ 379              	.LVL23:
+ 380 0006 9961     		str	r1, [r3, #24]
+ 381              		.loc 1 212 0
+ 382 0008 7047     		bx	lr
+ 383              		.cfi_endproc
+ 384              	.LFE39:
+ 386              		.section	.text.BCCUCH01_AbortLinearWalk,"ax",%progbits
+ 387              		.align	1
+ 388              		.global	BCCUCH01_AbortLinearWalk
+ 389              		.code	16
+ 390              		.thumb_func
+ 392              	BCCUCH01_AbortLinearWalk:
+ 393              	.LFB40:
+ 213:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 
+ 214:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 
+ 215:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** inline void BCCUCH01_AbortLinearWalk(const BCCUGlobal_HandleType* handle,
+ 216:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     uint32_t ChannelMask)
+ 217:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** {
+ 394              		.loc 1 217 0
+ 395              		.cfi_startproc
+ 396              	.LVL24:
+ 218:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   handle->BCCURegs->CHSTRCON |= ((ChannelMask) << BCCU_CHSTRCON_CH0A_Pos);
+ 397              		.loc 1 218 0
+ 398 0000 0368     		ldr	r3, [r0]
+ 399 0002 0904     		lsl	r1, r1, #16
+ 400              	.LVL25:
+ 401 0004 9A69     		ldr	r2, [r3, #24]
+ 219:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** }
+ 402              		.loc 1 219 0
+ 403              		@ sp needed for prologue
+ 218:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   handle->BCCURegs->CHSTRCON |= ((ChannelMask) << BCCU_CHSTRCON_CH0A_Pos);
+ 404              		.loc 1 218 0
+ 405 0006 1143     		orr	r1, r2
+ 406 0008 9961     		str	r1, [r3, #24]
+ 407              		.loc 1 219 0
+ 408 000a 7047     		bx	lr
+ 409              		.cfi_endproc
+ 410              	.LFE40:
+ 412              		.section	.text.BCCUCH01_GetOpLvlAtLastTrigger,"ax",%progbits
+ 413              		.align	1
+ 414              		.global	BCCUCH01_GetOpLvlAtLastTrigger
+ 415              		.code	16
+ 416              		.thumb_func
+ 418              	BCCUCH01_GetOpLvlAtLastTrigger:
+ 419              	.LFB41:
+ 220:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 
+ 221:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 
+ 222:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** inline uint32_t BCCUCH01_GetOpLvlAtLastTrigger(
+ 223:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     const BCCUCH01_HandleType* handle)
+ 224:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** {
+ 420              		.loc 1 224 0
+ 421              		.cfi_startproc
+ 422              	.LVL26:
+ 423 0000 38B5     		push	{r3, r4, r5, lr}
+ 424              	.LCFI1:
+ 425              		.cfi_def_cfa_offset 16
+ 426              		.cfi_offset 3, -16
+ 427              		.cfi_offset 4, -12
+ 428              		.cfi_offset 5, -8
+ 429              		.cfi_offset 14, -4
+ 225:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   return ((handle->BCCURegs->LTCHOL & GET_CHANNEL_DIM_MASK(handle->ChNum))
+ 430              		.loc 1 225 0
+ 431 0002 0368     		ldr	r3, [r0]
+ 224:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** {
+ 432              		.loc 1 224 0
+ 433 0004 041C     		mov	r4, r0
+ 434              		.loc 1 225 0
+ 435 0006 8068     		ldr	r0, [r0, #8]
+ 436              	.LVL27:
+ 437 0008 DD69     		ldr	r5, [r3, #28]
+ 438 000a FFF7FEFF 		bl	GET_CHANNEL_DIM_MASK
+ 439              	.LVL28:
+ 440 000e A168     		ldr	r1, [r4, #8]
+ 441 0010 0540     		and	r5, r0
+ 442 0012 281C     		mov	r0, r5
+ 443 0014 C840     		lsr	r0, r0, r1
+ 226:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****       >> handle->ChNum);
+ 227:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** }
+ 444              		.loc 1 227 0
+ 445              		@ sp needed for prologue
+ 446              	.LVL29:
+ 447 0016 38BD     		pop	{r3, r4, r5, pc}
+ 448              		.cfi_endproc
+ 449              	.LFE41:
+ 451              		.section	.text.BCCUCH01_SetIntensity,"ax",%progbits
+ 452              		.align	1
+ 453              		.global	BCCUCH01_SetIntensity
+ 454              		.code	16
+ 455              		.thumb_func
+ 457              	BCCUCH01_SetIntensity:
+ 458              	.LFB42:
+ 228:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 
+ 229:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** inline void BCCUCH01_SetIntensity(const BCCUCH01_HandleType * handle,
+ 230:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     uint32_t Intensity)
+ 231:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** {
+ 459              		.loc 1 231 0
+ 460              		.cfi_startproc
+ 461              	.LVL30:
+ 232:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   handle->BCCU_CH->INTS = Intensity;
+ 462              		.loc 1 232 0
+ 463 0000 4368     		ldr	r3, [r0, #4]
+ 233:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** }
+ 464              		.loc 1 233 0
+ 465              		@ sp needed for prologue
+ 232:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   handle->BCCU_CH->INTS = Intensity;
+ 466              		.loc 1 232 0
+ 467 0002 1960     		str	r1, [r3]
+ 468              		.loc 1 233 0
+ 469 0004 7047     		bx	lr
+ 470              		.cfi_endproc
+ 471              	.LFE42:
+ 473              		.section	.text.BCCUCH01_GetIntensity,"ax",%progbits
+ 474              		.align	1
+ 475              		.global	BCCUCH01_GetIntensity
+ 476              		.code	16
+ 477              		.thumb_func
+ 479              	BCCUCH01_GetIntensity:
+ 480              	.LFB43:
+ 234:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 
+ 235:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** inline uint32_t BCCUCH01_GetIntensity(const BCCUCH01_HandleType * handle)
+ 236:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** {
+ 481              		.loc 1 236 0
+ 482              		.cfi_startproc
+ 483              	.LVL31:
+ 237:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   return (handle->BCCU_CH->INT);
+ 484              		.loc 1 237 0
+ 485 0000 4368     		ldr	r3, [r0, #4]
+ 238:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** }
+ 486              		.loc 1 238 0
+ 487              		@ sp needed for prologue
+ 237:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   return (handle->BCCU_CH->INT);
+ 488              		.loc 1 237 0
+ 489 0002 5868     		ldr	r0, [r3, #4]
+ 490              	.LVL32:
+ 491              		.loc 1 238 0
+ 492 0004 7047     		bx	lr
+ 493              		.cfi_endproc
+ 494              	.LFE43:
+ 496              		.section	.text.BCCUCH01_SetLinearWalkPrescaler,"ax",%progbits
+ 497              		.align	1
+ 498              		.global	BCCUCH01_SetLinearWalkPrescaler
+ 499              		.code	16
+ 500              		.thumb_func
+ 502              	BCCUCH01_SetLinearWalkPrescaler:
+ 503              	.LFB44:
+ 239:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 
+ 240:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** inline void BCCUCH01_SetLinearWalkPrescaler(
+ 241:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     const BCCUCH01_HandleType * handle, 
+ 242:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     uint32_t LinearWalkPrescaler)
+ 243:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** {
+ 504              		.loc 1 243 0
+ 505              		.cfi_startproc
+ 506              	.LVL33:
+ 507              	.LBB9:
+ 244:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   WR_REG_SIZE(handle->BCCU_CH->CHCONFIG, BCCU_CH_CHCONFIG_LINPRES_Msk,
+ 508              		.loc 1 244 0
+ 509 0000 4368     		ldr	r3, [r0, #4]
+ 510 0002 044A     		ldr	r2, .L21
+ 511 0004 0904     		lsl	r1, r1, #16
+ 512              	.LVL34:
+ 513 0006 9868     		ldr	r0, [r3, #8]
+ 514              	.LVL35:
+ 515 0008 1140     		and	r1, r2
+ 516              	.LVL36:
+ 517 000a 034A     		ldr	r2, .L21+4
+ 518              	.LBE9:
+ 245:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****       BCCU_CH_CHCONFIG_LINPRES_Pos, LinearWalkPrescaler, 32);
+ 246:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** }
+ 519              		.loc 1 246 0
+ 520              		@ sp needed for prologue
+ 521              	.LBB10:
+ 244:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   WR_REG_SIZE(handle->BCCU_CH->CHCONFIG, BCCU_CH_CHCONFIG_LINPRES_Msk,
+ 522              		.loc 1 244 0
+ 523 000c 0240     		and	r2, r0
+ 524              	.LVL37:
+ 525 000e 1143     		orr	r1, r2
+ 526              	.LVL38:
+ 527 0010 9960     		str	r1, [r3, #8]
+ 528              	.LBE10:
+ 529              		.loc 1 246 0
+ 530 0012 7047     		bx	lr
+ 531              	.L22:
+ 532              		.align	2
+ 533              	.L21:
+ 534 0014 0000FF03 		.word	67043328
+ 535 0018 FFFF00FC 		.word	-67043329
+ 536              		.cfi_endproc
+ 537              	.LFE44:
+ 539              		.section	.text.BCCUCH01_WalkStatus,"ax",%progbits
+ 540              		.align	1
+ 541              		.global	BCCUCH01_WalkStatus
+ 542              		.code	16
+ 543              		.thumb_func
+ 545              	BCCUCH01_WalkStatus:
+ 546              	.LFB45:
+ 247:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 
+ 248:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** inline uint32_t  BCCUCH01_WalkStatus(const BCCUCH01_HandleType * handle)
+ 249:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** {
+ 547              		.loc 1 249 0
+ 548              		.cfi_startproc
+ 549              	.LVL39:
+ 550 0000 38B5     		push	{r3, r4, r5, lr}
+ 551              	.LCFI2:
+ 552              		.cfi_def_cfa_offset 16
+ 553              		.cfi_offset 3, -16
+ 554              		.cfi_offset 4, -12
+ 555              		.cfi_offset 5, -8
+ 556              		.cfi_offset 14, -4
+ 250:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   return ((handle->BCCURegs->CHSTRCON & GET_CHANNEL_DIM_MASK(handle->ChNum))
+ 557              		.loc 1 250 0
+ 558 0002 0368     		ldr	r3, [r0]
+ 249:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** {
+ 559              		.loc 1 249 0
+ 560 0004 041C     		mov	r4, r0
+ 561              		.loc 1 250 0
+ 562 0006 8068     		ldr	r0, [r0, #8]
+ 563              	.LVL40:
+ 564 0008 9D69     		ldr	r5, [r3, #24]
+ 565 000a FFF7FEFF 		bl	GET_CHANNEL_DIM_MASK
+ 566              	.LVL41:
+ 567 000e A168     		ldr	r1, [r4, #8]
+ 568 0010 0540     		and	r5, r0
+ 569 0012 281C     		mov	r0, r5
+ 570 0014 C840     		lsr	r0, r0, r1
+ 251:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****       >> handle->ChNum);
+ 252:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** }
+ 571              		.loc 1 252 0
+ 572              		@ sp needed for prologue
+ 573              	.LVL42:
+ 574 0016 38BD     		pop	{r3, r4, r5, pc}
+ 575              		.cfi_endproc
+ 576              	.LFE45:
+ 578              		.section	.text.BCCUCH01_AwaitEndOfWalk,"ax",%progbits
+ 579              		.align	1
+ 580              		.global	BCCUCH01_AwaitEndOfWalk
+ 581              		.code	16
+ 582              		.thumb_func
+ 584              	BCCUCH01_AwaitEndOfWalk:
+ 585              	.LFB46:
+ 253:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 
+ 254:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 
+ 255:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** /**
+ 256:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** * @brief    Wait indefinitely till linear walk is over.
+ 257:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** */
+ 258:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** inline void BCCUCH01_AwaitEndOfWalk(const BCCUCH01_HandleType * handle)
+ 259:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** {
+ 586              		.loc 1 259 0
+ 587              		.cfi_startproc
+ 588              	.LVL43:
+ 589 0000 10B5     		push	{r4, lr}
+ 590              	.LCFI3:
+ 591              		.cfi_def_cfa_offset 8
+ 592              		.cfi_offset 4, -8
+ 593              		.cfi_offset 14, -4
+ 594 0002 041C     		mov	r4, r0
+ 595              	.LVL44:
+ 596              	.L25:
+ 260:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   while (1 == BCCUCH01_WalkStatus(handle));
+ 597              		.loc 1 260 0 discriminator 1
+ 598 0004 201C     		mov	r0, r4
+ 599 0006 FFF7FEFF 		bl	BCCUCH01_WalkStatus
+ 600              	.LVL45:
+ 601 000a 0128     		cmp	r0, #1
+ 602 000c FAD0     		beq	.L25
+ 261:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** }
+ 603              		.loc 1 261 0
+ 604              		@ sp needed for prologue
+ 605              	.LVL46:
+ 606 000e 10BD     		pop	{r4, pc}
+ 607              		.cfi_endproc
+ 608              	.LFE46:
+ 610              		.section	.text.BCCUCH01_EnableForcedTrigger,"ax",%progbits
+ 611              		.align	1
+ 612              		.global	BCCUCH01_EnableForcedTrigger
+ 613              		.code	16
+ 614              		.thumb_func
+ 616              	BCCUCH01_EnableForcedTrigger:
+ 617              	.LFB47:
+ 262:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 
+ 263:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** /**
+ 264:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** * @brief    Enable forced triggering. 
+ 265:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** *       The trigger generator generates a trigger if the
+ 266:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** *       output of the sigma-delta modulator hasn’t
+ 267:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** *       changed state for 256 bit times; only takes
+ 268:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** *       effect if the packer is disabled (PEN=0)
+ 269:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** *       Modifies CHCONFIGy.ENTF field
+ 270:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** */
+ 271:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** inline void BCCUCH01_EnableForcedTrigger(const 
+ 272:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     BCCUCH01_HandleType * handle)
+ 273:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** {
+ 618              		.loc 1 273 0
+ 619              		.cfi_startproc
+ 620              	.LVL47:
+ 621 0000 38B5     		push	{r3, r4, r5, lr}
+ 622              	.LCFI4:
+ 623              		.cfi_def_cfa_offset 16
+ 624              		.cfi_offset 3, -16
+ 625              		.cfi_offset 4, -12
+ 626              		.cfi_offset 5, -8
+ 627              		.cfi_offset 14, -4
+ 274:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   handle->BCCURegs->CHTRIG |= GET_CHANNEL_DIM_MASK(handle->ChNum);
+ 628              		.loc 1 274 0
+ 629 0002 0468     		ldr	r4, [r0]
+ 630 0004 8068     		ldr	r0, [r0, #8]
+ 631              	.LVL48:
+ 632 0006 6569     		ldr	r5, [r4, #20]
+ 633 0008 FFF7FEFF 		bl	GET_CHANNEL_DIM_MASK
+ 634              	.LVL49:
+ 635 000c 0543     		orr	r5, r0
+ 636 000e 6561     		str	r5, [r4, #20]
+ 275:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** }
+ 637              		.loc 1 275 0
+ 638              		@ sp needed for prologue
+ 639 0010 38BD     		pop	{r3, r4, r5, pc}
+ 640              		.cfi_endproc
+ 641              	.LFE47:
+ 643              		.section	.text.BCCUCH01_DisableForcedTrigger,"ax",%progbits
+ 644              		.align	1
+ 645              		.global	BCCUCH01_DisableForcedTrigger
+ 646              		.code	16
+ 647              		.thumb_func
+ 649              	BCCUCH01_DisableForcedTrigger:
+ 650              	.LFB48:
+ 276:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 
+ 277:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 
+ 278:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** /**
+ 279:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** * @brief    Disable Forced Trigger Function. 
+ 280:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** *       Modifies CHCONFIGy.ENTF field
+ 281:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** */
+ 282:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** inline void BCCUCH01_DisableForcedTrigger(const 
+ 283:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     BCCUCH01_HandleType * handle)
+ 284:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** {
+ 651              		.loc 1 284 0
+ 652              		.cfi_startproc
+ 653              	.LVL50:
+ 654 0000 38B5     		push	{r3, r4, r5, lr}
+ 655              	.LCFI5:
+ 656              		.cfi_def_cfa_offset 16
+ 657              		.cfi_offset 3, -16
+ 658              		.cfi_offset 4, -12
+ 659              		.cfi_offset 5, -8
+ 660              		.cfi_offset 14, -4
+ 285:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   handle->BCCURegs->CHTRIG &= ~GET_CHANNEL_DIM_MASK(handle->ChNum);
+ 661              		.loc 1 285 0
+ 662 0002 0468     		ldr	r4, [r0]
+ 663 0004 8068     		ldr	r0, [r0, #8]
+ 664              	.LVL51:
+ 665 0006 6569     		ldr	r5, [r4, #20]
+ 666 0008 FFF7FEFF 		bl	GET_CHANNEL_DIM_MASK
+ 667              	.LVL52:
+ 668 000c 8543     		bic	r5, r0
+ 669 000e 6561     		str	r5, [r4, #20]
+ 286:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** }
+ 670              		.loc 1 286 0
+ 671              		@ sp needed for prologue
+ 672 0010 38BD     		pop	{r3, r4, r5, pc}
+ 673              		.cfi_endproc
+ 674              	.LFE48:
+ 676              		.section	.text.BCCUCH01_SetDimmingSource,"ax",%progbits
+ 677              		.align	1
+ 678              		.global	BCCUCH01_SetDimmingSource
+ 679              		.code	16
+ 680              		.thumb_func
+ 682              	BCCUCH01_SetDimmingSource:
+ 683              	.LFB49:
+ 287:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** 
+ 288:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** /**
+ 289:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** * @brief    Configures desired dimming source
+ 290:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** */
+ 291:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** inline void BCCUCH01_SetDimmingSource(const BCCUCH01_HandleType * handle,
+ 292:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****     BCCUCH01_DimmingSourceType DimmingSource)
+ 293:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** {
+ 684              		.loc 1 293 0
+ 685              		.cfi_startproc
+ 686              	.LVL53:
+ 687              	.LBB11:
+ 294:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****   WR_REG_SIZE(handle->BCCU_CH->CHCONFIG, BCCU_CH_CHCONFIG_DSEL_Msk,
+ 688              		.loc 1 294 0
+ 689 0000 4368     		ldr	r3, [r0, #4]
+ 690 0002 7022     		mov	r2, #112
+ 691 0004 9868     		ldr	r0, [r3, #8]
+ 692              	.LVL54:
+ 693 0006 0901     		lsl	r1, r1, #4
+ 694              	.LVL55:
+ 695 0008 1140     		and	r1, r2
+ 696 000a 9043     		bic	r0, r2
+ 697              	.LVL56:
+ 698 000c 0143     		orr	r1, r0
+ 699 000e 9960     		str	r1, [r3, #8]
+ 700              	.LBE11:
+ 295:../Dave/Generated/src/BCCUCH01/BCCUCH01.c ****       BCCU_CH_CHCONFIG_DSEL_Pos, DimmingSource, 32);
+ 296:../Dave/Generated/src/BCCUCH01/BCCUCH01.c **** }
+ 701              		.loc 1 296 0
+ 702              		@ sp needed for prologue
+ 703 0010 7047     		bx	lr
+ 704              		.cfi_endproc
+ 705              	.LFE49:
+ 707              		.text
+ 708              	.Letext0:
+ 709              		.file 2 "c:\\dave-3.1.10\\arm-gcc\\bin\\../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/i
+ 710              		.file 3 "C:\\DAVE-3.1.10\\eclipse\\/../CMSIS/Infineon/XMC1200_series/Include/XMC1200.h"
+ 711              		.file 4 "../Dave/Generated/src/BCCUCH01/../../inc/BCCUCH01/../../inc/BCCUGLOBAL/BCCUGLOBAL.h"
+ 712              		.file 5 "../Dave/Generated/src/BCCUCH01/../../inc/BCCUCH01/BCCUCH01.h"
+ 713              		.file 6 "../Dave/Generated/src/BCCUCH01/../../inc/BCCUCH01/BCCUCH01_Extern.h"
+DEFINED SYMBOLS
+                            *ABS*:00000000 BCCUCH01.c
+C:\Users\tomasoat\AppData\Local\Temp\ccPz2Csi.s:18     .text.BCCUCH01_Init:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\ccPz2Csi.s:23     .text.BCCUCH01_Init:00000000 BCCUCH01_Init
+C:\Users\tomasoat\AppData\Local\Temp\ccPz2Csi.s:252    .text.BCCUCH01_Init:000000f0 $d
+C:\Users\tomasoat\AppData\Local\Temp\ccPz2Csi.s:257    .text.BCCUCH01_Enable:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\ccPz2Csi.s:262    .text.BCCUCH01_Enable:00000000 BCCUCH01_Enable
+C:\Users\tomasoat\AppData\Local\Temp\ccPz2Csi.s:282    .text.BCCUCH01_Disable:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\ccPz2Csi.s:287    .text.BCCUCH01_Disable:00000000 BCCUCH01_Disable
+C:\Users\tomasoat\AppData\Local\Temp\ccPz2Csi.s:306    .text.BCCUCH01_GateEnable:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\ccPz2Csi.s:311    .text.BCCUCH01_GateEnable:00000000 BCCUCH01_GateEnable
+C:\Users\tomasoat\AppData\Local\Temp\ccPz2Csi.s:332    .text.BCCUCH01_GateDisable:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\ccPz2Csi.s:337    .text.BCCUCH01_GateDisable:00000000 BCCUCH01_GateDisable
+C:\Users\tomasoat\AppData\Local\Temp\ccPz2Csi.s:357    .text.BCCUCH01_GateDisable:0000000c $d
+C:\Users\tomasoat\AppData\Local\Temp\ccPz2Csi.s:362    .text.BCCUCH01_StartLinearWalk:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\ccPz2Csi.s:367    .text.BCCUCH01_StartLinearWalk:00000000 BCCUCH01_StartLinearWalk
+C:\Users\tomasoat\AppData\Local\Temp\ccPz2Csi.s:387    .text.BCCUCH01_AbortLinearWalk:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\ccPz2Csi.s:392    .text.BCCUCH01_AbortLinearWalk:00000000 BCCUCH01_AbortLinearWalk
+C:\Users\tomasoat\AppData\Local\Temp\ccPz2Csi.s:413    .text.BCCUCH01_GetOpLvlAtLastTrigger:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\ccPz2Csi.s:418    .text.BCCUCH01_GetOpLvlAtLastTrigger:00000000 BCCUCH01_GetOpLvlAtLastTrigger
+C:\Users\tomasoat\AppData\Local\Temp\ccPz2Csi.s:452    .text.BCCUCH01_SetIntensity:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\ccPz2Csi.s:457    .text.BCCUCH01_SetIntensity:00000000 BCCUCH01_SetIntensity
+C:\Users\tomasoat\AppData\Local\Temp\ccPz2Csi.s:474    .text.BCCUCH01_GetIntensity:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\ccPz2Csi.s:479    .text.BCCUCH01_GetIntensity:00000000 BCCUCH01_GetIntensity
+C:\Users\tomasoat\AppData\Local\Temp\ccPz2Csi.s:497    .text.BCCUCH01_SetLinearWalkPrescaler:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\ccPz2Csi.s:502    .text.BCCUCH01_SetLinearWalkPrescaler:00000000 BCCUCH01_SetLinearWalkPrescaler
+C:\Users\tomasoat\AppData\Local\Temp\ccPz2Csi.s:534    .text.BCCUCH01_SetLinearWalkPrescaler:00000014 $d
+C:\Users\tomasoat\AppData\Local\Temp\ccPz2Csi.s:540    .text.BCCUCH01_WalkStatus:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\ccPz2Csi.s:545    .text.BCCUCH01_WalkStatus:00000000 BCCUCH01_WalkStatus
+C:\Users\tomasoat\AppData\Local\Temp\ccPz2Csi.s:579    .text.BCCUCH01_AwaitEndOfWalk:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\ccPz2Csi.s:584    .text.BCCUCH01_AwaitEndOfWalk:00000000 BCCUCH01_AwaitEndOfWalk
+C:\Users\tomasoat\AppData\Local\Temp\ccPz2Csi.s:611    .text.BCCUCH01_EnableForcedTrigger:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\ccPz2Csi.s:616    .text.BCCUCH01_EnableForcedTrigger:00000000 BCCUCH01_EnableForcedTrigger
+C:\Users\tomasoat\AppData\Local\Temp\ccPz2Csi.s:644    .text.BCCUCH01_DisableForcedTrigger:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\ccPz2Csi.s:649    .text.BCCUCH01_DisableForcedTrigger:00000000 BCCUCH01_DisableForcedTrigger
+C:\Users\tomasoat\AppData\Local\Temp\ccPz2Csi.s:677    .text.BCCUCH01_SetDimmingSource:00000000 $t
+C:\Users\tomasoat\AppData\Local\Temp\ccPz2Csi.s:682    .text.BCCUCH01_SetDimmingSource:00000000 BCCUCH01_SetDimmingSource
+                     .debug_frame:00000010 $d
+                           .group:00000000 wm4.1.e09b9dd5224853206c418479f14d6963
+                           .group:00000000 wm4.uc_id.h.35.62dcba5f6261c1436e3866a751c1a98b
+                           .group:00000000 wm4.XMC1200.h.45.4c899b4822ac22c0f00d6fd7f173cc96
+                           .group:00000000 wm4.core_cm0.h.47.022e66414e77714da7c4b30b3ad99fe8
+                           .group:00000000 wm4.newlib.h.8.a9901dc52d1357e3e94003403d43f8b5
+                           .group:00000000 wm4.features.h.22.b72b3baab2bb2eab3661375590100b6b
+                           .group:00000000 wm4.config.h.193.5fb8ef056cdff92dec3dee9552839d8c
+                           .group:00000000 wm4._ansi.h.23.7aefdac4826acebbfc9f3822a0aeb14c
+                           .group:00000000 wm4.stdint.h.20.54ad762faa59e3c05491630641c8d8bf
+                           .group:00000000 wm4.core_cmInstr.h.39.b7b6650bdd2316848d940915272d75b8
+                           .group:00000000 wm4.core_cm0.h.135.ca70469f87e143609670bb393bfa6518
+                           .group:00000000 wm4.XMC1000_RomFunctionTable.h.31.6d9a94465618f31b040dc9cea9a47ad7
+                           .group:00000000 wm4.XMC1200.h.122.96b58b1204def4c9f76341a4e21abaf6
+                           .group:00000000 wm4.BCCUCH01_Conf.h.48.2ce679450068d1645a9e0c3a7937e697
+
+UNDEFINED SYMBOLS
+GET_CHANNEL_DIM_MASK
+BCCUCH01_HandleArr
